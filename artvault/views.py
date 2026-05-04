@@ -5,7 +5,7 @@ from .data import artworks
 
 # Create your views here
 def index(request):
-    return render(request, "artvault/index.html", {"art": artworks})
+    return render(request, "base.html", {"art": artworks})
 
 
 def get_art_by_id(request, id):
