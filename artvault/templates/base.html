@@ -10,8 +10,23 @@
 </head>
 
 <body>
-      <nav class="nav">
-
+       <nav class="nav-container">
+            <!--TODO link menu to hammburger menu-->
+            <ul>
+                  <li><img src="../../assets/HamburgerMenu.svg" alt="Menu button" ></li>
+                  <li><a href="browes.html" class="browes">Browse Artwork</a></li>
+                  <li>
+                        <a href="artvault.html"><img src="../../assets/artVaultLogo.png" alt="Art vault logo"></a>
+                  </li>
+            <!--TODO link profile/ logged in nav-->
+                  <!--{% if user.isAuthenticated %}-->
+                  <!--<a href=""></a>-->
+                  <!--{% else %}-->
+            <!--TODO link login/signup to button-->
+                  <li><a href="" class="login">Log in</a></li>
+                  <li><a href="" class="signup">Sign up</a></li>
+                  <!--{% endif %}-->
+            </ul>
       </nav>
 
       {%block content%}
