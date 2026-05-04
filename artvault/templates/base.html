@@ -17,7 +17,7 @@
                   <li><a href="browes.html" class="browes">Browse Artwork</a></li>
                   <li>
                         <a href="artvault.html"><img src="{% static 'img/artVaultLogo.png'%}" alt="Art vault logo"
-                                    style="height: 300px; width: 400px"></a>
+                                    class="logo"></a>
                   </li>
                   {% if user.is_authenticated %}
                       <li class="nav-item">
@@ -34,10 +34,6 @@
             </ul>
       </nav>
 
-      <img src="{% static 'img/HamburgerMenu.svg'%}" alt="test">
-      <div>
-            hithere
-      </div>
       {% block content %}
 
       {% endblock %}
