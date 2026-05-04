@@ -1,0 +1,14 @@
+{% block content %}
+
+{% for a in art %}
+<div class=art-item>
+      <h3>{{a.id}}</h3>
+      <p>{{a.title}}</p>
+
+      <div class="image" style="background-image: url({{ a.image_path }})">
+
+      </div>
+</div>
+
+{% endfor %}
+{% endblock content %}
