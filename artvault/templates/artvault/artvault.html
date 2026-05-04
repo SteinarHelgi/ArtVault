@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>artvault</title>
+      <style>
+.art-item {
+
+
+}
+.art-item h3 {
+      color:red
+}
+.art-item p {
+      color: blue
+}
+
+      </style>
+      <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+      {% for a in art %}
+      <div class=art-item>
+            <h3>{{a.id}}</h3>
+            <p>{{a.name}}</p>
+      </div>
+
+      {% endfor %}
+</body>
+
+</html>
