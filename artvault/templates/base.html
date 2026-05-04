@@ -19,14 +19,18 @@
                         <a href="artvault.html"><img src="{% static 'img/artVaultLogo.png'%}" alt="Art vault logo"
                                     style="height: 300px; width: 400px"></a>
                   </li>
-                  <!--TODO link profile/ logged in nav-->
-                  <!--{% if user.isAuthenticated %}-->
-                  <!--<a href=""></a>-->
-                  <!--{% else %}-->
-                  <!--TODO link login/signup to button-->
-                  <li><a href="" class="login">Log in</a></li>
-                  <li><a href="" class="signup">Sign up</a></li>
-                  <!--{% endif %}-->
+                  {% if user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url "logout" %}">Logout</a>
+                      </li>
+                  {% else %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url "signup" %}">Signup</a>
+                     </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url "login" %}">Login</a>
+                      </li>
+                  {% endif %}
             </ul>
       </nav>
 
