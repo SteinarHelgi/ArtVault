@@ -15,8 +15,15 @@
 }
 .art-item p {
       color: blue
+
+}
+.art-item .image {
+      height: 200px;
+      width: 400px;
+      background-size:cover
 }
 
+      
       </style>
       <link href="css/style.css" rel="stylesheet">
 </head>
@@ -26,7 +33,11 @@
       {% for a in art %}
       <div class=art-item>
             <h3>{{a.id}}</h3>
-            <p>{{a.name}}</p>
+            <p>{{a.title}}</p>
+
+            <div class="image" style="background-image: url({{ a.image_path }})">
+                  
+            </div>
       </div>
 
       {% endfor %}
