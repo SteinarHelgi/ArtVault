@@ -10,3 +10,7 @@ def index(request):
 
 def get_art_by_id(request, id):
     return HttpResponse(f"Hi there! {request.path},with ID {id}")
+
+
+def steinar_test(request):
+    return render(request, "artvault/steinar_test.html", {"art": artworks})
