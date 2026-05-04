@@ -1,4 +1,4 @@
-{% loadstatic %}
+{% load static %}
 
 <html lang="en">
 
@@ -6,17 +6,32 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>artvault</title>
-      <link href={% static 'css/main.css' %} rel="stylesheet" />
+      <link href="{% static 'css/main.css' %}" rel="stylesheet"/>
 </head>
 
 <body>
-      <nav class="nav">
-
+       <nav class="nav-container">
+            <!--TODO link menu to hamburger menu-->
+            <ul>
+                  <li><img src="{% static 'img/HamburgerMenu.svg'%}" alt="Menu button" ></li>
+                  <li><a href="browes.html" class="browes">Browse Artwork</a></li>
+                  <li>
+                        <a href="artvault.html"><img src="{% static 'img/artVaultLogo.png'%}" alt="Art vault logo"></a>
+                  </li>
+            <!--TODO link profile/ logged in nav-->
+                  <!--{% if user.isAuthenticated %}-->
+                  <!--<a href=""></a>-->
+                  <!--{% else %}-->
+            <!--TODO link login/signup to button-->
+                  <li><a href="" class="login">Log in</a></li>
+                  <li><a href="" class="signup">Sign up</a></li>
+                  <!--{% endif %}-->
+            </ul>
       </nav>
 
-      {%block content%}
+      {% block content %}
 
-      {%endblock%}
+      {% endblock %}
 
       <footer>
 
