@@ -1,0 +1,115 @@
+# =========================
+# OS FILES
+# =========================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# =========================
+# PYTHON
+# =========================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python build / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing / coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Type checkers
+.pyre/
+
+# =========================
+# NODE / JAVASCRIPT (if used)
+# =========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.next/
+.nuxt/
+.svelte-kit/
+
+# =========================
+# EDITORS / IDEs
+# =========================
+
+# VSCode
+.vscode/
+
+# JetBrains (PyCharm, WebStorm, etc.)
+.idea/
+
+# Neovim / Vim
+*.swp
+*.swo
+*.swn
+
+# =========================
+# ENV / SECRETS
+# =========================
+
+.env
+.env.*
+*.env
+
+# =========================
+# LOGS
+# =========================
+
+*.log
+
+# =========================
+# DATABASES
+# =========================
+
+*.sqlite3
+*.db
+
+# =========================
+# MISC
+# =========================
+
+coverage/
+.cache/
+tmp/
+temp/
