@@ -17,3 +17,6 @@ def blabla(request): ...
 
 def steinar_test(request):
     return render(request, "artvault/steinar_test.html", {"art": artworks})
+
+def artwork_details(request, id):
+    return render(request, 'artvault/artwork_details.html', {"art": artworks, "id": id})
