@@ -14,3 +14,6 @@ def get_art_by_id(request, id):
 
 def steinar_test(request):
     return render(request, "artvault/steinar_test.html", {"art": artworks})
+
+
+def blabla(request): ...

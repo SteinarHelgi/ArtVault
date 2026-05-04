@@ -10,3 +10,9 @@
 .bla {
       color: red
 }
+
+.art-item .image {
+      width: 300px;
+      height: 200px;
+      background-size: cover;
+}
