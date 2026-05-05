@@ -25,6 +25,7 @@ def signup(request):
             if role not in ALLOWED_ROLE_CHOICES:
                 return HttpResponseForbidden()
 
+            #save after everything has been created
             with transaction.atomic():
                 user = form.save()
 
