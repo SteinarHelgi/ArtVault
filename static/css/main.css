@@ -162,3 +162,29 @@ body {
       background-position: center;
       background-repeat: no-repeat;
 }
+
+.browse-art-item {
+    padding: 18px;
+}
+
+.browse-art-item h1 {
+
+}
+
+.browse-art-item h2 {
+
+}
+
+.browse-art-item .image {
+    height: 120px;
+    width: 150px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.browse-art-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}

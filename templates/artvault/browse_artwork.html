@@ -1,13 +1,16 @@
-{% extends "../base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-    {% for a in art %}
-        <div class="browse-art">
-            <h1>{{a.title}}</h1>
-            <img src={{ a.image_path }}, alt="image of artwork">
-            <h2>{{ a.artist_name }}</h2>
-            <p>current bid</p>
-        </div>
+    <div class="browse-art-container">
+        {% for a in art %}
+            <div class="browse-art-item">
+                <h1>{{a.title}}</h1>
+                <img class="image" src={{ a.image_path }}, alt="image of artwork">
+                <h2>{{ a.artist_name }}</h2>
+                <p>current bid</p>
+            </div>
+        {% endfor %}
+    </div>
 
-    {% endfor %}
+
 {% endblock %}
