@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="nav-container">
+        <div class="left-side">
+          <div class="dropdown">
+            <button onclick="MyDropdown()" class="dropbtn" type="button">
+              <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
+            </button>
+
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">View Artist</a>
+              <a href="#">View Artwork</a>
+              <a href="#">My Bids</a>
+            </div>
+          </div>
+
+          <a href="{% url 'artvault-browse-artwork' %}" class="browse">Browse Artwork</a>
+        </div>
+
+        <div class="logo">
+          <a href="{% url 'home' %}">
+            <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
+          </a>
+        </div>
+
+        <div class="right-side">
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                        <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a class="signup" href="{% url 'signup' %}">Signup</a>
+                <a class="login" href="{% url 'login' %}">Login</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% if user.profile.role == "buyer" %}
+                    <div class="avatar" style="background-image: url({{ user.profile.buyerprofilemodel.profile_image }})"></div>
+                {% else %}
+                    <div class="avatar" style="background-image: url({{ user.profile.sellerprofilemodel.logo }})"></div>
+                {% endif %}
+            {% endif %}
+        </div>
+      </nav>

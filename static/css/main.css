@@ -121,6 +121,7 @@ body {
 
 /*logged in*/
 .avatar{
+    display: flex;
     width: 90px;
     height: auto;
 }
