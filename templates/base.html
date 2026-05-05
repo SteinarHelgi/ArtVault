@@ -13,24 +13,30 @@
       <nav class="nav-container">
             <!--TODO link menu to hamburger menu-->
             <ul>
-                  <li><img src="{% static 'img/HamburgerMenu.svg'%}" alt="Menu button"></li>
-                  <li><a href="browes.html" class="browes">Browse Artwork</a></li>
-                  <li>
-                        <a href="artvault.html"><img src="{% static 'img/artVaultLogo.png'%}" alt="Art vault logo"
-                                    class="logo"></a>
-                  </li>
-                  {% if user.is_authenticated %}
-                  <li class="nav-item">
-                        <a class="nav-link" href="{% url "logout" %}">Logout</a>
-                  </li>
-                  {% else %}
-                  <li class="nav-item">
-                        <a class="nav-link" href="{% url "signup" %}">Signup</a>
-                  </li>
-                  <li class="nav-item">
-                        <a class="nav-link" href="{% url "login" %}">Login</a>
-                  </li>
-                  {% endif %}
+                  <div class="left-side">
+                        <li><a href=""><img src="{% static 'img/HamburgerMenu.svg'%}" alt="Menu button"></a></li>
+                        <li><a href="browes.html" class="browes">Browse Artwork</a></li>
+                  </div>
+                  <div class="logo">
+                        <li>
+                              <a href="artvault.html"><img src="{% static 'img/artVaultLogo.png'%}" alt="Art vault logo"></a>
+                        </li>
+                  </div>
+
+                  <div class="right-side">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                              <a class="nav-link" href="{% url "logout" %}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="signup">
+                              <a class="nav-link" href="{% url "signup" %}">Signup</a>
+                        </li>
+                        <li class="login">
+                              <a class="nav-link" href="{% url "login" %}">Login</a>
+                        </li>
+                        {% endif %}
+                  </div>
             </ul>
       </nav>
 
