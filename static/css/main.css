@@ -185,10 +185,23 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: 0.2s;
 }
 
 .browse-art-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2px;
+}
+
+.browse-art-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.browse-art-item:hover {
+    transform: scale(1.02);
+    cursor: pointer;
 }
