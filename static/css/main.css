@@ -170,19 +170,18 @@ body {
 
 .browse-art-item {
     padding: 18px;
+    flex: 0 0 250px;
 }
 
-.browse-art-item h1 {
+.browse-art-item h3 {
 
 }
 
-.browse-art-item h2 {
-
-}
 
 .browse-art-item .image {
-    height: 120px;
-    width: 150px;
+    width: 100%;
+    height: 150px;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -190,6 +189,6 @@ body {
 
 .browse-art-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
 }
