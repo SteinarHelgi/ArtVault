@@ -6,6 +6,7 @@ from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
 from django.http import HttpResponseForbidden
 from .models import Profile, BuyerProfileModel, SellerProfileModel
+from django.contrib import messages
 
 # Create your views here.
 #Roles
@@ -48,9 +49,11 @@ def buyer_profile(request):
         form = BuyerProfileForm(request.POST, instance=buyer_profile_obj)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user = request.user
+            instance.profile = profile
             instance.save()
-            return redirect('buyer_profile')
+
+            messages.success(request, "profile_setup_complete")
+            return redirect('/')
 
     return render(request, template_name='user/buyer_profile.html', context={
         'form': BuyerProfileForm(instance=buyer_profile_obj),
@@ -66,9 +69,11 @@ def seller_profile(request):
         form = SellerProfileForm(request.POST, instance=seller_profile_obj)
         if form.is_valid():
             instance = form.save(commit=False)
-            instance.user = request.user
+            instance.profile = profile
             instance.save()
-            return redirect('seller_profile')
+
+            messages.success(request, "profile_setup_complete")
+            return redirect('/')
 
     return render(request, template_name='user/seller_profile.html', context={
         'form': SellerProfileForm(instance=seller_profile_obj),

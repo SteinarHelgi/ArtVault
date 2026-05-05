@@ -1,13 +1,13 @@
-:root{
-    --primary-color: #FAFAFA;
-    --orange-color: #DD700B;
+:root {
+      --primary-color: #FAFAFA;
+      --orange-color: #DD700B;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--primary-color);
-    font-family: "Afacad Flux", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--primary-color);
+      font-family: "Afacad Flux", sans-serif;
 }
 
 /*nav bar css*/
@@ -32,46 +32,46 @@ body {
 }
 
 .logo {
-    justify-self: center;
+      justify-self: center;
 }
 
 .right-side {
-    padding-right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-self: end;
+      padding-right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-self: end;
 }
 
 .nav-container a {
-  text-decoration: none;
+      text-decoration: none;
 }
 
 .browse {
-    color: #000000;
-    border: 3px, solid var(--orange-color);
-    padding: 3px 12px;
+      color: #000000;
+      border: 3px solid var(--orange-color);
+      padding: 3px 12px;
 }
 
 .login {
-    color: var(--primary-color);
-    padding: 6px 50px;
-    border: 1px solid black;
-    color: var(--primary-color);
-    background-color: black;
+      color: var(--primary-color);
+      padding: 6px 50px;
+      border: 1px solid black;
+      color: var(--primary-color);
+      background-color: black;
 }
 
 .signup {
-    color: #000000;
-    padding: 6px 50px;
-    border: 1px solid black;
+      color: #000000;
+      padding: 6px 50px;
+      border: 1px solid black;
 }
 
 
 .logo img {
-    width: 90px;
-    height: auto;
-    display: block;
+      width: 90px;
+      height: auto;
+      display: block;
 }
 
 /*dropdown css*/
