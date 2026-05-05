@@ -3,8 +3,7 @@ body {
       font-optical-sizing: auto;
       font-weight: 500;
       font-style: normal;
-      font-variation-settings:
-            "slnt" 0;
+      font-variation-settings: "slnt" 0;
 
 }
 
@@ -20,23 +19,29 @@ body {
 .nav-container ul {
       display: flex;
       flex-direction: row;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      padding: 0;
+      margin: 0;
 }
 
 .hero-container {
       display: flex;
+      justify-content: center;
+      align-items: center;
+
       height: 400px;
-      justify-items: center;
+      text-align: center;
+
+      background-image: url("/static/img/nail-polish-texture.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 }
 
 .hero-container h1 {
-      position: absolute;
-      font-size: 6em
-}
+      font-size: 3em;
+      color: #FAFAFA;
 
-.hero-container .background-image {
-      height: 400px;
-      background-size: 400px;
 }
 
 .logo {
@@ -44,18 +49,30 @@ body {
       height: 40px
 }
 
-.bla {
-      color: red
-}
-
-.art-item .image {
-      width: 300px;
-      height: 200px;
-      background-size: cover;
+.art-movement-h1 {
+      font-size: 2em;
 }
 
 .art-movement-container {
+      width: 100%;
       display: flex;
-      flex-direction: row;
-      gap: 40px
+      gap: 24px;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      padding: 16px 0;
+}
+
+.art-item {
+      flex: 0 0 250px;
+}
+
+.art-item .image {
+      width: 100%;
+      height: 300px;
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 }

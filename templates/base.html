@@ -6,7 +6,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>artvault</title>
-      <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+      <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
 <body>
@@ -20,16 +20,16 @@
                                     class="logo"></a>
                   </li>
                   {% if user.is_authenticated %}
-                      <li class="nav-item">
+                  <li class="nav-item">
                         <a class="nav-link" href="{% url "logout" %}">Logout</a>
-                      </li>
+                  </li>
                   {% else %}
-                     <li class="nav-item">
+                  <li class="nav-item">
                         <a class="nav-link" href="{% url "signup" %}">Signup</a>
-                     </li>
-                      <li class="nav-item">
+                  </li>
+                  <li class="nav-item">
                         <a class="nav-link" href="{% url "login" %}">Login</a>
-                      </li>
+                  </li>
                   {% endif %}
             </ul>
       </nav>

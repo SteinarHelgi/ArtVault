@@ -1,15 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% for a in art %}
-<div class=art-item>
-      <h3>{{a.id}}</h3>
-      <p>{{a.title}}</p>
+{% load static %}
+<div class="hero-container">
+      <h1>Art Vault - Discover, Bid and Own Original Art</h1>
+</div>
 
-      <div class="image" style="background-image: url({{ a.image_path }})">
+<div>
+      <h1 class="art-movement-h1">Art Movement 1</h1>
+      <div class="art-movement-container">
+            {% for a in art %}
+            <div class="art-item">
+                  <div class="image" style="background-image: url('{{ a.image_path }}')"></div>
+                  <p>{{ a.title }}</p>
+            </div>
+            {% endfor %}
+      </div>
+</div>
+<div>
+
+      <h1 class="art-movement-h1">Art Movement 2</h1>
+      <div class="art-movement-container">
+
+
+            {% for a in art %}
+
+            <div class="art-item">
+                  <div class="image" style="background-image: url({{ a.image_path }})">
+
+                  </div>
+                  <p>{{a.title}}</p>
+            </div>
+            {% endfor %}
+
 
       </div>
 </div>
-
-{% endfor %}
 {% endblock content %}
