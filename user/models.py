@@ -12,7 +12,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(choices=ROLE_CHOICES, max_length=100)
 
-
 class BuyerProfileModel(models.Model):
     #buyer profile
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
