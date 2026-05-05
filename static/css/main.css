@@ -10,16 +10,14 @@ body {
     font-family: "Afacad Flux", sans-serif;
 }
 
-.nav-container ul {
-    position: sticky;
-    top: 0;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+/*nav bar css*/
+
+.nav-container{
     height: 80px;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    background-color: var(--primary-color);
 }
 
 .left-side {
@@ -42,13 +40,17 @@ body {
     justify-self: end;
 }
 
-.left-side .browes{
+.nav-container a {
+  text-decoration: none;
+}
+
+.browse {
     color: #000000;
     border: 3px, solid var(--orange-color);
     padding: 3px 12px;
 }
 
-.right-side .login a{
+.login {
     color: var(--primary-color);
     padding: 6px 50px;
     border: 1px solid black;
@@ -56,21 +58,61 @@ body {
     background-color: black;
 }
 
-.right-side .signup a{
+.signup {
     color: #000000;
     padding: 6px 50px;
     border: 1px solid black;
 }
 
-.nav-container ul li a {
-    display: block;
-    text-decoration: none;
-}
 
 .logo img {
     width: 90px;
     height: auto;
     display: block;
+}
+
+/*dropdown css*/
+
+.dropdown {
+  position: relative;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dropbtn img {
+  width: 28px;
+  height: auto;
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  min-width: 170px;
+  background-color: var(--primary-color);
+  border: 1px solid black;
+  z-index: 10;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 12px 16px;
+  color: #000000;
+}
+
+.dropdown-content a:hover {
+  background-color: #eeeeee;
+}
+
+.dropdown-content.show {
+  display: block;
 }
 
 .hero-container {

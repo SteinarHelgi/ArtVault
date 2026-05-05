@@ -10,34 +10,37 @@
 </head>
 
 <body>
-      <nav class="nav-container">
-            <!--TODO link menu to hamburger menu-->
-            <ul>
-                  <div class="left-side">
-                        <li><a href=""><img src="{% static 'img/HamburgerMenu.svg'%}" alt="Menu button"></a></li>
-                        <li><a href="browes.html" class="browes">Browse Artwork</a></li>
-                  </div>
-                  <div class="logo">
-                        <li>
-                              <a href="artvault.html"><img src="{% static 'img/artVaultLogo.png'%}" alt="Art vault logo"></a>
-                        </li>
-                  </div>
+     <nav class="nav-container">
+        <div class="left-side">
+          <div class="dropdown">
+            <button onclick="MyDropdown()" class="dropbtn" type="button">
+              <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
+            </button>
 
-                  <div class="right-side">
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                              <a class="nav-link" href="{% url "logout" %}">Logout</a>
-                        </li>
-                        {% else %}
-                        <li class="signup">
-                              <a class="nav-link" href="{% url "signup" %}">Signup</a>
-                        </li>
-                        <li class="login">
-                              <a class="nav-link" href="{% url "login" %}">Login</a>
-                        </li>
-                        {% endif %}
-                  </div>
-            </ul>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#">Home</a>
+              <a href="#">Browse Artwork</a>
+              <a href="#">My Bids</a>
+            </div>
+          </div>
+
+          <a href="#" class="browse">Browse Artwork</a>
+        </div>
+
+        <div class="logo">
+          <a href="#">
+            <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
+          </a>
+        </div>
+
+        <div class="right-side">
+          {% if user.is_authenticated %}
+            <a class="logout" href="{% url 'logout' %}">Logout</a>
+          {% else %}
+            <a class="signup" href="{% url 'signup' %}">Signup</a>
+            <a class="login" href="{% url 'login' %}">Login</a>
+          {% endif %}
+        </div>
       </nav>
 
       {% block content %}
