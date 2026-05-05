@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for a in art %}
-<div class="browse-art">
-      <h1>{{a.title}}</h1>
-      <img src={{ a.image_path }}, alt="image of artwork">
-      <h2>{{ a.artist_name }}</h2>
-      <p>current bid</p>
-</div>
+    <div class="filter-container">
+        
 
-{% endfor %}
+    </div>
+
+    <div class="browse-art-container">
+        {% for a in art %}
+            <a href="{% url 'artvault-artwork-details' a.id %}" class="browse-art-link">
+                <div class="browse-art-item">
+                    <img class="image" src="{{ a.image_path }}" alt="image of artwork">
+                    <h3>{{ a.title }}</h3>
+                    <p>{{ a.artist_name }}</p>
+                    <p>current bid</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+
 {% endblock %}
