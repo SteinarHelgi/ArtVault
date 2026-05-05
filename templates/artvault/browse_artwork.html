@@ -4,9 +4,9 @@
     <div class="browse-art-container">
         {% for a in art %}
             <div class="browse-art-item">
-                <h1>{{a.title}}</h1>
                 <img class="image" src={{ a.image_path }}, alt="image of artwork">
-                <h2>{{ a.artist_name }}</h2>
+                <h2><b>{{a.title}}</b></h2>
+                <h3>{{ a.artist_name }}</h3>
                 <p>current bid</p>
             </div>
         {% endfor %}
