@@ -1,8 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="filter-container">
-        
+    <div class="left-side">
+        <form method="GET" action="" class="search-form">
+            <label for="search-bar">
+                <input
+                    type="text"
+                    id="searchbar"
+                    name="searchbar"
+                    placeholder="Search artwork..."
+                    class="search-input"
+                    value="{{ request.GET.searchbar }}"
+                >
+
+                <select name="order">
+                    <option value="">Sort by</option>
+                    <option value="title" {% if request.GET.order == "title" %}selected{% endif %}>Title</option>
+                    <option value="artist" {% if request.GET.order == "artist" %}selected{% endif %}>Artist</option>
+                </select>
+            
+                <button type="submit">Search</button>
+            </label>
+        </form>
 
     </div>
 
