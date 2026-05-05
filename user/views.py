@@ -50,7 +50,7 @@ def buyer_profile(request):
             instance.save()
             return redirect('buyer_profile')
 
-    return render(request, template_name='user/buyer_profile.html', context={
+    return render(request, template_name='user/../templates/user/buyer_profile.html', context={
         'form': BuyerProfileForm(instance=user_profile),
     })
 
@@ -65,7 +65,7 @@ def seller_profile(request):
             instance.save()
             return redirect('seller_profile')
 
-    return render(request, template_name='user/seller_profile.html', context={
+    return render(request, template_name='user/../templates/user/seller_profile.html', context={
         'form': SellerProfileForm(instance=user_profile),
     })
 
