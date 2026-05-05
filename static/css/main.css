@@ -7,13 +7,80 @@ body {
 
 }
 
-.nav-container {
-      font-family: "Afacad Flux", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: 500;
-      font-style: normal;
-      font-variation-settings:
-            "slnt" 0;
+.left-side {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-self: start;
+}
+
+.left-side .browes{
+    color: #000000;
+    border: 3px, solid var(--orange-color);
+    padding: 3px 12px;
+}
+
+.logo {
+    justify-self: center;
+}
+
+.right-side {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-self: end;
+}
+
+.right-side .login a{
+    color: var(--primary-color);
+    padding: 6px 50px;
+    border: 1px solid black;
+    color: var(--primary-color);
+    background-color: black;
+}
+
+
+.right-side .signup a{
+    color: #000000;
+    padding: 6px 50px;
+    border: 1px solid black;
+}
+
+
+.nav-container ul li a {
+    display: block;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+
+:root{
+    --primary-color: #FAFAFA;
+    --orange-color: #DD700B;
+}
+
+body {
+    margin: 0 20px;
+    padding: 0;
+    background-color: var(--primary-color);
+    font-family: "Afacad Flux", sans-serif;
+}
+
+.nav-container ul {
+    position: sticky;
+    top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
 }
 
 .nav-container ul {
