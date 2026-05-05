@@ -11,7 +11,9 @@
       <div class="art-movement-container">
             {% for a in art %}
             <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
-                  <div class="image" style="background-image: url('{{ a.image_path }}')"></div>
+                  {% with img=a.artworkimage_set.first %}
+                  <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                  {% endwith %}
                   <p>{{ a.title }}</p>
             </a>
             {% endfor %}
@@ -23,7 +25,9 @@
       <div class="art-movement-container">
             {% for a in art %}
             <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
-                  <div class="image" style="background-image: url('{{ a.image_path }}')"></div>
+                  {% with img=a.artworkimage_set.first %}
+                  <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                  {% endwith %}
                   <p>{{ a.title }}</p>
             </a>
             {% endfor %}
@@ -34,34 +38,37 @@
       <div class="art-movement-container">
             {% for a in art %}
             <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
-                  <div class="image" style="background-image: url('{{ a.image_path }}')"></div>
+                  {% with img=a.artworkimage_set.first %}
+                  <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                  {% endwith %}
                   <p>{{ a.title }}</p>
             </a>
             {% endfor %}
       </div>
 </div>
 
-    {% if messages %}
-        {% for message in messages %}
-            {% if message.message == "profile_setup_complete" %}
-                <div id="popupModal" class="modal">
-                    <div class="modal-content">
-                        <button class="close-btn" onclick="closeModal()">X</button>
+{% if messages %}
+{% for message in messages %}
+{% if message.message == "profile_setup_complete" %}
+<div id="popupModal" class="modal">
+      <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">X</button>
 
-                        <h2>Welcome to ArtVault!</h2>
-                        <p>Your account is now ready. You can start showcasing your work by listing your first artwork and opening it for bids. It only takes a moment to get started.</p>
+            <h2>Welcome to ArtVault!</h2>
+            <p>Your account is now ready. You can start showcasing your work by listing your first artwork and opening
+                  it for bids. It only takes a moment to get started.</p>
 
-                        {% if request.user.profile.role == "buyer" %}
-                            <h4>Click below to start browsing artwork.</h4>
-                            <p>Click below to start browsing artwork</p>
-                            <a href="/" class="modal-btn">Browse artwork</a>
-                        {% else %}
-                            <h4>Click below to create your first listing and share your art with others.</h4>
-                            <a href="/" class="modal-btn">Create listing</a>
-                        {% endif %}
-                    </div>
-                </div>
+            {% if request.user.profile.role == "buyer" %}
+            <h4>Click below to start browsing artwork.</h4>
+            <p>Click below to start browsing artwork</p>
+            <a href="/" class="modal-btn">Browse artwork</a>
+            {% else %}
+            <h4>Click below to create your first listing and share your art with others.</h4>
+            <a href="/" class="modal-btn">Create listing</a>
             {% endif %}
-        {% endfor %}
-    {% endif %}
+      </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
 {% endblock content %}

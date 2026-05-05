@@ -6,6 +6,7 @@ from user.models import SellerProfileModel
 
 
 class Artwork(models.Model):
+    objects = models.Manager()
     seller = models.ForeignKey(SellerProfileModel, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     medium = models.CharField(max_length=255)

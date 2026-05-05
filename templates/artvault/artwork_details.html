@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% for a in art %}
-        {% if a.id == id %}
-        <div class="art-details">
-            <h1>{{a.title}}</h1>
-            <img src={{ a.image_path }}, alt="image of artwork">
-            <h2>{{ a.artist_name }}</h2>
-            <p>{{ a.history }}</p>
-        </div>
-        {% endif %}
-    {% endfor %}
+{% for a in art %}
+{% if a.id == id %}
+<div class="art-details">
+      <h1>{{a.title}}</h1>
+      {% with img=a.artworkimage_set.first %}
+      {% if img %}
+      <img src="{{ img.image_path }}" alt="image of artwork">
+      {% endif %}
+      {% endwith %}
+      <h2>{{ a.artist_name }}</h2>
+      <p>{{ a.history }}</p>
+</div>
+{% endif %}
+{% endfor %}
 {% endblock %}
