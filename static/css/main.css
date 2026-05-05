@@ -76,9 +76,12 @@ body {
 
 /*dropdown css*/
 
-.dropdown {
-    padding-left: 20px;
+.dropdown .profile-dropdown {
     position: relative;
+}
+
+.left-side .dropdown {
+    padding-left: 20px;
 }
 
 .dropbtn {
@@ -88,35 +91,60 @@ body {
     cursor: pointer;
 }
 
-.dropbtn img {
+.left-side .dropbtn img {
     width: 28px;
     height: auto;
     display: block;
 }
 
 .dropdown-content {
-    z-index: 2;
     display: none;
+    position: fixed;
+    background-color: var(--primary-color);
+    z-index: 10;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.left-dropdown-content {
     position: fixed;
     top: 80px;
     left: 0;
     height: 100%;
     width: 220px;
-    background-color: var(--primary-color);
 }
 
-.dropdown-content a {
-    display: block;
-    padding: 20px 50px;
-    color: #000000;
+.right-dropdown-content {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    width: 220px;
+    height: auto;
 }
 
 .dropdown-content a:hover {
     background-color: #eeeeee;
 }
 
-.dropdown-content.show {
+.dropdown-content a{
     display: block;
+    padding: 20px 50px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.logOutButton{
+    display: block;
+    width: 100%;
+    padding: 20px 50px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-family: inherit;
+    font-size: medium;
+    cursor: pointer;
 }
 
 /*logged in*/
