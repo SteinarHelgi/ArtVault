@@ -5,7 +5,7 @@
 
 body {
       margin: 0;
-      padding: 0;
+      padding-top: 80px;
       background-color: var(--primary-color);
       font-family: "Afacad Flux", sans-serif;
 }
@@ -117,6 +117,12 @@ body {
 
 .dropdown-content.show {
     display: block;
+}
+
+/*logged in*/
+.avatar{
+    width: 90px;
+    height: auto;
 }
 
 /*home page*/

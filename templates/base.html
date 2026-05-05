@@ -33,6 +33,7 @@
             <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
           </a>
         </div>
+
         <div class="right-side">
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">
