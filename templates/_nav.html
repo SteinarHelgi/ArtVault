@@ -7,11 +7,19 @@
               <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
             </button>
 
+            {% if user.is_authenticated %}
             <div id="myDropdown" class="dropdown-content">
               <a href="#">View Artist</a>
               <a href="#">View Artwork</a>
               <a href="#">My Bids</a>
             </div>
+
+            {% else %}
+              <div id="myDropdown" class="dropdown-content">
+                  <a href="#">View Artist</a>
+                  <a href="#">View Artwork</a>
+              </div>
+            {% endif %}
           </div>
 
           <a href="{% url 'artvault-browse-artwork' %}" class="browse">Browse Artwork</a>
