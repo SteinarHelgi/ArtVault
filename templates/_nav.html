@@ -8,29 +8,22 @@
             </button>
 
             <div id="leftDropdown" class="dropdown-content left-dropdown-content">
-                {% if user.is_authenticated %}
-                  <a href="#">View Artist</a>
-                  <a href="#">View Artwork</a>
-                  <a href="#">My Bids</a>
-                {% else %}
-                  <a href="#">View Artist</a>
-                  <a href="#">View Artwork</a>
-                {% endif %}
+                <a href="{% url 'artvault-browse-artwork' %}">Browse Artwork</a>
+                <a href="#">View Artist</a>
+                <a href="#">Art Movements</a>
             </div>
           </div>
-
-          <a href="{% url 'artvault-browse-artwork' %}" class="browse">Browse Artwork</a>
+            <div class="logo">
+              <a href="{% url 'home' %}">
+                <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
+              </a>
+            </div>
         </div>
 
-        <div class="logo">
-          <a href="{% url 'home' %}">
-            <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
-          </a>
-        </div>
+        <h1 class="navH1">Art vault</h1>
 
         <div class="right-side">
             {% if user.is_authenticated %}
-
             <div class="profile-dropdown">
                 <button onclick="rightDropdown()" class="dropbtn" type="button">
                     {% if user.profile.role == "buyer" %}
