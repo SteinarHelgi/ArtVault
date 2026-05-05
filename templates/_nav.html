@@ -44,7 +44,7 @@
                 <div id="rightDropdown" class="dropdown-content right-dropdown-content">
                     <a href="#">Account settings</a>
                     <a href="#">My Bids</a>
-                    <form method="post" action="{% url 'logout' %}">
+                    <form method="post" action="{% url 'logout' %}" class="logoutForm">
                         {% csrf_token %}
                         <button type="submit" class="logOutButton">Logout</button>
                     </form>

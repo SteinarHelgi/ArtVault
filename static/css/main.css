@@ -134,17 +134,25 @@ body {
     color: #000000;
     text-decoration: none;
 }
+.logoutform {
+    margin: 0;
+}
 
-.logOutButton{
+.logOutButton {
     display: block;
     width: 100%;
     padding: 20px 50px;
     border: none;
     background: none;
+    color: #000000;
     text-align: left;
     font-family: inherit;
-    font-size: medium;
+    font-size: inherit;
     cursor: pointer;
+}
+
+.logOutButton:hover {
+    background-color: #eeeeee;
 }
 
 /*logged in*/
