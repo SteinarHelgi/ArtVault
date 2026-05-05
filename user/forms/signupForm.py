@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 class SignupForm(UserCreationForm):
     ROLE_CHOICES = [
         ('buyer', 'Buyer'),
-        ('seller', 'Seller'),
+        ('individual_seller', 'Individual Seller'),
+        ('gallery', 'Gallery'),
     ]
 
     role = forms.ChoiceField(choices=ROLE_CHOICES)

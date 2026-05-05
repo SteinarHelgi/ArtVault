@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Seller Profile</h1>
+
+    <form method="post" action="{% url 'seller_profile' %}">
+
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-primary" value="confirm">
+    </form>
+
+{% endblock %}
