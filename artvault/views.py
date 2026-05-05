@@ -15,6 +15,5 @@ def browse_artwork(request):
     return render(request, "artvault/browse_artwork.html", {"art": artworks})
 
 def artwork_details(request, id):
-    art = [x for x in artworks if x.id == id][0]
     return render(request, "artvault/artwork_details.html", {
-        "art": artworks})
+        "art": artworks, "id": id})

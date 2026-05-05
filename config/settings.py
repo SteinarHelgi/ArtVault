@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "artvault",
-    "user",
+    "artvault.apps.ArtvaultConfig",
+    "user.apps.UserConfig",
 ]
 
 MIDDLEWARE = [

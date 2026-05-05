@@ -7,6 +7,7 @@ from user.forms.sellerProfileForm import SellerProfileForm
 from django.http import HttpResponseForbidden
 from .models import Profile, BuyerProfileModel, SellerProfileModel
 from django.contrib import messages
+from django.db import transaction
 
 # Create your views here.
 #Roles
@@ -16,17 +17,21 @@ ALLOWED_ROLE_CHOICES = ['buyer', 'individual_seller', 'gallery']
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
+
         if form.is_valid():
-            user = form.save()
 
             #Assign role
             role = form.cleaned_data.get('role')
             if role not in ALLOWED_ROLE_CHOICES:
-                return HttpResponseForbidden
-            group, created = Group.objects.get_or_create(name=role)
-            user.groups.add(group)
+                return HttpResponseForbidden()
 
-            Profile.objects.create(user=user, role=role)
+            with transaction.atomic():
+                user = form.save()
+
+                group, created = Group.objects.get_or_create(name=role)
+                user.groups.add(group)
+
+                Profile.objects.create(user=user, role=role)
 
             login(request, user)
 
