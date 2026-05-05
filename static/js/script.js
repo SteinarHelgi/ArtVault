@@ -7,3 +7,8 @@ function MyDropdown() {
       document.getElementById("myDropdown").classList.remove("show");
     }
   }
+
+  // close button á popup
+  function closeModal() {
+    document.getElementById("popupModal").style.display = "none";
+  }
