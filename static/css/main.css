@@ -242,3 +242,18 @@ body {
     transform: scale(1.02);
     cursor: pointer;
 }
+
+.search-form {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    padding: 6px;
+    width: 150px;
+}
+
+.search-form button {
+    padding: 6px 8px;
+}
