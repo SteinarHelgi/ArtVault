@@ -33,6 +33,22 @@
           </a>
         </div>
 
+                  <div class="right-side">
+                        {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit">Logout</button>
+                            </form>
+                        {% else %}
+                        <li class="signup">
+                              <a class="nav-link" href="{% url "signup" %}">Signup</a>
+                        </li>
+                        <li class="login">
+                              <a class="nav-link" href="{% url "login" %}">Login</a>
+                        </li>
+                        {% endif %}
+                  </div>
+            </ul>
         <div class="right-side">
           {% if user.is_authenticated %}
             <a class="logout" href="{% url 'logout' %}">Logout</a>
