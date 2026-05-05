@@ -5,7 +5,7 @@ from user.models import BuyerProfileModel
 class BuyerProfileForm(forms.ModelForm):
     class Meta:
         model = BuyerProfileModel
-        exclude = ('user', 'id')
+        exclude = ('user', 'id', 'profile')
         widgets = {
             'full_name': forms.TextInput(attrs={'class': 'form-control'}),
             'profile_image': forms.TextInput(attrs={'class': 'form-control'}),

@@ -6,7 +6,7 @@ from user.models import Profile
 class SellerProfileForm(ModelForm):
     class Meta:
         model = SellerProfileModel
-        exclude = ('user', 'id')
+        exclude = ('user', 'id', 'profile')
         widgets = {
             'seller_name': forms.TextInput(attrs={'class': 'form-control'}),
             'street_name': forms.TextInput(attrs={'class': 'form-control'}),

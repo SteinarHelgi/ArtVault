@@ -25,9 +25,10 @@
 
                   <div class="right-side">
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                              <a class="nav-link" href="{% url "logout" %}">Logout</a>
-                        </li>
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit">Logout</button>
+                            </form>
                         {% else %}
                         <li class="signup">
                               <a class="nav-link" href="{% url "signup" %}">Signup</a>
