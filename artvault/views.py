@@ -11,8 +11,10 @@ def index(request):
 def blabla(request): ...
 
 
-def artwork_details(request, id):
-    return render(request, "artvault/artwork_details.html", {"art": artworks, "id": id})
-
 def browse_artwork(request):
     return render(request, "artvault/browse_artwork.html", {"art": artworks})
+
+def artwork_details(request, id):
+    art = [x for x in artworks if x.id == id][0]
+    return render(request, "artvault/artwork_details.html", {
+        "art": artworks})
