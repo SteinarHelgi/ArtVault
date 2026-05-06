@@ -9,7 +9,11 @@ class SignupForm(UserCreationForm):
         ('gallery', 'Gallery'),
     ]
 
-    role = forms.ChoiceField(choices=ROLE_CHOICES)
+    role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.Select(attrs={'class': 'signup-input'}))
+
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'signup-input', 'placeholder': 'Username...'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'signup-input', 'placeholder': 'Password...'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'signup-input', 'placeholder': 'Confirm Password...'}))
 
     class Meta:
         model = User

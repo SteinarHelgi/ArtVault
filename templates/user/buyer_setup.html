@@ -1,14 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+    <div class="buyer-setup-page">
 
-    <h1>Buyer Profile</h1>
+        <form method="post" action="{% url 'buyer_setup' %}" enctype="multipart/form-data" class="buyer-setup-form">
+            {% csrf_token %}
 
-    <form method="post" action="{% url 'buyer_setup' %}" enctype="multipart/form-data">
+            <div class="upload-section">
+                <label for="id_profile_image" class="upload-box">
+                    <img src="{% static 'img/uppload-photo.svg' %}" class="upload-icon" alt="Upload">
+                </label>
+                {{ form.profile_image }}
+                <p>Upload picture <span>*</span></p>
+            </div>
 
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="confirm">
-    </form>
+            <div class="name-section">
+                {{ form.full_name }}
+                <span class="required">*</span>
+            </div>
 
+            <button type="submit" class="confirm-btn">Confirm</button>
+
+        </form>
+    </div>
 {% endblock %}

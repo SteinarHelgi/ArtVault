@@ -1,14 +1,68 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<div class="seller-setup-page">
 
-    <h1>Seller Profile</h1>
-
-    <form method="post" action="{% url 'seller_setup' %}" enctype="multipart/form-data">
-
+    <form method="post" enctype="multipart/form-data" class="seller-setup-form">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="confirm">
+
+        <div class="left-side-setup">
+            <label for="id_logo" class="upload-box">
+                <img src="{% static 'img/upload.svg' %}" class="upload-icon" alt="Upload picture">
+            </label>
+            {{ form.logo }}
+
+            <label for="id_logo" class="upload-label">
+                Upload picture <span>*</span>
+            </label>
+
+            {{ form.bio }}
+        </div>
+
+        <div class="right-side-setup">
+            <label for="id_cover_photo" class="cover-box">
+                <img src="{% static 'img/upload.svg' %}" class="upload-icon" alt="Upload picture">
+            </label>
+            {{ form.cover_photo }}
+
+            <div class="input-group">
+                <label for="id_full_name">Full name</label>
+                {{ form.seller_name }}
+                <span class="required">*</span>
+            </div>
+
+            <div class="input-group">
+                <label for="id_seller_type">Type of seller</label>
+                {{ form.seller_type }}
+                <span class="required">*</span>
+            </div>
+
+            <h3>Address</h3>
+
+            <div class="address-fields">
+                <div class="input-group">
+                    <label for="id_street_name">Street name</label>
+                    {{ form.street_name }}
+                    <span class="required">*</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="id_city">City</label>
+                    {{ form.city }}
+                    <span class="required">*</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="id_zip_code">Postal code</label>
+                    {{ form.zip_code }}
+                    <span class="required">*</span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="confirm-btn">Confirm</button>
+
     </form>
 
+</div>
 {% endblock %}

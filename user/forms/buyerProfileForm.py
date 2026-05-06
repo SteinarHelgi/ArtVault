@@ -7,6 +7,6 @@ class BuyerProfileForm(forms.ModelForm):
         model = BuyerProfileModel
         exclude = ('user', 'id', 'profile')
         widgets = {
-            'full_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'profile_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'full_name': forms.TextInput(attrs={'class': 'profile-input', 'placeholder': 'Full Name'}),
+            'profile_image': forms.ClearableFileInput(attrs={'class': 'hidden-file-input'}),
         }

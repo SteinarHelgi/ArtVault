@@ -12,10 +12,6 @@ body {
       font-family: "Afacad Flux", sans-serif;
 }
 
-a {
-      text-decoration: none;
-      color: black;
-}
 
 /*home page*/
 .hero-container {
@@ -148,6 +144,205 @@ a {
       text-decoration: none;
       color: black;
       text-align: center;
-
-
 }
+
+/*Signup*/
+.signup-container {
+    width: 400px;
+    margin: 80px auto;
+    text-align: center;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.signup-form input,
+.signup-form select {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    font-size: 18px;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.confirm-btn {
+    width: 200px;
+    height: 45px;
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 20px;
+    background-color: var(--orange-color);
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*Buyer-setup*/
+.buyer-setup-page {
+    width: 720px;
+    margin: 80px auto;
+}
+
+.buyer-setup-form {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.upload-section {
+    text-align: center;
+}
+
+.upload-box {
+    width: 240px;
+    height: 180px;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload-icon {
+    width: 80px;
+    height: 80px;
+    opacity: 0.7;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.upload-section p {
+    font-size: 22px;
+}
+
+.upload-section span,
+.required {
+    color: red;
+}
+
+.name-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-input {
+    width: 100%;
+    height: 38px;
+    padding: 0 18px;
+    font-size: 22px;
+    border: 1px solid #333;
+}
+
+/*Seller-setup*/
+.seller-setup-page {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px;
+}
+
+.seller-setup-form {
+  width: 680px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 35px;
+  align-items: start;
+}
+
+.left-side-setup,
+.right-side-setup {
+  display: flex;
+      width: 100%;
+  flex-direction: column;
+}
+.upload-icon {
+  width: 70px;
+}
+
+.upload-label {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.upload-label span,
+.required {
+  color: red;
+}
+
+#id_logo,
+#id_cover_photo {
+  display: none;
+}
+
+#id_bio {
+  width: 240px;
+  height: 110px;
+  margin-top: 12px;
+  resize: none;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+#id_bio::placeholder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.cover-box {
+  width: 100%;
+  height: 95px;
+  border: 1px solid #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.input-group {
+  position: relative;
+  margin-top: 12px;
+}
+
+.input-group label {
+  display: none;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  height: 28px;
+  box-sizing: border-box;
+}
+
+.required {
+  position: absolute;
+  right: -16px;
+  top: 5px;
+}
+
+.right-side h3 {
+  margin: 12px 0 0;
+  font-size: 16px;
+}
+
+.address-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+
+

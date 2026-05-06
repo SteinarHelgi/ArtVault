@@ -12,6 +12,7 @@ from user.forms.signupForm import SignupForm
 from .models import BuyerProfileModel, Profile, SellerProfileModel
 
 # Create your views here.
+
 # Roles
 ALLOWED_ROLE_CHOICES = ["buyer", "individual_seller", "gallery"]
 
