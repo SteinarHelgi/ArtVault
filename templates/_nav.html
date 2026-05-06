@@ -12,8 +12,8 @@
             </button>
 
             <div id="leftDropdown" class="dropdown-content left-dropdown-content">
-                <a href="{% url 'artvault-browse-artwork' %}">Browse Artwork</a>
-                <a href="{% url 'artvault-browse-artists' %}">View Artists</a>
+                <a href="{% url 'browse-artwork' %}">Browse Artwork</a>
+                <a href="{% url 'browse-artists' %}">View Artists</a>
                 <a href="#">Art Movements</a>
             </div>
 
@@ -35,12 +35,12 @@
         <div class="profile-dropdown">
 
             <button onclick="rightDropdown()" class="dropbtn" type="button">
-                 {% if user.profile.role == "buyer" %}
+                {% if user.profile.role == "buyer" %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.buyerprofilemodel.profile_image.url }}')">
                         </div>
 
-                {% elif user.profile.role == "individual_seller" or user.profile.role == "gallery" %}
+                {% else %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.sellerprofilemodel.logo.url }}')">
                         </div>
@@ -55,7 +55,7 @@
                 {% if user.profile.role == "buyer" %}
                     <a href="{% url 'my_bids' %}">My Bids</a>
                 {% else %}
-                    <a href="{% url 'my_bids' %}">My Listings</a>
+                    <a href="{% url 'my_profile_seller' %}">My Listings</a>
                 {% endif %}
 
                 <form method="post" action="{% url 'logout' %}" class="logoutForm">

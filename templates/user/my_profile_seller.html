@@ -2,30 +2,42 @@
 
 {% block content %}
 
-<div class="profile_page">
-    <div class="profile_card">
-        <img src="{{  seller_profile.cover_photo.url }}" alt="cover photo">
-        <h1>{{ seller_profile.seller_name}}</h1>
-        <p>{{ seller_profile.bio }}</p>
-        <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
-        <p>{{ seller_profile.street_name }}</p>
-        <p>{{ seller_profile.city }}</p>
-        <p>{{ seller_profile.zip_code }}</p>
-    </div>
+<div class="profile-page">
+      <div class="profile-card">
+            <img src="{{  seller_profile.cover_photo.url }}" alt="cover photo">
+            <h1>{{ seller_profile.seller_name}}</h1>
+            <p>{{ seller_profile.bio }}</p>
+            <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
+            <p>{{ seller_profile.street_name }}</p>
+            <p>{{ seller_profile.city }}</p>
+            <p>{{ seller_profile.zip_code }}</p>
+      </div>
 </div>
 
-{#    TODO bætta við gallery section#}
-<div class="gallery_container">
-    {% for artwork in artworks %}
-        <a href="{% url 'artwork-details' artwork.id %}" class="seller-artwork-card">
-            <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}">
+
+
+{# TODO bætta við gallery section#}
+<div class="gallery-container">
+      {% for artwork in artworks %}
+      <a href="{% url 'artwork-details' artwork.id %}" class="art-item">
+            {% with img=artwork.images.first %}
+            {% if img %}
+            <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+
             <h5>{{ artwork.title }}</h5>
             <p>{{ artwork.medium }}</p>
-            <p>{{ artwork.price }} kr.</p>
-        </a>
-    {% empty %}
-        <h3>This seller has no artworks listed yet.</h3>
-    {% endfor %}
+            <p>{{ artwork.starting_price }} kr.</p>
+            {% endif %}
+            {% endwith %}
+            <p>{{ a.title }}</p>
+      </a>
+      {% empty %}
+      <h3>This seller has no artworks listed yet.</h3>
+      {% endfor %}
+</div>
+<div class="add-listing-button">
+      <a href="{% url 'add_listing' %}">Add listing</a>
+      
 </div>
 
 {% endblock %}
