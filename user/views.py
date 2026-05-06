@@ -49,7 +49,7 @@ def signup(request):
     return render(request, template_name="user/signup.html", context={"form": form})
 
 
-def buyer_profile(request):
+def buyer_setup(request):
     profile = request.user.profile
 
     buyer_profile_obj, created = BuyerProfileModel.objects.get_or_create(
@@ -75,7 +75,7 @@ def buyer_profile(request):
     )
 
 
-def seller_profile(request):
+def seller_setup(request):
 
     profile = request.user.profile
 
