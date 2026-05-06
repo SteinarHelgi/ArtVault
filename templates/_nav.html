@@ -7,7 +7,7 @@
     <div class="left-side">
         <div class="dropdown">
 
-            <button onclick="leftDropdown()" class="dropbtn" type="button">
+<button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
                 <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
             </button>
 
@@ -34,15 +34,15 @@
 
         <div class="profile-dropdown">
 
-            <button onclick="rightDropdown()" class="dropbtn" type="button">
+            <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
                 {% if user.profile.role == "buyer" %}
                         <div class="avatar"
-                            style="background-image: url('{{ user.profile.buyerprofilemodel.profile_image.url }}')">
+                            style="background-image: url('{{ user.profile.buyer_profile.logo.url }}')">
                         </div>
 
                 {% else %}
                         <div class="avatar"
-                            style="background-image: url('{{ user.profile.sellerprofilemodel.logo.url }}')">
+                            style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
                         </div>
                 {% endif %}
             </button>

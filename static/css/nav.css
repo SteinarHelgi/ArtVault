@@ -144,6 +144,9 @@
     width: 220px;
 }
 
+.dropdown-content.show {
+      display:block;
+}
 .dropdown-content a {
     display: block;
     padding: 16px 24px;
