@@ -1,11 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Confirm</button>
-        <a href="{% url 'payment_method' shipping.id %}" class="btn btn-secondary">Back</a>
-    </form>
+    <div class="wire-page">
+        <form method="post" class="wire-form">
+            {% csrf_token %}
+
+            <h1>Wire transfer</h1>
+
+            <div class="wire-field">
+                <label>Name of sending bank</label>
+                {{ form.sending_bank }}
+            </div>
+
+            <div class="wire-field">
+                <label>Routing number</label>
+                {{ form.routing_number }}
+            </div>
+
+            <div class="wire-field">
+                <label>Account number</label>
+                {{ form.account_number }}
+            </div>
+
+            <button type="submit" class="confirm-btn">Confirm</button>
+        </form>
+        <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+    </div>
 
 {% endblock content %}

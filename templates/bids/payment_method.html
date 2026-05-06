@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="payment-page">
 
-    <h1>Choose payment method</h1>
+        <h1>Choose payment method</h1>
 
-    <form method="post">
-        {% csrf_token %}
+        <form method="post" class="payment-form">
+            {% csrf_token %}
 
-        <button type="submit" name="payment_method" value="card">Credit Card</button>
+            <button type="submit" name="payment_method" value="card" class="payment-option-btn">Credit Card</button>
 
-        <button type="submit" name="payment_method" value="bank">Bank Transfer</button>
+            <button type="submit" name="payment_method" value="bank" class="payment-option-btn">Bank Transfer</button>
 
-        <button type="submit" name="payment_method" value="wire">Wire Transfer</button>
-    </form>
-    <a href="{% url 'shipping_edit' shipping.id %}">Back</a>
+            <button type="submit" name="payment_method" value="wire" class="payment-option-btn">Wire Transfer</button>
+        </form>
+    </div>
+    <a href="{% url 'shipping_edit' shipping.id %}" class="back-btn">Back</a>
 
 {% endblock %}

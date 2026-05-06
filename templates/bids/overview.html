@@ -1,41 +1,112 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <h2>Review your order</h2>
 
-    <h3>Shipping</h3>
-    <p>Email: {{ shipping.email }}</p>
-    <p>Country: {{ shipping.country }}</p>
-    <p>Address: {{ shipping.street_name }}, {{ shipping.city }}, {{ shipping.zip_code }}</p>
+    <div class="overview-page">
 
-    <h3>Payment</h3>
+        <h1>Overview</h1>
+
+        <div class="overview-form">
+
+            <label>Contact</label>
+            <div class="overview-box">
+                {{ shipping.email }}
+            </div>
+
+            <div class="overview-box">
+                {{ shipping.national_id }}
+            </div>
+
+            <label>Delivery</label>
+            <div class="overview-box">
+                {{ shipping.country }}
+            </div>
+
+            <label>Address</label>
+            <div class="overview-box">
+                {{ shipping.street_name }}
+            </div>
+
+            <div class="overview-box">
+                {{ shipping.city }}
+            </div>
+
+            <div class="overview-box">
+                {{ shipping.zip_code }}
+            </div>
+
+            {% if shipping.payment_method == "card" %}
+
+                <label>Cardholder's name</label>
+                <div class="overview-box">
+                    {{ payment.cardholder_name }}
+                </div>
+
+                <label>Card information</label>
+                <div class="overview-box">
+                    **** **** **** {{ payment.credit_card_number|slice:"-4:" }}
+                </div>
+
+                <div class="overview-card-row">
+                    <div class="overview-small-box">
+                        {{ payment.card_expiration }}
+                    </div>
+
+                    <div class="overview-small-box">
+                        ***
+                    </div>
+                </div>
+
+            {% elif shipping.payment_method == "bank" %}
+
+                <label>Bank</label>
+                <div class="overview-box">
+                    {{ payment.bank }}
+                </div>
+
+                <label>Hb</label>
+                <div class="overview-box">
+                    {{ payment.hb }}
+                </div>
+
+                <label>Account</label>
+                <div class="overview-box">
+                    {{ payment.account }}
+                </div>
+
+            {% elif shipping.payment_method == "wire" %}
+
+                <label>Name of sending bank</label>
+                <div class="overview-box">
+                    {{ payment.sending_bank }}
+                </div>
+
+                <label>Routing number</label>
+                <div class="overview-box">
+                    {{ payment.routing_number }}
+                </div>
+
+                <label>Account number</label>
+                <div class="overview-box">
+                    {{ payment.account_number }}
+                </div>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="confirm-btn">Confirm</button>
+        </form>
+    </div>
 
     {% if shipping.payment_method == "card" %}
-        <p>Cardholder: {{ payment.cardholder_name }}</p>
-        <p>Card: **** **** **** {{ payment.credit_card_number|slice:"-4:" }}</p>
+        <a href="{% url 'credit_card_payment' shipping.id %}" class="back-btn">Back</a>
 
     {% elif shipping.payment_method == "bank" %}
-        <p>Bank: {{ payment.bank }}</p>
-        <p>hb: {{ payment.hb  }}</p>
-        <p>Account: {{ payment.account }}</p>
+        <a href="{% url 'bank_transfer_payment' shipping.id %}" class="back-btn">Back</a>
 
     {% elif shipping.payment_method == "wire" %}
-        <p>Bank: {{ payment.sending_bank }}</p>
-        <p>Routing: {{ payment.routing_number }}</p>
-        <p>Account: {{ payment.account_number }}</p>
+        <a href="{% url 'wire_transfer_payment' shipping.id %}" class="back-btn">Back</a>
     {% endif %}
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Confirm Order</button>
-    </form>
-
-    {% if shipping.payment_method == "card" %}
-        <a href="{% url 'credit_card_payment' shipping.id %}">Back</a>
-    {% elif shipping.payment_method == "bank" %}
-        <a href="{% url 'bank_transfer_payment' shipping.id %}">Back</a>
-    {% elif shipping.payment_method == "wire" %}
-        <a href="{% url 'wire_transfer_payment' shipping.id %}">Back</a>
-    {% endif %}
+</div>
 
 {% endblock %}

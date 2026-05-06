@@ -7,8 +7,8 @@ class WireTransferForm(ModelForm):
         model = WireTransferModel
         fields = ['sending_bank', 'routing_number', 'account_number']
         widgets = {
-            'sending_bank': forms.TextInput(attrs={'class': 'form-control'}),
-            'routing_number': forms.TextInput(attrs={'class': 'form-control'}),
-            'account_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'sending_bank': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
+            'routing_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '00000000'}),
+            'account_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '000000000000'}),
         }
     

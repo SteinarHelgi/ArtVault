@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Confirm</button>
-    </form>
-    <a href="{% url 'payment_method' shipping.id %}" class="btn btn-secondary">Back</a>
+    <div class="card-page">
+        <form method="post" class="card-form">
+            {% csrf_token %}
+            <div class="payment-field">
+                <label>Cardholder's name</label>
+                {{ form.cardholder_name }}
+            </div>
+
+            <div class="payment-field">
+                <div class="card-info-wrapper">
+                    <label>Card information</label>
+                    {{ form.card_number }}
+                    <img src="{% static 'img/cards.png' %}" alt="Cards" class="cards-img">
+                </div>
+            </div>
+
+            <div class="card-row">
+                {{ form.card_expiration }}
+                <div class="cvv-wrapper">
+                    {{ form.card_cvv }}
+                    <img src="{% static 'img/card.svg' %}" alt="Cards" class="cvv-img">
+                </div>
+            </div>
+            <button type="submit" class="confirm-btn">Confirm</button>
+        </form>
+        <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+    </div>
 
 {% endblock content %}

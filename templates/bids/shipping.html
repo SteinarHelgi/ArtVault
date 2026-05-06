@@ -1,56 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="shipping-page">
+    <div class="shipping-card">
 
-    <h1>Shipping details</h1>
-    <form method="post">
-        {% csrf_token %}
+        <h1>Details for payment and Shipping</h1>
 
-        <div class="form-group">
-            <label>Email</label>
+        <form method="post" class="shipping-form">
+            {% csrf_token %}
+
+            <label>Contact</label>
             {{ form.email }}
-            {{ form.email.errors }}
-        </div>
-
-        <div class="form-group">
-            <label>Country/Region</label>
-            {{ form.country }}
-            {{ form.country.errors }}
-        </div>
-
-        <div class="form-group">
-            <label>National ID</label>
             {{ form.national_id }}
-            {{ form.national_id.errors }}
-        </div>
 
-        <div class="form-group">
-            <label>Street name</label>
+            <label>Delivery</label>
+            {{ form.country }}
+
+            <h3>Address</h3>
+
             {{ form.street_name }}
-            {{ form.street_name.errors }}
-        </div>
-
-        <div class="form-group">
-            <label>City</label>
             {{ form.city }}
-            {{ form.city.errors }}
-        </div>
-
-        <div class="form-group">
-            <label>Zip code</label>
             {{ form.zip_code }}
-            {{ form.zip_code.errors }}
-        </div>
 
-        <h3>Payment method</h3>
+            <div class="shipping-buttons">
+                <a href="{% url 'my_bids' %}" class="back-btn">Back</a>
 
-        <div class="payment-options">
-            {{ form.payment_method }}
-            {{ form.payment_method.errors }}
-        </div>
+                <button type="submit" class="shipping-confirm-btn">Continue to payment</button>
+            </div>
+        </form>
 
-        <button type="submit" class="btn btn-primary">Continue to payment</button>
-        <a href="{% url 'my_bids' %}" class="btn btn-secondary">Back</a>
-    </form>
-
+    </div>
+</div>
 {% endblock %}

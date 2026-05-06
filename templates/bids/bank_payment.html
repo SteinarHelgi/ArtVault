@@ -1,11 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Confirm</button>
-    </form>
-    <a href="{% url 'payment_method' shipping.id %}" class="btn btn-secondary">Back</a>
+    <div class="bank-page">
+        <form method="post" class="bank-form">
+            {% csrf_token %}
+
+            <h1>Bank transfer</h1>
+            <div class="bank-row">
+                <div class="bank-field">
+                    <label>Bank</label>
+                    {{ form.bank }}
+                </div>
+
+                <div class="bank-field small-field">
+                    <label>Hb</label>
+                    {{ form.hb }}
+                </div>
+
+                <div class="bank-field">
+                    <label>Account</label>
+                    {{ form.account }}
+                </div>
+            </div>
+                <button type="submit" class="confirm-btn">Confirm</button>
+        </form>
+        <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+    </div>
 
 {% endblock content %}
