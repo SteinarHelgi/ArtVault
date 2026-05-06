@@ -49,6 +49,16 @@ body {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+    
+}
+
+.landing-page {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    padding: 40px;
+    box-sizing: border-box;
 }
 
 .hero-container h1 {
@@ -58,6 +68,8 @@ body {
 .text_container{
     border: 1px solid var(--border-color);
     align-items: center;
+    padding: 0 20px;
+    margin-bottom: 40px;
 }
 
 .text_container p{

@@ -5,13 +5,13 @@
 <div class="hero-container">
       <h1>Art Vault - Discover, Bid and Own Original Art</h1>
 </div>
-
-<div class="text_container">
-    <h2>Welcome to Art Vault</h2>
-    <p>a digital marketplace where buyers, artists, and galleries connect. Browse unique artworks,
-        learn about different styles and movements, place bids on pieces you love, and discover sellers from the art world. Whether you are searching for your first artwork
-        or your next collection piece, ArtVault makes the process simple, clear, and inspiring.</p>
-</div>
+<div class="landing-page">
+    <div class="text_container">
+        <h2>Welcome to Art Vault</h2>
+        <p>a digital marketplace where buyers, artists, and galleries connect. Browse unique artworks,
+            learn about different styles and movements, place bids on pieces you love, and discover sellers from the art world. Whether you are searching for your first artwork
+            or your next collection piece, ArtVault makes the process simple, clear, and inspiring.</p>
+    </div>
 
 <div>
       <h2 class="art-movement-h1">Art Movement 1</h2>
@@ -60,16 +60,16 @@
       </div>
 </div>
 
-{% if messages %}
-    {% for message in messages %}
-        {% if message.message == "profile_setup_complete" %}
-            <div id="popupModal" class="modal">
-                <div class="modal-content">
-                    <button class="close-btn" onclick="closeModal()">X</button>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.message == "profile_setup_complete" %}
+                <div id="popupModal" class="modal">
+                    <div class="modal-content">
+                        <button class="close-btn" onclick="closeModal()">X</button>
 
-                    <h2>Welcome to ArtVault!</h2>
-                    <p>Your account is now ready. You can start showcasing your work by listing your first artwork and opening
-                        it for bids. It only takes a moment to get started.</p>
+                        <h2>Welcome to ArtVault!</h2>
+                        <p>Your account is now ready. You can start showcasing your work by listing your first artwork and opening
+                            it for bids. It only takes a moment to get started.</p>
 
                     {% if request.user.profile.role == "buyer" %}
                         <h4>Click below to start browsing artwork.</h4>
@@ -84,12 +84,12 @@
     {% endfor %}
 {% endif %}
 
-{% if messages %}
-    {% for message in messages %}
-        {% if message.message == "payment_successful" %}
-            <div id="popupModal" class="modal">
-                <div class="modal-content">
-                    <button class="close-btn" onclick="closeModal()">X</button>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.message == "payment_successful" %}
+                <div id="popupModal" class="modal">
+                    <div class="modal-content">
+                        <button class="close-btn" onclick="closeModal()">X</button>
 
                     <h2>Thank you for your purchase!</h2>
                     <p>Your payment has been processed and your order is on its way.</p>
