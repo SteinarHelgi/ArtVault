@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <h1 class="navH1">ArtVault</h1>
+    <h1>ArtVault</h1>
 
     <div class="right-side">
 
@@ -36,18 +36,14 @@
 
             <button onclick="rightDropdown()" class="dropbtn" type="button">
                  {% if user.profile.role == "buyer" %}
-                    {% if user.profile.buyerprofilemodel.profile_image %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.buyerprofilemodel.profile_image.url }}')">
                         </div>
-                    {% endif %}
 
                 {% elif user.profile.role == "individual_seller" or user.profile.role == "gallery" %}
-                    {% if user.profile.sellerprofilemodel.logo %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.sellerprofilemodel.logo.url }}')">
                         </div>
-                    {% endif %}
                 {% endif %}
             </button>
 

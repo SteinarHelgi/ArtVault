@@ -10,7 +10,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
     path("buyer-setup/", views.buyer_setup, name="buyer_setup"),
     path("seller-setup/", views.seller_setup, name="seller_setup"),
-    path("my_bids/", views.my_bids, name="my_bids"),
-    path("finalize-bid/<int:bid_id>", views.finalize_bid, name="finalize-bid"),
     path("my_profile_seller/", views.my_profile_seller, name="my_profile_seller")
 ]
