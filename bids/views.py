@@ -65,7 +65,7 @@ def credit_card_payment(request, shipping_id):
     payment_obj, created = CreditCardModel.objects.get_or_create(shipping=shipping_obj)
 
     if request.method == "POST":
-        form = CreditCardForm(request.POST)
+        form = CreditCardForm(request.POST, instance=payment_obj)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.shipping = shipping_obj
@@ -82,10 +82,10 @@ def credit_card_payment(request, shipping_id):
 def bank_transfer_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
 
-    payment_obj, created = CreditCardModel.objects.get_or_create(shipping=shipping_obj)
+    payment_obj, created = BankTransferModel.objects.get_or_create(shipping=shipping_obj)
 
     if request.method == "POST":
-        form = BankTransferForm(request.POST)
+        form = BankTransferForm(request.POST, instance=payment_obj)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.shipping = shipping_obj
@@ -102,10 +102,10 @@ def bank_transfer_payment(request, shipping_id):
 def wire_transfer_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
 
-    payment_obj, created = CreditCardModel.objects.get_or_create(shipping=shipping_obj)
+    payment_obj, created = WireTransferModel.objects.get_or_create(shipping=shipping_obj)
 
     if request.method == "POST":
-        form = WireTransferForm(request.POST)
+        form = WireTransferForm(request.POST, instance=payment_obj)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.shipping = shipping_obj

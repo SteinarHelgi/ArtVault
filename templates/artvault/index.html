@@ -93,18 +93,18 @@
                         <p>Your account is now ready. You can start showcasing your work by listing your first artwork and opening
                             it for bids. It only takes a moment to get started.</p>
 
-                    {% if request.user.profile.role == "buyer" %}
-                        <h4>Click below to start browsing artwork.</h4>
-                        <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
-                    {% else %}
-                        <h4>Click below to create your first listing and share your art with others.</h4>
-                        <a href="/" class="modal-btn">Create listing</a>
-                    {% endif %}
+                        {% if request.user.profile.role == "buyer" %}
+                            <h4>Click below to start browsing artwork.</h4>
+                            <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                        {% else %}
+                            <h4>Click below to create your first listing and share your art with others.</h4>
+                            <a href="/" class="modal-btn">Create listing</a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
     {% if messages %}
         {% for message in messages %}
@@ -113,12 +113,13 @@
                     <div class="modal-content">
                         <button class="close-btn" onclick="closeModal()">X</button>
 
-                    <h2>Thank you for your purchase!</h2>
-                    <p>Your payment has been processed and your order is on its way.</p>
-                    <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                        <h2>Thank you for your purchase!</h2>
+                        <p>Your payment has been processed and your order is on its way.</p>
+                        <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-    {% endfor %}
-{% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
 {% endblock content %}
