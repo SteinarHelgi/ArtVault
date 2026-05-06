@@ -29,11 +29,15 @@
         {% for a in art %}
             <a href="{% url 'artvault-artwork-details' a.id %}" class="browse-art-link">
                 <div class="browse-art-item">
-                    {% with img=a.artworkimage_set.first %}
-                      {% if img %}
-                      <img class="image" src="{{ img.image_path }}" alt="image of artwork">
-                      {% endif %}
-                      {% endwith %}
+
+                    {% with img=a.images.first %}
+                        {% if img %}
+                            <img class="image" src="{{ img.image_path }}" alt="image of artwork">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    {% endwith %}
+
                     <h3>{{ a.title }}</h3>
                     <p>{{ a.artist_name }}</p>
                     <p>current bid</p>
