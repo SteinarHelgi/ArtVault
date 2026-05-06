@@ -1,50 +1,52 @@
 {% load static %}
 
 <nav class="nav-container">
-        <div class="left-side">
-          <div class="dropdown">
-            <button onclick="leftDropdown()" class="dropbtn" type="button">
-              <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
-            </button>
+      <div class="left-side">
+            <div class="dropdown">
+                  <button onclick="leftDropdown()" class="dropbtn" type="button">
+                        <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
+                  </button>
 
-            <div id="leftDropdown" class="dropdown-content left-dropdown-content">
-                <a href="{% url 'artvault-browse-artwork' %}">Browse Artwork</a>
-                <a href="#">View Artist</a>
-                <a href="#">Art Movements</a>
+                  <div id="leftDropdown" class="dropdown-content left-dropdown-content">
+                        <a href="{% url 'artvault-browse-artwork' %}">Browse Artwork</a>
+                        <a href="#">View Artist</a>
+                        <a href="#">Art Movements</a>
+                  </div>
             </div>
-          </div>
             <div class="logo">
-              <a href="{% url 'home' %}">
-                <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
-              </a>
+                  <a href="{% url 'home' %}">
+                        <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
+                  </a>
             </div>
-        </div>
+      </div>
 
-        <h1 class="navH1">Art vault</h1>
+      <h1 class="navH1">Art vault</h1>
 
-        <div class="right-side">
+      <div class="right-side">
             {% if user.is_authenticated %}
             <div class="profile-dropdown">
-                <button onclick="rightDropdown()" class="dropbtn" type="button">
-                    {% if user.profile.role == "buyer" %}
-                        <div class="avatar" style="background-image: url({{ user.profile.buyerprofilemodel.profile_image }})"></div>
-                    {% else %}
-                        <div class="avatar" style="background-image: url({{ user.profile.sellerprofilemodel.logo }})"></div>
-                    {% endif %}
-                </button>
+                  <button onclick="rightDropdown()" class="dropbtn" type="button">
+                        {% if user.profile.role == "buyer" %}
+                        <div class="avatar"
+                              style="background-image: url({{ user.profile.buyerprofilemodel.profile_image }})"></div>
+                        {% else %}
+                        <div class="avatar" style="background-image: url({{ user.profile.sellerprofilemodel.logo }})">
+                        </div>
+                        {% endif %}
+                  </button>
             </div>
 
-                <div id="rightDropdown" class="dropdown-content right-dropdown-content">
-                    <a href="#">Account settings</a>
-                    <a href="#">My Bids</a>
-                    <form method="post" action="{% url 'logout' %}" class="logoutForm">
+            <div id="rightDropdown" class="dropdown-content right-dropdown-content">
+                  <a href="#">Account settings</a>
+                  <a href="{%url 'my_bids'%}">My Bids</a>
+                  <form method="post" action="{% url 'logout' %}" class="logoutForm">
                         {% csrf_token %}
                         <button type="submit" class="logOutButton">Logout</button>
-                    </form>
-                </div>
-                {% else %}
-                    <a class="signup" href="{% url 'signup' %}">Signup</a>
-                    <a class="login" href="{% url 'login' %}">Login</a>
-                {% endif %}
-        </div>
-      </nav>
+                  </form>
+            </div>
+            {% else %}
+            <a class="signup" href="{% url 'signup' %}">Signup</a>
+            <a class="login" href="{% url 'login' %}">Login</a>
+            {% endif %}
+      </div>
+</nav>
