@@ -9,4 +9,5 @@ urlpatterns = [
         views.artwork_details,
         name="artvault-artwork-details",
     ),
+    path("browse_artists/", views.browse_artists, name="artvault-browse-artists"),
 ]

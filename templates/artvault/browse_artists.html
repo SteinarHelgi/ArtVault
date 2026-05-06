@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for artist_name, artworks in artists.items %}
+<div>
+    <h1 class="art-movement-h1">{{ artist_name }}</h1>
+
+    <div class="art-movement-container">
+        {% for a in artworks %}
+        <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
+            {% with img=a.images.first %}
+                {% if img %}
+                <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                {% endif %}
+            {% endwith %}
+
+            <p>{{ a.title }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

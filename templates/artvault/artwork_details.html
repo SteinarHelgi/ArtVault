@@ -8,7 +8,9 @@
       {% with img=a.images.first %}
       {% if img %}
       <img src="{{ img.image_path }}" alt="image of artwork">
+
       {% endif %}
+
       {% endwith %}
       <h2>{{ a.artist_name }}</h2>
       <p>{{ a.history }}</p>
