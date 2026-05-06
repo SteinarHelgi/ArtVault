@@ -39,9 +39,9 @@ def signup(request):
             login(request, user)
 
             if role == "buyer":
-                return redirect("buyer_profile")
+                return redirect("buyer_setup")
             else:
-                return redirect("seller_profile")
+                return redirect("seller_setup")
 
     else:
         form = SignupForm()
@@ -68,7 +68,7 @@ def buyer_profile(request):
 
     return render(
         request,
-        template_name="user/buyer_profile.html",
+        template_name="user/buyer_setup.html",
         context={
             "form": BuyerProfileForm(instance=buyer_profile_obj),
         },
@@ -95,7 +95,7 @@ def seller_profile(request):
 
     return render(
         request,
-        template_name="user/seller_profile.html",
+        template_name="user/seller_setup.html",
         context={
             "form": SellerProfileForm(instance=seller_profile_obj),
         },
