@@ -4,7 +4,7 @@
 
     <h1>Buyer Profile</h1>
 
-    <form method="post" action="{% url 'buyer_profile' %}">
+    <form method="post" action="{% url 'buyer_setup' %}">
 
         {% csrf_token %}
         {{ form }}

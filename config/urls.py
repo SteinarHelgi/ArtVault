@@ -22,4 +22,5 @@ urlpatterns = [
     path("", include("artvault.urls")),
     path("admin/", admin.site.urls),
     path("user/", include("user.urls")),
+    path("finalizebid/", include("finalizebid.urls")),
 ]
