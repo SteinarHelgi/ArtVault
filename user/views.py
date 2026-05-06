@@ -84,7 +84,7 @@ def seller_setup(request):
     )
 
     if request.method == "POST":
-        form = SellerProfileForm(request.POST, instance=seller_profile_obj)
+        form = SellerProfileForm(request.POST, request.FILES, instance=seller_profile_obj)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.profile = profile
