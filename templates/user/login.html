@@ -1,14 +1,14 @@
-{% extends "base.html" %}
+    {% extends "base.html" %}
 
-{% block content %}
+    {% block content %}
 
-    <h1>Login</h1>
+        <h1>Login</h1>
 
-    <form method="post" action="{% url 'login' %}">
+        <form method="post" action="{% url 'login' %}">
 
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="Login">
-    </form>
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Login">
+        </form>
 
-{% endblock %}
+    {% endblock %}

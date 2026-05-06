@@ -118,3 +118,17 @@ def my_bids(request):
         },
     )
 
+
+def finalize_bid(request, bid_id):
+    print("finalize_bid page")
+    print(f"{bid_id}")
+    return HttpResponse(content=b"finalize_bid")
+
+
+#view for viewing your own profile
+@login_required
+def my_profile_seller(request):
+    my_profile_seller = request.user.profile
+    seller_profile = my_profile_seller.sellerprofilemodel
+    return render(request, "user/my_profile_seller.html",
+                  {"seller_profile": seller_profile})

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="profile-page">
+    <div class="profile-card">
+        <img src="{{ user.cover_photo }}" alt="cover photo">
+        <h1>{{ user.seller_name }}</h1>
+        <p>{{ user.profile.bio }}</p>
+        <img src="{{ user.logo }}" alt="Profile picture">
+        <p>{{ user.street_name }}</p>
+        <p>{{ user.city }}</p>
+        <p>{{ user.zip_code }}</p>
+    </div>
+</div>
+
+{% endblock %}
