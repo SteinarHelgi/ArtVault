@@ -1,16 +1,17 @@
-//dropdown menu
-const leftDropdown = () => {
-  document.getElementById("leftDropdown").classList.toggle("show");
-};
+function toggleLeftDropdown(event) {
+    event.stopPropagation();
+    document.getElementById("leftDropdown")?.classList.toggle("show");
+}
 
-const rightDropdown = () => {
-  document.getElementById("rightDropdown").classList.toggle("show");
-};
+function toggleRightDropdown(event) {
+    event.stopPropagation();
+    document.getElementById("rightDropdown")?.classList.toggle("show");
+}
 
-window.onclick = (event) => {
-  if (!event.target.closest(".dropdown")) {
-    document.getElementById("leftDropdown")?.classList.remove("show");
-  }
+window.addEventListener("click", function (event) {
+    if (!event.target.closest(".dropdown")) {
+        document.getElementById("leftDropdown")?.classList.remove("show");
+    }
 
   if (!event.target.closest(".profile-dropdown")) {
     document.getElementById("rightDropdown")?.classList.remove("show");
