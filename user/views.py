@@ -125,3 +125,52 @@ def finalize_bid(request, bid_id):
     print("finalize_bid page")
     print(f"{bid_id}")
     return HttpResponse(content=b"finalize_bid")
+
+@login_required
+def account_settings(request):
+    profile = request.user.profile
+
+    buyer_profile = None
+    seller_profile = None
+
+    if profile.role == "buyer":
+        buyer_profile = BuyerProfileModel.objects.filter(profile=profile).first()
+
+        if request.method == "POST":
+            if "edit-name" in request.POST:
+                buyer_profile.full_name = request.POST.get("edit-name")
+
+            if "edit-profile-picture" in request.POST:
+                buyer_profile.profile_image = request.POST.get("edit-profile-picture")
+
+            buyer_profile.save()
+
+    else:
+        seller_profile = SellerProfileModel.objects.filter(profile=profile).first()
+
+        if request.method == "POST":
+            if "edit-name" in request.POST:
+                seller_profile.seller_name = request.POST.get("edit-name")
+
+            if "edit-profile-picture" in request.POST:
+                seller_profile.logo = request.POST.get("edit-profile-picture")
+
+            if "edit-bio" in request.POST:
+                seller_profile.bio = request.POST.get("edit-bio")
+
+            if "edit-street_name" in request.POST:
+                seller_profile.street_name = request.POST.get("edit-street_name")
+                seller_profile.city = request.POST.get("edit-city")
+                seller_profile.zip_code = request.POST.get("edit-zip")
+
+            seller_profile.save()
+
+    return render(
+        request,
+        "user/account_settings.html",
+        {
+            "profile": profile,
+            "buyer_profile": buyer_profile,
+            "seller_profile": seller_profile,
+        },
+    )

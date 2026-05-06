@@ -12,4 +12,5 @@ urlpatterns = [
     path("seller-profile/", views.seller_profile, name="seller_profile"),
     path("my_bids/", views.my_bids, name="my_bids"),
     path("finalize-bid/<int:bid_id>", views.finalize_bid, name="finalize-bid"),
+    path("account_settings/", views.account_settings, name="account-settings"),
 ]

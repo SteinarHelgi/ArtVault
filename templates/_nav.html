@@ -37,7 +37,7 @@
             </div>
 
             <div id="rightDropdown" class="dropdown-content right-dropdown-content">
-                  <a href="#">Account settings</a>
+                  <a href="{% url 'account-settings' %}">Account settings</a>
                   <a href="{%url 'my_bids'%}">My Bids</a>
                   <form method="post" action="{% url 'logout' %}" class="logoutForm">
                         {% csrf_token %}
