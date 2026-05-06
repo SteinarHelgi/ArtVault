@@ -21,3 +21,22 @@ window.onclick = (event) => {
   function closeModal() {
     document.getElementById("popupModal").style.display = "none";
   }
+
+
+  // searchbar filtering fyrir browse artwork
+function filterFunction() {
+    let input = document.getElementById("searchbar");
+    let filter = input.value.toUpperCase();
+
+    let cards = document.getElementsByClassName("browse-art-link");
+
+    for (let i = 0; i < cards.length; i++) {
+        let cardText = cards[i].innerText.toUpperCase();
+
+        if (cardText.indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}

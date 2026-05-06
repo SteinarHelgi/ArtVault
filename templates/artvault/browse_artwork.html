@@ -8,8 +8,8 @@
                     type="text"
                     id="searchbar"
                     name="searchbar"
+                    onkeyup="filterFunction()"
                     placeholder="Search artwork..."
-                    class="search-input"
                     value="{{ request.GET.searchbar }}"
                 >
 
@@ -38,10 +38,10 @@
                         {% endif %}
                     {% endwith %}
 
-                    <h3>{{ a.title }}</h3>
-                    <p>{{ a.artist_name }}</p>
-                    <p>Starting price: {{ a.starting_price }}kr</p>
-                    <p>Highest bid: {{ a.current_price }}kr</p>
+                    <h3 class="art-title">{{ a.title }}</h3>
+                    <p class="artist-name">{{ a.artist_name }}</p>
+                    <p class="starting-price">Starting price: {{ a.starting_price }}kr</p>
+                    <p class="highest-bid">Highest bid: {{ a.current_price }}kr</p>
 
                 </div>
             </a>
