@@ -23,18 +23,18 @@ body {
 
 /*home page*/
 .hero-container {
-      font-family: var(--header-font);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    font-family: var(--header-font);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      height: 400px;
-      text-align: center;
+    height: 400px;
+    text-align: center;
 
-      background-image: url("/static/img/landingpic.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/static/img/landingpic.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     
 }
 
