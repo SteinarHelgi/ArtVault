@@ -54,6 +54,7 @@
             <div id="rightDropdown" class="dropdown-content right-dropdown-content">
 
                 <a href="#">Account Settings</a>
+                <a href="{% url 'my_profile_seller' %}">View my profile</a>
 
                 {% if user.profile.role == "buyer" %}
                     <a href="{% url 'my_bids' %}">My Bids</a>
