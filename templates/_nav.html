@@ -15,7 +15,7 @@
           </div>
             <div class="logo">
               <a href="{% url 'home' %}">
-                <img src="{% static 'img/artVaultLogo.png' %}" alt="ArtVault logo">
+                <img src="{% static 'img/logo.svg' %}" alt="ArtVault logo">
               </a>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <div id="rightDropdown" class="dropdown-content right-dropdown-content">
                     <a href="#">Account settings</a>
                     <a href="#">My Bids</a>
-                    <form method="post" action="{% url 'logout' %}" class="logoutForm">
+                    <form method="post" action="{% url 'logout' %}"">
                         {% csrf_token %}
                         <button type="submit" class="logOutButton">Logout</button>
                     </form>

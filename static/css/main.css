@@ -2,7 +2,7 @@
     --primary-color: #FAFAFA;
     --orange-color: #DD700B;
     --nav-height: 60px;
-    --icon-height: 45px;
+    --icon-height: 40px;
 }
 
 body {
@@ -72,7 +72,7 @@ body {
 
 /*dropdown css*/
 
-.dropdown .profile-dropdown {
+.dropdown, .profile-dropdown {
     position: relative;
 }
 
@@ -124,9 +124,6 @@ body {
     padding: 20px 50px;
     color: #000000;
     text-decoration: none;
-}
-.logoutform {
-    margin: 0;
 }
 
 .logOutButton {
