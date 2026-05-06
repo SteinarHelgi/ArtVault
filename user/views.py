@@ -57,7 +57,7 @@ def buyer_setup(request):
     )
 
     if request.method == "POST":
-        form = BuyerProfileForm(request.POST, instance=buyer_profile_obj)
+        form = BuyerProfileForm(request.POST, request.FILES, instance=buyer_profile_obj)
         if form.is_valid():
             instance = form.save(commit=False)
             instance.profile = profile

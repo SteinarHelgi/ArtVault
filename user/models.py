@@ -20,7 +20,7 @@ class BuyerProfileModel(models.Model):
     objects = models.Manager()
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
-    profile_image = models.TextField(max_length=9999)
+    profile_image = models.ImageField(upload_to='profile_images/')
 
 
 class SellerProfileModel(models.Model):
@@ -31,6 +31,6 @@ class SellerProfileModel(models.Model):
     street_name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=100)
-    logo = models.TextField(max_length=9999)
-    cover_photo = models.TextField(max_length=9999)
+    logo =  models.ImageField(upload_to='logos/')
+    cover_photo =  models.ImageField(upload_to='cover_photos/')
     bio = models.TextField(max_length=9999)

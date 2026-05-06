@@ -12,8 +12,8 @@ class SellerProfileForm(ModelForm):
             'street_name': forms.TextInput(attrs={'class': 'form-control'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
-            'logo': forms.TextInput(attrs={'class': 'form-control'}),
-            'cover_photo': forms.TextInput(attrs={'class': 'form-control'}),
+            'logo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'cover_photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'bio': forms.TextInput(attrs={'class': 'form-control'}),
         }
 

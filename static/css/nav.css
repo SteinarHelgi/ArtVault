@@ -1,0 +1,177 @@
+/* static/css/nav.css */
+
+.nav-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: var(--nav-height);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    z-index: 100;
+}
+
+.left-side,
+.right-side {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.left-side {
+    justify-self: start;
+    padding-left: 24px;
+}
+
+.right-side {
+    justify-self: end;
+    padding-right: 24px;
+}
+
+.navH1 {
+    color: var(--orange-color);
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-container a {
+    text-decoration: none;
+}
+
+.left-side img {
+    height: var(--icon-height);
+    width: auto;
+    display: block;
+}
+
+/* auth buttons */
+
+.signup,
+.login {
+    padding: 8px 36px;
+    border: 1px solid #111;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.signup {
+    color: #111;
+    background-color: transparent;
+}
+
+.signup:hover {
+    background-color: #f2f2f2;
+}
+
+.login {
+    color: var(--primary-color);
+    background-color: #111;
+}
+
+.login:hover {
+    background-color: var(--orange-color);
+    border-color: var(--orange-color);
+}
+
+/* dropdown */
+
+.dropdown,
+.profile-dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.dropbtn:hover {
+    opacity: 0.75;
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: var(--primary-color);
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    z-index: 200;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.left-dropdown-content {
+    top: var(--nav-height);
+    left: 0;
+    width: 240px;
+    min-height: 100vh;
+}
+
+.right-dropdown-content {
+    top: var(--nav-height);
+    right: 20px;
+    width: 220px;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 16px 24px;
+    color: #111;
+    font-size: 16px;
+    transition: 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f2f2f2;
+    color: var(--orange-color);
+}
+
+/* logout */
+
+.logoutForm {
+    margin: 0;
+}
+
+.logOutButton {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    border: none;
+    background: none;
+    color: #111;
+    text-align: left;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logOutButton:hover {
+    background-color: #f2f2f2;
+    color: var(--orange-color);
+}
+
+/* logged in avatar */
+
+.avatar {
+    width: var(--icon-height);
+    height: var(--icon-height);
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #111;
+    transition: 0.2s ease;
+}
+
+.avatar:hover {
+    border-color: var(--orange-color);
+    transform: scale(1.04);
+}
