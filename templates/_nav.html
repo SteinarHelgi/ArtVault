@@ -12,8 +12,8 @@
             </button>
 
             <div id="leftDropdown" class="dropdown-content left-dropdown-content">
-                <a href="{% url 'artvault-browse-artwork' %}">Browse Artwork</a>
-                <a href="{% url 'artvault-browse-artists' %}">View Artists</a>
+                <a href="{% url 'browse-artwork' %}">Browse Artwork</a>
+                <a href="{% url 'browse-artists' %}">View Artists</a>
                 <a href="#">Art Movements</a>
             </div>
 
@@ -59,7 +59,7 @@
                 {% if user.profile.role == "buyer" %}
                     <a href="{% url 'my_bids' %}">My Bids</a>
                 {% else %}
-                    <a href="{% url 'my_bids' %}">My Listings</a>
+                    <a href="{% url 'my_profile_seller' %}">My Listings</a>
                 {% endif %}
 
                 <form method="post" action="{% url 'logout' %}" class="logoutForm">

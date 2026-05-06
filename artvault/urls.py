@@ -3,11 +3,11 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="home"),
-    path("browse_artwork/", views.browse_artwork, name="artvault-browse-artwork"),
+    path("browse_artwork/", views.browse_artwork, name="browse-artwork"),
     path(
         "artwork_details/<int:id>/",
         views.artwork_details,
-        name="artvault-artwork-details",
+        name="artwork-details",
     ),
-    path("browse_artists/", views.browse_artists, name="artvault-browse-artists"),
+    path("browse_artists/", views.browse_artists, name="browse-artists"),
 ]

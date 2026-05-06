@@ -27,7 +27,7 @@
 
     <div class="browse-art-container">
         {% for a in art %}
-            <a href="{% url 'artvault-artwork-details' a.id %}" class="browse-art-link">
+            <a href="{% url 'artwork-details' a.id %}" class="browse-art-link">
                 <div class="browse-art-item">
 
                     {% with img=a.images.first %}

@@ -17,7 +17,7 @@
       <h2 class="art-movement-h1">Art Movement 1</h2>
       <div class="art-movement-container">
             {% for a in art %}
-            <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
+            <a href="{% url 'artwork-details' a.id %}" class="art-item">
                   {% with img=a.images.first %}
                   {% if img %}
                   <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
@@ -33,7 +33,7 @@
       <h2 class="art-movement-h1">Art Movement 2</h2>
       <div class="art-movement-container">
             {% for a in art %}
-            <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
+            <a href="{% url 'artwork-details' a.id %}" class="art-item">
                   {% with img=a.images.first %}
                   {% if img %}
                   <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
@@ -48,7 +48,7 @@
       <h2 class="art-movement-h1">Art Movement 3</h2>
       <div class="art-movement-container">
             {% for a in art %}
-            <a href="{% url 'artvault-artwork-details' a.id %}" class="art-item">
+            <a href="{% url 'artwork-details' a.id %}" class="art-item">
                   {% with img=a.images.first %}
                   {% if img %}
                   <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
@@ -73,7 +73,7 @@
 
                     {% if request.user.profile.role == "buyer" %}
                         <h4>Click below to start browsing artwork.</h4>
-                        <a href="{% url 'artvault-browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                        <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
                     {% else %}
                         <h4>Click below to create your first listing and share your art with others.</h4>
                         <a href="/" class="modal-btn">Create listing</a>
@@ -93,7 +93,7 @@
 
                     <h2>Thank you for your purchase!</h2>
                     <p>Your payment has been processed and your order is on its way.</p>
-                    <a href="{% url 'artvault-browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                    <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
                 </div>
             </div>
         {% endif %}

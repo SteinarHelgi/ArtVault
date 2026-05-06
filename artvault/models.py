@@ -7,7 +7,7 @@ from user.models import BuyerProfileModel, SellerProfileModel
 
 class Artwork(models.Model):
     objects = models.Manager()
-    seller = models.ForeignKey(SellerProfileModel, on_delete=models.CASCADE)
+    seller = models.ForeignKey(SellerProfileModel, on_delete=models.CASCADE,related_name="artworks")
     title = models.CharField(max_length=255)
     medium = models.CharField(max_length=255)
     edition = models.CharField(max_length=255)
@@ -20,7 +20,8 @@ class Artwork(models.Model):
     art_movement = models.CharField(max_length=255)
 
 
-class ArtWorkImage(models.Model):
+class ArtworkImage(models.Model):
+    objects = models.Manager()
     image_path = models.CharField(max_length=255)
     artwork = models.ForeignKey(
         Artwork,

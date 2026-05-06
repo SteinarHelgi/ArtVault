@@ -117,10 +117,11 @@ def finalize_bid(request, bid_id):
 #view for viewing your own profile
 @login_required
 def my_profile_seller(request):
-    my_profile_seller = request.user.profile
-    seller_profile = my_profile_seller.sellerprofilemodel
+    seller_profile = request.user.profile.seller_profile
+
     artworks = seller_profile.artworks.all()
-    return render(request, "user/my_profile_seller.html",{
+
+    return render(request, "user/my_profile_seller.html", {
         "seller_profile": seller_profile,
         "artworks": artworks,
                    })
