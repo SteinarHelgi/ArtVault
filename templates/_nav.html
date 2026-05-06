@@ -49,7 +49,7 @@
 
             <div id="rightDropdown" class="dropdown-content right-dropdown-content">
 
-                <a href="#">Account Settings</a>
+                <a href="{% url 'account-settings' %}">Account Settings</a>
                 <a href="{% url 'my_profile_seller' %}">View my profile</a>
 
                 {% if user.profile.role == "buyer" %}

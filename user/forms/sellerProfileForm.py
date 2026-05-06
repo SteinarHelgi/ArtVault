@@ -8,12 +8,12 @@ class SellerProfileForm(ModelForm):
         model = SellerProfileModel
         exclude = ('user', 'id', 'profile')
         widgets = {
-            'seller_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'street_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'city': forms.TextInput(attrs={'class': 'form-control'}),
-            'zip_code': forms.TextInput(attrs={'class': 'form-control'}),
-            'logo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'cover_photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'bio': forms.TextInput(attrs={'class': 'form-control'}),
+            'seller_name': forms.TextInput(attrs={'placeholder': 'Full name'}),
+            'street_name': forms.TextInput(attrs={'placeholder': 'Street name'}),
+            'city': forms.TextInput(attrs={'placeholder': 'City'}),
+            'zip_code': forms.TextInput(attrs={'placeholder': 'Postal code'}),
+            'logo': forms.ClearableFileInput(attrs={'class': 'hidden-file-input', }),
+            'cover_photo': forms.ClearableFileInput(attrs={'class': 'hidden-file-input'}),
+            'bio': forms.TextInput(attrs={'placeholder': 'About me...'}),
         }
 
