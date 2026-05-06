@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>My Bids</h1>
+<div class="my-bids-container">
+
+      {% for bid in bids %}
+      <div class="bid-item">
+            {% for img in bid.artwork.images.all %}
+            <img src="{{ img.image_path }}" class="image">
+            {% endfor %}
+            <h2>{{ bid.artwork.title }}</h2>
+            <p>Bid amount: {{ bid.amount }}</p>
+            <p>Status: {{ bid.status }}</p>
+            {% if bid.status == 'accepted' %}
+            <a href="{% url 'finalize-bid' bid.id %}" class="finalize-bid-button">
+                  Finalize bid
+            </a>
+            {% endif %}
+      </div>
+      {% empty %}
+      <p>You have not placed any bids yet.</p>
+      {% endfor %}
+
+</div>
+{% endblock %}

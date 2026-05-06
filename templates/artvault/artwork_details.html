@@ -5,7 +5,7 @@
 {% if a.id == id %}
 <div class="art-details">
       <h1>{{a.title}}</h1>
-      {% with img=a.artworkimage_set.first %}
+      {% with img=a.images.first %}
       {% if img %}
       <img src="{{ img.image_path }}" alt="image of artwork">
       {% endif %}

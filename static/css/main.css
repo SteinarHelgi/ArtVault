@@ -27,10 +27,10 @@ body {
 }
 
 .left-side {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-self: start;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-self: start;
 }
 
 .navH1{
@@ -73,30 +73,30 @@ body {
 /*dropdown css*/
 
 .dropdown .profile-dropdown {
-    position: relative;
+      position: relative;
 }
 
 .left-side .dropdown {
-    padding-left: 20px;
+      padding-left: 20px;
 }
 
 .dropbtn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
 }
 
 
 .dropdown-content {
-    display: none;
-    position: fixed;
-    background-color: var(--primary-color);
-    z-index: 10;
+      display: none;
+      position: fixed;
+      background-color: var(--primary-color);
+      z-index: 10;
 }
 
 .dropdown-content.show {
-    display: block;
+      display: block;
 }
 
 .left-dropdown-content {
@@ -116,14 +116,14 @@ body {
 }
 
 .dropdown-content a:hover {
-    background-color: #eeeeee;
+      background-color: #eeeeee;
 }
 
-.dropdown-content a{
-    display: block;
-    padding: 20px 50px;
-    color: #000000;
-    text-decoration: none;
+.dropdown-content a {
+      display: block;
+      padding: 20px 50px;
+      color: #000000;
+      text-decoration: none;
 }
 .logoutform {
     margin: 0;
@@ -205,36 +205,34 @@ body {
 }
 
 .browse-art-item {
-    padding: 18px;
-    flex: 0 0 250px;
+      padding: 18px;
+      flex: 0 0 250px;
 }
 
-.browse-art-item h3 {
-
-}
+.browse-art-item h3 {}
 
 
 .browse-art-item .image {
-    width: 100%;
-    height: 150px;
+      width: 100%;
+      height: 150px;
 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border: 1px solid #ccc;
-    padding: 10px;
-    transition: 0.2s;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1px solid #ccc;
+      padding: 10px;
+      transition: 0.2s;
 }
 
 .browse-art-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
 }
 
 .browse-art-link {
-    text-decoration: none;
-    color: inherit;
+      text-decoration: none;
+      color: inherit;
 }
 
 .browse-art-item:hover {
@@ -255,4 +253,40 @@ body {
 
 .search-form button {
     padding: 6px 8px;
+}
+      transform: scale(1.02);
+      cursor: pointer;
+}
+
+.my-bids-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+
+}
+
+.my-bids-container .image {
+      width: 100%;
+      height: 150px;
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1px solid #ccc;
+      transition: 0.2s;
+}
+
+.my-bids-container .bid-item {
+      display: flex;
+      flex-direction: column;
+}
+
+.finalize-bid-button {
+      border: solid 2px;
+      border-color: var(--orange-color);
+      text-decoration: none;
+      color: black;
+      text-align: center;
+
+
 }
