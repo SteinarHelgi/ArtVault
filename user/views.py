@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, render
-from artvault.models import Bid
+from artvault.models import Artwork, Bid
 from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
 from user.forms.signupForm import SignupForm
@@ -102,21 +102,9 @@ def seller_setup(request):
     )
 
 
-@login_required
-def my_bids(request):
-    profile = request.user.profile
-    buyer_profile = profile.buyerprofilemodel
 
-    bids = Bid.objects.filter(buyer=buyer_profile)
 
-    return render(
-        request,
-        "user/my_bids.html",
-        {
-            "profile": profile,
-            "bids": bids,
-        },
-    )
+
 
 
 def finalize_bid(request, bid_id):

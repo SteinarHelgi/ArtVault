@@ -9,4 +9,5 @@ urlpatterns = [
     path("bank-payment/<int:shipping_id>/", views.bank_transfer_payment, name="bank_transfer_payment"),
     path("wire-payment/<int:shipping_id>/", views.wire_transfer_payment, name="wire_transfer_payment"),
     path("overview/<int:shipping_id>/", views.checkout_overview, name="checkout_overview"),
+    path("my_bids/", views.my_bids, name="my_bids"),
 ]

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from finalizebid.models import WireTransferModel
+from bids.models import WireTransferModel
 
 class WireTransferForm(ModelForm):
     class Meta:

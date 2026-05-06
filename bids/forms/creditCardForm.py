@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from finalizebid.models import CreditCardModel
+from bids.models import CreditCardModel
 
 class CreditCardForm(ModelForm):
     class Meta:

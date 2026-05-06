@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from finalizebid.models import BankTransferModel
+from bids.models import BankTransferModel
 
 class BankTransferForm(ModelForm):
     class Meta:

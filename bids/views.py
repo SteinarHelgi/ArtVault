@@ -1,12 +1,14 @@
+from django.contrib.auth.views import login_required
 from django.shortcuts import render, redirect
-from finalizebid.forms.shippingForm import ShippingForm
-from finalizebid.forms.bankTransferForm import BankTransferForm
-from finalizebid.forms.wireTransferForm import WireTransferForm
-from finalizebid.forms.creditCardForm import CreditCardForm
-from finalizebid.models import ShippingModel, BankTransferModel, WireTransferModel, CreditCardModel
+from bids.forms.shippingForm import ShippingForm
+from bids.forms.bankTransferForm import BankTransferForm
+from bids.forms.wireTransferForm import WireTransferForm
+from bids.forms.creditCardForm import CreditCardForm
+from bids.models import ShippingModel, BankTransferModel, WireTransferModel, CreditCardModel
 from artvault.models import Bid
 from django.contrib import messages
 
+from user.models import BuyerProfileModel, Profile, SellerProfileModel
 # Create your views here.
 
 def shipping(request,bid_id):
@@ -22,7 +24,7 @@ def shipping(request,bid_id):
 
     else:
         form = ShippingForm()
-    return render(request, template_name='finalizebid/shipping.html', context={'form': form})
+    return render(request, template_name='bids/shipping.html', context={'form': form})
 
 def shipping_edit(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
@@ -35,7 +37,7 @@ def shipping_edit(request, shipping_id):
     else:
         form = ShippingForm(instance=shipping_obj)
 
-    return render(request, "finalizebid/shipping.html", {
+    return render(request, "bids/shipping.html", {
         "form": form,
         "shipping": shipping_obj
     })
@@ -55,7 +57,7 @@ def payment_method(request, shipping_id):
         elif method == "wire":
             return redirect("wire_transfer_payment", shipping_id=shipping_obj.id)
 
-    return render(request, "finalizebid/payment_method.html", {"shipping": shipping_obj})
+    return render(request, "bids/payment_method.html", {"shipping": shipping_obj})
 
 def credit_card_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
@@ -72,7 +74,7 @@ def credit_card_payment(request, shipping_id):
     else:
         form = CreditCardForm(instance=payment_obj)
 
-    return render(request, "finalizebid/card_payment.html", {
+    return render(request, "bids/card_payment.html", {
         "form": form,
         "shipping": shipping_obj
         })
@@ -92,7 +94,7 @@ def bank_transfer_payment(request, shipping_id):
     else:
         form = BankTransferForm(instance=payment_obj)
 
-    return render(request, "finalizebid/bank_payment.html", {
+    return render(request, "bids/bank_payment.html", {
         "form": form,
         "shipping": shipping_obj
         })
@@ -112,7 +114,7 @@ def wire_transfer_payment(request, shipping_id):
     else:
         form = WireTransferForm(instance=payment_obj)
 
-    return render(request, "finalizebid/wire_payment.html", {
+    return render(request, "bids/wire_payment.html", {
         "form": form,
         "shipping": shipping_obj
         })
@@ -132,9 +134,23 @@ def checkout_overview(request, shipping_id):
         messages.success(request, "payment_successful")
         return redirect("/")
 
-    return render(request, "finalizebid/overview.html", {
+    return render(request, "bids/overview.html", {
         "shipping": shipping_obj,
         "payment": payment
     })
+
+@login_required
+def my_bids(request):
+    profile: BuyerProfileModel = request.user.profile.buyer_profile
+    bids = Bid.objects.filter(buyer=profile)
+
+    return render(
+        request,
+        "bids/my_bids.html",
+        {
+            "profile": profile,
+            "bids": bids,
+        },
+    )
 
 

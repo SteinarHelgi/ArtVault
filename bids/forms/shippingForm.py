@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from finalizebid.models import ShippingModel
+from bids.models import ShippingModel
 
 class ShippingForm(ModelForm):
     class Meta:
