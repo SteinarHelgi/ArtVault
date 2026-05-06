@@ -3,7 +3,7 @@
 {% block content %}
     <div class="left-side">
         <form method="GET" action="" class="search-form">
-            <label for="search-bar">
+            <label for="search">
                 <input
                     type="text"
                     id="searchbar"
@@ -13,8 +13,8 @@
                     value="{{ request.GET.searchbar }}"
                 >
 
-                <select name="order">
-                    <option value="">Sort by</option>
+                <select name="order" id="order-by">
+                    <option value="">Order by</option>
                     <option value="title" {% if request.GET.order == "title" %}selected{% endif %}>Title</option>
                     <option value="artist" {% if request.GET.order == "artist" %}selected{% endif %}>Artist</option>
                 </select>
@@ -29,7 +29,11 @@
         {% for a in art %}
             <a href="{% url 'artvault-artwork-details' a.id %}" class="browse-art-link">
                 <div class="browse-art-item">
-                    <img class="image" src="{{ a.image_path }}" alt="image of artwork">
+                    {% with img=a.artworkimage_set.first %}
+                      {% if img %}
+                      <img class="image" src="{{ img.image_path }}" alt="image of artwork">
+                      {% endif %}
+                      {% endwith %}
                     <h3>{{ a.title }}</h3>
                     <p>{{ a.artist_name }}</p>
                     <p>current bid</p>
@@ -37,6 +41,5 @@
             </a>
         {% endfor %}
     </div>
-
 
 {% endblock %}
