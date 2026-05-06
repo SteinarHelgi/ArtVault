@@ -1,6 +1,6 @@
 from django.db import models
 
-from user.models import SellerProfileModel
+from user.models import BuyerProfileModel, SellerProfileModel
 
 # Create your models here.
 
@@ -22,4 +22,17 @@ class Artwork(models.Model):
 
 class ArtWorkImage(models.Model):
     image_path = models.CharField(max_length=255)
+    artwork = models.ForeignKey(
+        Artwork,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+
+
+class Bid(models.Model):
+    objects = models.Manager()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    amount = models.IntegerField()
+    status = models.CharField(max_length=255)
+    buyer = models.ForeignKey(BuyerProfileModel, on_delete=models.CASCADE)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)

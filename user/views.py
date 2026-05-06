@@ -1,27 +1,31 @@
-from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-from user.forms.signupForm import SignupForm
+from django.db import transaction
+from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import redirect, render
+
+from artvault.models import Bid
 from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
-from django.http import HttpResponseForbidden
-from .models import Profile, BuyerProfileModel, SellerProfileModel
-from django.contrib import messages
-from django.db import transaction
+from user.forms.signupForm import SignupForm
+
+from .models import BuyerProfileModel, Profile, SellerProfileModel
 
 # Create your views here.
-#Roles
-ALLOWED_ROLE_CHOICES = ['buyer', 'individual_seller', 'gallery']
+# Roles
+ALLOWED_ROLE_CHOICES = ["buyer", "individual_seller", "gallery"]
 
-#signup view
+
+# signup view
 def signup(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SignupForm(request.POST)
 
         if form.is_valid():
-
-            #Assign role
-            role = form.cleaned_data.get('role')
+            # Assign role
+            role = form.cleaned_data.get("role")
             if role not in ALLOWED_ROLE_CHOICES:
                 return HttpResponseForbidden()
 
@@ -36,22 +40,25 @@ def signup(request):
 
             login(request, user)
 
-            if role == 'buyer':
-                return redirect('buyer_profile')
+            if role == "buyer":
+                return redirect("buyer_profile")
             else:
-                return redirect('seller_profile')
+                return redirect("seller_profile")
 
     else:
         form = SignupForm()
 
-    return render(request, template_name='user/signup.html', context={'form': form})
+    return render(request, template_name="user/signup.html", context={"form": form})
+
 
 def buyer_profile(request):
     profile = request.user.profile
 
-    buyer_profile_obj, created = BuyerProfileModel.objects.get_or_create(profile=profile)
+    buyer_profile_obj, created = BuyerProfileModel.objects.get_or_create(
+        profile=profile
+    )
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = BuyerProfileForm(request.POST, instance=buyer_profile_obj)
         if form.is_valid():
             instance = form.save(commit=False)
@@ -59,19 +66,26 @@ def buyer_profile(request):
             instance.save()
 
             messages.success(request, "profile_setup_complete")
-            return redirect('/')
+            return redirect("/")
 
-    return render(request, template_name='user/buyer_profile.html', context={
-        'form': BuyerProfileForm(instance=buyer_profile_obj),
-    })
+    return render(
+        request,
+        template_name="user/buyer_profile.html",
+        context={
+            "form": BuyerProfileForm(instance=buyer_profile_obj),
+        },
+    )
+
 
 def seller_profile(request):
 
     profile = request.user.profile
 
-    seller_profile_obj, created = SellerProfileModel.objects.get_or_create(profile=profile)
+    seller_profile_obj, created = SellerProfileModel.objects.get_or_create(
+        profile=profile
+    )
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SellerProfileForm(request.POST, instance=seller_profile_obj)
         if form.is_valid():
             instance = form.save(commit=False)
@@ -79,9 +93,35 @@ def seller_profile(request):
             instance.save()
 
             messages.success(request, "profile_setup_complete")
-            return redirect('/')
+            return redirect("/")
 
-    return render(request, template_name='user/seller_profile.html', context={
-        'form': SellerProfileForm(instance=seller_profile_obj),
-    })
+    return render(
+        request,
+        template_name="user/seller_profile.html",
+        context={
+            "form": SellerProfileForm(instance=seller_profile_obj),
+        },
+    )
 
+
+@login_required
+def my_bids(request):
+    profile = request.user.profile
+    buyer_profile = profile.buyerprofilemodel
+
+    bids = Bid.objects.filter(buyer=buyer_profile)
+
+    return render(
+        request,
+        "user/my_bids.html",
+        {
+            "profile": profile,
+            "bids": bids,
+        },
+    )
+
+
+def finalize_bid(request, bid_id):
+    print("finalize_bid page")
+    print(f"{bid_id}")
+    return HttpResponse(content=b"finalize_bid")
