@@ -2,16 +2,30 @@
 
 {% block content %}
 
-<div class="profile-page">
-    <div class="profile-card">
-        <img src="{{ user.cover_photo }}" alt="cover photo">
-        <h1>{{ user.seller_name }}</h1>
-        <p>{{ user.profile.bio }}</p>
-        <img src="{{ user.logo }}" alt="Profile picture">
-        <p>{{ user.street_name }}</p>
-        <p>{{ user.city }}</p>
-        <p>{{ user.zip_code }}</p>
+<div class="profile_page">
+    <div class="profile_card">
+        <img src="{{  seller_profile.cover_photo.url }}" alt="cover photo">
+        <h1>{{ seller_profile.seller_name}}</h1>
+        <p>{{ seller_profile.bio }}</p>
+        <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
+        <p>{{ seller_profile.street_name }}</p>
+        <p>{{ seller_profile.city }}</p>
+        <p>{{ seller_profile.zip_code }}</p>
     </div>
+</div>
+
+{#    TODO bætta við gallery section#}
+<div class="gallery_container">
+    {% for artwork in artworks %}
+        <a href="{% url 'artwork-details' artwork.id %}" class="seller-artwork-card">
+            <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}">
+            <h5>{{ artwork.title }}</h5>
+            <p>{{ artwork.medium }}</p>
+            <p>{{ artwork.price }} kr.</p>
+        </a>
+    {% empty %}
+        <h3>This seller has no artworks listed yet.</h3>
+    {% endfor %}
 </div>
 
 {% endblock %}

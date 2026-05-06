@@ -130,5 +130,8 @@ def finalize_bid(request, bid_id):
 def my_profile_seller(request):
     my_profile_seller = request.user.profile
     seller_profile = my_profile_seller.sellerprofilemodel
-    return render(request, "user/my_profile_seller.html",
-                  {"seller_profile": seller_profile})
+    artworks = seller_profile.artworks.all()
+    return render(request, "user/my_profile_seller.html",{
+        "seller_profile": seller_profile,
+        "artworks": artworks,
+                   })
