@@ -1,7 +1,7 @@
 from collections import defaultdict
 from django.shortcuts import render
-from django.db.models import Max
-from artvault.models import Artwork, Bid
+from django.db.models import Max, Q
+from artvault.models import Artwork
 
 
 # Create your views here
@@ -14,7 +14,28 @@ def blabla(request): ...
 
 def browse_artwork(request):
     art = Artwork.objects.prefetch_related("images", "bid_set")
+    
+    # search bar
+    query = request.GET.get("searchbar")
 
+    if query:
+        art = art.filter(
+            Q(title__icontains=query) |
+            Q(artist_name__icontains=query) |
+            Q(medium__icontains=query) |
+            Q(art_movement__icontains=query)
+        )
+
+    # order by
+    order = request.GET.get("order")
+
+    if order == "title":
+        art = art.order_by("title")
+
+    elif order == "artist":
+        art = art.order_by("artist_name")
+
+    #current price
     for artwork in art:
         highest_bid = artwork.bid_set.aggregate(Max("amount"))["amount__max"]
 
