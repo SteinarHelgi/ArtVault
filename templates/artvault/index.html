@@ -70,9 +70,25 @@
                     {% else %}
                         <h4>Click below to create your first listing and share your art with others.</h4>
                         <a href="/" class="modal-btn">Create listing</a>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
-        </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.message == "payment_successful" %}
+            <div id="popupModal" class="modal">
+                <div class="modal-content">
+                    <button class="close-btn" onclick="closeModal()">X</button>
+
+                    <h2>Thank you for your purchase!</h2>
+                    <p>Your payment has been processed and your order is on its way.</p>
+                    <a href="{% url 'artvault-browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                </div>
+            </div>
         {% endif %}
     {% endfor %}
 {% endif %}

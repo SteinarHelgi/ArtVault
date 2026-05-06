@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "artvault.apps.ArtvaultConfig",
     "user.apps.UserConfig",
+    "finalizebid.apps.FinalizebidConfig",
 ]
 
 MIDDLEWARE = [

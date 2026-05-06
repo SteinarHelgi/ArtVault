@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Choose payment method</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit" name="payment_method" value="card">Credit Card</button>
+
+        <button type="submit" name="payment_method" value="bank">Bank Transfer</button>
+
+        <button type="submit" name="payment_method" value="wire">Wire Transfer</button>
+    </form>
+    <a href="{% url 'shipping_edit' shipping.id %}">Back</a>
+
+{% endblock %}

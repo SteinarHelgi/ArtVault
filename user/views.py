@@ -5,12 +5,10 @@ from django.contrib.auth.models import Group
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import redirect, render
-
 from artvault.models import Bid
 from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
 from user.forms.signupForm import SignupForm
-
 from .models import BuyerProfileModel, Profile, SellerProfileModel
 
 # Create your views here.
@@ -120,8 +118,3 @@ def my_bids(request):
         },
     )
 
-
-def finalize_bid(request, bid_id):
-    print("finalize_bid page")
-    print(f"{bid_id}")
-    return HttpResponse(content=b"finalize_bid")
