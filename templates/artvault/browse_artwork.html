@@ -40,7 +40,9 @@
 
                     <h3>{{ a.title }}</h3>
                     <p>{{ a.artist_name }}</p>
-                    <p>current bid</p>
+                    <p>Starting price: {{ a.starting_price }}kr</p>
+                    <p>Highest bid: {{ a.current_price }}kr</p>
+
                 </div>
             </a>
         {% endfor %}

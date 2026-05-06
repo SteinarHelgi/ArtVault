@@ -1,8 +1,7 @@
 from collections import defaultdict
 from django.shortcuts import render
-
-from artvault.models import Artwork
-
+from django.db.models import Max
+from artvault.models import Artwork, Bid
 
 
 # Create your views here
@@ -14,8 +13,20 @@ def blabla(request): ...
 
 
 def browse_artwork(request):
+    art = Artwork.objects.prefetch_related("images", "bid_set")
+
+    for artwork in art:
+        highest_bid = artwork.bid_set.aggregate(Max("amount"))["amount__max"]
+
+        if highest_bid and highest_bid >= int(artwork.starting_price):
+            artwork.current_price = highest_bid
+        else:
+            artwork.current_price = 0
+
     return render(
-        request, "artvault/browse_artwork.html", {"art": Artwork.objects.all()}
+        request,
+        "artvault/browse_artwork.html",
+        {"art": art},
     )
 
 
