@@ -6,16 +6,18 @@
 
         <form method="GET" action="" class="filter-form">
 
-            <div class="left-side">
-
-                <label for="searchbar"></label>
-                    <input
-                        type="text"
-                        id="searchbar"
-                        name="searchbar"
-                        placeholder="Search artwork..."
-                        value="{{ request.GET.searchbar }}"
-                    ><br>
+            <div class="left-side-filter">
+                <div class="searchbar">
+                    <label for="searchbar"></label>
+                        <input
+                            type="text"
+                            id="searchbar"
+                            name="searchbar"
+                            placeholder="Search artwork..."
+                            value="{{ request.GET.searchbar }}"
+                        ><br>
+                        <button type="submit">Search</button>
+                </div>
                 <label for="order-by"></label>
                     <select name="order" id="order-by" onchange="this.form.submit()">
                         <option value="">Order by</option>
@@ -31,11 +33,10 @@
                         </option>
                     </select>
 
-                    <button type="submit">Search</button>
 
             </div>
 
-            <div class="right-side">
+            <div class="right-side-filter">
                 <label for="movement"> </label>
                     <select name="movement" id="movement" onchange="this.form.submit()">
                         <option value="">Art movement</option>
@@ -64,10 +65,14 @@
                     </select>
 
                 <fieldset>
-                    <label for="min-price">Price from</label>
-                        <input type="number" name="min_price" id="min-price" placeholder="Min price" value="{{ request.GET.min_price }}">
-                    <label for="max-price">Price to</label>
-                        <input type="number" name="max_price" id="max-price" placeholder="Max price" value="{{ request.GET.max_price }}">
+                    <div class="filter-price">
+                        <label for="min-price">Price from</label>
+                            <input type="number" name="min_price" id="min-price" placeholder="Min price" value="{{ request.GET.min_price }}">
+                    </div>
+                    <div class="filter-price">
+                        <label for="max-price">Price to</label>
+                            <input type="number" name="max_price" id="max-price" placeholder="Max price" value="{{ request.GET.max_price }}">
+                    </div>
 
                         <button type="submit">Apply price</button>
                 </fieldset>
@@ -95,14 +100,16 @@
                         {% endif %}
                     {% endwith %}
 
+{# TODO skoða hvort það þurfi að vera allar þessar upplýsingar á art card info#}
+
                     <div class="art-card-info">
                         <h5 >{{ a.title }}</h5>
                         <p>{{ a.artist_name }}</p>
                         <p>{{ a.art_movement }}</p>
                         <p> {{ a.medium }}</p>
 
-                        <p class="highest-bid">Highest bid: {{ a.current_price }}kr</p>
-                        <p class="price">Starting price: {{ a.starting_price }}kr</p>
+                        <p class="highest-bid">Highest bid: <b> {{ a.current_price }} kr.</b></p>
+                        <p class="price">Starting bid: <b>{{ a.starting_price }} kr.</b></p>
                     </div>
             </a>
         {% endfor %}

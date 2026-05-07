@@ -34,7 +34,7 @@
     padding-right: 28px;
 }
 
-.nav-container h1 {
+.logo h1 {
     font-family: var(--header-font);
     color: var(--orange-color);
     margin: 0;
@@ -52,6 +52,20 @@
 }
 
 .left-side img {
+    height: var(--icon-height);
+    width: auto;
+    display: block;
+}
+
+.logo{
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.logo img{
     height: var(--icon-height);
     width: auto;
     display: block;
@@ -139,8 +153,9 @@
 
 .right-dropdown-content {
     top: var(--nav-height);
-    right: 20px;
+    right: 0;
     width: 220px;
+    transition: transform 0.3s ease;
 }
 
 .dropdown-content.show {

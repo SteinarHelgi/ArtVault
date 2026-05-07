@@ -6,10 +6,7 @@
     <div class="profile-cover"
          style="background-image: url('{{ seller_profile.cover_photo.url }}')">
     </div>
-    <div class="profile-name">
-        <h1>{{ seller_profile.seller_name}}</h1>
-        <p class="profile-bio">{{ seller_profile.bio }}</p>
-    </div>
+
       <div class="profile-card">
           <div class="profile-img">
                 <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
@@ -23,8 +20,11 @@
                     <p>{{ seller_profile.zip_code }}</p>
                 </div>
             </div>
-
       </div>
+    <div class="profile-name">
+        <h2>{{ seller_profile.seller_name}}</h2>
+        <p class="profile-bio">{{ seller_profile.bio }}</p>
+    </div>
 </div>
 
 
@@ -48,7 +48,7 @@
                 <div class="art-card-info">
                     <h5>{{ artwork.title }}</h5>
                     <p>{{ artwork.medium }}</p>
-                <p class="price">{{ artwork.starting_price }} kr.</p>
+                <p class="price">Starting bid: <b>{{ artwork.starting_price }} kr.</b></p>
                 </div>
             </a>
             {% empty %}

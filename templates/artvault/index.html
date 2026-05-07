@@ -3,7 +3,14 @@
 
 {% load static %}
 <div class="hero-container">
-      <h1>Art Vault - Discover, Bid and Own Original Art</h1>
+    <div class="hero-text">
+        <h1>Art Vault - Discover, Bid and Own Original Art</h1>
+        <p>A digital marketplace connecting art lovers with unique artworks, talented artists, and trusted galleries.</p>
+        <div class="hero-button">
+            <a class="first_button" href="{% url 'browse-artwork' %}">Browse Artwork</a>
+            <a class="second_button" href="{% url 'browse-artists' %}">View Artists</a>
+        </div>
+    </div>
 </div>
 <div class="landing-page">
       <div class="text_container">
@@ -91,6 +98,7 @@
                   <button class="scroll-btn right" onclick="scrollArt(this, 1)">›</button>
             </div>
       </div>
+</div>
 
       {% if messages %}
       {% for message in messages %}
@@ -100,10 +108,13 @@
                   <button class="close-btn" onclick="closeModal()">X</button>
 
                   <h2>Welcome to ArtVault!</h2>
-                  <p>Your account is now ready. You can start showcasing your work by listing your first artwork and
+                {% if request.user.profile.role == "buyer" %}
+                  <p> Your account is now ready. You can now browse artwork, view artists, and place bids on pieces you love.</p>
+                {% else %}
+                    <p>Your account is now ready. You can start showcasing your work by listing your first artwork and
                         opening
                         it for bids. It only takes a moment to get started.</p>
-
+                {% endif %}
                   {% if request.user.profile.role == "buyer" %}
                   <h4>Click below to start browsing artwork.</h4>
                   <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>

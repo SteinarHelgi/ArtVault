@@ -19,19 +19,16 @@
 
         </div>
 
-        <div class="logo">
-            <a href="{% url 'home' %}">
-                <img src="{% static 'img/logo.svg' %}" alt="ArtVault logo">
-            </a>
-        </div>
     </div>
 
-    <h1>ArtVault</h1>
+            <a class="logo" href="{% url 'home' %}">
+                <img src="{% static 'img/logo.svg' %}" alt="ArtVault logo">
+            <h1>ArtVault</h1>
+            </a>
 
     <div class="right-side">
-
+     <p class="nav-username">{{ user.username }}</p>
         {% if user.is_authenticated %}
-
         <div class="profile-dropdown">
 
             <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
