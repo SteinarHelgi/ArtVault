@@ -66,14 +66,14 @@ def buyer_setup(request):
 
             messages.success(request, "profile_setup_complete")
             return redirect("/")
+    else:
+        form = BuyerProfileForm(instance=buyer_profile_obj)
 
     return render(
         request,
         template_name="user/buyer_setup.html",
         context={
-            "form": BuyerProfileForm(instance=buyer_profile_obj),
-        },
-    )
+            "form": form })
 
 
 def seller_setup(request):
