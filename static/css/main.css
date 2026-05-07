@@ -35,7 +35,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
+
 }
 
 .landing-page {
@@ -75,29 +75,28 @@ body {
     width: 100%;
 }
 
-.art-movement-container {
+.gallery-scroll-container {
     width: 100%;
     display: flex;
     gap: 24px;
+
     overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-width: none;
+
     padding: 16px 0;
+    scroll-behavior: smooth;
+
+    scrollbar-width: none;
 }
 
-.art-movement-container::-webkit-scrollbar {
+..gallery-scroll-container::-webkit-scrollbar {
     display: none;
 }
 
-.art-movement-container a {
-    font-family: var(--paragraph-font);
-    color: var(--black);
-    text-decoration: none;
+.gallery-scroll-container .art-card {
+    flex: 0 0 250px;
 }
 
-.art-item {
-      flex: 0 0 250px;
-}
 
 .scroll-btn {
     border: none;
@@ -125,14 +124,6 @@ body {
     right: -30px;
 }
 
-.art-item .image {
-      width: 100%;
-      height: 150px;
-
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-}
 
 .browse-art-item {
       padding: 18px;

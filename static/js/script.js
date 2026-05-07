@@ -45,7 +45,7 @@ function filterFunction() {
 //scroll func on landing page
 function scrollArt(button, direction) {
     const wrapper = button.closest(".art-scroll-wrapper");
-    const container = wrapper.querySelector(".art-movement-container");
+    const container = wrapper.querySelector(".gallery-scroll-container");
 
     container.scrollBy({
         left: direction * 300,
