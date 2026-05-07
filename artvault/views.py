@@ -2,8 +2,7 @@ from collections import defaultdict
 from django.shortcuts import render
 from django.db.models import Max, Q
 from artvault.models import Artwork
-from django.db.models import IntegerField
-from django.db.models.functions import Cast
+
 
 # Create your views here
 def index(request):
