@@ -13,7 +13,7 @@
                     value="{{ request.GET.searchbar }}"
                 ><br>
 
-                <select name="order" id="order-by">
+                <select name="order" id="order-by" onchange="this.form.submit()">
                     <option value="">Order by</option>
 
                     <option value="title"
@@ -35,19 +35,29 @@
 
     <div class="right-side">
         <form>
-            <label for="movement"> </label>
-                <select name="movement" id="movement">
-                    <option value="">Order by</option>
+            <label for="art-movement"> </label>
+                <select name="art-movement" id="art-movement" onchange="this.form.submit()">
+                    <option value="">Art movement</option>
 
-                    <option value="title"
-                        {% if request.GET.order == "title" %}selected{% endif %}>
-                        Title
-                    </option>
+                    {% for movement in art_movements %}
+                        <option value="{{ movement }}">
+                            {{ movement }}
+                        </option>
+                    {% endfor %}
 
-                    <option value="artist"
-                        {% if request.GET.order == "artist" %}selected{% endif %}>
-                        Artist
-                    </option>
+                </select>
+
+            <label for="medium"></label>
+                <select name="medium" id="medium" onchange="this.form.submit()">
+                    <option value="">All Mediums</option>
+
+                    {% for medium in mediums %}
+                        <option value="{{ medium }}"
+                            {% if request.GET.medium == medium %}selected{% endif %}
+                        >
+                            {{ medium }}
+                        </option>
+                    {% endfor %}
                 </select>
         </form>
     </div>
@@ -69,6 +79,8 @@
                     <p class="artist-name">{{ a.artist_name }}</p>
                     <p class="starting-price">Starting price: {{ a.starting_price }}kr</p>
                     <p class="highest-bid">Highest bid: {{ a.current_price }}kr</p>
+                    <p>{{ a.art_movement }}</p>
+                    <p> {{ a.medium }}</p>
 
                 </div>
             </a>
