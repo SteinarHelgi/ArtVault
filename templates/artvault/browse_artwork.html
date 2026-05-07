@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <div class="left-side">
         <form method="GET" action="" class="search-form">
             <label for="search">
@@ -30,6 +31,25 @@
             </label>
         </form>
 
+    </div>
+
+    <div class="right-side">
+        <form>
+            <label for="movement"> </label>
+                <select name="movement" id="movement">
+                    <option value="">Order by</option>
+
+                    <option value="title"
+                        {% if request.GET.order == "title" %}selected{% endif %}>
+                        Title
+                    </option>
+
+                    <option value="artist"
+                        {% if request.GET.order == "artist" %}selected{% endif %}>
+                        Artist
+                    </option>
+                </select>
+        </form>
     </div>
 
     <div class="browse-art-container">
