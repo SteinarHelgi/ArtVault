@@ -264,6 +264,19 @@ body {
     cursor: pointer;
 }
 
+.errorlist {
+    color: red;
+    text-align: left;
+    font-size: 14px;
+    margin: -10px 0 5px;
+}
+
+.help-text {
+    text-align: left;
+    font-size: 13px;
+    color: #666;
+}
+
 /*Buyer-setup*/
 .buyer-setup-page {
     width: 720px;

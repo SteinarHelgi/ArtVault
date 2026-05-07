@@ -10,12 +10,14 @@ from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
 from user.forms.signupForm import SignupForm
 from .models import BuyerProfileModel, Profile, SellerProfileModel
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
 # Roles
 ALLOWED_ROLE_CHOICES = ["buyer", "individual_seller", "gallery"]
 
+User = get_user_model()
 
 # signup view
 def signup(request):
@@ -37,7 +39,8 @@ def signup(request):
 
                 Profile.objects.create(user=user, role=role)
 
-            login(request, user)
+            request.session["pending_user_id"] = user.id
+            request.session["pending_role"] = role
 
             if role == "buyer":
                 return redirect("buyer_setup")
@@ -51,7 +54,13 @@ def signup(request):
 
 
 def buyer_setup(request):
-    profile = request.user.profile
+    pending_user_id = request.session["pending_user_id"]
+
+    if not pending_user_id:
+        return redirect("signup")
+
+    user = User.objects.get(id=pending_user_id)
+    profile = user.profile
 
     buyer_profile_obj, created = BuyerProfileModel.objects.get_or_create(
         profile=profile
@@ -63,6 +72,11 @@ def buyer_setup(request):
             instance = form.save(commit=False)
             instance.profile = profile
             instance.save()
+
+            login(request, user)
+
+            request.session.pop("pending_user_id", None)
+            request.session.pop("pending_role", None)
 
             messages.success(request, "profile_setup_complete")
             return redirect("/")
@@ -77,7 +91,14 @@ def buyer_setup(request):
 
 
 def seller_setup(request):
-    profile = request.user.profile
+    pending_user_id = request.session["pending_user_id"]
+
+    if not pending_user_id:
+        return redirect("signup")
+
+    user = User.objects.get(id=pending_user_id)
+    profile = user.profile
+
     seller_profile_obj, created = SellerProfileModel.objects.get_or_create(
         profile=profile
     )
@@ -91,23 +112,21 @@ def seller_setup(request):
             instance.profile = profile
             instance.save()
 
+            login(request, user)
+
+            request.session.pop("pending_user_id", None)
+            request.session.pop("pending_role", None)
+
             messages.success(request, "profile_setup_complete")
             return redirect("/")
+    else:
+        form = SellerProfileForm(instance=seller_profile_obj)
 
     return render(
         request,
         template_name="user/seller_setup.html",
         context={
-            "form": SellerProfileForm(instance=seller_profile_obj),
-        },
-    )
-
-
-def finalize_bid(request, bid_id):
-    print("finalize_bid page")
-    print(f"{bid_id}")
-    return HttpResponse(content=b"finalize_bid")
-
+            "form": form})
 
 # view for viewing your own profile
 @login_required
@@ -124,7 +143,6 @@ def my_profile_seller(request):
             "artworks": artworks,
         },
     )
-
 
 @login_required
 def account_settings(request):
