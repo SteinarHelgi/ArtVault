@@ -104,7 +104,7 @@ def artwork_details(request, id):
     return render(
         request,
         "artvault/artwork_details.html",
-        {"art": Artwork.objects.all(), "id": id},
+        {"artwork": Artwork.objects.get(pk=id), "id": id},
     )
 
 def browse_artists(request):
