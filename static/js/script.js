@@ -54,9 +54,9 @@ function scrollArt(button, direction) {
 }
 
 //Image preview
-window.previewProfileImage = function(event) {
-    const uploadBox = document.querySelector(".upload-box");
-    const uploadIcon = document.querySelector(".upload-icon");
+window.previewBuyerProfileImage = function(event) {
+    const uploadBox = document.querySelector(".buyer-upload-box");
+    const previewIcon = document.querySelector("#buyer-profile-preview");
 
     const file = event.target.files[0];
 
@@ -68,8 +68,40 @@ window.previewProfileImage = function(event) {
         uploadBox.style.backgroundPosition = "center";
         uploadBox.style.backgroundRepeat = "no-repeat";
 
-        if (uploadIcon) {
-            uploadIcon.style.display = "none";
-        }
+        previewIcon.style.display = "none";
     }
-}
+};
+
+  window.previewLogo = function(event) {
+    const uploadBox = document.querySelector(".seller-logo-box");
+    const uploadIcon = document.querySelector(".logo-upload-icon");
+
+    const file = event.target.files[0];
+
+    if (file) {
+        const imageURL = URL.createObjectURL(file);
+
+        uploadBox.style.backgroundImage = `url('${imageURL}')`;
+        uploadBox.style.backgroundSize = "cover";
+        uploadBox.style.backgroundPosition = "center";
+
+        uploadIcon.style.display = "none";
+    }
+};
+
+window.previewCover = function(event) {
+    const uploadBox = document.querySelector(".seller-cover-box");
+    const uploadIcon = document.querySelector(".cover-upload-icon");
+
+    const file = event.target.files[0];
+
+    if (file) {
+        const imageURL = URL.createObjectURL(file);
+
+        uploadBox.style.backgroundImage = `url('${imageURL}')`;
+        uploadBox.style.backgroundSize = "cover";
+        uploadBox.style.backgroundPosition = "center";
+
+        uploadIcon.style.display = "none";
+    }
+};

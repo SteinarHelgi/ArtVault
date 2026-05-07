@@ -1,16 +1,71 @@
 {% extends "base.html" %}
-
 {% block content %}
+<div class="add-listing-page">
+    <h1>Add Listing</h1>
 
-<h1>Add Listing</h1>
+    <form method="post" enctype="multipart/form-data" class="add_listing_form">
+          {% csrf_token %}
 
-<form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_ul }}
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title</label>
+            {{ form.title }}
+        </div>
 
-      <button type="submit" class="primary-button">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.medium.id_for_label }}">Medium</label>
+                {{ form.medium }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.edition.id_for_label }}">Edition</label>
+                {{ form.edition }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.dimensions.id_for_label }}">Dimensions</label>
+            {{ form.dimensions }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.history.id_for_label }}">Provenance / History</label>
+            {{ form.history }}
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.artist_name.id_for_label }}">Artist name</label>
+                {{ form.artist_name }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.date.id_for_label }}">Creation date</label>
+                {{ form.date }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.starting_price.id_for_label }}">Starting price</label>
+                {{ form.starting_price }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.art_movement.id_for_label }}">Art movement</label>
+                {{ form.art_movement }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.image.id_for_label }}">Artwork image</label>
+            {{ form.image }}
+        </div>
+
+        <button type="submit" class="primary-button">
             Create Listing
-      </button>
-</form>
+        </button>
+    </form>
+</div>
 
 {% endblock %}

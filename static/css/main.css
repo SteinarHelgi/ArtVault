@@ -277,11 +277,11 @@ body {
     align-items: start;
 }
 
-.upload-section {
+.buyer-upload-section {
     text-align: center;
 }
 
-.upload-box {
+.buyer-upload-box {
     width: 250px;
     height: 250px;
     border-radius: 12px;
@@ -302,7 +302,7 @@ body {
     border-radius: 8px;
 }
 
-#profile-preview {
+#buyer-profile-preview {
     width: 200px;
     height: 200px;
     object-fit: cover;
@@ -361,103 +361,136 @@ body {
 
 /*Seller-setup*/
 .seller-setup-page {
-  min-height: calc(100vh - 70px);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 120px;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 120px;
 }
 
 .seller-setup-form {
-  width: 680px;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 35px;
-  align-items: start;
+    width: 760px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    column-gap: 55px;
+    align-items: start;
 }
 
 .left-side-setup,
 .right-side-setup {
-  display: flex;
-      width: 100%;
-  flex-direction: column;
-}
-.upload-icon {
-  width: 70px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.upload-label {
-  margin-top: 12px;
-  text-align: center;
-}
-
-.upload-label span,
-.required {
-  color: red;
+.left-side-setup {
+    align-items: center;
 }
 
 #id_logo,
 #id_cover_photo {
-  display: none;
+    display: none;
+}
+
+.seller-logo-box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--light-black);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.seller-cover-box {
+    width: 100%;
+    height: 110px;
+    border: 1px solid var(--light-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.logo-upload-icon,
+.cover-upload-icon {
+    width: 70px;
+}
+
+.upload-label {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.upload-label span,
+.required {
+    color: red;
 }
 
 #id_bio {
-  width: 240px;
-  height: 110px;
-  margin-top: 12px;
-  resize: none;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-#id_bio::placeholder {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.cover-box {
-  width: 100%;
-  height: 95px;
-  border: 1px solid var(--light-black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 600;
-  cursor: pointer;
+    width: 200px;
+    height: 150px;
+    margin-top: 18px;
+    resize: none;
+    padding: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: normal;
+    display: block;
+    text-align: left;
 }
 
 .input-group {
-  position: relative;
-  margin-top: 12px;
+    position: relative;
+    margin-top: 12px;
 }
 
 .input-group label {
-  display: none;
+    display: none;
 }
 
 .input-group input,
 .input-group select {
-  width: 100%;
-  height: 28px;
-  box-sizing: border-box;
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 0 8px;
+    font-size: 16px;
 }
 
 .required {
-  position: absolute;
-  right: -16px;
-  top: 5px;
+    position: absolute;
+    right: -16px;
+    top: 9px;
 }
 
-.right-side h3 {
-  margin: 12px 0 0;
-  font-size: 16px;
+.right-side-setup h3 {
+    margin: 30px 0 8px;
+    font-size: 20px;
 }
 
 .address-fields {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.confirm-btn {
+    grid-column: 1 / 3;
+    justify-self: center;
+    margin-top: 60px;
+    width: 260px;
+    height: 50px;
 }
 
 /*shipping*/
@@ -906,3 +939,84 @@ body {
     font-size: 22px;
     cursor: pointer;
 }
+
+/*add listing css*/
+
+.add-listing-page {
+    max-width: 760px;
+    margin: 80px auto;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+}
+
+.add-listing-page h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: var(--header-font);
+    font-size: 34px;
+}
+
+.add-listing-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 12px;
+}
+
+.form-group label {
+    font-family: var(--header-font);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--round-corners);
+    font-family: var(--paragraph-font);
+    font-size: 15px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.form-group textarea {
+    resize: none;
+}
+
+
+.primary-button {
+    width: 200px;
+    height: 44px;
+    margin-top: 10px;
+    background-color: var(--orange-color);
+    color: white;
+    border: none;
+    border-radius: var(--round-corners);
+    font-family: var(--header-font);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.primary-button:hover {
+    opacity: 0.9;
+}
+
+
+/*my profile seller css*/
+
