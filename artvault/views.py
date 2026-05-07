@@ -12,42 +12,32 @@ def index(request):
 def browse_artwork(request):
     art = Artwork.objects.prefetch_related("images", "bid_set")
 
-    art_movements = Artwork.objects.values_list(
-        "art_movement",
-        flat=True
-    ).distinct()
+    art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
 
-    mediums = Artwork.objects.values_list(
-        "medium",
-        flat=True
-    ).distinct()
+    mediums = Artwork.objects.values_list("medium", flat=True).distinct()
 
     # search bar
     query = request.GET.get("searchbar")
 
     if query:
         art = art.filter(
-            Q(title__icontains=query) |
-            Q(artist_name__icontains=query) |
-            Q(medium__icontains=query) |
-            Q(art_movement__icontains=query)
+            Q(title__icontains=query)
+            | Q(artist_name__icontains=query)
+            | Q(medium__icontains=query)
+            | Q(art_movement__icontains=query)
         )
 
     # art movement filter
     movement = request.GET.get("movement")
 
     if movement:
-        art = art.filter(
-            art_movement__iexact=movement.strip()
-        )
+        art = art.filter(art_movement__iexact=movement.strip())
 
     # medium filter
     medium = request.GET.get("medium")
 
     if medium:
-        art = art.filter(
-            medium__iexact=medium.strip()
-        )
+        art = art.filter(medium__iexact=medium.strip())
 
     # order by filter
     order = request.GET.get("order")
@@ -60,9 +50,7 @@ def browse_artwork(request):
 
     # current price variable
     for artwork in art:
-        highest_bid = artwork.bid_set.aggregate(
-            Max("amount")
-        )["amount__max"]
+        highest_bid = artwork.bid_set.aggregate(Max("amount"))["amount__max"]
 
         starting_price = int(artwork.starting_price)
 
@@ -78,16 +66,10 @@ def browse_artwork(request):
     max_price = request.GET.get("max_price")
 
     if min_price:
-        art = [
-            artwork for artwork in art
-            if artwork.filter_price >= int(min_price)
-        ]
+        art = [artwork for artwork in art if artwork.filter_price >= int(min_price)]
 
     if max_price:
-        art = [
-            artwork for artwork in art
-            if artwork.filter_price <= int(max_price)
-        ]
+        art = [artwork for artwork in art if artwork.filter_price <= int(max_price)]
 
     return render(
         request,
@@ -101,17 +83,18 @@ def browse_artwork(request):
 
 
 def artwork_details(request, id):
+
     return render(
         request,
         "artvault/artwork_details.html",
-        {"art": Artwork.objects.all(), "id": id},
+        {"artwork": Artwork.objects.get(pk=id), "id": id},
     )
+
 
 def browse_artists(request):
     artworks = Artwork.objects.prefetch_related("images").all()
 
     artists = defaultdict(list)
-
 
     for artwork in artworks:
         artists[artwork.artist_name].append(artwork)
@@ -126,20 +109,3 @@ def browse_artists(request):
             "artists": dict(artists),
         },
     )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

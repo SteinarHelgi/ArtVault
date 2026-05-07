@@ -21,11 +21,6 @@
 
       </div>
 
-      <div class="seller-info">
-            <!--gera clickable að seller profile -->
-            {{artwork.seller.seller_name}}
-
-      </div>
       {% endif %}
 
       {% endwith %}
@@ -48,11 +43,6 @@
                   <p class="italic-text">{{ artwork.edition }}</p>
                   <p class="italic-text">{{ artwork.art_movement }}</p>
                   <p>{{ a.history }}</p>
-                  <div class="seller-info">
-                        <!--gera clickable að seller profile -->
-                        {{ artwork.seller.seller_name}}
-
-                  </div>
 
             </div>
             <div class="bid-info">
@@ -73,6 +63,13 @@
                   </div>
             </div>
       </div>
+
+
+                  <div class="seller-info">
+                        <!--gera clickable að seller profile -->
+                        {{ artwork.seller.seller_name}}
+
+                  </div>
 </div>
 </div>
 {% endblock %}
