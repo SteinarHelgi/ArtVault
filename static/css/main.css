@@ -125,6 +125,41 @@ body {
 }
 
 
+.browse-page {
+     max-width: 1100px;
+    margin: 40px auto 80px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.browse-art-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.browse-art-container .art-card {
+    width: 100%;
+}
+
+.art-card .highest-bid {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--orange-color);
+    text-align: right;
+}
+
+
+.no-image {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--paragraph-font);
+    color: var(--light-black);
+    background-color: var(--hover-color);
+}
+
 .browse-art-item {
       padding: 18px;
       flex: 0 0 250px;
