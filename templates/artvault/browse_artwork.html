@@ -1,66 +1,70 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div class="filter-container">
+        <div class="left-side">
+            <form method="GET" action="" class="search-form">
+                <label for="search">
+                    <input
+                        type="text"
+                        id="searchbar"
+                        name="searchbar"
+                        placeholder="Search artwork..."
+                        value="{{ request.GET.searchbar }}"
+                    ><br>
 
-    <div class="left-side">
-        <form method="GET" action="" class="search-form">
-            <label for="search">
-                <input
-                    type="text"
-                    id="searchbar"
-                    name="searchbar"
-                    placeholder="Search artwork..."
-                    value="{{ request.GET.searchbar }}"
-                ><br>
+                    <select name="order" id="order-by" onchange="this.form.submit()">
+                        <option value="">Order by</option>
 
-                <select name="order" id="order-by" onchange="this.form.submit()">
-                    <option value="">Order by</option>
+                        <option value="title"
+                            {% if request.GET.order == "title" %}selected{% endif %}>
+                            Title
+                        </option>
 
-                    <option value="title"
-                        {% if request.GET.order == "title" %}selected{% endif %}>
-                        Title
-                    </option>
+                        <option value="artist"
+                            {% if request.GET.order == "artist" %}selected{% endif %}>
+                            Artist
+                        </option>
+                    </select>
 
-                    <option value="artist"
-                        {% if request.GET.order == "artist" %}selected{% endif %}>
-                        Artist
-                    </option>
-                </select>
-            
-                <button type="submit">Search</button>
-            </label>
-        </form>
+                    <button type="submit">Search</button>
+                </label>
+            </form>
 
+        </div>
+
+        <div class="right-side">
+            <form>
+                <label for="movement"> </label>
+                    <select name="movement" id="movement" onchange="this.form.submit()">
+                        <option value="">Art movement</option>
+
+                        {% for movement in art_movements %}
+                            <option value="{{ movement }}"
+                                {% if request.GET.movement == movement %}selected{% endif %}
+                            >
+                                {{ movement }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+
+                <label for="medium"></label>
+                    <select name="medium" id="medium" onchange="this.form.submit()">
+                        <option value="">Medium</option>
+
+                        {% for medium in mediums %}
+                            <option value="{{ medium }}"
+                                {% if request.GET.medium == medium %}selected{% endif %}
+                            >
+                                {{ medium }}
+                            </option>
+                        {% endfor %}
+                    </select>
+            </form>
+        </div>
     </div>
 
-    <div class="right-side">
-        <form>
-            <label for="art-movement"> </label>
-                <select name="art-movement" id="art-movement" onchange="this.form.submit()">
-                    <option value="">Art movement</option>
-
-                    {% for movement in art_movements %}
-                        <option value="{{ movement }}">
-                            {{ movement }}
-                        </option>
-                    {% endfor %}
-
-                </select>
-
-            <label for="medium"></label>
-                <select name="medium" id="medium" onchange="this.form.submit()">
-                    <option value="">All Mediums</option>
-
-                    {% for medium in mediums %}
-                        <option value="{{ medium }}"
-                            {% if request.GET.medium == medium %}selected{% endif %}
-                        >
-                            {{ medium }}
-                        </option>
-                    {% endfor %}
-                </select>
-        </form>
-    </div>
 
     <div class="browse-art-container">
         {% for a in art %}

@@ -40,12 +40,13 @@ def browse_artwork(request):
     movement = request.GET.get("movement")
 
     if movement:
-        art = art.filter(art_movement=movement)
+        art = art.filter(art_movement__iexact=movement.strip())
 
+    # medium filter
     medium = request.GET.get("medium")
 
     if medium:
-        art = art.filter(medium=medium)
+        art = art.filter(medium__iexact=medium.strip())
 
     # order by filter
     order = request.GET.get("order")
