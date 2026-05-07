@@ -1,0 +1,17 @@
+.footer-container{
+    margin-top: 80px;
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px 0 20px;
+    box-sizing: border-box;
+    border-top: 1px solid var(--border-color);
+}
+
+
+.footer-container img{
+    height: auto;
+    width: 60px;
+}
