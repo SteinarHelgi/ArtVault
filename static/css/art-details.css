@@ -1,0 +1,130 @@
+:root {
+      --primary-color: #FAFAFA;
+      --orange-color: #DD700B;
+      --border-color: #E5DED5;
+      --hover-color: #F2F2F2;
+      --black: #111111;
+      --light-black: #555555;
+      --nav-height: 60px;
+      --icon-height: 45px;
+      --round-corners: 3px;
+      --header-font: "Montserrat", sans-serif;
+      --paragraph-font: "Nunito Sans", sans-serif;
+}
+
+/* description */
+.description-container {
+      display: grid;
+      grid-template-columns: 50% 50%;
+}
+
+.information .history {
+      color: color-mix(in srgb, var(--primary-color) 20%, gray 80%);
+}
+
+/* images */
+
+
+.images-container {
+      display: grid;
+      grid-template-columns: 500px 180px;
+      gap: 20px;
+}
+
+.main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+}
+
+.other-images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+}
+
+.side-image {
+      width: 100%;
+      height: 100%;
+      background-color: #d3d3d3;
+      border-radius: 8px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+
+
+
+.art-details-container {
+      box-sizing: border-box;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px;
+}
+
+
+.art-details-container .title {
+      font-size: 3em;
+}
+
+
+.artist-name .year {
+      font-style: italic
+}
+
+/* bid button */
+.bid-card {
+      width: 260px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 22px;
+      margin: 12px;
+}
+
+.bid-label {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+}
+
+.bid-price {
+      font-size: 28px;
+      margin: 10px 0 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+}
+
+.bid-button {
+      background-color: #dd700b;
+      color: white;
+      text-decoration: none;
+      height: 60px;
+      border-radius: 4px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+
+      font-size: 30px;
+      font-weight: bold;
+}
+
+.bid-icon {
+      font-size: 24px;
+}
+
+.bid-close {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+}
+
+.bid-close p {
+      margin: 0;
+      font-size: 14px;
+}

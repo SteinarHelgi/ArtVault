@@ -1,40 +1,78 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-{% for a in art %}
-{% if a.id == id %}
-<div class="art-details">
-      <h1>{{a.title}}</h1>
-      {% with img=a.images.first %}
+<link rel="stylesheet" href="{% static 'css/art-details.css' %}">
+
+<div class="art-details-container">
+      <h1 class="title">{{artwork.title}} </h1>
+
+
+      {% with img=artwork.images.first %}
       {% if img %}
-      <img src="{{ img.image.url }}" alt="image of artwork">
+      <div class="images-container">
+            <img class="main-image" src="{{ img.image.url }}" alt="image of artwork">
+            <div class="other-images">
+                  <img src="{{ img.image.url }}" class="side-image">
+                  <img src="{{ img.image.url }}" class="side-image">
+            </div>
 
-      {% endif %}
 
-      {% endwith %}
-      <h2>{{ a.artist_name }}</h2>
-      <p>{{ a.history }}</p>
-      {% if a.sold == True %}
-      <p>Sold</p>
-      {% else %}
-      <p>Available</p>
-      {% endif %}
 
-      <p class="italic-text">{{ a.medium }}</p>
-      <p class="italic-text">{{ a.dimensions }}</p>
-      <p class="italic-text">{{ a.edition }}</p>
-      <p class="italic-text">{{ a.art_movement }}</p>
-      <p>{{ a.history }}</p>
-      <div class="art-details-bid-info">
-            <p>Starting price: {{ a.starting_price }}kr</p>
-            <p>Listing date: {{ a.date }}</p>
       </div>
 
       <div class="seller-info">
             <!--gera clickable að seller profile -->
-            {{ a.seller }}
+            {{artwork.seller.seller_name}}
+
+      </div>
+      {% endif %}
+
+      {% endwith %}
+      <div class="description-container">
+
+            <div class="information">
+
+                  <h2 class="artist-name">{{ artwork.artist_name }} <span class="year">( {{artwork.date.year}} )</span>
+                  </h2>
+
+                  <!-- <p>{{ artwork.history }}</p> -->
+                  <p class="history">Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit
+                        quisque
+                        faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus
+                        mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.</p>
+
+
+                  <p class="italic-text">{{ artwork.medium }}</p>
+                  <p class="italic-text">{{ artwork.dimensions }}</p>
+                  <p class="italic-text">{{ artwork.edition }}</p>
+                  <p class="italic-text">{{ artwork.art_movement }}</p>
+                  <p>{{ a.history }}</p>
+                  <div class="seller-info">
+                        <!--gera clickable að seller profile -->
+                        {{ artwork.seller.seller_name}}
+
+                  </div>
+
+            </div>
+            <div class="bid-info">
+
+                  <div class="bid-card">
+                        <p class="bid-label">Highest bid</p>
+                        <h2 class="bid-price">100.000 Kr.</h2>
+
+                        <a href="#" class="bid-button">
+                              <span class="bid-icon">⚖</span>
+                              BID
+                        </a>
+
+                        <div class="bid-close">
+                              <span>⌛</span>
+                              <p>Bid close: <strong>In 2 days</strong></p>
+                        </div>
+                  </div>
+            </div>
       </div>
 </div>
-{% endif %}
-{% endfor %}
+</div>
 {% endblock %}
