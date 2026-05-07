@@ -36,11 +36,27 @@
 
             <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
                 {% if user.profile.role == "buyer" %}
+                  {% if user.profile.buyer_profile.profile_image %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.buyer_profile.profile_image.url }}')">
                         </div>
+                  {% else %}
+                        <div class="avatar">
+                        </div>
+                  
+                  {% endif %}
 
-                {% else %}
+                  {% else %}
+
+                  {% if user.profile.seller_profile.logo %}
+                        <div class="avatar"
+                            style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
+                        </div>
+                
+                  {% else %}
+                        <div class="avatar">
+                        </div>
+                {% endif %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
                         </div>
