@@ -9,20 +9,21 @@
 
 
       {% with img=artwork.images.first %}
-        {% if img %}
-            <div class="images-container">
-                <img class="main-image" src="{{ img.image.url }}" alt="image of artwork">
-                <div class="other-images">
-                    <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
-                    <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
-                </div>
+      {% if img %}
+      <div class="images-container">
+            <img class="main-image" src="{{ img.image.url }}" alt="image of artwork">
+            <div class="other-images">
+                  <img src="{{ img.image.url }}" class="side-image">
+                  <img src="{{ img.image.url }}" class="side-image">
             </div>
-        {% endif %}
-    {% endwith %}
 
-    <div class="seller-info">
-        {{ artwork.seller.seller_name }}
-    </div>
+
+
+      </div>
+
+      {% endif %}
+
+      {% endwith %}
       <div class="description-container">
 
             <div class="information">
@@ -41,23 +42,15 @@
                   <p class="italic-text">{{ artwork.dimensions }}</p>
                   <p class="italic-text">{{ artwork.edition }}</p>
                   <p class="italic-text">{{ artwork.art_movement }}</p>
-                  <p>{{ artwork.history }}</p>
-                  <div class="seller-info">
-                        <!--gera clickable að seller profile -->
-                        {{ artwork.seller.seller_name}}
-
-                  </div>
+                  <p>{{ a.history }}</p>
 
             </div>
             <div class="bid-info">
 
                   <div class="bid-card">
                         <p class="bid-label">Highest bid</p>
-
-                      <!--setja current bid price-->
                         <h2 class="bid-price">100.000 Kr.</h2>
 
-                      <!-- fix bid button -->
                         <a href="#" class="bid-button">
                               <span class="bid-icon">⚖</span>
                               BID
@@ -65,12 +58,18 @@
 
                         <div class="bid-close">
                               <span>⌛</span>
-                            <!--laga bid close time -->
                               <p>Bid close: <strong>In 2 days</strong></p>
                         </div>
                   </div>
             </div>
       </div>
-</div>
 
+
+                  <div class="seller-info">
+                        <!--gera clickable að seller profile -->
+                        {{ artwork.seller.seller_name}}
+
+                  </div>
+</div>
+</div>
 {% endblock %}

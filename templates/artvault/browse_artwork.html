@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="gallery-section">
     <div class="filter-container">
 
         <form method="GET" action="" class="filter-form">
@@ -75,31 +76,37 @@
         </form>
     </div>
 
+     <div class="gallery-header">
+        <h2>Browse Artwork</h2>
+    </div>
 
-    <div class="browse-art-container">
+
+    <div class="gallery-container">
         {% for a in art %}
-            <a href="{% url 'artwork-details' a.id %}" class="browse-art-link">
-                <div class="browse-art-item">
+            <a href="{% url 'artwork-details' a.id %}" class="art-card">
 
                     {% with img=a.images.first %}
                         {% if img %}
                             <img class="image" src="{{ img.image.url }}" alt="image of artwork">
                         {% else %}
-                            <p>No image available</p>
+                            <div class="image no-image">
+                                <p>No image available</p>
+                            </div>
                         {% endif %}
                     {% endwith %}
 
-                    <h3 class="art-title">{{ a.title }}</h3>
-                    <p class="artist-name">{{ a.artist_name }}</p>
-                    <p class="starting-price">Starting price: {{ a.starting_price }}kr</p>
-                    <p class="highest-bid">Highest bid: {{ a.current_price }}kr</p>
-                    <p>{{ a.art_movement }}</p>
-                    <p> {{ a.medium }}</p>
+                    <div class="art-card-info">
+                        <h5 >{{ a.title }}</h5>
+                        <p>{{ a.artist_name }}</p>
+                        <p>{{ a.art_movement }}</p>
+                        <p> {{ a.medium }}</p>
 
-                </div>
+                        <p class="highest-bid">Highest bid: {{ a.current_price }}kr</p>
+                        <p class="price">Starting price: {{ a.starting_price }}kr</p>
+                    </div>
             </a>
         {% endfor %}
     </div>
-
+</div>
 
 {% endblock %}
