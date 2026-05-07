@@ -7,7 +7,7 @@
       <h1>{{a.title}}</h1>
       {% with img=a.images.first %}
       {% if img %}
-      <img src="{{ img.image }}" alt="image of artwork">
+      <img src="{{ img.image.url }}" alt="image of artwork">
 
       {% endif %}
 

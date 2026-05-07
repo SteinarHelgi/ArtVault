@@ -7,7 +7,7 @@
     <div class="left-side">
         <div class="dropdown">
 
-            <button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
+<button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
                 <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
             </button>
 
@@ -35,41 +35,30 @@
         <div class="profile-dropdown">
 
             <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
-                {% if user.profile.role == "buyer" %}
-                  {% if user.profile.buyer_profile.profile_image %}
-                        <div class="avatar"
-                            style="background-image: url('{{ user.profile.buyer_profile.profile_image.url }}')">
-                        </div>
-                  {% else %}
-                        <div class="avatar">
-                        </div>
-                  
-                  {% endif %}
+                {% if user.profile.role == "buyer" and user.profile.buyer_profile.profile_image %}
+                    <div class="avatar"
+                        style="background-image: url('{{ user.profile.buyer_profile.profile_image.url }}')">
+                    </div>
 
-                  {% else %}
+                {% elif user.profile.role != "buyer" and user.profile.seller_profile.logo %}
+                    <div class="avatar"
+                        style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
+                    </div>
 
-                  {% if user.profile.seller_profile.logo %}
-                        <div class="avatar"
-                            style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
-                        </div>
-                
-                  {% else %}
-                        <div class="avatar">
-                        </div>
-                {% endif %}
-                        <div class="avatar"
-                            style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
-                        </div>
+                {% else %}
+                    <div class="avatar"></div>
                 {% endif %}
             </button>
 
             <div id="rightDropdown" class="dropdown-content right-dropdown-content">
 
                 <a href="{% url 'account-settings' %}">Account Settings</a>
+                <a href="{% url 'my_profile_seller' %}">View my profile</a>
+
                 {% if user.profile.role == "buyer" %}
                     <a href="{% url 'my_bids' %}">My Bids</a>
                 {% else %}
-                    <a href="{% url 'my_profile_seller' %}">My Profile</a>
+                    <a href="{% url 'my_profile_seller' %}">My Listings</a>
                 {% endif %}
 
                 <form method="post" action="{% url 'logout' %}" class="logoutForm">
@@ -80,8 +69,6 @@
                 </form>
 
             </div>
-
-        </div>
 
         {% else %}
 
