@@ -10,9 +10,6 @@ def index(request):
     return render(request, "artvault/index.html", {"art": Artwork.objects.all()})
 
 
-def blabla(request): ...
-
-
 def browse_artwork(request):
     art = Artwork.objects.prefetch_related("images", "bid_set")
 
