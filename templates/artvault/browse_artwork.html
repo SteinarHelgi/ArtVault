@@ -2,9 +2,12 @@
 
 {% block content %}
     <div class="filter-container">
-        <div class="left-side">
-            <form method="GET" action="" class="search-form">
-                <label for="search">
+
+        <form method="GET" action="" class="filter-form">
+
+            <div class="left-side">
+
+                <label for="searchbar"></label>
                     <input
                         type="text"
                         id="searchbar"
@@ -12,7 +15,7 @@
                         placeholder="Search artwork..."
                         value="{{ request.GET.searchbar }}"
                     ><br>
-
+                <label for="order-by"></label>
                     <select name="order" id="order-by" onchange="this.form.submit()">
                         <option value="">Order by</option>
 
@@ -28,13 +31,10 @@
                     </select>
 
                     <button type="submit">Search</button>
-                </label>
-            </form>
 
-        </div>
+            </div>
 
-        <div class="right-side">
-            <form>
+            <div class="right-side">
                 <label for="movement"> </label>
                     <select name="movement" id="movement" onchange="this.form.submit()">
                         <option value="">Art movement</option>
@@ -61,8 +61,18 @@
                             </option>
                         {% endfor %}
                     </select>
-            </form>
-        </div>
+
+                <fieldset>
+                    <label for="min-price">Price from</label>
+                        <input type="number" name="min_price" id="min-price" placeholder="Min price" value="{{ request.GET.min_price }}">
+                    <label for="max-price">Price to</label>
+                        <input type="number" name="max_price" id="max-price" placeholder="Max price" value="{{ request.GET.max_price }}">
+
+                        <button type="submit">Apply price</button>
+                </fieldset>
+            </div>
+
+        </form>
     </div>
 
 
@@ -73,7 +83,7 @@
 
                     {% with img=a.images.first %}
                         {% if img %}
-                            <img class="image" src="{{ img.image }}" alt="image of artwork">
+                            <img class="image" src="{{ img.image.url }}" alt="image of artwork">
                         {% else %}
                             <p>No image available</p>
                         {% endif %}
