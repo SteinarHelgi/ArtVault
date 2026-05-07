@@ -39,7 +39,7 @@
 
                     {% with img=a.images.first %}
                         {% if img %}
-                            <img class="image" src="{{ img.image_path }}" alt="image of artwork">
+                            <img class="image" src="{{ img.image }}" alt="image of artwork">
                         {% else %}
                             <p>No image available</p>
                         {% endif %}

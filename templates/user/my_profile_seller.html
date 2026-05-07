@@ -22,7 +22,7 @@
       <a href="{% url 'artwork-details' artwork.id %}" class="art-item">
             {% with img=artwork.images.first %}
             {% if img %}
-            <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+            <div class="image" style="background-image: url('{{ img.image }}')"></div>
 
             <h5>{{ artwork.title }}</h5>
             <p>{{ artwork.medium }}</p>

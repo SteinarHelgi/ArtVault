@@ -17,7 +17,7 @@ def add_listing_view(request):
     seller_profile = profile.seller_profile
 
     if request.method == "POST":
-        form = ArtworkListingForm(request.POST)
+        form = ArtworkListingForm(request.POST, request.FILES)
 
         if form.is_valid():
             artwork = form.save(commit=False)
@@ -26,7 +26,7 @@ def add_listing_view(request):
 
             ArtworkImage.objects.create(
                 artwork=artwork,
-                image_path=form.cleaned_data["image_path"],
+                image=form.cleaned_data["image"],
             )
 
             return redirect("my_profile_seller")

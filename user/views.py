@@ -28,7 +28,7 @@ def signup(request):
             if role not in ALLOWED_ROLE_CHOICES:
                 return HttpResponseForbidden()
 
-            #save after everything has been created
+            # save after everything has been created
             with transaction.atomic():
                 user = form.save()
 
@@ -77,15 +77,15 @@ def buyer_setup(request):
 
 
 def seller_setup(request):
-
     profile = request.user.profile
-
     seller_profile_obj, created = SellerProfileModel.objects.get_or_create(
         profile=profile
     )
 
     if request.method == "POST":
-        form = SellerProfileForm(request.POST, request.FILES, instance=seller_profile_obj)
+        form = SellerProfileForm(
+            request.POST, request.FILES, instance=seller_profile_obj
+        )
         if form.is_valid():
             instance = form.save(commit=False)
             instance.profile = profile
@@ -103,28 +103,28 @@ def seller_setup(request):
     )
 
 
-
-
-
-
-
 def finalize_bid(request, bid_id):
     print("finalize_bid page")
     print(f"{bid_id}")
     return HttpResponse(content=b"finalize_bid")
 
 
-#view for viewing your own profile
+# view for viewing your own profile
 @login_required
 def my_profile_seller(request):
     seller_profile = request.user.profile.seller_profile
 
     artworks = seller_profile.artworks.all()
 
-    return render(request, "user/my_profile_seller.html", {
-        "seller_profile": seller_profile,
-        "artworks": artworks,
-                   })
+    return render(
+        request,
+        "user/my_profile_seller.html",
+        {
+            "seller_profile": seller_profile,
+            "artworks": artworks,
+        },
+    )
+
 
 @login_required
 def account_settings(request):

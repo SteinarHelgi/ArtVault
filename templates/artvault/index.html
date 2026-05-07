@@ -24,7 +24,7 @@
                 <a href="{% url 'artwork-details' a.id %}" class="art-item">
                       {% with img=a.images.first %}
                       {% if img %}
-                      <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                      <div class="image" style="background-image: url('{{ img.image }}')"></div>
                       {% endif %}
                       {% endwith %}
                       <p>{{ a.title }}</p>
@@ -47,7 +47,7 @@
                 <a href="{% url 'artwork-details' a.id %}" class="art-item">
                       {% with img=a.images.first %}
                       {% if img %}
-                      <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                      <div class="image" style="background-image: url('{{ img.image }}')"></div>
                       {% endif %}
                       {% endwith %}
                       <p>{{ a.title }}</p>
@@ -70,7 +70,7 @@
                 <a href="{% url 'artwork-details' a.id %}" class="art-item">
                       {% with img=a.images.first %}
                       {% if img %}
-                      <div class="image" style="background-image: url('{{ img.image_path }}')"></div>
+                      <div class="image" style="background-image: url('{{ img.image }}')"></div>
                       {% endif %}
                       {% endwith %}
                       <p>{{ a.title }}</p>

@@ -7,7 +7,10 @@ from user.models import BuyerProfileModel, SellerProfileModel
 
 class Artwork(models.Model):
     objects = models.Manager()
-    seller = models.ForeignKey(SellerProfileModel, on_delete=models.CASCADE,related_name="artworks")
+
+    seller = models.ForeignKey(
+        SellerProfileModel, on_delete=models.CASCADE, related_name="artworks"
+    )
     title = models.CharField(max_length=255)
     medium = models.CharField(max_length=255)
     edition = models.CharField(max_length=255)
@@ -22,11 +25,9 @@ class Artwork(models.Model):
 
 class ArtworkImage(models.Model):
     objects = models.Manager()
-    image_path = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="media/artworks/")
     artwork = models.ForeignKey(
-        Artwork,
-        on_delete=models.CASCADE,
-        related_name="images"
+        Artwork, on_delete=models.CASCADE, related_name="images"
     )
 
 

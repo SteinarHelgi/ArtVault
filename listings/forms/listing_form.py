@@ -1,17 +1,39 @@
-
 from django import forms
-
 from artvault.models import Artwork
 
 
+MEDIUM_CHOICES = [
+    ("oil", "Oil"),
+    ("watercolor", "Watercolor"),
+    ("acrylic", "Acrylic"),
+    ("drawing", "Drawing"),
+    ("ink_drawing", "Ink drawing"),
+    ("digital", "Digital"),
+    ("photograph", "Photograph"),
+]
+
+EDITION_CHOICES = [
+    ("original", "Original"),
+    ("limited_edition", "Limited Edition"),
+    ("open_edition", "Open Edition"),
+]
+
 
 class ArtworkListingForm(forms.ModelForm):
-    imagepath = forms.CharField(max_length=255)
-    
+    image = forms.ImageField()
+
+    medium = forms.ChoiceField(
+        choices=MEDIUM_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
+    )
+
+    edition = forms.ChoiceField(
+        choices=EDITION_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
+    )
+
     class Meta:
         model = Artwork
         fields = [
-             "title",
+            "title",
             "medium",
             "edition",
             "dimensions",
@@ -22,3 +44,10 @@ class ArtworkListingForm(forms.ModelForm):
             "starting_price",
             "art_movement",
         ]
+
+        widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "Title of the artwork"}),
+            "dimensions": forms.TextInput(attrs={"placeholder": "200x200"}),
+            "history": forms.Textarea(attrs={"rows": 5}),
+            "date": forms.DateInput(attrs={"type": "date"}),
+        }

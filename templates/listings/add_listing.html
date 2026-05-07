@@ -4,13 +4,13 @@
 
 <h1>Add Listing</h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_ul }}
+<form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_ul }}
 
-    <button type="submit" class="primary-button">
-        Create Listing
-    </button>
+      <button type="submit" class="primary-button">
+            Create Listing
+      </button>
 </form>
 
 {% endblock %}
