@@ -106,8 +106,8 @@ body {
     margin-bottom: 40px;
 }
 
-.text_container h1{
-    font-weight: 100;
+.text_container h3{
+    font-weight: 400;
 }
 
 .text_container p{
@@ -115,6 +115,7 @@ body {
 }
 
 .art-movement-h1 {
+    font-weight: 400;
       font-family: var(--header-font);
     margin-bottom: 0;
 }
@@ -1280,6 +1281,7 @@ body {
 }
 
 .gallery-header h2 {
+    font-weight: 400;
     margin: 0;
     font-family: var(--header-font);
     font-size: 28px;
@@ -1389,4 +1391,63 @@ body {
     margin: 0;
     font-family: var(--paragraph-font);
     color: var(--light-black);
+}
+
+/*account-settings css*/
+
+.account-settings-container{
+    width: 600px;
+    margin: 80px auto;
+    text-align: left;
+}
+
+.account-card img{
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.editfield{
+    border: 1px solid var(--orange-color);
+    border-radius: var(--round-corners);
+    background-color: transparent;
+    color: var(--orange-color);
+    font-family: var(--header-font);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.editfield:hover {
+    color: var(--black);
+}
+
+
+.showeditinput {
+    display: none;
+    margin-top: 14px;
+    gap: 10px;
+}
+
+.showeditinput.show {
+    display: flex;
+}
+
+.showeditinput input {
+    flex: 1;
+    height: 28px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--round-corners);
+    font-family: var(--paragraph-font);
+}
+
+.showeditinput button {
+    padding: 0 16px;
+    border: none;
+    background-color: var(--orange-color);
+    color: white;
+    border-radius: var(--round-corners);
+    cursor: pointer;
 }

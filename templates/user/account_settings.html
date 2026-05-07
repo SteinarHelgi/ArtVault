@@ -8,12 +8,17 @@
 
     {% if profile.role == "buyer" %}
         <div class="account-card">
-            <img class="profile-picture" src="{{ buyer_profile.profile_image }}" alt="Profile picture">
+            <img class="profile-picture" src="{{ buyer_profile.profile_image.url }}" alt="Profile picture">
             <h2>{{ buyer_profile.full_name }}</h2>
             <p>{{ profile.role }}</p>
             <form method="POST" action="{% url 'account-settings'%}" class="edit-name-form">
                 {% csrf_token %}
-                <label for="edit-name">Edit name</label>
+
+                <button onclick="showeditinput()" class="editfield" type="button">
+                    Edit name
+                </button>
+
+                <div class="showeditinput" id="edit-name-box">
                     <input
                         type="text"
                         id="edit-name"
@@ -22,14 +27,15 @@
                         value="{{ buyer_profile.full_name }}"
                     >
                     <button type="submit">Confirm</button>
+                </div>
 
             </form>
 
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-profile-picture-form">
+            <form method="POST" action="{% url 'account-settings'%}" enctype="multipart/form-data" class="edit-profile-picture-form">
                 {% csrf_token %}
                 <label for="edit-profile-picture">Edit profile picture</label>
                     <input
-                        type="text"
+                        type="file"
                         id="edit-profile-picture"
                         name="edit-profile-picture"
                         placeholder="Enter image url..."
@@ -42,7 +48,7 @@
         </div>
     {% elif profile.role == "gallery" %}
         <div class="account-card">
-            <img class="profile-picture" src="{{ seller_profile.logo }}" alt="Profile picture">
+            <img class="profile-picture" src="{{ seller_profile.logo.url }}" alt="Profile picture">
             <h2>{{ seller_profile.seller_name }}</h2>
             <p>{{ profile.role }}</p>
 
@@ -60,11 +66,11 @@
 
             </form>
 
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-profile-picture-form">
+            <form method="POST" action="{% url 'account-settings'%}" enctype="multipart/form-data" class="edit-profile-picture-form">
                 {% csrf_token %}
                 <label for="edit-profile-picture">Edit profile picture</label>
                     <input
-                        type="text"
+                        type="file"
                         id="edit-profile-picture"
                         name="edit-profile-picture"
                         placeholder="Enter image url..."
