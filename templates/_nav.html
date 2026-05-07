@@ -7,7 +7,7 @@
     <div class="left-side">
         <div class="dropdown">
 
-<button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
+            <button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
                 <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
             </button>
 
@@ -66,12 +66,10 @@
             <div id="rightDropdown" class="dropdown-content right-dropdown-content">
 
                 <a href="{% url 'account-settings' %}">Account Settings</a>
-                <a href="{% url 'my_profile_seller' %}">View my profile</a>
-
                 {% if user.profile.role == "buyer" %}
                     <a href="{% url 'my_bids' %}">My Bids</a>
                 {% else %}
-                    <a href="{% url 'my_profile_seller' %}">My Listings</a>
+                    <a href="{% url 'my_profile_seller' %}">My Profile</a>
                 {% endif %}
 
                 <form method="post" action="{% url 'logout' %}" class="logoutForm">
