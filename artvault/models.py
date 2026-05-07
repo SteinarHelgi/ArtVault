@@ -25,7 +25,7 @@ class Artwork(models.Model):
 
 class ArtworkImage(models.Model):
     objects = models.Manager()
-    image = models.ImageField(upload_to="media/artworks/")
+    image = models.ImageField(upload_to="artworks/")
     artwork = models.ForeignKey(
         Artwork, on_delete=models.CASCADE, related_name="images"
     )
