@@ -282,13 +282,32 @@ body {
 }
 
 .upload-box {
-    width: 240px;
-    height: 180px;
-    border: 1px solid var(--light-black);
+    width: 250px;
+    height: 250px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    justify-content: center;
+}
+
+.preview-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+
+#profile-preview {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
 }
 
 .upload-icon {

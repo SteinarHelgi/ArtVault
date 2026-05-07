@@ -14,7 +14,17 @@ def blabla(request): ...
 
 def browse_artwork(request):
     art = Artwork.objects.prefetch_related("images", "bid_set")
-    
+
+    art_movements = Artwork.objects.values_list(
+        "art_movement",
+        flat=True
+    ).distinct()
+
+    mediums = Artwork.objects.values_list(
+        "medium",
+        flat=True
+    ).distinct()
+
     # search bar
     query = request.GET.get("searchbar")
 
@@ -26,7 +36,18 @@ def browse_artwork(request):
             Q(art_movement__icontains=query)
         )
 
-    # order by
+    # art movement filter
+    movement = request.GET.get("movement")
+
+    if movement:
+        art = art.filter(art_movement=movement)
+
+    medium = request.GET.get("medium")
+
+    if medium:
+        art = art.filter(medium=medium)
+
+    # order by filter
     order = request.GET.get("order")
 
     if order == "title":
@@ -35,7 +56,7 @@ def browse_artwork(request):
     elif order == "artist":
         art = art.order_by("artist_name")
 
-    #current price
+    # current price variable
     for artwork in art:
         highest_bid = artwork.bid_set.aggregate(Max("amount"))["amount__max"]
 
@@ -47,7 +68,11 @@ def browse_artwork(request):
     return render(
         request,
         "artvault/browse_artwork.html",
-        {"art": art},
+        {
+            "art": art,
+            "art_movements": art_movements,
+            "mediums": mediums,
+        },
     )
 
 

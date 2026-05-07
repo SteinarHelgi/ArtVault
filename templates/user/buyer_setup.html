@@ -9,7 +9,8 @@
 
             <div class="upload-section">
                 <label for="id_profile_image" class="upload-box">
-                    <img src="{% static 'img/uppload-photo.svg' %}" class="upload-icon" alt="Upload">
+
+                    <img id="profile-preview" src="{% static 'img/uppload-photo.svg' %}" class="upload-icon" alt="Upload">
                 </label>
                 {{ form.profile_image }}
                 <p>Upload picture <span>*</span></p>
@@ -24,4 +25,5 @@
 
         </form>
     </div>
+
 {% endblock %}
