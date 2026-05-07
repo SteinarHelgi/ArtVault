@@ -52,3 +52,24 @@ function scrollArt(button, direction) {
         behavior: "smooth"
     });
 }
+
+//Image preview
+window.previewProfileImage = function(event) {
+    const uploadBox = document.querySelector(".upload-box");
+    const uploadIcon = document.querySelector(".upload-icon");
+
+    const file = event.target.files[0];
+
+    if (file) {
+        const imageURL = URL.createObjectURL(file);
+
+        uploadBox.style.backgroundImage = `url('${imageURL}')`;
+        uploadBox.style.backgroundSize = "cover";
+        uploadBox.style.backgroundPosition = "center";
+        uploadBox.style.backgroundRepeat = "no-repeat";
+
+        if (uploadIcon) {
+            uploadIcon.style.display = "none";
+        }
+    }
+}
