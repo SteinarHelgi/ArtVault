@@ -12,8 +12,8 @@ class SellerProfileForm(ModelForm):
             'street_name': forms.TextInput(attrs={'placeholder': 'Street name'}),
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'zip_code': forms.TextInput(attrs={'placeholder': 'Postal code'}),
-            'logo': forms.ClearableFileInput(attrs={'class': 'hidden-file-input', }),
-            'cover_photo': forms.ClearableFileInput(attrs={'class': 'hidden-file-input'}),
-            'bio': forms.TextInput(attrs={'placeholder': 'About me...'}),
+            'logo': forms.ClearableFileInput(attrs={'class': 'hidden-file-input', 'onchange': 'previewLogo(event)' }),
+            'cover_photo': forms.ClearableFileInput(attrs={'class': 'hidden-file-input','onchange': 'previewCover(event)'}),
+            'bio': forms.Textarea(attrs={'placeholder': 'About me...'}),
         }
 
