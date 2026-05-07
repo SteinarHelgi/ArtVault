@@ -36,7 +36,7 @@
 
             <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
                 {% if user.profile.role == "buyer" %}
-                  {% if user.profile.buyer_profile.profile_image %}
+                  {% if user.profile.buyer_profile.profile_image.url %}
                         <div class="avatar"
                             style="background-image: url('{{ user.profile.buyer_profile.profile_image.url }}')">
                         </div>
@@ -56,20 +56,18 @@
                   {% else %}
                         <div class="avatar">
                         </div>
-                {% endif %}
-                        <div class="avatar"
-                            style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
-                        </div>
+                  {% endif %}
                 {% endif %}
             </button>
 
             <div id="rightDropdown" class="dropdown-content right-dropdown-content">
 
                 <a href="{% url 'account-settings' %}">Account Settings</a>
+
                 {% if user.profile.role == "buyer" %}
                     <a href="{% url 'my_bids' %}">My Bids</a>
                 {% else %}
-                    <a href="{% url 'my_profile_seller' %}">My Profile</a>
+                    <a href="{% url 'my_profile_seller' %}">My Listings</a>
                 {% endif %}
 
                 <form method="post" action="{% url 'logout' %}" class="logoutForm">
