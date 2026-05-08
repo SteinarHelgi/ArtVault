@@ -1,8 +1,14 @@
+from datetime import timedelta
 from django.db import models
+from django.utils import timezone
 
 from user.models import BuyerProfileModel, SellerProfileModel
 
 # Create your models here.
+
+
+def default_end_date():
+    return timezone.now().date() + timedelta(days=7)
 
 
 class Artwork(models.Model):
@@ -21,6 +27,8 @@ class Artwork(models.Model):
     date = models.DateField()
     starting_price = models.CharField(max_length=255)
     art_movement = models.CharField(max_length=255)
+    auction_start_date = models.DateField(default=timezone.now())
+    auction_end_date = models.DateField(default=default_end_date())
 
 
 class ArtworkImage(models.Model):
@@ -37,4 +45,4 @@ class Bid(models.Model):
     amount = models.IntegerField()
     status = models.CharField(max_length=255)
     buyer = models.ForeignKey(BuyerProfileModel, on_delete=models.CASCADE)
-    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE,related_name="bids")
+    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE, related_name="bids")
