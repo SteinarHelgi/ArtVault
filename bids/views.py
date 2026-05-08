@@ -1,19 +1,25 @@
 from django.contrib.auth.views import login_required
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from bids.forms.shippingForm import ShippingForm
 from bids.forms.bankTransferForm import BankTransferForm
 from bids.forms.wireTransferForm import WireTransferForm
 from bids.forms.creditCardForm import CreditCardForm
-from bids.models import ShippingModel, BankTransferModel, WireTransferModel, CreditCardModel
+from bids.models import (
+    ShippingModel,
+    BankTransferModel,
+    WireTransferModel,
+    CreditCardModel,
+)
 from artvault.models import Bid, Artwork
 from django.contrib import messages
 
 from user.models import BuyerProfileModel, Profile, SellerProfileModel
 # Create your views here.
 
-def shipping(request,bid_id):
+
+def shipping(request, bid_id):
     bid = Bid.objects.get(id=bid_id)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = ShippingForm(request.POST)
 
         if form.is_valid():
@@ -24,7 +30,8 @@ def shipping(request,bid_id):
 
     else:
         form = ShippingForm()
-    return render(request, template_name='bids/shipping.html', context={'form': form})
+    return render(request, template_name="bids/shipping.html", context={"form": form})
+
 
 def shipping_edit(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
@@ -37,10 +44,10 @@ def shipping_edit(request, shipping_id):
     else:
         form = ShippingForm(instance=shipping_obj)
 
-    return render(request, "bids/shipping.html", {
-        "form": form,
-        "shipping": shipping_obj
-    })
+    return render(
+        request, "bids/shipping.html", {"form": form, "shipping": shipping_obj}
+    )
+
 
 def payment_method(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
@@ -59,6 +66,7 @@ def payment_method(request, shipping_id):
 
     return render(request, "bids/payment_method.html", {"shipping": shipping_obj})
 
+
 def credit_card_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
 
@@ -74,15 +82,17 @@ def credit_card_payment(request, shipping_id):
     else:
         form = CreditCardForm(instance=payment_obj)
 
-    return render(request, "bids/card_payment.html", {
-        "form": form,
-        "shipping": shipping_obj
-        })
+    return render(
+        request, "bids/card_payment.html", {"form": form, "shipping": shipping_obj}
+    )
+
 
 def bank_transfer_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
 
-    payment_obj, created = BankTransferModel.objects.get_or_create(shipping=shipping_obj)
+    payment_obj, created = BankTransferModel.objects.get_or_create(
+        shipping=shipping_obj
+    )
 
     if request.method == "POST":
         form = BankTransferForm(request.POST, instance=payment_obj)
@@ -94,15 +104,17 @@ def bank_transfer_payment(request, shipping_id):
     else:
         form = BankTransferForm(instance=payment_obj)
 
-    return render(request, "bids/bank_payment.html", {
-        "form": form,
-        "shipping": shipping_obj
-        })
+    return render(
+        request, "bids/bank_payment.html", {"form": form, "shipping": shipping_obj}
+    )
+
 
 def wire_transfer_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
 
-    payment_obj, created = WireTransferModel.objects.get_or_create(shipping=shipping_obj)
+    payment_obj, created = WireTransferModel.objects.get_or_create(
+        shipping=shipping_obj
+    )
 
     if request.method == "POST":
         form = WireTransferForm(request.POST, instance=payment_obj)
@@ -114,10 +126,10 @@ def wire_transfer_payment(request, shipping_id):
     else:
         form = WireTransferForm(instance=payment_obj)
 
-    return render(request, "bids/wire_payment.html", {
-        "form": form,
-        "shipping": shipping_obj
-        })
+    return render(
+        request, "bids/wire_payment.html", {"form": form, "shipping": shipping_obj}
+    )
+
 
 def checkout_overview(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
@@ -134,10 +146,10 @@ def checkout_overview(request, shipping_id):
         messages.success(request, "payment_successful")
         return redirect("/")
 
-    return render(request, "bids/overview.html", {
-        "shipping": shipping_obj,
-        "payment": payment
-    })
+    return render(
+        request, "bids/overview.html", {"shipping": shipping_obj, "payment": payment}
+    )
+
 
 @login_required
 def my_bids(request):
@@ -153,21 +165,27 @@ def my_bids(request):
         },
     )
 
+
 def render_artwork_bid(request, artwork, bid_step=None, amount=None):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
 
-    return render(request, "artvault/artwork_details.html", {
-        "artwork": artwork,
-        "highest_bid": highest_bid,
-        "current_price": current_price,
-        "bid_step": bid_step,
-        "amount": amount
-    })
+    return render(
+        request,
+        "artvault/artwork_details.html",
+        {
+            "artwork": artwork,
+            "highest_bid": highest_bid,
+            "current_price": current_price,
+            "bid_step": bid_step,
+            "amount": amount,
+        },
+    )
+
 
 @login_required
 def make_bid(request, artwork_id):
-    artwork = get_object_or_404(Artwork,id=artwork_id)
+    artwork = get_object_or_404(Artwork, id=artwork_id)
 
     highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
@@ -182,8 +200,10 @@ def make_bid(request, artwork_id):
         amount = int(amount)
         minimum_bid = current_price + 5000
 
-        if amount <  minimum_bid:
-            messages.error(request, f"Your bid must be at least {minimum_bid + 5000} Kr.")
+        if amount < minimum_bid:
+            messages.error(
+                request, f"Your bid must be at least {minimum_bid + 5000} Kr."
+            )
             return redirect("make_bid", artwork_id)
 
         request.session["pending_bid_amount"] = amount
@@ -191,9 +211,10 @@ def make_bid(request, artwork_id):
 
     return render_artwork_bid(request, artwork, "make")
 
+
 @login_required
 def submit_bid(request, artwork_id):
-    artwork = get_object_or_404(Artwork,id=artwork_id)
+    artwork = get_object_or_404(Artwork, id=artwork_id)
 
     if request.method != "POST":
         return redirect("artwork-details", artwork_id)
@@ -204,19 +225,13 @@ def submit_bid(request, artwork_id):
         messages.error(request, "No bid amount found")
         return redirect("artwork-details", artwork_id)
 
-
     Bid.objects.create(
         artwork=artwork,
         amount=amount,
         buyer=request.user.profile.buyer_profile,
+        status="pending",
     )
 
     request.session.pop("pending_bid_amount", None)
 
     return render_artwork_bid(request, artwork, "success", amount)
-
-
-
-
-
-

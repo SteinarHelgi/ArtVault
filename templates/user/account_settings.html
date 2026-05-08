@@ -121,6 +121,16 @@
             </div>
       </div>
       {% endif %}
+      {% if message.message == "account-settings-update-failed" %}
+      <div id="popupModal" class="modal">
+            <div class="modal-content">
+                  <button class="close-btn" onclick="closeModal()">X</button>
+
+                  <p>We couldn’t save your changes. Please try again.</p>
+                  <a href="{% url 'account-settings' %}" class="modal-btn">Try again</a>
+            </div>
+      </div>
+      {% endif %}
       {% endfor %}
       {% endif %}
 </div>

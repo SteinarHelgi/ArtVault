@@ -7,9 +7,13 @@
 
       {% for bid in bids %}
       <div class="bid-item">
-            {% for img in bid.artwork.images.all %}
-            <img src="{{ img.image }}" class="image">
-            {% endfor %}
+            {% with img=bid.artwork.images.first.image.url %}
+            {% if img %}
+            <img class="image" src="{{ img }}" alt="image of artwork from artist">
+            {% else %}
+            <p>no images</p>
+            {% endif %}
+            {% endwith %}
             <h2>{{ bid.artwork.title }}</h2>
             <p>Bid amount: {{ bid.amount }}</p>
             <p>Status: {{ bid.status }}</p>
