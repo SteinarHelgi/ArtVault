@@ -4,7 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/art-details.css' %}">
 
-<div class="art-details-container">
+<a class="art-details-container">
       <h1 class="title">{{artwork.title}} </h1>
 
 
@@ -66,10 +66,16 @@
 
 
                   <div class="seller-info">
-                        <!--gera clickable að seller profile -->
-                        {{ artwork.seller.seller_name}}
-
+                        <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
+                            {% if artwork.seller.logo %}
+                            <img class="image" src="{{ artwork.seller.logo.url }}" alt="image of artwork from artist">
+                            {% endif %}
+                            <div class="art-card-info">
+                                <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>
+                            </div>
+                        </a>
                   </div>
+
 </div>
 
 {% endblock %}

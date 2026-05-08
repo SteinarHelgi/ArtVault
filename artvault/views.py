@@ -2,6 +2,7 @@ from collections import defaultdict
 from django.shortcuts import render
 from django.db.models import Max, Q
 from artvault.models import Artwork
+from user.models import SellerProfileModel
 
 
 # Create your views here
@@ -108,4 +109,12 @@ def browse_artists(request):
         {
             "artists": dict(artists),
         },
+    )
+
+def public_seller_profile_view(request, id):
+    seller = SellerProfileModel.objects.get(pk=id)
+    return render(
+        request,
+        "artvault/public_seller_profile.html"
+        , {"seller": seller}
     )
