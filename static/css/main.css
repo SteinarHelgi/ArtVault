@@ -1237,6 +1237,7 @@ body {
 }
 
 .profile-info p{
+    color: var(--light-black);
     font-family: var(--paragraph-font);
     font-size: 16px;
     margin-bottom: 8px;
@@ -1409,18 +1410,20 @@ body {
 }
 
 .editfield{
-    border: 1px solid var(--orange-color);
-    border-radius: var(--round-corners);
+    border: none;
+    text-decoration: #dd700b;
+    border-bottom: 1px solid var(--light-black);
     background-color: transparent;
-    color: var(--orange-color);
+    color: var(--black);
     font-family: var(--header-font);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .editfield:hover {
-    color: var(--black);
+    transform: scale(1.1);
 }
 
 
@@ -1431,7 +1434,7 @@ body {
 }
 
 .showeditinput.show {
-    display: flex;
+    display: block;
 }
 
 .showeditinput input {
