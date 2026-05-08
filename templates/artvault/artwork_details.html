@@ -30,14 +30,7 @@
 
                   <h2 class="artist-name">{{ artwork.artist_name }} <span class="year">( {{artwork.date.year}} )</span>
                   </h2>
-
-                  <!-- <p>{{ artwork.history }}</p> -->
-                  <p class="history">Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit
-                        quisque
-                        faucibus ex sapien vitae. Ex sapien vitae pellentesque sem placerat in id. Placerat in id cursus
-                        mi pretium tellus duis. Pretium tellus duis convallis tempus leo eu aenean.</p>
-
-
+                  <p class="history">{{ artwork.history }}</p>
                   <p class="italic-text">{{ artwork.medium }}</p>
                   <p class="italic-text">{{ artwork.dimensions }}</p>
                   <p class="italic-text">{{ artwork.edition }}</p>
@@ -46,30 +39,30 @@
 
             </div>
             <div class="bid-info">
-                 {% if bid_step == "make" %}
-                    {% include "artvault/components/make_box.html" %}
-                {% elif bid_step == "confirm" %}
-                    {% include "artvault/components/confirm_box.html" %}
-                {% elif bid_step == "success" %}
-                    {% include "artvault/components/success_box.html" %}
-                {% else %}
-                    {% include "artvault/components/bid_box.html" %}
-                {% endif %}
+                  {% if bid_step == "make" %}
+                  {% include "artvault/components/make_box.html" %}
+                  {% elif bid_step == "confirm" %}
+                  {% include "artvault/components/confirm_box.html" %}
+                  {% elif bid_step == "success" %}
+                  {% include "artvault/components/success_box.html" %}
+                  {% else %}
+                  {% include "artvault/components/bid_box.html" %}
+                  {% endif %}
             </div>
       </div>
 
 
-                  <div class="seller-info">
-                        <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
-                            {% if artwork.seller.logo %}
-                            <img class="image" src="{{ artwork.seller.logo.url }}" alt="image of artwork from artist">
-                            {% endif %}
-                            <div class="art-card-info">
-                                <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>
-                            </div>
-                        </a>
+      <div class="seller-info">
+            <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
+                  {% if artwork.seller.logo %}
+                  <img class="image" src="{{ artwork.seller.logo.url }}" alt="image of artwork from artist">
+                  {% endif %}
+                  <div class="art-card-info">
+                        <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>
                   </div>
+            </a>
+      </div>
 
-</div>
+      </div>
 
-{% endblock %}
+      {% endblock %}
