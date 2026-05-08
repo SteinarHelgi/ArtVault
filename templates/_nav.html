@@ -4,81 +4,80 @@
 
 <nav class="nav-container">
 
-    <div class="left-side">
-        <div class="dropdown">
+      <div class="left-side">
+            <div class="dropdown">
 
-<button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
-                <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
-            </button>
+                  <button onclick="toggleLeftDropdown(event)" class="dropbtn" type="button">
+                        <img src="{% static 'img/HamburgerMenu.svg' %}" alt="Menu button">
+                  </button>
 
-            <div id="leftDropdown" class="dropdown-content left-dropdown-content">
-                <a href="{% url 'browse-artwork' %}">Browse Artwork</a>
-                <a href="{% url 'browse-artists' %}">View Artists</a>
-                <a href="#">Art Movements</a>
+                  <div id="leftDropdown" class="dropdown-content left-dropdown-content">
+                        <a href="{% url 'browse-artwork' %}">Browse Artwork</a>
+                        <a href="{% url 'browse-artists' %}">View Artists</a>
+                        <a href="#">Art Movements</a>
+                  </div>
+
             </div>
 
-        </div>
+      </div>
 
-    </div>
-
-            <a class="logo" href="{% url 'home' %}">
-                <img src="{% static 'img/logo.svg' %}" alt="ArtVault logo">
+      <a class="logo" href="{% url 'home' %}">
+            <img src="{% static 'img/logo.svg' %}" alt="ArtVault logo">
             <h1>ArtVault</h1>
-            </a>
+      </a>
 
-    <div class="right-side">
-     <p class="nav-username">{{ user.username }}</p>
-        {% if user.is_authenticated %}
-        <div class="profile-dropdown">
+      <div class="right-side">
+            <p class="nav-username">{{ user.username }}</p>
+            {% if user.is_authenticated %}
+            <div class="profile-dropdown">
 
-            <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
-                {% if user.profile.role == "buyer" and user.profile.buyer_profile.profile_image %}
-                    <div class="avatar"
-                        style="background-image: url('{{ user.profile.buyer_profile.profile_image.url }}')">
-                    </div>
+                  <button onclick="toggleRightDropdown(event)" class="dropbtn" type="button">
+                        {% if user.profile.role == "buyer" and user.profile.buyer_profile.profile_image %}
+                        <div class="avatar"
+                              style="background-image: url('{{ user.profile.buyer_profile.profile_image.url }}')">
+                        </div>
 
-                {% elif user.profile.role != "buyer" and user.profile.seller_profile.logo %}
-                    <div class="avatar"
-                        style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
-                    </div>
+                        {% elif user.profile.role != "buyer" and user.profile.seller_profile.logo %}
+                        <div class="avatar" style="background-image: url('{{ user.profile.seller_profile.logo.url }}')">
+                        </div>
 
-                {% else %}
-                    <div class="avatar"></div>
-                {% endif %}
-            </button>
+                        {% else %}
+                        <div class="avatar"></div>
+                        {% endif %}
+                  </button>
 
-            <div id="rightDropdown" class="dropdown-content right-dropdown-content">
+                  <div id="rightDropdown" class="dropdown-content right-dropdown-content">
 
-                <a href="{% url 'account-settings' %}">Account Settings</a>
-                <a href="{% url 'my_profile_seller' %}">View my profile</a>
+                        <a href="{% url 'account-settings' %}">Account Settings</a>
 
-                {% if user.profile.role == "buyer" %}
-                    <a href="{% url 'my_bids' %}">My Bids</a>
-                {% else %}
-                    <a href="{% url 'my_profile_seller' %}">My Listings</a>
-                {% endif %}
 
-                <form method="post" action="{% url 'logout' %}" class="logoutForm">
-                    {% csrf_token %}
-                    <button type="submit" class="logOutButton">
-                        Logout
-                    </button>
-                </form>
+                        {% if user.profile.role == "buyer" %}
+                        <a href="{% url 'my_bids' %}">My Bids</a>
+                        {% else %}
+                        <a href="{% url 'my_profile_seller' %}">View my profile</a>
+                        {% endif %}
+
+                        <form method="post" action="{% url 'logout' %}" class="logoutForm">
+                              {% csrf_token %}
+                              <button type="submit" class="logOutButton">
+                                    Logout
+                              </button>
+                        </form>
+
+                  </div>
+
+                  {% else %}
+
+                  <a class="signup" href="{% url 'signup' %}">
+                        Signup
+                  </a>
+
+                  <a class="login" href="{% url 'login' %}">
+                        Login
+                  </a>
+
+                  {% endif %}
 
             </div>
-
-        {% else %}
-
-        <a class="signup" href="{% url 'signup' %}">
-            Signup
-        </a>
-
-        <a class="login" href="{% url 'login' %}">
-            Login
-        </a>
-
-        {% endif %}
-
-    </div>
 
 </nav>
