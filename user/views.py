@@ -174,7 +174,7 @@ def account_settings(request):
                 request.user.save()
                 login(request, request.user)
 
-            messages.success(request, "Account settings updated")
+            messages.success(request, "account-settings-updated")
             return redirect("account-settings")
     else:
         form = form_class(instance=account_profile)

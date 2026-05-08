@@ -105,13 +105,12 @@
     </form>
       {% if messages %}
       {% for message in messages %}
-      {% if message.message == "payment_successful" %}
+      {% if message.message == "account-settings-updated" %}
       <div id="popupModal" class="modal">
             <div class="modal-content">
                   <button class="close-btn" onclick="closeModal()">X</button>
 
-                  <h2>Thank you for your purchase!</h2>
-                  <p>Your payment has been processed and your order is on its way.</p>
+                  <p>Changes confirmed.</p>
                   <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
             </div>
       </div>
