@@ -11,4 +11,5 @@ urlpatterns = [
         name="artwork-details",
     ),
     path("browse_artists/", views.browse_artists, name="browse-artists"),
+    path("view_sellers/",views.view_sellers,name="view-sellers"),
 ]
