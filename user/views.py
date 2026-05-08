@@ -176,6 +176,8 @@ def account_settings(request):
 
             messages.success(request, "account-settings-updated")
             return redirect("account-settings")
+        else:
+            messages.error(request, "account-settings-update-failed")
     else:
         form = form_class(instance=account_profile)
 
