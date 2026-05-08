@@ -14,8 +14,8 @@
 
 /* description */
 .description-container {
-      display: grid;
-      grid-template-columns: 50% 50%;
+    display: grid;
+    grid-template-columns: 50% 50%;
 }
 
 .information .history {
@@ -61,7 +61,7 @@
       box-sizing: border-box;
       max-width: 900px;
       margin: 0 auto;
-      padding: 80px;
+      padding: 4px 80px;
 }
 
 
@@ -127,4 +127,49 @@
 .bid-close p {
       margin: 0;
       font-size: 14px;
+}
+
+
+.seller-info {
+    margin: 40px 0;
+}
+
+.seller-info .art-card {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--round-corners);
+    overflow: hidden;
+    transition: 0.2s ease;
+}
+
+.seller-info .art-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+.seller-info .art-card .image {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--round-corners);
+    background-size: cover;
+    background-position: center;
+}
+
+.seller-info .art-card-info {
+    padding: 16px;
+    align-items: center;
+}
+
+.seller-info .art-card-info h5 {
+    font-family: var(--header-font);
+    color: var(--black);
+}
+
+.seller-info .art-card-info h6 {
+    margin: 2px 0;
+    font-family: var(--header-font);
+    color: var(--light-black);
 }

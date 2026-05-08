@@ -100,16 +100,13 @@
                         {% endif %}
                     {% endwith %}
 
-{# TODO skoða hvort það þurfi að vera allar þessar upplýsingar á art card info#}
-
                     <div class="art-card-info">
                         <h5 >{{ a.title }}</h5>
                         <p>{{ a.artist_name }}</p>
-                        <p>{{ a.art_movement }}</p>
-                        <p> {{ a.medium }}</p>
-
-                        <p class="highest-bid">Highest bid: <b> {{ a.current_price }} kr.</b></p>
-                        <p class="price">Starting bid: <b>{{ a.starting_price }} kr.</b></p>
+                        <div id="line">
+                            <p class="highest-bid">Highest bid: <b> {{ a.current_price }} kr.</b></p>
+                            <p class="price">Starting bid: <b>{{ a.starting_price }} kr.</b></p>
+                        </div>
                     </div>
             </a>
         {% endfor %}

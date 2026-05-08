@@ -4,7 +4,7 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/art-details.css' %}">
 
-<a class="art-details-container">
+<div class="art-details-container">
       <h1 class="title">{{artwork.title}} </h1>
 
 
@@ -50,19 +50,24 @@
                   {% endif %}
             </div>
       </div>
-
-
       <div class="seller-info">
             <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
                   {% if artwork.seller.logo %}
-                  <img class="image" src="{{ artwork.seller.logo.url }}" alt="image of artwork from artist">
+                  <img class="image" src="{{ artwork.seller.logo.url }}" alt="seller logo">
                   {% endif %}
                   <div class="art-card-info">
                         <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>
+                      {% if artwork.seller.profile.role == "individual_seller" %}
+                        <h6 class="art-movement-h1">Individual seller</h6>
+                      {% else %}
+                         <h6 class="art-movement-h1">Gallery</h6>
+                       {% endif %}
                   </div>
             </a>
       </div>
 
-      </div>
+
+  </div>
+
 
       {% endblock %}
