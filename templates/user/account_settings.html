@@ -16,6 +16,8 @@
     >
         {% csrf_token %}
 
+
+
         {% if profile.role == "buyer" %}
 
             <div class="account-card">
@@ -90,11 +92,15 @@
 
             <h3>Change password</h3>
 
+            {{ form.non_field_errors }}
+
             <p>New password</p>
             {{ form.new_password }}
 
             <p>Confirm new password</p>
             {{ form.confirm_password }}
+
+
 
         </div>
 
