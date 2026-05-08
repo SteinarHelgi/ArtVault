@@ -1,0 +1,32 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="gallery-section">
+      <div class="gallery-header">
+            <h2>View Sellers</h2>
+      </div>
+      <div class="gallery-container">
+            {% for seller in sellers %}
+                  
+
+            
+                    <a href="#" class="art-card">
+
+                          <p>TODO: TENGJA ÞETTA VIÐ SELLER PROFILE MEÐ "SELLER.ID"</p>
+                          {% with img=seller.artworks.first.images.first %}
+                          {% if img %}
+                              <img class="image" src="{{ img.image.url }}" alt="image of artwork from artist">
+                          {% endif %}
+                          {% endwith %}
+
+                         <div class="art-card-info">
+                            <h5 class="art-movement-h1">{{ seller.seller_name }}</h5>
+                         </div>
+                    </a>
+            {% endfor %}
+      </div>
+</div>
+
+{% endblock %}
