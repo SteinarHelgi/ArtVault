@@ -43,6 +43,8 @@ class ArtworkListingForm(forms.ModelForm):
             "date",
             "starting_price",
             "art_movement",
+            "auction_start_date",
+            "auction_end_date",
         ]
 
         widgets = {
@@ -50,4 +52,6 @@ class ArtworkListingForm(forms.ModelForm):
             "dimensions": forms.TextInput(attrs={"placeholder": "200x200"}),
             "history": forms.Textarea(attrs={"rows": 5}),
             "date": forms.DateInput(attrs={"type": "date"}),
+            "auction_start_date": forms.DateInput(attrs={"type": "date"}),
+            "auction_end_date": forms.DateInput(attrs={"type": "date"}),
         }
