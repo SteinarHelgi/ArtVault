@@ -118,3 +118,28 @@ def public_seller_profile_view(request, id):
         "artvault/public_seller_profile.html"
         , {"seller": seller}
     )
+def view_sellers(request):
+    sellers = SellerProfileModel.objects.all()
+
+    return render(request,"artvault/view_sellers.html",{"sellers": sellers})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
