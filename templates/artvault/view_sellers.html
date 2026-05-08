@@ -12,9 +12,8 @@
                   
 
             
-                    <a href="#" class="art-card">
+            <a href="{% url 'public-seller-profile' seller.id%}" class="art-card">
 
-                          <p>TODO: TENGJA ÞETTA VIÐ SELLER PROFILE MEÐ "SELLER.ID"</p>
                           {% with img=seller.artworks.first.images.first %}
                           {% if img %}
                               <img class="image" src="{{ img.image.url }}" alt="image of artwork from artist">
