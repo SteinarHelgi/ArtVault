@@ -105,9 +105,3 @@ window.previewCover = function(event) {
         uploadIcon.style.display = "none";
     }
 };
-
-// account settings edit field
-function showeditinput() {
-        const field = document.getElementById("edit-name-box");
-       field.classList.toggle("show")
-}
