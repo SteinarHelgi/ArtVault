@@ -9,6 +9,7 @@ from artvault.models import Artwork, Bid
 from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
 from user.forms.signupForm import SignupForm
+from user.forms.accountSettingsForm import BuyerAccountSettingsForm, IndividualSellerAccountSettingsForm, GalleryAccountSettingsForm
 from .models import BuyerProfileModel, Profile, SellerProfileModel
 from django.contrib.auth import get_user_model
 
@@ -148,47 +149,37 @@ def my_profile_seller(request):
 def account_settings(request):
     profile = request.user.profile
 
-    buyer_profile = None
-    seller_profile = None
-
     if profile.role == "buyer":
-        buyer_profile = BuyerProfileModel.objects.filter(profile=profile).first()
+        account_profile = profile.buyer_profile
+        form_class = BuyerAccountSettingsForm
 
-        if request.method == "POST":
-            if "edit-name" in request.POST:
-                buyer_profile.full_name = request.POST.get("edit-name")
-
-            if "edit-profile-picture" in request.POST:
-                buyer_profile.profile_image = request.POST.get("edit-profile-picture")
-
-            buyer_profile.save()
+    elif profile.role == "gallery":
+        account_profile = profile.seller_profile
+        form_class = GalleryAccountSettingsForm
 
     else:
-        seller_profile = SellerProfileModel.objects.filter(profile=profile).first()
+        account_profile = profile.seller_profile
+        form_class = IndividualSellerAccountSettingsForm
 
-        if request.method == "POST":
-            if "edit-name" in request.POST:
-                seller_profile.seller_name = request.POST.get("edit-name")
+    if request.method == "POST":
+        form = form_class(request.POST, request.FILES, instance=account_profile)
 
-            if "edit-profile-picture" in request.POST:
-                seller_profile.logo = request.POST.get("edit-profile-picture")
+        if form.is_valid():
+            form.save()
 
-            if "edit-bio" in request.POST:
-                seller_profile.bio = request.POST.get("edit-bio")
+            new_password = form.cleaned_data.get("new_password")
 
-            if "edit-street_name" in request.POST:
-                seller_profile.street_name = request.POST.get("edit-street_name")
-                seller_profile.city = request.POST.get("edit-city")
-                seller_profile.zip_code = request.POST.get("edit-zip")
+            if new_password:
+                request.user.set_password(new_password)
+                request.user.save()
+                login(request, request.user)
 
-            seller_profile.save()
+            messages.success(request, "Account settings updated")
+            return redirect("account-settings")
+    else:
+        form = form_class(instance=account_profile)
 
-    return render(
-        request,
-        "user/account_settings.html",
-        {
-            "profile": profile,
-            "buyer_profile": buyer_profile,
-            "seller_profile": seller_profile,
-        },
-    )
+    return render(request, "user/account_settings.html", {
+        "form": form,
+        "profile": profile,
+    })
