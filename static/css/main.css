@@ -139,7 +139,7 @@ body {
     scrollbar-width: none;
 }
 
-..gallery-scroll-container::-webkit-scrollbar {
+.gallery-scroll-container::-webkit-scrollbar {
     display: none;
 }
 
@@ -155,11 +155,9 @@ body {
     top: 44%;
     transform: translateY(-50%);
     z-index: 5;
-
     width: 36px;
     height: 36px;
     color: var(--black);
-
     font-size: 30px;
     line-height: 1;
     cursor: pointer;
@@ -504,11 +502,11 @@ body {
     display: none;
 }
 
-.upload-section p {
+.buyer-upload-section p {
     font-size: 22px;
 }
 
-.upload-section span,
+.buyer-upload-section span,
 .required {
     color: red;
 }
@@ -605,6 +603,17 @@ body {
     background-repeat: no-repeat;
 }
 
+.cover-wrapper {
+    position: relative;
+}
+
+.cover-required {
+    color: red;
+    position: absolute;
+    right: -16px;
+    top: 5px;
+}
+
 .logo-upload-icon,
 .cover-upload-icon {
     width: 70px;
@@ -632,6 +641,16 @@ body {
     line-height: normal;
     display: block;
     text-align: left;
+}
+.bio-wrapper {
+    position: relative;
+}
+
+.bio-required {
+    color: red;
+    position: absolute;
+    right: -16px;
+    top: 8px;
 }
 
 .input-group {
