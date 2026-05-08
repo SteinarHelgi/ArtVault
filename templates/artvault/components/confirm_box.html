@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="confirm-box">
+    <h1>{{ amount }} Kr.</h1>
+    <h2>Are you sure?</h2>
+
+    <div class="warning">
+        <img src="{% static 'img/shield_card.svg' %}" alt="warning">
+        <p><b>Please note:</b>once submitted,
+            your bid is binding and cannot
+            be changed or withdrawn.
+        </p>
+    </div>
+    <form method="post" action="{% url 'submit_bid' artwork.id %}">
+        {% csrf_token %}
+
+        <button type="submit">I'm sure</button>
+    </form>
+</div>

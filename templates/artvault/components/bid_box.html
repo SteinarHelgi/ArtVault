@@ -1,0 +1,17 @@
+ <div class="bid-info">
+
+                  <div class="bid-card">
+                        <p class="bid-label">Highest bid</p>
+                        <h2 class="bid-price">{{ current_price }} Kr.</h2>
+
+                        <a href="{% url 'make_bid' artwork.id %}" class="bid-button">
+                              <span class="bid-icon">⚖</span>
+                              BID
+                        </a>
+
+                        <div class="bid-close">
+                              <span>⌛</span>
+                              <p>Bid close: <strong>In 2 days</strong></p>
+                        </div>
+                  </div>
+            </div>

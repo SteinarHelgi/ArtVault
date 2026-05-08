@@ -10,4 +10,6 @@ urlpatterns = [
     path("wire-payment/<int:shipping_id>/", views.wire_transfer_payment, name="wire_transfer_payment"),
     path("overview/<int:shipping_id>/", views.checkout_overview, name="checkout_overview"),
     path("my_bids/", views.my_bids, name="my_bids"),
+    path("artwork/<int:artwork_id>/bid/make",views.make_bid,name="make_bid"),
+    path("artwork/<int:artwork_id>/bid/submit", views.submit_bid, name="submit_bid"),
 ]

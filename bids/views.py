@@ -1,11 +1,11 @@
 from django.contrib.auth.views import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from bids.forms.shippingForm import ShippingForm
 from bids.forms.bankTransferForm import BankTransferForm
 from bids.forms.wireTransferForm import WireTransferForm
 from bids.forms.creditCardForm import CreditCardForm
 from bids.models import ShippingModel, BankTransferModel, WireTransferModel, CreditCardModel
-from artvault.models import Bid
+from artvault.models import Bid, Artwork
 from django.contrib import messages
 
 from user.models import BuyerProfileModel, Profile, SellerProfileModel
@@ -152,5 +152,72 @@ def my_bids(request):
             "bids": bids,
         },
     )
+
+def render_artwork_bid(request, artwork, bid_step=None, amount=None):
+    highest_bid = artwork.bids.order_by("amount").first()
+    current_price = highest_bid.amount if highest_bid else artwork.starting_price
+
+    return render(request, "artvault/artwork_details.html", {
+        "artwork": artwork,
+        "highest_bid": highest_bid,
+        "current_price": current_price,
+        "bid_step": bid_step,
+        "amount": amount
+    })
+
+@login_required
+def make_bid(request, artwork_id):
+    artwork = get_object_or_404(Artwork,id=artwork_id)
+
+    highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
+    current_price = highest_bid.amount if highest_bid else artwork.starting_price
+
+    if request.method == "POST":
+        amount = request.POST.get("amount")
+
+        if not amount:
+            messages.error(request, "Please enter a bid amount")
+            return redirect("make_bid", artwork_id)
+
+        amount = int(amount)
+        minimum_bid = current_price + 5000
+
+        if amount <  minimum_bid:
+            messages.error(request, f"Your bid must be at least {minimum_bid + 5000} Kr.")
+            return redirect("make_bid", artwork_id)
+
+        request.session["pending_bid_amount"] = amount
+        return render_artwork_bid(request, artwork, "confirm", amount)
+
+    return render_artwork_bid(request, artwork, "make")
+
+@login_required
+def submit_bid(request, artwork_id):
+    artwork = get_object_or_404(Artwork,id=artwork_id)
+
+    if request.method != "POST":
+        return redirect("artwork-details", artwork_id)
+
+    amount = request.session.get("pending_bid_amount")
+
+    if not amount:
+        messages.error(request, "No bid amount found")
+        return redirect("artwork-details", artwork_id)
+
+    amount = int(amount)
+
+    Bid.objects.create(
+        artwork=artwork,
+        amount=amount,
+        buyer=request.user.profile.buyer_profile,
+    )
+
+    request.session.pop("pending_bid_amount", None)
+
+    return render_artwork_bid(request, artwork, "success", amount)
+
+
+
+
 
 

@@ -1,0 +1,10 @@
+{% load static %}
+
+<div class="success-box">
+    <img src="{% static 'img/award_star.svg' %}" alt="warning">
+    <h3>Your bid has been submitted successfully.</h3>
+    <p>You will be notified once the bidding has closed.</p>
+
+    <a href="{% url 'browse-artwork' %}">Continue Shopping</a>
+
+</div>
