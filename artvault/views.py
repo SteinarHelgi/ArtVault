@@ -1,8 +1,10 @@
 from collections import defaultdict
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.db.models import Max, Q
 from artvault.models import Artwork
 from user.models import SellerProfileModel
+from artvault.models import Artwork, Bid
+from bids.views import render_artwork_bid
 
 
 # Create your views here
@@ -84,12 +86,9 @@ def browse_artwork(request):
 
 
 def artwork_details(request, id):
+    artwork = get_object_or_404(Artwork, pk=id)
 
-    return render(
-        request,
-        "artvault/artwork_details.html",
-        {"artwork": Artwork.objects.get(pk=id), "id": id},
-    )
+    return render_artwork_bid(request, artwork)
 
 
 def browse_artists(request):

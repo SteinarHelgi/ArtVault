@@ -46,21 +46,15 @@
 
             </div>
             <div class="bid-info">
-
-                  <div class="bid-card">
-                        <p class="bid-label">Highest bid</p>
-                        <h2 class="bid-price">100.000 Kr.</h2>
-
-                        <a href="#" class="bid-button">
-                              <span class="bid-icon">⚖</span>
-                              BID
-                        </a>
-
-                        <div class="bid-close">
-                              <span>⌛</span>
-                              <p>Bid close: <strong>In 2 days</strong></p>
-                        </div>
-                  </div>
+                 {% if bid_step == "make" %}
+                    {% include "artvault/components/make_box.html" %}
+                {% elif bid_step == "confirm" %}
+                    {% include "artvault/components/confirm_box.html" %}
+                {% elif bid_step == "success" %}
+                    {% include "artvault/components/success_box.html" %}
+                {% else %}
+                    {% include "artvault/components/bid_box.html" %}
+                {% endif %}
             </div>
       </div>
 

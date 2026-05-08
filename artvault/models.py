@@ -37,4 +37,4 @@ class Bid(models.Model):
     amount = models.IntegerField()
     status = models.CharField(max_length=255)
     buyer = models.ForeignKey(BuyerProfileModel, on_delete=models.CASCADE)
-    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE)
+    artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE,related_name="bids")
