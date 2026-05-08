@@ -1,37 +1,21 @@
 {% load static %}
 
-<div class="make-box">
-    <h3>Highest bid</h3>
-    <h2>{{ current_price }} Kr.</h2>
+<div class="bid-card">
+    <h3 class="highest-bid">Highest bid</h3>
+    <h2 class="bid-price">{{ current_price }} Kr.</h2>
 
-    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'make_bid' artwork.id %}">
+        {% csrf_token %}
 
-        <form method="post" action="{% url 'make_bid' artwork.id %}">
-            {% csrf_token %}
-
-            <label for="bid-amount">
-                <input type="number" name="amount" placeholder="Amount..." min="{{ current_price|add:5000 }}" required>
-            </label>
-
-            <button type="submit">BID</button>
-        </form>
-
-        <p class="bid-time">Bid closes in, gera automatic</p>
-
-    {% else %}
-
-        <div class="login-required">
-
-            <p>Please log in or sign up to place a bid.</p>
-
-            <img src="{% static 'img/login.svg' %}" alt="login">
-
-            <a href="{% url 'login' %}" class="login-btn"></a> Login</a>
-
-            <a href="{% url 'signup' %}" class="signup-btn">Signup</a>
-
+        <div class="bid-text">
+            <p>Bid has to be 5000 Kr. over highest bid</p>
         </div>
 
-    {% endif %}
+        <label for="bid-amount">
+            <input type="number" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ current_price|add:5000 }}" required>
+        </label>
+
+        <button type="submit" class="button-bid">Submit</button>
+    </form>
 
 </div>

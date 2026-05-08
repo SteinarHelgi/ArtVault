@@ -74,7 +74,7 @@
       font-style: italic
 }
 
-/* bid button */
+/* bid boxes */
 .bid-card {
       width: 260px;
       border: 1px solid #ccc;
@@ -92,25 +92,24 @@
 .bid-price {
       font-size: 28px;
       margin: 10px 0 20px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid var(--border-color);
       padding-bottom: 8px;
 }
 
 .bid-button {
-      background-color: #dd700b;
-      color: white;
+      background-color: var(--orange-color);
+      color: var(--primary-color);
       text-decoration: none;
       height: 60px;
       border-radius: 4px;
-
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 18px;
-
       font-size: 30px;
       font-weight: bold;
 }
+
 
 .bid-icon {
       font-size: 24px;
@@ -122,6 +121,7 @@
       justify-content: center;
       align-items: center;
       gap: 10px;
+      text-align: center;
 }
 
 .bid-close p {
@@ -129,6 +129,146 @@
       font-size: 14px;
 }
 
+.bid-card {
+      width: 260px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 22px;
+      margin: 12px;
+      align-items: center;
+      text-align: center;
+}
+
+.button-bid {
+      font-family: var(--header-font);
+      width: 100%;
+      height: 60px;
+      border: none;
+      border-radius: 6px;
+      background-color: var(--orange-color);
+      color: var(--primary-color);
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 25px;
+}
+
+.bid-amount-input {
+      width: 100%;
+      max-width: 100%;
+      height: 30px;
+      padding: 0 18px;
+      font-size: 20px;
+      border: 1px solid var(--light-black);
+      border-radius: 4px;
+      box-sizing: border-box;
+}
+
+.bid-text {
+      font-family: var(--paragraph-font);
+      color: var(--light-black);
+      font-size: 14px;
+}
+
+.success-button {
+        background-color: var(--orange-color);
+      color: var(--primary-color);
+      text-decoration: none;
+      height: 60px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      font-size: 20px;
+      font-weight: bold;
+
+}
+
+.star-img img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+}
+
+.highest-bid {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: left;
+      width: 100%;
+}
+
+.bid-text-confirm {
+      font-family: var(--paragraph-font);
+      color: var(--light-black);
+      font-size: 14px;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 12px;
+}
+
+.bid-text-confirm img {
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.bid-text-login {
+      font-family: var(--paragraph-font);
+      color: var(--black);
+      font-size: 18px;
+}
+
+.login-btn {
+      color: var(--primary-color);
+      background-color: var(--black);
+      margin-bottom: 18px;
+
+}
+
+.login-btn:hover {
+      background-color: var(--orange-color);
+      border-color: var(--orange-color);
+
+}
+.login-btn,
+.signup-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--round-corners);
+      padding: 8px 36px;
+      border: 1px solid var(--black);
+      font-weight: 700;
+      transition: 0.2s ease;
+}
+
+.signup-btn {
+      color: var(--black);
+      background-color: transparent;
+
+}
+
+.signup-btn:hover {
+      background-color: var(--hover-color);
+}
+
+.auth-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+}
+
+.login-photo img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 25px;
+}
 
 .seller-info {
     margin: 40px 0;
