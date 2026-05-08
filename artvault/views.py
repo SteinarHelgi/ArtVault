@@ -1,6 +1,6 @@
 from collections import defaultdict
-from django.shortcuts import render,get_object_or_404
-from django.db.models import Max, Q
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Max, Q, QuerySet
 from artvault.models import Artwork
 from user.models import SellerProfileModel
 from artvault.models import Artwork, Bid
@@ -13,7 +13,7 @@ def index(request):
 
 
 def browse_artwork(request):
-    art = Artwork.objects.prefetch_related("images", "bid_set")
+    art: QuerySet[Artwork, Artwork] = Artwork.objects.prefetch_related("images")
 
     art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
 
@@ -53,8 +53,7 @@ def browse_artwork(request):
 
     # current price variable
     for artwork in art:
-        highest_bid = artwork.bid_set.aggregate(Max("amount"))["amount__max"]
-
+        highest_bid = artwork.bids.aggregate(Max("amount"))["amount__max"]
         starting_price = int(artwork.starting_price)
 
         if highest_bid and highest_bid >= starting_price:
@@ -110,35 +109,13 @@ def browse_artists(request):
         },
     )
 
+
 def public_seller_profile_view(request, id):
     seller = SellerProfileModel.objects.get(pk=id)
-    return render(
-        request,
-        "artvault/public_seller_profile.html"
-        , {"seller": seller}
-    )
+    return render(request, "artvault/public_seller_profile.html", {"seller": seller})
+
+
 def view_sellers(request):
     sellers = SellerProfileModel.objects.all()
 
-    return render(request,"artvault/view_sellers.html",{"sellers": sellers})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return render(request, "artvault/view_sellers.html", {"sellers": sellers})
