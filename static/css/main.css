@@ -1376,6 +1376,11 @@ body {
     color: var(--black);
 }
 
+#line{
+      border-top: 1px solid var(--border-color);
+        padding: 4px 0;
+}
+
 .art-card .highest-bid b {
     font-size: 17px;
     margin-top: 5px;
