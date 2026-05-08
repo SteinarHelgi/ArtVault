@@ -12,4 +12,5 @@ urlpatterns = [
     ),
     path("browse_artists/", views.browse_artists, name="browse-artists"),
     path("public_seller_profile_view/<int:id>/", views.public_seller_profile_view, name="public-seller-profile"),
+    path("view_sellers/",views.view_sellers,name="view-sellers"),
 ]
