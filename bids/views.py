@@ -154,7 +154,7 @@ def my_bids(request):
     )
 
 def render_artwork_bid(request, artwork, bid_step=None, amount=None):
-    highest_bid = artwork.bids.order_by("amount").first()
+    highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
 
     return render(request, "artvault/artwork_details.html", {
@@ -204,7 +204,6 @@ def submit_bid(request, artwork_id):
         messages.error(request, "No bid amount found")
         return redirect("artwork-details", artwork_id)
 
-    amount = int(amount)
 
     Bid.objects.create(
         artwork=artwork,
