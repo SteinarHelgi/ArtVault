@@ -1,171 +1,109 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
 <div class="account-settings-container">
+
     <h1>Account Settings</h1>
 
+    <form
+        method="POST"
+        action="{% url 'account-settings' %}"
+        enctype="multipart/form-data"
+    >
+        {% csrf_token %}
 
-    {% if profile.role == "buyer" %}
-        <div class="account-card">
-            <img class="profile-picture" src="{{ buyer_profile.profile_image.url }}" alt="Profile picture">
-            <h2>{{ buyer_profile.full_name }}</h2>
-            <p>{{ profile.role }}</p>
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-name-form">
-                {% csrf_token %}
-                <label for="edit-name">Edit name</label>
+        {% if profile.role == "buyer" %}
 
-                    <input
-                        type="text"
-                        id="edit-name"
-                        name="edit-name"
-                        placeholder="Enter new name..."
-                        value="{{ buyer_profile.full_name }}"
+            <div class="account-card">
+
+                <h3>Profile image</h3>
+
+                {% if profile.buyer_profile.profile_image %}
+                    <img
+                        src="{{ profile.buyer_profile.profile_image.url }}"
+                        alt="profile image"
                     >
-                    <button type="submit">Confirm</button>
+                {% endif %}
 
-            </form>
+                {{ form.profile_image }}
 
-            <form method="POST" action="{% url 'account-settings'%}" enctype="multipart/form-data" class="edit-profile-picture-form">
-                {% csrf_token %}
-                <label for="edit-profile-picture">Edit profile picture</label>
-                    <input
-                        type="file"
-                        id="edit-profile-picture"
-                        name="edit-profile-picture"
-                        placeholder="Enter image url..."
-                        value="{{ buyer_profile.profile_image }}"
+                <h3>Full name</h3>
+                {{ form.full_name }}
+
+            </div>
+
+        {% else %}
+
+            <div class="account-card">
+
+                <h3>Logo</h3>
+
+                {% if profile.seller_profile.logo %}
+                    <img
+                        src="{{ profile.seller_profile.logo.url }}"
+                        alt="logo"
                     >
+                {% endif %}
 
-                    <button type="submit">Confirm</button>
+                {{ form.logo }}
 
-            </form>
-        </div>
-    {% elif profile.role == "gallery" %}
-        <div class="account-card">
-            <img class="profile-picture" src="{{ seller_profile.logo.url }}" alt="Profile picture">
-            <h2>{{ seller_profile.seller_name }}</h2>
-            <p>{{ profile.role }}</p>
+                <h3>Cover photo</h3>
 
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-name-form">
-                {% csrf_token %}
-                <label for="edit-name">Edit name</label>
-                    <input
-                        type="text"
-                        id="edit-name"
-                        name="edit-name"
-                        placeholder="Enter new name..."
-                        value="{{ seller_profile.seller_name }}"
+                {% if profile.seller_profile.cover_photo %}
+                    <img
+                        src="{{ profile.seller_profile.cover_photo.url }}"
+                        alt="cover photo"
+                        width="300"
                     >
-                    <button type="submit">Confirm</button>
+                {% endif %}
 
-            </form>
+                {{ form.cover_photo }}
 
-            <form method="POST" action="{% url 'account-settings'%}" enctype="multipart/form-data" class="edit-profile-picture-form">
-                {% csrf_token %}
-                <label for="edit-profile-picture">Edit profile picture</label>
-                    <input
-                        type="file"
-                        id="edit-profile-picture"
-                        name="edit-profile-picture"
-                        placeholder="Enter image url..."
-                        value="{{ seller_profile.logo }}"
-                    >
+                <h3>Name</h3>
+                {{ form.seller_name }}
 
-                    <button type="submit">Confirm</button>
+                <h3>Bio</h3>
+                {{ form.bio }}
 
-            </form>
+                {% if profile.role == "gallery" %}
 
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-bio-form">
-                {% csrf_token %}
-                <label for="edit-bio">Edit bio</label><br>
-                    <textarea id="edit-bio" name="edit-bio" rows="4" cols="50" placeholder="Enter new bio here...">{{ seller_profile.bio }}</textarea>
-                    <br>
-                    <button type="submit">Confirm</button>
-            </form>
+                    <h3>Street name</h3>
+                    {{ form.street_name }}
 
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-bio-address">
-                {% csrf_token %}
-                <fieldset>
-                    <legend>Edit Address</legend>
-                        <label for="edit-street_name">Edit street name</label>
-                        <input
-                            type="text"
-                            id="edit-street_name"
-                            name="edit-street_name"
-                            placeholder="Enter street name..."
-                            value="{{ seller_profile.street_name }}"
-                        >
-                        <label for="edit-city">Edit city</label>
-                        <input
-                            type="text"
-                            id="edit-city"
-                            name="edit-city"
-                            placeholder="Enter city name..."
-                            value="{{ seller_profile.city }}"
-                        >
-                        <label for="edit-zip">Edit zip-code</label>
-                        <input
-                            type="text"
-                            id="edit-zip"
-                            name="edit-zip"
-                            placeholder="Enter zip-code..."
-                            value="{{ seller_profile.zip_code }}"
-                        >
+                    <h3>City</h3>
+                    {{ form.city }}
 
-                        <button type="submit">Confirm</button>
-                </fieldset>
+                    <h3>Zip code</h3>
+                    {{ form.zip_code }}
 
-            </form>
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+
+        <div class="password-section">
+
+            <h3>Change password</h3>
+
+            <p>New password</p>
+            {{ form.new_password }}
+
+            <p>Confirm new password</p>
+            {{ form.confirm_password }}
 
         </div>
 
-    {% else %}
-                <div class="account-card">
-            <img class="profile-picture" src="{{ seller_profile.logo.url }}" alt="Profile picture">
-            <h2>{{ seller_profile.seller_name }}</h2>
-            <p>{{ profile.role }}</p>
+        <button type="submit" class="confirm-btn">
+            Save changes
+        </button>
 
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-name-form">
-                {% csrf_token %}
-                <label for="edit-name">Edit name</label>
-                    <input
-                        type="text"
-                        id="edit-name"
-                        name="edit-name"
-                        placeholder="Enter new name..."
-                        value="{{ seller_profile.seller_name }}"
-                    >
-                    <button type="submit">Confirm</button>
+    </form>
 
-            </form>
-
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-profile-picture-form">
-                {% csrf_token %}
-                <label for="edit-profile-picture">Edit profile picture</label>
-                    <input
-                        type="file"
-                        id="edit-profile-picture"
-                        name="edit-profile-picture"
-                        placeholder="Enter image url..."
-                        value="{{ seller_profile.logo }}"
-                    >
-
-                    <button type="submit">Confirm</button>
-
-            </form>
-
-            <form method="POST" action="{% url 'account-settings'%}" class="edit-bio-form">
-                {% csrf_token %}
-                <label for="edit-bio">Edit bio</label><br>
-                    <textarea id="edit-bio" name="edit-bio" rows="4" cols="50" placeholder="Enter new bio here...">{{ seller_profile.bio }}</textarea>
-                    <br>
-                    <button type="submit">Confirm</button>
-            </form>
-        </div>
-
-    {% endif %}
 </div>
 
 {% endblock %}
-
