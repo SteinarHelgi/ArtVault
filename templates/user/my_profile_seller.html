@@ -44,7 +44,13 @@
                   <div class="art-card-info">
                         <h5>{{ artwork.title }}</h5>
                         <p>{{ artwork.medium }}</p>
+                        {% if artwork.sold %}
+                              <p>bidding ended on {{artwork.auction_end_date}}</p>
+                              <p class="price">Sold for: <b>{{ artwork.highest_bid }} kr.</b></p>
+                        {% else %}
+                        <p>bidding ends on {{artwork.auction_end_date}}</p>
                         <p class="price">Starting bid: <b>{{ artwork.starting_price }} kr.</b></p>
+                        {% endif %}
                   </div>
             </a>
             {% empty %}
