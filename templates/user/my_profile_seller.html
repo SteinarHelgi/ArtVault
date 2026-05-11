@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/popup.css' %}">
 <div class="profile-page">
       <div class="profile-cover" style="background-image: url('{{ seller_profile.cover_photo.url }}')">
       </div>
@@ -60,4 +62,27 @@
             {% endfor %}
       </div>
 </div>
+      {% if messages %}
+      {% for message in messages %}
+      {% if message.message == "listing_created" %}
+      <div id="popupModal" class="modal">
+            <div class="modal-content">
+                  <button class="close-btn" onclick="closeModal()">X</button>
+
+                  <div class="info-container">
+                        
+                  <h2>Listing Created!</h2>
+                  <div>
+                        
+                  <p>Your artwork is now live on ArtVault!
+                  </p>
+                  <img src="{% static 'img/moneybag.svg' %}" alt="moneybag" class="moneybag">
+
+                  </div>
+                  </div>
+            </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
 {% endblock %}

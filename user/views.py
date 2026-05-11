@@ -139,6 +139,7 @@ def my_profile_seller(request):
     artworks = seller_profile.artworks.annotate(
         highest_bid=Max("bids__amount")
     )
+    messages.success(request, "listing_created")
     return render(
         request,
         "user/my_profile_seller.html",
