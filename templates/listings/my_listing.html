@@ -24,6 +24,10 @@
       {% endif %}
 
       {% endwith %}
+
+      <div class=update-remove-container>
+          <a href="{% url 'delete-listing' id=artwork.id %}" class="btn btn-secondary"> Remove listing</a>
+      </div>
       <div class="description-container">
 
             <div class="information">
