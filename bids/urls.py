@@ -12,4 +12,5 @@ urlpatterns = [
     path("my_bids/", views.my_bids, name="my_bids"),
     path("artwork/<int:artwork_id>/bid/make",views.make_bid,name="make_bid"),
     path("artwork/<int:artwork_id>/bid/submit", views.submit_bid, name="submit_bid"),
+    path("accept_bid/<int:bid_id>",views.accept_bid,name="accept-bid")
 ]

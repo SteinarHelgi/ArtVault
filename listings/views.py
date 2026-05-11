@@ -1,6 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from artvault.models import Artwork, ArtworkImage
 from listings.forms.listing_form import ArtworkListingForm
@@ -20,17 +21,23 @@ def add_listing_view(request):
         form = ArtworkListingForm(request.POST, request.FILES)
 
         if form.is_valid():
+            print("form is valid")
             artwork = form.save(commit=False)
             artwork.seller = seller_profile
+            artwork.sold = False
             artwork.save()
 
-            ArtworkImage.objects.create(
-                artwork=artwork,
-                image=form.cleaned_data["image"],
-            )
+            images = request.FILES.getlist("images")
+
+            for image in images:
+                ArtworkImage.objects.create(artwork=artwork, image=image)
 
             return redirect("my_profile_seller")
+        else:
+            print(form.errors)
+
     else:
+        print("form is not valid")
         form = ArtworkListingForm()
 
     return render(request, "listings/add_listing.html", {"form": form})
@@ -38,5 +45,16 @@ def add_listing_view(request):
 
 def my_listing_view(request, id):
     artwork = Artwork.objects.get(pk=id)
-    bids = artwork.bids.all().order_by('-amount')
-    return render(request, "listings/my_listing.html", {"artwork": artwork,"bids": bids})
+    bids = artwork.bids.all().order_by("-amount")
+    auction_over = False
+    if timezone.now().date() > artwork.auction_end_date:
+        auction_over = True
+    return render(
+        request,
+        "listings/my_listing.html",
+        {
+            "artwork": artwork,
+            "bids": bids,
+            "auction_over": auction_over,
+        },
+    )
