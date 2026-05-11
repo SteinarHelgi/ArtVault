@@ -128,7 +128,8 @@ def seller_setup(request):
         request,
         template_name="user/seller_setup.html",
         context={
-            "form": form})
+            "form": form,
+        })
 
 # view for viewing your own profile
 @login_required

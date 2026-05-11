@@ -67,6 +67,12 @@ def browse_artwork(request):
     min_price = request.GET.get("min_price")
     max_price = request.GET.get("max_price")
 
+    # price slider filter
+    slider_max_price = max(
+        [artwork.filter_price for artwork in art],
+        default=1000000
+    )
+
     if min_price:
         art = [artwork for artwork in art if artwork.filter_price >= int(min_price)]
 
@@ -80,6 +86,9 @@ def browse_artwork(request):
             "art": art,
             "art_movements": art_movements,
             "mediums": mediums,
+            "slider_max_price": slider_max_price,
+            "selected_min_price": min_price or 0,
+            "selected_max_price": max_price or slider_max_price,
         },
     )
 
