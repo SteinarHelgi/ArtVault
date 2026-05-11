@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/art-details.css' %}">
+
+<div class="art-details-container">
+      <h1 class="title">{{artwork.title}} </h1>
+
+
+      {% with img=artwork.images.first %}
+      {% if img %}
+      <div class="images-container">
+            <img class="main-image" src="{{ img.image.url }}" alt="image of artwork">
+            <div class="other-images">
+                  <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
+                  <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
+            </div>
+
+
+
+      </div>
+
+      {% endif %}
+
+      {% endwith %}
+      <div class="description-container">
+
+            <div class="information">
+
+                  <h2 class="artist-name">{{ artwork.artist_name }} <span class="year">( {{artwork.date.year}} )</span>
+                  </h2>
+                  <p class="history">{{ artwork.history }}</p>
+                  <p class="italic-text">{{ artwork.medium }}</p>
+                  <p class="italic-text">{{ artwork.dimensions }}</p>
+                  <p class="italic-text">{{ artwork.edition }}</p>
+                  <p class="italic-text">{{ artwork.art_movement }}</p>
+                  <p>{{auction_over}}</p>
+                  <p>{{artwork.auction_end_date}}</p>
+                  <p>{{ a.history }}</p>
+
+            </div>
+
+      </div>
+
+      <h1>Bids for this listing</h1>
+      <div class="gallery-container">
+
+            {% for bid in bids %}
+
+            <a class="art-card">
+                  <div class="art-card-info">
+                        {% if auction_over %}
+                        <p>{{bid.status}}</p>
+                        <a href="{%url 'accept-bid' bid.id %}"> Accept bid</a>
+                        {% endif %}
+                        <h5>{{bid.buyer.full_name}}</h5>
+                        <p class="price">{{bid.amount}}kr</p>
+                  </div>
+            </a>
+            {% endfor %}
+            <div>
+            </div>
+
+
+      </div>
+</div>
+
+{% endblock %}

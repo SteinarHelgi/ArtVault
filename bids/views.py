@@ -235,3 +235,12 @@ def submit_bid(request, artwork_id):
     request.session.pop("pending_bid_amount", None)
 
     return render_artwork_bid(request, artwork, "success", amount)
+
+
+@login_required
+def accept_bid(request, bid_id):
+    bid = get_object_or_404(Bid, id=bid_id)
+
+    bid.status = "accepted"
+    bid.save()
+    return redirect("my_profile_seller")

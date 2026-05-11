@@ -27,8 +27,8 @@ class Artwork(models.Model):
     date = models.DateField()
     starting_price = models.CharField(max_length=255)
     art_movement = models.CharField(max_length=255)
-    auction_start_date = models.DateField(default=timezone.now)
-    auction_end_date = models.DateField(default=default_end_date)
+    auction_start_date = models.DateField()
+    auction_end_date = models.DateField()
 
 
 class ArtworkImage(models.Model):
