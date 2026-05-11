@@ -38,6 +38,8 @@
                   <p>{{ a.history }}</p>
 
             </div>
+            {% if request.user.profile.role not in 'individual_seller,gallery' %}
+            
             <div class="bid-info">
                   {% if bid_step == "make" %}
                   {% include "artvault/components/make_box.html" %}
@@ -49,11 +51,12 @@
                   {% include "artvault/components/bid_box.html" %}
                   {% endif %}
             </div>
+            {% endif %}
       </div>
       <div class="seller-info">
             <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
                   {% if artwork.seller.logo %}
-                  <img class="image" src="{{ artwork.seller.logo.url }}" alt="seller logo">
+                  <img class="image" src="{{ artwork.seller.logo }}" alt="seller logo">
                   {% endif %}
                   <div class="art-card-info">
                         <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>

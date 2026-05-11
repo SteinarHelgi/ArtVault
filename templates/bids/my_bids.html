@@ -18,9 +18,12 @@
             <p>Bid amount: {{ bid.amount }}</p>
             <p>Status: {{ bid.status }}</p>
             {% if bid.status == 'accepted' %}
+            {% if not bid.artwork.sold %}
+            
             <a href="{% url 'shipping' bid.id %}" class="finalize-bid-button">
                   Finalize bid
             </a>
+            {% endif %}
             {% endif %}
       </div>
       {% empty %}
