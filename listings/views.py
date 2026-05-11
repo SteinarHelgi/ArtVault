@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.contrib import messages
 from artvault.models import Artwork, ArtworkImage
 from listings.forms.listing_form import ArtworkListingForm
-from listings.forms.update_listing_form import UpdateArtworkListingForm
+
 
 
 # Create your views here.
@@ -79,7 +79,7 @@ def update_listing_view(request, id):
         return HttpResponseForbidden("You can only update your own listings.")
 
     if request.method == "POST":
-        form = UpdateArtworkListingForm(request.POST, request.FILES, instance=artwork)
+        form = ArtworkListingForm(request.POST, request.FILES, instance=artwork)
 
         if form.is_valid():
             artwork = form.save()
@@ -100,7 +100,7 @@ def update_listing_view(request, id):
             return redirect("my-listing", id=id)
 
     else:
-        form = UpdateArtworkListingForm(instance=artwork)
+        form = ArtworkListingForm(instance=artwork)
 
     return render(request, "listings/update_listing.html", {
         'id': id,
