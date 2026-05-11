@@ -26,7 +26,8 @@
       {% endwith %}
 
       <div class=update-remove-container>
-          <a href="{% url 'delete-listing' id=artwork.id %}" class="btn btn-secondary"> Remove listing</a>
+          <a href="{% url 'delete-listing' id=artwork.id %}" class="btn btn-secondary" onclick="return confirm('Are you sure you want to remove this?')"> Remove listing</a>
+          <a href="{% url 'update-listing' id=artwork.id %}" class="btn btn-secondary"> Update listing</a>
       </div>
       <div class="description-container">
 
