@@ -3,6 +3,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
+from django.contrib import messages
 from artvault.models import Artwork, ArtworkImage
 from listings.forms.listing_form import ArtworkListingForm
 
@@ -28,6 +29,7 @@ def add_listing_view(request):
             artwork.save()
 
             images = request.FILES.getlist("images")
+            messages.success(request, "listing_created")
 
             for image in images:
                 ArtworkImage.objects.create(artwork=artwork, image=image)
