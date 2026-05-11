@@ -199,7 +199,7 @@ def make_bid(request, artwork_id):
             return redirect("make_bid", artwork_id)
 
         amount = int(amount)
-        minimum_bid = current_price + 5000
+        minimum_bid = int(current_price) + 5000
 
         if amount < minimum_bid:
             messages.error(
