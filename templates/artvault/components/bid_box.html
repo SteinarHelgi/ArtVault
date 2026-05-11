@@ -16,8 +16,13 @@
         </a>
 
         <div class="bid-close">
-        <span>⌛</span>
-        <p>Bid close: <strong>In 2 days</strong></p>
+        <div>
+              
+        
+        <p>Bid close: <strong>In {{artwork.days_remaining}} Days</strong> <span>⌛</span></p>
+
+        <p>{{artwork.auction_end_date}}</p>
+        </div>
     </div>
 
     {% else %}

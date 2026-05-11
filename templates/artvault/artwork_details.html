@@ -38,7 +38,7 @@
                   <p>{{ a.history }}</p>
 
             </div>
-            {% if request.user.profile.role not in 'individual_seller,gallery' %}
+            {% if user.profile.role not in 'individual_seller,gallery' %}
             
             <div class="bid-info">
                   {% if bid_step == "make" %}
