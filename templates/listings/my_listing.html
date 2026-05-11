@@ -36,6 +36,7 @@
                   <p class="italic-text">{{ artwork.edition }}</p>
                   <p class="italic-text">{{ artwork.art_movement }}</p>
                   <p>Auction over?: {{auction_over}}</p>
+                  <p>sold ? {{artwork.sold}} </p>
                   <p>Starting price: {{artwork.starting_price}}</p>
                   <p>auction end date: {{artwork.auction_end_date}}</p>
                   <p>history: {{ artwork.history }}</p>
@@ -48,12 +49,17 @@
       <div class="gallery-container">
 
             {% for bid in bids %}
-
             <a class="art-card">
                   <div class="art-card-info">
                         <p>{{bid.status}}</p>
                         {% if auction_over %}
-                        <a href="{%url 'accept-bid' bid.id %}"> Accept bid</a>
+                        {% if not bid.artwork.sold %}
+
+                        <form action="{% url 'accept-bid' bid.id %}" method="post">
+                              {% csrf_token %}
+                              <button type="submit">Accept Bid</button>
+                        </form>
+                        {% endif %}
                         {% endif %}
                         <h5>{{bid.buyer.full_name}}</h5>
                         <p class="price">{{bid.amount}}kr</p>

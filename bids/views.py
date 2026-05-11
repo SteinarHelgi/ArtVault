@@ -240,7 +240,11 @@ def submit_bid(request, artwork_id):
 @login_required
 def accept_bid(request, bid_id):
     bid = get_object_or_404(Bid, id=bid_id)
+    artwork = bid.artwork
 
     bid.status = "accepted"
     bid.save()
-    return redirect("my_profile_seller")
+    artwork.sold = True
+    artwork.save()
+
+    return redirect(request.META.get("HTTP_REFERER"))
