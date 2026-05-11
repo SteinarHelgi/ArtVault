@@ -11,11 +11,23 @@
       {% with img=artwork.images.first %}
       {% if img %}
       <div class="images-container">
-            <img class="main-image" src="{{ img.image.url }}" alt="image of artwork">
-            <div class="other-images">
-                  <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
-                  <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
-            </div>
+                {% with main_image=artwork.images.first %}
+                    {% if main_image %}
+                        <img class="main-image"
+                             src="{{ main_image.image.url }}"
+                             alt="image of artwork">
+                    {% endif %}
+                {% endwith %}
+
+                <div class="other-images">
+                    {% for img in artwork.images.all %}
+                        {% if not forloop.first %}
+                            <img src="{{ img.image.url }}"
+                                 class="side-image"
+                                 alt="image of artwork">
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
 
 

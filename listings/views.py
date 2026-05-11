@@ -26,6 +26,14 @@ def add_listing_view(request):
         form = ArtworkListingForm(request.POST, request.FILES)
 
         if form.is_valid():
+            images = request.FILES.getlist("images")
+
+            if len(images) > 3:
+                form.add_error(None, "You can upload a maximum of 3 images.")
+                return render(request, "listings/add_listing.html", {
+                    "form": form
+                })
+
             print("form is valid")
             artwork = form.save(commit=False)
             artwork.seller = seller_profile
@@ -82,23 +90,30 @@ def update_listing_view(request, id):
         form = ArtworkListingForm(request.POST, request.FILES, instance=artwork)
 
         if form.is_valid():
+            images = request.FILES.getlist("images")
+
+            if len(images) > 3:
+                form.add_error(None, "You can upload a maximum of 3 images.")
+                return render(request, "listings/update_listing.html", {
+                    'id': id,
+                    'form': form,
+                    'artwork': artwork,
+                })
+
             artwork = form.save()
 
-            new_image = form.cleaned_data.get("image")
+            new_images = request.FILES.getlist("images")
 
-            if new_image:
-                artwork_image = artwork.images.first()
+            if new_images:
+                artwork.images.all().delete()
 
-                if artwork_image:
-                    artwork_image.image = new_image
-                    artwork_image.save()
-                else:
+                for image in new_images:
                     ArtworkImage.objects.create(
                         artwork=artwork,
-                        image=new_image
+                        image=image
                     )
-            return redirect("my-listing", id=id)
 
+            return redirect("my-listing", id=id)
     else:
         form = ArtworkListingForm(instance=artwork)
 

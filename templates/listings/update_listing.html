@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="update-listing-page">
-      <h1>Add Listing</h1>
+      <h1>Update Listing</h1>
 
       <form method="post" enctype="multipart/form-data" class="update_listing_form" action="{% url 'update-listing' id %}">
             {% csrf_token %}
@@ -66,14 +66,24 @@
             </div>
 
             <div class="form-group">
-                <label for="{{ form.image.id_for_label }}">Artwork image</label>
-                {{ form.image }}
+                <label for="images">Artwork images</label>
+                <input type="file" name="images" id="images" multiple>
             </div>
+              {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                {% endif %}
 
             <button type="submit" class="primary-button">
                   Update Listing
             </button>
       </form>
 </div>
+
+
 
 {% endblock %}
