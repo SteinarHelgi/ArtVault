@@ -35,9 +35,10 @@
                   <p class="italic-text">{{ artwork.dimensions }}</p>
                   <p class="italic-text">{{ artwork.edition }}</p>
                   <p class="italic-text">{{ artwork.art_movement }}</p>
-                  <p>{{auction_over}}</p>
-                  <p>{{artwork.auction_end_date}}</p>
-                  <p>{{ a.history }}</p>
+                  <p>Auction over?: {{auction_over}}</p>
+                  <p>Starting price: {{artwork.starting_price}}</p>
+                  <p>auction end date: {{artwork.auction_end_date}}</p>
+                  <p>history: {{ artwork.history }}</p>
 
             </div>
 
@@ -50,8 +51,8 @@
 
             <a class="art-card">
                   <div class="art-card-info">
-                        {% if auction_over %}
                         <p>{{bid.status}}</p>
+                        {% if auction_over %}
                         <a href="{%url 'accept-bid' bid.id %}"> Accept bid</a>
                         {% endif %}
                         <h5>{{bid.buyer.full_name}}</h5>
