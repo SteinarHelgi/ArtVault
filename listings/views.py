@@ -1,6 +1,6 @@
 from django.db import transaction
 from django.http import HttpResponseForbidden
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
 from artvault.models import Artwork, ArtworkImage
@@ -58,3 +58,8 @@ def my_listing_view(request, id):
             "auction_over": auction_over,
         },
     )
+
+def delete_listing_view(request, id):
+    artwork = get_object_or_404(Artwork, pk=id)
+    artwork.delete()
+    return redirect("my_profile_seller")
