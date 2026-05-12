@@ -16,14 +16,14 @@
         </a>
 
         <div class="bid-close">
-        <div>
-              
-        
-        <p>Bid close: <strong>In {{artwork.days_remaining}} Days</strong> <span>⌛</span></p>
+            <div>
 
-        <p>{{artwork.auction_end_date}}</p>
+
+                <p>Bid close: <strong>In {{artwork.days_remaining}} Days</strong> <span>⌛</span></p>
+
+                <p>{{artwork.auction_end_date}}</p>
+            </div>
         </div>
-    </div>
 
     {% else %}
 
@@ -37,7 +37,7 @@
                 <img src="{% static 'img/login.svg' %}" alt="login">
             </div>
 
-            <div class="auth-buttons"></div>
+            <div class="auth-buttons">
                 <a href="{% url 'login' %}" class="login-btn">
                     Login
                 </a>

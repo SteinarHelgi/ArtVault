@@ -52,28 +52,30 @@
             </div>
 
             <div class="bid-info">
-            {% if not user.is_authenticated %}
-                {% include "artvault/components/bid_box.html" %}
+                {% if not user.is_authenticated %}
+                    {% include "artvault/components/bid_box.html" %}
 
 
                 {% elif user.profile.role != "individual_seller" and user.profile.role != "gallery" %}
 
-                    {% if auction_over %}
-                      {% include "artvault/components/sold_box.html" %}
-                    {% elif bid_step == "make" %}
-                        {% include "artvault/components/make_box.html" %}
-                    {% elif bid_step == "confirm" %}
-                        {% include "artvault/components/confirm_box.html" %}
-                    {% elif bid_step == "success" %}
-                        {% include "artvault/components/success_box.html" %}
-                    {% endif %}
-            {% endif %}
+                        {% if auction_over %}
+                          {% include "artvault/components/sold_box.html" %}
+                        {% elif bid_step == "make" %}
+                            {% include "artvault/components/make_box.html" %}
+                        {% elif bid_step == "confirm" %}
+                            {% include "artvault/components/confirm_box.html" %}
+                        {% elif bid_step == "success" %}
+                            {% include "artvault/components/success_box.html" %}
+                         {% else %}
+                            {% include "artvault/components/bid_box.html" %}
+                        {% endif %}
+                {% endif %}
             </div>
       </div>
       <div class="seller-info">
             <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
                   {% if artwork.seller.logo %}
-                        <img class="image" src="{{ artwork.seller.logo }}" alt="seller logo">
+                        <img class="image" src="{{ artwork.seller.logo.url }}" alt="seller logo">
                   {% endif %}
                   <div class="art-card-info">
                         <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>
@@ -89,4 +91,4 @@
 </div>
 
 
-      {% endblock %}
+{% endblock %}
