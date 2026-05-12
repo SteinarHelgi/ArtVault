@@ -31,10 +31,11 @@
                   <h2 class="artist-name">{{ artwork.artist_name }} <span class="year">( {{artwork.date.year}} )</span>
                   </h2>
                   <p class="history">{{ artwork.history }}</p>
-                  <p class="italic-text">{{ artwork.medium }}</p>
-                  <p class="italic-text">{{ artwork.dimensions }}</p>
-                  <p class="italic-text">{{ artwork.edition }}</p>
-                  <p class="italic-text">{{ artwork.art_movement }}</p>
+                  <p class="italic-text">Medium: {{ artwork.medium }}</p>
+                  <p class="italic-text">Dimensions: {{ artwork.dimensions }}</p>
+                  <p class="italic-text">Edition: {{ artwork.edition }}</p>
+                  <p class="italic-text">Art movement: {{ artwork.art_movement }}</p>
+                  <p class="italic-text">Listing date: {{ artwork.date }}</p>
                   <p>{{ a.history }}</p>
 
             </div>
@@ -42,11 +43,11 @@
             {% if not user.is_authenticated %}
             <div class="bid-info">
                 {% include "artvault/components/bid_box.html" %}
-             </div>
 
-            {% elif user.profile.role != "individual_seller" and user.profile.role != "gallery" %}
+
+                {% elif user.profile.role != "individual_seller" and user.profile.role != "gallery" %}
             
-            <div class="bid-info">
+
                   {% if bid_step == "make" %}
                   {% include "artvault/components/make_box.html" %}
                   {% elif bid_step == "confirm" %}

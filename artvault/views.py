@@ -7,6 +7,7 @@ from artvault.models import Artwork, Bid
 from bids.views import render_artwork_bid
 from artvault.models import Artmovement, ArtmovementArtist
 from random import shuffle
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here
@@ -148,4 +149,20 @@ def movement_artists(request, slug):
 
     return render(request, "artvault/movement_artist.html", {
         "artist": artist,
+    })
+
+@login_required
+def my_profile_seller(request):
+    seller_profile = get_object_or_404(
+        SellerProfileModel,
+        profile__user=request.user
+    )
+
+    seller_artworks = Artwork.objects.filter(
+        seller=seller_profile
+    ).prefetch_related("images")
+
+    return render(request, "user/my_profile_seller.html", {
+        "seller_profile": seller_profile,
+        "seller_artworks": seller_artworks,
     })

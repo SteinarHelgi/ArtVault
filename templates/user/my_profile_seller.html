@@ -10,7 +10,11 @@
 
       <div class="profile-card">
             <div class="profile-img">
+          {% if seller_profile.logo %}
                   <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
+          {% else %}
+                <p>No profile image</p>
+          {% endif %}
             </div>
             <div class="profile-info">
                   <p>{{ seller_profile.profile.role }}</p>

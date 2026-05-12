@@ -120,7 +120,7 @@
                   <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
                   {% else %}
                   <h4>Click below to create your first listing and share your art with others.</h4>
-                  <a href="/" class="modal-btn">Create listing</a>
+                  <a href="{% url 'my-profile-seller' %}" class="modal-btn">Create listing</a>
                   {% endif %}
             </div>
       </div>
