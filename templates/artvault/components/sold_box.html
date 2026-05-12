@@ -1,0 +1,16 @@
+{% load static %}
+
+<div class="bid-card">
+    <div class="star-img">
+        <img src="{% static 'img/gavel.svg' %}" alt="warning">
+    </div>
+
+    <h2 class="bid-label">This artwork has been sold!</h2>
+
+    <div class="bid-text">
+        <p>sold for {{ current_price }} Kr.</p>
+    </div>
+
+    <a href="{% url 'browse-artwork' %}" class="success-button">Continue Shopping</a>
+
+</div>

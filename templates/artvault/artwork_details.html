@@ -58,15 +58,15 @@
 
                 {% elif user.profile.role != "individual_seller" and user.profile.role != "gallery" %}
 
-                  {% if bid_step == "make" %}
-                  {% include "artvault/components/make_box.html" %}
-                  {% elif bid_step == "confirm" %}
-                  {% include "artvault/components/confirm_box.html" %}
-                  {% elif bid_step == "success" %}
-                  {% include "artvault/components/success_box.html" %}
-                  {% else %}
-                  {% include "artvault/components/bid_box.html" %}
-                  {% endif %}
+                    {% if auction_over %}
+                      {% include "artvault/components/sold_box.html" %}
+                    {% elif bid_step == "make" %}
+                        {% include "artvault/components/make_box.html" %}
+                    {% elif bid_step == "confirm" %}
+                        {% include "artvault/components/confirm_box.html" %}
+                    {% elif bid_step == "success" %}
+                        {% include "artvault/components/success_box.html" %}
+                    {% endif %}
             {% endif %}
             </div>
       </div>
