@@ -20,7 +20,7 @@ EDITION_CHOICES = [
 
 
 class ArtworkListingForm(forms.ModelForm):
-    image = forms.ImageField()
+    image = forms.ImageField(required=False)
 
     medium = forms.ChoiceField(
         choices=MEDIUM_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
@@ -37,7 +37,6 @@ class ArtworkListingForm(forms.ModelForm):
             "medium",
             "edition",
             "dimensions",
-            "sold",
             "history",
             "artist_name",
             "date",

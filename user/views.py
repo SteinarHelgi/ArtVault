@@ -13,6 +13,7 @@ from user.forms.accountSettingsForm import BuyerAccountSettingsForm, IndividualS
 from .models import BuyerProfileModel, Profile, SellerProfileModel
 from django.contrib.auth import get_user_model
 
+from django.db.models import Max
 # Create your views here.
 
 # Roles
@@ -127,15 +128,17 @@ def seller_setup(request):
         request,
         template_name="user/seller_setup.html",
         context={
-            "form": form})
+            "form": form,
+        })
 
 # view for viewing your own profile
 @login_required
 def my_profile_seller(request):
     seller_profile = request.user.profile.seller_profile
 
-    artworks = seller_profile.artworks.all()
-
+    artworks = seller_profile.artworks.annotate(
+        highest_bid=Max("bids__amount")
+    )
     return render(
         request,
         "user/my_profile_seller.html",

@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="add-listing-page">
-      <h1>Add Listing</h1>
+<div class="update-listing-page">
+      <h1>Update Listing</h1>
 
-      <form method="post" enctype="multipart/form-data" class="add_listing_form">
+      <form method="post" enctype="multipart/form-data" class="update_listing_form" action="{% url 'update-listing' id %}">
             {% csrf_token %}
 
             <div class="form-group">
@@ -66,10 +66,10 @@
             </div>
 
             <div class="form-group">
-                  <label for="images">Artwork images</label>
-                  <input type="file" name="images" id="images" multiple>
+                <label for="images">Artwork images</label>
+                <input type="file" name="images" id="images" multiple>
             </div>
-                {% if form.non_field_errors %}
+              {% if form.non_field_errors %}
                 <div class="form-errors">
                     {% for error in form.non_field_errors %}
                         <p>{{ error }}</p>
@@ -79,9 +79,11 @@
                 {% endif %}
 
             <button type="submit" class="primary-button">
-                  Create Listing
+                  Update Listing
             </button>
       </form>
 </div>
+
+
 
 {% endblock %}

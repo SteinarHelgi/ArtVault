@@ -1,58 +1,88 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/popup.css' %}">
 <div class="profile-page">
-    <div class="profile-cover"
-         style="background-image: url('{{ seller_profile.cover_photo.url }}')">
-    </div>
+      <div class="profile-cover" style="background-image: url('{{ seller_profile.cover_photo.url }}')">
+      </div>
 
       <div class="profile-card">
-          <div class="profile-img">
-                <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
-          </div>
+            <div class="profile-img">
+                  <img src="{{ seller_profile.logo.url }}" alt="Profile picture">
+            </div>
             <div class="profile-info">
-                    <p>{{ seller_profile.profile.role }}</p>
-                    <p>@{{ seller_profile.profile.user }}</p>
-                <div class="profile-address">
-                    <p>{{ seller_profile.street_name }}</p>
-                    <p>{{ seller_profile.city }}</p>
-                    <p>{{ seller_profile.zip_code }}</p>
-                </div>
+                  <p>{{ seller_profile.profile.role }}</p>
+                  <p>@{{ seller_profile.profile.user }}</p>
+                  <div class="profile-address">
+                        <p>{{ seller_profile.street_name }}</p>
+                        <p>{{ seller_profile.city }}</p>
+                        <p>{{ seller_profile.zip_code }}</p>
+                  </div>
             </div>
       </div>
-    <div class="profile-name">
-        <h2>{{ seller_profile.seller_name}}</h2>
-        <p class="profile-bio">{{ seller_profile.bio }}</p>
-    </div>
+      <div class="profile-name">
+            <h2>{{ seller_profile.seller_name}}</h2>
+            <p class="profile-bio">{{ seller_profile.bio }}</p>
+      </div>
 </div>
 
 <div class="gallery-section">
-    <div class="gallery-header">
+      <div class="gallery-header">
             <h2>Listed Artworks</h2>
             <div class="add-listing-button">
-                <a href="{% url 'add_listing' %}">Add listing</a>
+                  <a href="{% url 'add_listing' %}">Add listing</a>
             </div>
-    </div>
-    <div class="gallery-container">
-        {% for artwork in artworks %}
-            <a href="{% url 'artwork-details' artwork.id %}" class="art-card">
-                {% with img=artwork.images.first %}
-                    {% if img %}
-                        <div class="image" style="background-image: url('{{ img.image.url }}')"></div>
-                    {% endif %}
-                {% endwith %}
-                <div class="art-card-info">
-                    <h5>{{ artwork.title }}</h5>
-                    <p>{{ artwork.medium }}</p>
-                <p class="price">Starting bid: <b>{{ artwork.starting_price }} kr.</b></p>
-                </div>
+      </div>
+      <div class="gallery-container">
+            {% for artwork in artworks %}
+            <a href="{% url 'my-listing' artwork.id %}" class="art-card">
+                  {% with img=artwork.images.first %}
+                  {% if img %}
+                  <div class="image" style="background-image: url('{{ img.image.url }}')"></div>
+                  {% endif %}
+                  {% endwith %}
+                  <div class="art-card-info">
+                        <h5>{{ artwork.title }}</h5>
+                        <p>{{ artwork.medium }}</p>
+                        {% if artwork.sold %}
+                              <p>bidding ended on {{artwork.auction_end_date}}</p>
+                              <p class="price">Sold for: <b>{{ artwork.highest_bid }} kr.</b></p>
+                        {% else %}
+                        <p>bidding ends on {{artwork.auction_end_date}}</p>
+                        <p class="price">Starting bid: <b>{{ artwork.starting_price }} kr.</b></p>
+                        {% endif %}
+                  </div>
             </a>
             {% empty %}
-        <div class="empty">
-            <h3>This seller has no artworks listed yet.</h3>
-        </div>
-        {% endfor %}
-    </div>
+            <div class="empty">
+                  <h3>This seller has no artworks listed yet.</h3>
+            </div>
+            {% endfor %}
+      </div>
 </div>
+      {% if messages %}
+      {% for message in messages %}
+      {% if message.message == "listing_created" %}
+      <div id="popupModal" class="modal">
+            <div class="modal-content">
+                  <button class="close-btn" onclick="closeModal()">X</button>
+
+                  <div class="info-container">
+                        
+                  <h2>Listing Created!</h2>
+                  <div>
+                        
+                  <p>Your artwork is now live on ArtVault!
+                  </p>
+                  <img src="{% static 'img/moneybag.svg' %}" alt="moneybag" class="moneybag">
+
+                  </div>
+                  </div>
+            </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
 {% endblock %}

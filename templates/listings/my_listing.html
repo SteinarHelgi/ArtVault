@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/art-details.css' %}">
+
+<div class="art-details-container">
+      <h1 class="title">{{artwork.title}} </h1>
+
+
+      {% with img=artwork.images.first %}
+      {% if img %}
+      <div class="images-container">
+                {% with main_image=artwork.images.first %}
+                    {% if main_image %}
+                        <img class="main-image"
+                             src="{{ main_image.image.url }}"
+                             alt="image of artwork">
+                    {% endif %}
+                {% endwith %}
+
+                <div class="other-images">
+                    {% for img in artwork.images.all %}
+                        {% if not forloop.first %}
+                            <img src="{{ img.image.url }}"
+                                 class="side-image"
+                                 alt="image of artwork">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
+
+      </div>
+
+      {% endif %}
+
+      {% endwith %}
+
+      <div class=update-remove-container>
+          <a href="{% url 'delete-listing' id=artwork.id %}" class="btn btn-secondary" onclick="return confirm('Are you sure you want to remove this?')"> Remove listing</a>
+          <a href="{% url 'update-listing' id=artwork.id %}" class="btn btn-secondary"> Update listing</a>
+      </div>
+      <div class="description-container">
+
+            <div class="information">
+
+                  <h2 class="artist-name">{{ artwork.artist_name }} <span class="year">( {{artwork.date.year}} )</span>
+                  </h2>
+                  <p class="history">{{ artwork.history }}</p>
+                  <p class="italic-text">{{ artwork.medium }}</p>
+                  <p class="italic-text">{{ artwork.dimensions }}</p>
+                  <p class="italic-text">{{ artwork.edition }}</p>
+                  <p class="italic-text">{{ artwork.art_movement }}</p>
+                  <p>Auction over?: {{auction_over}}</p>
+                  <p>sold ? {{artwork.sold}} </p>
+                  <p>Starting price: {{artwork.starting_price}}</p>
+                  <p>auction end date: {{artwork.auction_end_date}}</p>
+                  <p>history: {{ artwork.history }}</p>
+
+            </div>
+
+      </div>
+
+      <h1>Bids for this listing</h1>
+      <div class="gallery-container">
+
+            {% for bid in bids %}
+            <a class="art-card">
+                  <div class="art-card-info">
+                        <p>{{bid.status}}</p>
+                        {% if auction_over %}
+                        {% if not bid.artwork.sold %}
+
+                        <form action="{% url 'accept-bid' bid.id %}" method="post">
+                              {% csrf_token %}
+                              <button type="submit">Accept Bid</button>
+                        </form>
+                        {% endif %}
+                        {% endif %}
+                        <h5>{{bid.buyer.full_name}}</h5>
+                        <p class="price">{{bid.amount}}kr</p>
+                  </div>
+            </a>
+            {% endfor %}
+            <div>
+            </div>
+
+
+      </div>
+</div>
+
+{% endblock %}

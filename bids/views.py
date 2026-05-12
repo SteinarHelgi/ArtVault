@@ -1,5 +1,6 @@
 from django.contrib.auth.views import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from bids.forms.shippingForm import ShippingForm
 from bids.forms.bankTransferForm import BankTransferForm
 from bids.forms.wireTransferForm import WireTransferForm
@@ -169,7 +170,7 @@ def my_bids(request):
 def render_artwork_bid(request, artwork, bid_step=None, amount=None):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
-
+    artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
     return render(
         request,
         "artvault/artwork_details.html",
@@ -235,3 +236,16 @@ def submit_bid(request, artwork_id):
     request.session.pop("pending_bid_amount", None)
 
     return render_artwork_bid(request, artwork, "success", amount)
+
+
+@login_required
+def accept_bid(request, bid_id):
+    bid = get_object_or_404(Bid, id=bid_id)
+    artwork = bid.artwork
+
+    bid.status = "accepted"
+    bid.save()
+    artwork.sold = True
+    artwork.save()
+
+    return redirect(request.META.get("HTTP_REFERER"))
