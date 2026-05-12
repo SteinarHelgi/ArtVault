@@ -60,6 +60,9 @@ def add_listing_view(request):
 def my_listing_view(request, id):
     artwork = Artwork.objects.get(pk=id)
     bids = artwork.bids.all().order_by("-amount")
+    artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
+    highest_bid = bids.first()
+
     auction_over = False
     if timezone.now().date() > artwork.auction_end_date:
         auction_over = True
@@ -70,6 +73,7 @@ def my_listing_view(request, id):
             "artwork": artwork,
             "bids": bids,
             "auction_over": auction_over,
+            "highest_bid": highest_bid,
         },
     )
 @login_required
