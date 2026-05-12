@@ -26,7 +26,7 @@
 
             <div class="filter-selector-button">
                 <label for="order-by"></label>
-                    <select name="order" id="order-by" onchange="this.form.submit()">
+                    <select name="order" id="order-by">
                         <option value="">Order by</option>
 
                         <option value="title"
@@ -38,11 +38,21 @@
                             {% if request.GET.order == "artist" %}selected{% endif %}>
                             Artist
                         </option>
+
+                        <option value="price_low_to_high"
+                            {% if request.GET.order == "price_low_to_high" %}selected{% endif %}>
+                            Price: Low to high
+                        </option>
+
+                        <option value="price_high_to_low"
+                            {% if request.GET.order == "price_high_to_low" %}selected{% endif %}>
+                            Price: High to low
+                        </option>
                     </select>
 
 
                 <label for="movement"> </label>
-                    <select name="movement" id="movement" onchange="this.form.submit()">
+                    <select name="movement" id="movement">
                         <option value="">Art movement</option>
 
                         {% for movement in art_movements %}
@@ -56,7 +66,7 @@
                     </select>
 
                 <label for="medium"></label>
-                    <select name="medium" id="medium" onchange="this.form.submit()">
+                    <select name="medium" id="medium">
                         <option value="">Medium</option>
 
                         {% for medium in mediums %}
@@ -75,14 +85,16 @@
                     <div class="price-input">
                         <div class="field">
                           <span>Min</span>
-                          <input type="number" class="input-min" value="{{ selected_min_price }}">
+                            <label for="input-min"></label>
+                          <input type="number" id="input-min" class="input-min" value="{{ selected_min_price }}">
                         </div>
 
                         <div class="separator">-</div>
 
                         <div class="field">
                           <span>Max</span>
-                          <input type="number" class="input-max" value="{{ selected_max_price }}">
+                            <label for="input-max"></label>
+                          <input type="number" id="input-max" class="input-max" value="{{ selected_max_price }}">
                         </div>
                     </div>
 
@@ -92,12 +104,20 @@
                       </div>
 
                       <div class="range-input">
-                        <input type="range" name="min_price" class="range-min" min="0" max="{{ slider_max_price }}" value="{{ selected_min_price }}"  step="1000">
-                        <input type="range" name="max_price" class="range-max" min="0" max="{{ slider_max_price }}" value="{{ selected_max_price }}"  step="1000">
+                          <label for="range-min"></label>
+                        <input type="range" id="range-min" name="min_price" class="range-min" min="0" max="{{ slider_max_price }}" value="{{ selected_min_price }}"  step="1000">
+                          <label for="range-max"></label>
+                        <input type="range" id="range-max" name="max_price" class="range-max" min="0" max="{{ slider_max_price }}" value="{{ selected_max_price }}"  step="1000">
                       </div>
-
-                    <button class="price-button" type="submit">Apply price</button>
                 </div>
+
+            <button class="price-button" type="submit">
+                Apply filters
+            </button>
+
+            <a href="{% url 'browse-artwork' %}" class="clear-filter-button">
+                Clear filters
+            </a>
         </form>
     </div>
 

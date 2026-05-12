@@ -18,6 +18,20 @@ EDITION_CHOICES = [
     ("open_edition", "Open Edition"),
 ]
 
+ART_MOVEMENT_CHOICES = [
+    ("surrealism", "Surrealism"),
+    ("modernism", "Modernism"),
+    ("realism", "Realism"),
+    ("impressionism", "Impressionism"),
+    ("expressionism", "Expressionism"),
+    ("contemporary", "Contemporary"),
+    ("abstract", "Abstract"),
+    ("minimalism", "Minimalism"),
+    ("pop_art", "Pop Art"),
+    ("cubism", "Cubism"),
+    ("other", "Other"),
+]
+
 
 class ArtworkListingForm(forms.ModelForm):
     image = forms.ImageField(required=False)
@@ -29,6 +43,11 @@ class ArtworkListingForm(forms.ModelForm):
     edition = forms.ChoiceField(
         choices=EDITION_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
     )
+
+    art_movement = forms.ChoiceField(
+        choices=ART_MOVEMENT_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
+    )
+
 
     class Meta:
         model = Artwork

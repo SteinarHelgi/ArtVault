@@ -47,6 +47,10 @@ class Bid(models.Model):
     buyer = models.ForeignKey(BuyerProfileModel, on_delete=models.CASCADE)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE, related_name="bids")
 
+    @property
+    def formatted_amount(self):
+        return f"{self.amount:,}".replace(",", ".")
+
 
 class ArtmovementArtist(models.Model):
     objects = models.Manager()
@@ -73,7 +77,11 @@ class Artmovement(models.Model):
 
 class ArtmovementArtwork(models.Model):
     objects = models.Manager()
-    artmovement = models.ForeignKey(Artmovement, on_delete=models.CASCADE, related_name="artworks")
-    artmovement_artist = models.ForeignKey(ArtmovementArtist, on_delete=models.CASCADE, related_name="artworks")
+    artmovement = models.ForeignKey(
+        Artmovement, on_delete=models.CASCADE, related_name="artworks"
+    )
+    artmovement_artist = models.ForeignKey(
+        ArtmovementArtist, on_delete=models.CASCADE, related_name="artworks"
+    )
     images = models.ImageField(upload_to="artworks/")
     title = models.CharField(max_length=255, null=True)

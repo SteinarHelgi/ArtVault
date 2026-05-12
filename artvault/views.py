@@ -15,7 +15,7 @@ def index(request):
 
 
 def browse_artwork(request):
-    art: QuerySet[Artwork, Artwork] = Artwork.objects.prefetch_related("images")
+    art = Artwork.objects.prefetch_related("images")
 
     art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
 
@@ -64,6 +64,13 @@ def browse_artwork(request):
         else:
             artwork.current_price = 0
             artwork.filter_price = starting_price
+
+    # order by price
+    if order == "price_low_to_high":
+        art = sorted(art, key=lambda artwork: artwork.filter_price)
+
+    elif order == "price_high_to_low":
+        art = sorted(art, key=lambda artwork: artwork.filter_price, reverse=True)
 
     # price range filter
     min_price = request.GET.get("min_price")
