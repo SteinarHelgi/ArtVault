@@ -163,7 +163,7 @@ def checkout_overview(request, shipping_id):
 @login_required
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
-    bids = Bid.objects.filter(buyer=profile)
+    bids = Bid.objects.filter(buyer=profile).order_by("-timestamp")
 
     return render(
         request,

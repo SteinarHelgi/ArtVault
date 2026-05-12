@@ -29,7 +29,9 @@
                                   <p>Accepted!</p>
 
                               {% elif bid.status == "pending" %}
-                                  <p>Auction is not over</p>
+                              <p>Auction is not over</p>
+                              <p>Auction ends on: {{bid.artwork.auction_end_date}}</p>
+
 
                               {% elif bid.status == "rejected" %}
                                   <p>Rejected</p>
