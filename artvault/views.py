@@ -5,6 +5,8 @@ from artvault.models import Artwork
 from user.models import SellerProfileModel
 from artvault.models import Artwork, Bid
 from bids.views import render_artwork_bid
+from artvault.models import Artmovement, ArtmovementArtist
+from random import shuffle
 
 
 # Create your views here
@@ -119,3 +121,22 @@ def view_sellers(request):
     sellers = SellerProfileModel.objects.all()
 
     return render(request, "artvault/view_sellers.html", {"sellers": sellers})
+
+def movements(request):
+    movements = Artmovement.objects.all()
+
+    for movement in movements:
+        artworks = list(movement.artworks.all())
+        shuffle(artworks)
+        movement.shuffled_artworks = artworks
+
+    return render(request, "artvault/movements.html", {
+        "movements": movements,
+    })
+
+def movement_artists(request, slug):
+    artist = get_object_or_404(ArtmovementArtist,slug=slug)
+
+    return render(request, "artvault/movement_artist.html", {
+        "artist": artist,
+    })

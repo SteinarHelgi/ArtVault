@@ -46,3 +46,34 @@ class Bid(models.Model):
     status = models.CharField(max_length=255)
     buyer = models.ForeignKey(BuyerProfileModel, on_delete=models.CASCADE)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE, related_name="bids")
+
+
+class ArtmovementArtist(models.Model):
+    objects = models.Manager()
+    name = models.CharField(max_length=255)
+    slug = models.SlugField()
+    description = models.TextField()
+    portrait = models.ImageField(upload_to="artmovements/portraits/")
+
+    def __str__(self):
+        return self.name
+
+
+class Artmovement(models.Model):
+    objects = models.Manager()
+    name = models.CharField(max_length=255)
+    period = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    description = models.TextField()
+    artists = models.ManyToManyField(ArtmovementArtist, related_name="movements")
+
+    def __str__(self):
+        return self.name
+
+
+class ArtmovementArtwork(models.Model):
+    objects = models.Manager()
+    artmovement = models.ForeignKey(Artmovement, on_delete=models.CASCADE, related_name="artworks")
+    artmovement_artist = models.ForeignKey(ArtmovementArtist, on_delete=models.CASCADE, related_name="artworks")
+    images = models.ImageField(upload_to="artworks/")
+    title = models.CharField(max_length=255, null=True)

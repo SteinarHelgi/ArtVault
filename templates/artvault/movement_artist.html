@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="artist-movement-page">
+
+    <h1 class="artist-title">{{ artist.name }}</h1>
+
+    <div class="artist-top-section">
+
+        <div class="artist-portrait">
+            {% if artist.portrait %}
+                <img src="{{ artist.portrait.url }}" alt="{{ artist.name }}">
+            {% endif %}
+        </div>
+
+        <div class="movement-artist-description">
+            {{ artist.description }}
+        </div>
+
+    </div>
+
+    <div class="movement-artist-photos">
+        {% for artwork in artist.artworks.all %}
+            <div class="movement-artist-card">
+                {% if artwork.images %}
+                    <img src="{{ artwork.images.url }}" alt="{{ artwork.title }}">
+                {% endif %}
+                <h3>{{ artwork.title }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

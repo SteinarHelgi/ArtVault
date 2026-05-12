@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="movement-page">
+
+    {% for movement in movements %}
+
+        <div class="movement-section">
+
+            <div class="movement-header">
+                <h1>{{ movement.name }}</h1>
+                <h2>{{ movement.period }}</h2>
+            </div>
+
+
+            <div class="movement-photos">
+                {% for artwork in movement.shuffled_artworks %}
+                    <div class="movement-card">
+                        {% if artwork.images %}
+                            <img src="{{ artwork.images.url }}" alt="{{ artwork.title }}">
+                        {% endif %}
+                        <h3>{{ artwork.title }}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="movement-description">
+                {{ movement.description }}
+            </div>
+
+            <h2>Key Artists</h2>
+
+            <div class="movement-artists">
+
+
+                {% for artist in movement.artists.all %}
+                    <a href="{% url 'movement-artist' artist.slug %}" class="movement-artist-card">
+                        {% if artist.portrait %}
+                            <img src="{{ artist.portrait.url }}" alt="{{ artist.name }}">
+                        {% endif %}
+                        <h3>{{ artist.name }}</h3>
+                    </a>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+{% endblock content %}
+
+
+
+
+
