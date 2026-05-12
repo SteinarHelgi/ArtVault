@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="{% static 'css/art-details.css' %}">
 
 <div class="art-details-container">
-      <h1 class="title">{{artwork.title}} </h1>
 
+      <h1 class="my-listing-title">{{artwork.title}} </h1>
 
       {% with img=artwork.images.first %}
       {% if img %}
@@ -78,8 +78,12 @@
       </div>
 
       <h1>Bids for this listing</h1>
+        {% if not bid%}
+            <div class="no-bids">
+                <p>No bids yet. Once buyers submit bids, they will appear here.</p>
+            </div>
+        {% else %}
       <div class="gallery-container">
-
             {% for bid in bids %}
             <a class="art-card">
                   <div class="art-card-info">
@@ -100,8 +104,7 @@
             {% endfor %}
             <div>
             </div>
-
-
+        {% endif %}
       </div>
 </div>
 
