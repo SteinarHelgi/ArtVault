@@ -13,7 +13,17 @@ from django.utils import timezone
 
 # Create your views here
 def index(request):
-    return render(request, "artvault/index.html", {"art": Artwork.objects.all()})
+    artworks = Artwork.objects.filter(sold=False)
+
+    artmovement = defaultdict(list)
+
+    for artwork in artworks:
+        artmovement[artwork.art_movement].append(artwork)
+
+    return render(request, "artvault/index.html", {
+        "art": Artwork.objects.all(),
+        "artmovement": dict(artmovement),
+    })
 
 
 def browse_artwork(request):
@@ -179,3 +189,4 @@ def my_profile_seller(request):
         "seller_profile": seller_profile,
         "seller_artworks": seller_artworks,
     })
+
