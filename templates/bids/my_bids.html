@@ -26,21 +26,22 @@
                               <h2>{{ bid.artwork.title }}</h2>
                               <p>Bid amount: <b>{{ bid.formatted_amount}}kr</b></p>
                               {% if bid.status == "accepted" %}
-                              <p>Accepted!</p>
+                                  <p>Accepted!</p>
 
                               {% elif bid.status == "pending" %}
                               <p>Auction is not over</p>
+                              <p>Auction ends on: {{bid.artwork.auction_end_date}}</p>
 
 
+                              {% elif bid.status == "rejected" %}
+                                  <p>Rejected</p>
 
                               {%elif bid.status == "completed"%}
-                              <p>Completed!</p>
+                                  <p>Completed!</p>
 
                               {% endif %}
 
                               {% if bid.status == 'accepted' %}
-
-                              {% if not bid.artwork.sold %}
 
                               <a href="{% url 'shipping' bid.id %}" class="finalize-bid-button">
                                     Finalize bid
@@ -48,7 +49,6 @@
 
                               {%else%}
 
-                              {% endif %}
                               {% endif %}
                         </div>
                   </a>

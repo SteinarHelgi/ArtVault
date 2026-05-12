@@ -163,7 +163,7 @@ def checkout_overview(request, shipping_id):
 @login_required
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
-    bids = Bid.objects.filter(buyer=profile)
+    bids = Bid.objects.filter(buyer=profile).order_by("-timestamp")
 
     return render(
         request,
@@ -252,7 +252,32 @@ def submit_bid(request, artwork_id):
 def accept_bid(request, bid_id):
     bid = get_object_or_404(Bid, id=bid_id)
 
+    artwork = bid.artwork
+
+    if artwork.is_closed:
+        return redirect("artwork-details", artwork.id)
+
+    artwork.bids.exclude(id=bid.id).update(status="rejected")
+
     bid.status = "accepted"
     bid.save()
 
+    artwork.is_closed = True
+    artwork.save()
+
     return redirect(request.META.get("HTTP_REFERER"))
+
+def close_auction(artwork):
+    today = timezone.now().date()
+
+    if today >= artwork.auction_end_date and not artwork.is_closed:
+
+        highest_bid = artwork.bids.order_by("-amount").first()
+
+        if highest_bid:
+            artwork.bids.exclude(id=highest_bid.id).update(status="rejected")
+            highest_bid.status = "accepted"
+            highest_bid.save()
+
+        artwork.is_closed = True
+        artwork.save()
