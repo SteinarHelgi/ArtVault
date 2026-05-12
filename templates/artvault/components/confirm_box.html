@@ -15,5 +15,6 @@
         {% csrf_token %}
 
         <button type="submit" class="button-bid">I'm sure</button>
+        <a href="{% url 'make_bid' artwork.id %}" class="bid-button">Cancel bid</a>
     </form>
 </div>
