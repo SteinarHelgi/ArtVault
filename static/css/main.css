@@ -992,16 +992,18 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .upload-icon {
-    width: 80px;
-    height: 80px;
-    opacity: 0.7;
+      width: 80px;
+      height: 80px;
+      opacity: 0.7;
 
-}buyer-profile-preview {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 8px;
+}
+
+.buyer-profile-preview {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
 }
 
 .upload-icon {
@@ -2158,19 +2160,17 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* account settings */
 .seller-cover-box {
-    width: 700px;
-    height: 180px;
-    display: block;
-    overflow: hidden;
-    border: 1px solid #999;
+      width: 700px;
+      height: 180px;
+      display: block;
+      overflow: hidden;
+      border: 1px solid #999;
 }
 
 .seller-cover-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
 }
-
-
