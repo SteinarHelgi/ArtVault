@@ -58,14 +58,17 @@ def add_listing_view(request):
 
 @login_required
 def my_listing_view(request, id):
-    artwork = Artwork.objects.get(pk=id)
+    artwork = get_object_or_404(Artwork, pk=id)
+
     bids = artwork.bids.all().order_by("-amount")
-    artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
     highest_bid = bids.first()
 
-    auction_over = False
-    if timezone.now().date() > artwork.auction_end_date:
-        auction_over = True
+    today = timezone.now().date()
+
+    artwork.days_remaining = max((artwork.auction_end_date - today).days, 0)
+
+    auction_over = today >= artwork.auction_end_date
+
     return render(
         request,
         "listings/my_listing.html",
@@ -76,6 +79,7 @@ def my_listing_view(request, id):
             "highest_bid": highest_bid,
         },
     )
+
 @login_required
 def delete_listing_view(request, id):
     artwork = get_object_or_404(Artwork, pk=id)

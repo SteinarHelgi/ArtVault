@@ -8,6 +8,7 @@ from bids.views import render_artwork_bid
 from artvault.models import Artmovement, ArtmovementArtist
 from random import shuffle
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 
 # Create your views here
@@ -106,7 +107,16 @@ def browse_artwork(request):
 def artwork_details(request, id):
     artwork = get_object_or_404(Artwork, pk=id)
 
-    return render_artwork_bid(request, artwork)
+    today = timezone.now().date()
+
+    artwork.days_remaining = max((artwork.auction_end_date - today).days, 0)
+
+    auction_over = today >= artwork.auction_end_date
+
+    return render_artwork_bid(request, {
+        "artwork": artwork,
+        "auction_over": auction_over,
+    })
 
 
 def browse_artists(request):
