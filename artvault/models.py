@@ -29,6 +29,7 @@ class Artwork(models.Model):
     art_movement = models.CharField(max_length=255)
     auction_start_date = models.DateField()
     auction_end_date = models.DateField()
+    is_closed = models.BooleanField(default=False)
 
 
 class ArtworkImage(models.Model):

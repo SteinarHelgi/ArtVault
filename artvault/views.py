@@ -4,7 +4,7 @@ from django.db.models import Max, Q, QuerySet
 from artvault.models import Artwork
 from user.models import SellerProfileModel
 from artvault.models import Artwork, Bid
-from bids.views import render_artwork_bid
+from bids.views import render_artwork_bid, close_auction
 from artvault.models import Artmovement, ArtmovementArtist
 from random import shuffle
 from django.contrib.auth.decorators import login_required
@@ -106,6 +106,8 @@ def browse_artwork(request):
 
 def artwork_details(request, id):
     artwork = get_object_or_404(Artwork, pk=id)
+
+    close_auction(artwork)
 
     today = timezone.now().date()
 
