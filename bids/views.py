@@ -197,7 +197,6 @@ def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_ove
 @login_required
 def make_bid(request, artwork_id):
     artwork = get_object_or_404(Artwork, id=artwork_id)
-
     highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
 
