@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/art-details.css' %}">
 
 <div class="art-details-container">
+
       <h1 class="title">{{artwork.title}} </h1>
 
 
@@ -36,7 +37,6 @@
                   <p class="italic-text">Edition: {{ artwork.edition }}</p>
                   <p class="italic-text">Art movement: {{ artwork.art_movement }}</p>
                   <p class="italic-text">Listing date: {{ artwork.date }}</p>
-                  <p>{{ a.history }}</p>
 
             </div>
 
@@ -63,7 +63,7 @@
       <div class="seller-info">
             <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
                   {% if artwork.seller.logo %}
-                  <img class="image" src="{{ artwork.seller.logo }}" alt="seller logo">
+                        <img class="image" src="{{ artwork.seller.logo }}" alt="seller logo">
                   {% endif %}
                   <div class="art-card-info">
                         <h5 class="art-movement-h1">{{ artwork.seller.seller_name}}</h5>
@@ -76,8 +76,7 @@
             </a>
       </div>
 
-
-  </div>
+</div>
 
 
       {% endblock %}
