@@ -705,6 +705,19 @@ input[type="number"]::-webkit-inner-spin-button {
     width: 80px;
     height: 80px;
     opacity: 0.7;
+    
+}buyer-profile-preview {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+}
+
+.upload-icon {
+    width: 80px;
+    height: 80px;
+    opacity: 0.7;
 }
 
 .hidden-file-input {
@@ -1724,7 +1737,8 @@ input[type="number"]::-webkit-inner-spin-button {
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
-    font-size: 28px;
+    font-size: 18px;
+    font-family: var(--header-font);
 }
 
 
@@ -1732,34 +1746,26 @@ input[type="number"]::-webkit-inner-spin-button {
 .movement-description {
     max-width: 1400px;
     line-height: 1.6;
-    font-size: 24px;
+    font-size: 16px;
     margin-bottom: 30px;
+    font-family: var(--paragraph-font);
+    color: var(--light-black);
 }
 
 /* ARTWORKS */
-
-.movement-photos {
-    display: flex;
-    gap: 20px;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    padding: 20px 0;
-
-    scroll-behavior: smooth;
-}
-
-.movement-card {
-    width: 200px;
-    flex: 0 0 auto;
+.movement-page {
+     max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      height: auto;
+      padding: 40px 0 0 0;
+      box-sizing: border-box;
 }
 
 .movement-card img {
     width: 200px;
     height: 200px;
-
-    object-fit: cover;
+    object-fit: contain;
 
     border-radius: 12px;
 
@@ -1774,37 +1780,37 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .movement-artists {
     display: flex;
-    gap: 20px;
-
+    gap: 30px;
     overflow-x: auto;
     overflow-y: hidden;
-
     padding: 20px 0;
-
-    scroll-behavior: smooth;
 }
 
 .movement-artist-card {
-    width: 250px;
-    flex: 0 0 auto;
+    width: 200px;
+    flex: 0 0 200px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
 }
 
 .movement-artist-card img {
-    width: 200px;
-    height: 200px;
-
-    object-fit: contain;
-    object-position: center;
-
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover;
+    object-position: top center;
     border-radius: 12px;
-
     display: block;
 }
 
 .movement-artist-card h3 {
-    font-size: 24px;
+    font-size: 20px;
     margin-top: 12px;
-    text-align: center;
+}
+
+.artwork-movement-title {
+    font-family: var(--header-font);
+    font-size: 2px;
 }
 
 /* movements artists */
@@ -1828,7 +1834,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .artist-portrait img {
     width: 350px;
     height: 350px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .movement-artist-description {
@@ -1858,4 +1864,5 @@ input[type="number"]::-webkit-inner-spin-button {
     margin-top: 20px;
     font-size: 18px;
 }
+
 
