@@ -12,16 +12,21 @@
                 <h2>{{ movement.period }}</h2>
             </div>
 
-
-            <div class="movement-photos">
-                {% for artwork in movement.shuffled_artworks %}
-                    <div class="movement-card">
-                        {% if artwork.images %}
-                            <img src="{{ artwork.images.url }}" alt="{{ artwork.title }}">
-                        {% endif %}
-                        <h3>{{ artwork.title }}</h3>
+            <div class="art-scroll-wrapper">
+                <button type="button" class="scroll-btn left" onclick="scrollArt(this, -1)">‹</button>
+                    <div class="gallery-scroll-container">
+                        {% for artwork in movement.shuffled_artworks %}
+                            <div class="movement-card">
+                                {% if artwork.images %}
+                                    <img src="{{ artwork.images.url }}" alt="{{ artwork.title }}">
+                                {% endif %}
+                                <div class="artwork-movement-title">
+                                    <h3>{{ artwork.title }}</h3>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                <button class="scroll-btn right" onclick="scrollArt(this, 1)">›</button>
             </div>
 
             <div class="movement-description">
