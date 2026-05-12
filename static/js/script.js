@@ -73,38 +73,59 @@ window.previewBuyerProfileImage = function(event) {
 };
 
   window.previewLogo = function(event) {
-    const uploadBox = document.querySelector(".seller-logo-box");
-    const uploadIcon = document.querySelector(".logo-upload-icon");
+      const file = event.target.files[0];
 
-    const file = event.target.files[0];
+      if (file) {
+          const imageURL = URL.createObjectURL(file);
 
-    if (file) {
-        const imageURL = URL.createObjectURL(file);
+          const uploadBox = document.querySelector(".seller-logo-box");
+          const uploadIcon = document.querySelector(".logo-upload-icon");
 
-        uploadBox.style.backgroundImage = `url('${imageURL}')`;
-        uploadBox.style.backgroundSize = "cover";
-        uploadBox.style.backgroundPosition = "center";
+          if (uploadBox) {
+              uploadBox.style.backgroundImage = `url('${imageURL}')`;
+              uploadBox.style.backgroundSize = "cover";
+              uploadBox.style.backgroundPosition = "center";
+          }
 
-        uploadIcon.style.display = "none";
-    }
-};
+          if (uploadIcon) {
+              uploadIcon.style.display = "none";
+          }
 
-window.previewCover = function(event) {
-    const uploadBox = document.querySelector(".seller-cover-box");
-    const uploadIcon = document.querySelector(".cover-upload-icon");
+          const preview = document.querySelector("#seller-logo-preview");
 
-    const file = event.target.files[0];
+          if (preview) {
+              preview.src = imageURL;
+          }
+      }
+  };
 
-    if (file) {
-        const imageURL = URL.createObjectURL(file);
+   window.previewCover = function(event) {
+      const file = event.target.files[0];
 
-        uploadBox.style.backgroundImage = `url('${imageURL}')`;
-        uploadBox.style.backgroundSize = "cover";
-        uploadBox.style.backgroundPosition = "center";
+      if (file) {
+          const imageURL = URL.createObjectURL(file);
 
-        uploadIcon.style.display = "none";
-    }
-};
+          const uploadBox = document.querySelector(".seller-logo-box");
+          const uploadIcon = document.querySelector(".cover-upload-icon");
+
+          if (uploadBox) {
+              uploadBox.style.backgroundImage = `url('${imageURL}')`;
+              uploadBox.style.backgroundSize = "cover";
+              uploadBox.style.backgroundPosition = "center";
+          }
+
+          if (uploadIcon) {
+              uploadIcon.style.display = "none";
+          }
+
+          const preview = document.querySelector("#seller-cover-preview");
+
+          if (preview) {
+              preview.src = imageURL;
+          }
+      }
+  };
+   
 
 //price slider
 

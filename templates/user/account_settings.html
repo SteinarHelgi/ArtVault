@@ -24,14 +24,18 @@
 
                 <h3>Profile image</h3>
 
-                {% if profile.buyer_profile.profile_image %}
-                    <img
-                        src="{{ profile.buyer_profile.profile_image.url }}"
-                        alt="profile image"
-                    >
-                {% endif %}
+                <div class="buyer-upload-section">
+                    <label for="id_profile_image" class="buyer-upload-box">
+                        {% if profile.buyer_profile.profile_image %}
+                            <img id="buyer-profile-preview"
+                                src="{{ profile.buyer_profile.profile_image.url }}"
+                                alt="profile image"
+                            >
+                        {% endif %}
+                    </label>
 
-                {{ form.profile_image }}
+                    {{ form.profile_image }}
+                </div>
 
                 <h3>Full name</h3>
                 {{ form.full_name }}
@@ -44,26 +48,35 @@
 
                 <h3>Logo</h3>
 
-                {% if profile.seller_profile.logo %}
-                    <img
-                        src="{{ profile.seller_profile.logo.url }}"
-                        alt="logo"
-                    >
-                {% endif %}
+                <div class="seller-logo-selection">
+                    <label for="id_logo" class="seller-logo-box">
 
-                {{ form.logo }}
+                        {% if profile.seller_profile.logo %}
+                            <img id="seller-logo-preview"
+                                src="{{ profile.seller_profile.logo.url }}"
+                                alt="logo"
+                            >
+                        {% endif %}
+                    </label>
+                    {{ form.logo }}
+                </div>
 
                 <h3>Cover photo</h3>
 
-                {% if profile.seller_profile.cover_photo %}
-                    <img
-                        src="{{ profile.seller_profile.cover_photo.url }}"
-                        alt="cover photo"
-                        width="300"
-                    >
-                {% endif %}
+                <div class="seller-cover-setup">
+                    <label for="id_cover_photo" class="seller-cover-box">
 
-                {{ form.cover_photo }}
+                        {% if profile.seller_profile.cover_photo %}
+                            <img
+                                    id="seller-cover-preview"
+                                src="{{ profile.seller_profile.cover_photo.url }}"
+                                alt="cover photo"
+                            >
+                        {% endif %}
+                    </label>
+
+                    {{ form.cover_photo }}
+                </div>
 
                 <h3>Name</h3>
                 {{ form.seller_name }}

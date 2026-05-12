@@ -16,11 +16,13 @@ class BuyerAccountSettingsForm(ModelForm):
         label="Confirm password"
     )
 
+    profile_image = forms.ImageField(required=False, widget=forms.FileInput(attrs={'class': 'hidden-file-input', 'onchange': 'previewBuyerProfileImage(event)'}))
+
     class Meta:
         model = BuyerProfileModel
         fields = [
             "full_name",
-            "profile_image"
+            "profile_image",
         ]
 
     def clean(self):
@@ -48,6 +50,10 @@ class IndividualSellerAccountSettingsForm(ModelForm):
         widget=forms.PasswordInput(),
         label="Confirm password"
     )
+    logo = forms.ImageField(required=False, widget=forms.FileInput(
+        attrs={'class': 'hidden-file-input', 'onchange': 'previewLogo(event)'}))
+    cover_photo = forms.ImageField(required=False, widget=forms.FileInput(
+        attrs={'class': 'hidden-file-input', 'onchange': 'previewCover(event)'}))
 
     class Meta:
         model = SellerProfileModel
@@ -83,6 +89,10 @@ class GalleryAccountSettingsForm(ModelForm):
         widget=forms.PasswordInput(),
         label="Confirm password"
     )
+    logo = forms.ImageField(required=False, widget=forms.FileInput(
+        attrs={'class': 'hidden-file-input', 'onchange': 'previewLogo(event)'}))
+    cover_photo = forms.ImageField(required=False, widget=forms.FileInput(
+        attrs={'class': 'hidden-file-input', 'onchange': 'previewCover(event)'}))
 
     class Meta:
         model = SellerProfileModel
