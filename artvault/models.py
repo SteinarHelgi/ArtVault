@@ -77,3 +77,6 @@ class ArtmovementArtwork(models.Model):
     artmovement_artist = models.ForeignKey(ArtmovementArtist, on_delete=models.CASCADE, related_name="artworks")
     images = models.ImageField(upload_to="artworks/")
     title = models.CharField(max_length=255, null=True)
+    @property
+    def formatted_amount(self):
+        return f"{self.amount:,}".replace(",", ".")

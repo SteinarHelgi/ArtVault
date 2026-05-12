@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "bids.apps.BidsConfig",
     "listings.apps.ListingsConfig",
+    "django.contrib.humanize",
 ]
 
 MIDDLEWARE = [
@@ -136,10 +137,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
 
-#Pictures
+# Pictures
 
-MEDIA_URL = '/media/'
+MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR / "media"
