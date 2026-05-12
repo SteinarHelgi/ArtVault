@@ -175,10 +175,11 @@ def my_bids(request):
     )
 
 
-def render_artwork_bid(request, artwork, bid_step=None, amount=None):
+def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_over=False):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
     artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
+
     return render(
         request,
         "artvault/artwork_details.html",
@@ -188,6 +189,7 @@ def render_artwork_bid(request, artwork, bid_step=None, amount=None):
             "current_price": current_price,
             "bid_step": bid_step,
             "amount": amount,
+            "auction_over": auction_over,
         },
     )
 

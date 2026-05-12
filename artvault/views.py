@@ -113,11 +113,7 @@ def artwork_details(request, id):
 
     auction_over = today >= artwork.auction_end_date
 
-    return render_artwork_bid(request, {
-        "artwork": artwork,
-        "auction_over": auction_over,
-    })
-
+    return render_artwork_bid(request, artwork,auction_over=auction_over)
 
 def browse_artists(request):
     artworks = Artwork.objects.prefetch_related("images").all()
