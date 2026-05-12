@@ -35,7 +35,7 @@
       {% endif %}
 
       {% endwith %}
-    
+
       <div class="description-container">
 
             <div class="information">
@@ -51,8 +51,8 @@
 
             </div>
 
-            {% if not user.is_authenticated %}
             <div class="bid-info">
+            {% if not user.is_authenticated %}
                 {% include "artvault/components/bid_box.html" %}
 
 
@@ -68,8 +68,8 @@
                   {% else %}
                   {% include "artvault/components/bid_box.html" %}
                   {% endif %}
-            </div>
             {% endif %}
+            </div>
       </div>
       <div class="seller-info">
             <a href="{% url 'public-seller-profile' artwork.seller.id %}" class="art-card">
