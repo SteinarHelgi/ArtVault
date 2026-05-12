@@ -90,388 +90,388 @@ body {
 }
 
 .second_button {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 2px dashed var(--primary-color);
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px dashed var(--primary-color);
 }
 
 .second_button:hover {
-    background-color: var(--primary-color);
-    color: var(--orange-color);
+      background-color: var(--primary-color);
+      color: var(--orange-color);
 }
 
-.text_container{
-    border: 1px solid var(--border-color);
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 40px;
+.text_container {
+      border: 1px solid var(--border-color);
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 40px;
 }
 
-.text_container h3{
-    font-weight: 400;
+.text_container h3 {
+      font-weight: 400;
 }
 
-.text_container p{
-    font-family: var(--paragraph-font);
+.text_container p {
+      font-family: var(--paragraph-font);
 }
 
 .art-movement-h1 {
-    font-weight: 400;
+      font-weight: 400;
       font-family: var(--header-font);
-    margin-bottom: 0;
+      margin-bottom: 0;
 }
 
 .art-scroll-wrapper {
-    position: relative;
-    width: 100%;
+      position: relative;
+      width: 100%;
 }
 
 .gallery-scroll-container {
-    width: 100%;
-    display: flex;
-    gap: 24px;
+      width: 100%;
+      display: flex;
+      gap: 24px;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
 
-    padding: 16px 0;
-    scroll-behavior: smooth;
+      padding: 16px 0;
+      scroll-behavior: smooth;
 
-    scrollbar-width: none;
+      scrollbar-width: none;
 }
 
 .gallery-scroll-container::-webkit-scrollbar {
-    display: none;
+      display: none;
 }
 
 .gallery-scroll-container .art-card {
-    flex: 0 0 250px;
+      flex: 0 0 250px;
 }
 
 
 .scroll-btn {
-    border: none;
-    background: none;
-    position: absolute;
-    top: 44%;
-    transform: translateY(-50%);
-    z-index: 5;
-    width: 36px;
-    height: 36px;
-    color: var(--black);
-    font-size: 30px;
-    line-height: 1;
-    cursor: pointer;
+      border: none;
+      background: none;
+      position: absolute;
+      top: 44%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 36px;
+      height: 36px;
+      color: var(--black);
+      font-size: 30px;
+      line-height: 1;
+      cursor: pointer;
 }
 
 
 .scroll-btn.left {
-    left: -30px;
+      left: -30px;
 }
 
 .scroll-btn.right {
-    right: -30px;
+      right: -30px;
 }
 
 
 /*slider menu browes artwork*/
 
 .filter-sidebar {
-    position: fixed;
-    top: 0;
-    left: -340px;
-    width: 320px;
-    height: 100vh;
-    background-color: var(--primary-color);
-    border-right: 1px solid var(--border-color);
-    padding: 80px 24px 24px;
-    box-sizing: border-box;
-    z-index: 1001;
-    transition: left 0.3s ease;
-    overflow-y: auto;
+      position: fixed;
+      top: 0;
+      left: -340px;
+      width: 320px;
+      height: 100vh;
+      background-color: var(--primary-color);
+      border-right: 1px solid var(--border-color);
+      padding: 80px 24px 24px;
+      box-sizing: border-box;
+      z-index: 1001;
+      transition: left 0.3s ease;
+      overflow-y: auto;
 }
 
 .filter-sidebar.show {
-    left: 0;
+      left: 0;
 }
 
 .close-filter-butten {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    border: none;
-    background: transparent;
-    font-size: 32px;
-    cursor: pointer;
-    color: var(--black);
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      border: none;
+      background: transparent;
+      font-size: 32px;
+      cursor: pointer;
+      color: var(--black);
 }
 
 .filter-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    z-index: 1000;
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1000;
 }
 
 .filter-overlay.show {
-    display: block;
+      display: block;
 }
 
 .filter-sidebar .filter-form {
-    display: grid;
-    gap: 18px;
+      display: grid;
+      gap: 18px;
 }
 
 .filter-sidebar .searchbar {
-    display: flex;
-    gap: 8px;
+      display: flex;
+      gap: 8px;
 }
 
 .filter-sidebar .searchbar input {
-    flex: 1;
-    height: 34px;
+      flex: 1;
+      height: 34px;
 }
 
 .filter-sidebar .searchbar button {
-    height: 34px;
-    padding: 0 12px;
+      height: 34px;
+      padding: 0 12px;
 }
 
 .filter-sidebar select {
-    width: 100%;
-    height: 34px;
+      width: 100%;
+      height: 34px;
 }
 
 .filter-sidebar .filter-selector-button {
-    display: grid;
-    gap: 10px;
+      display: grid;
+      gap: 10px;
 }
 
 .filter-sidebar .wrapper {
-    width: 100%;
+      width: 100%;
 }
 
 /*filter css*/
-.browse-art-section{
-    max-width: 1100px;
-    margin: 40px auto;
+.browse-art-section {
+      max-width: 1100px;
+      margin: 40px auto;
 }
 
 .browse-page-header {
-    max-width: 1100px;
-    margin: 60px 0 30px 0;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    box-sizing: border-box;
+      max-width: 1100px;
+      margin: 60px 0 30px 0;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      box-sizing: border-box;
 }
 
 .browse-page-header h2 {
-    margin: 0;
-    font-family: var(--header-font);
-    font-size: 28px;
-    font-weight: 400;
-    color: var(--black);
+      margin: 0;
+      font-family: var(--header-font);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--black);
 }
 
 .open-filter-btn {
-    padding: 10px 18px;
-    border: none;
-    border-radius: var(--round-corners);
-    background-color: var(--orange-color);
-    color: white;
-    font-family: var(--header-font);
-    font-size: 15px;
-    cursor: pointer;
+      padding: 10px 18px;
+      border: none;
+      border-radius: var(--round-corners);
+      background-color: var(--orange-color);
+      color: white;
+      font-family: var(--header-font);
+      font-size: 15px;
+      cursor: pointer;
 }
 
 .open-filter-btn:hover {
-    opacity: 0.9;
+      opacity: 0.9;
 }
 
 .wrapper {
-    background: white;
-    border: 1px solid var(--black);
-    border-radius: var(--round-corners);
-    padding: 20px;
-    box-sizing: border-box;
+      background: white;
+      border: 1px solid var(--black);
+      border-radius: var(--round-corners);
+      padding: 20px;
+      box-sizing: border-box;
 }
 
 .wrapper h3 {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--black);
+      margin: 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
 }
 
 .price-input {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin: 20px 0 28px;
-    gap: 8px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin: 20px 0 28px;
+      gap: 8px;
 }
 
 .price-input .field {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 34px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 34px;
 }
 
 .price-input .field span {
-    font-family: var(--paragraph-font);
-    font-size: 13px;
-    color: var(--light-black);
-    margin-right: 6px;
+      font-family: var(--paragraph-font);
+      font-size: 13px;
+      color: var(--light-black);
+      margin-right: 6px;
 }
 
 .price-input .field input {
-    width: 100%;
-    height: 34px;
-    outline: none;
-    font-family: var(--paragraph-font);
-    font-size: 13px;
-    text-align: center;
-    border-radius: var(--round-corners);
-    border: 1px solid var(--border-color);
-    box-sizing: border-box;
+      width: 100%;
+      height: 34px;
+      outline: none;
+      font-family: var(--paragraph-font);
+      font-size: 13px;
+      text-align: center;
+      border-radius: var(--round-corners);
+      border: 1px solid var(--border-color);
+      box-sizing: border-box;
 }
 
 .price-input .separator {
-    font-size: 16px;
-    color: var(--light-black);
+      font-size: 16px;
+      color: var(--light-black);
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+      -webkit-appearance: none;
 }
 
 .slider {
-    height: 5px;
-    position: relative;
-    background: var(--border-color);
-    border-radius: 5px;
-    margin: 0 9px;
+      height: 5px;
+      position: relative;
+      background: var(--border-color);
+      border-radius: 5px;
+      margin: 0 9px;
 }
 
 .slider .progress {
-    height: 100%;
-    left: 0%;
-    right: 0%;
-    position: absolute;
-    border-radius: 5px;
-    background: var(--orange-color);
+      height: 100%;
+      left: 0%;
+      right: 0%;
+      position: absolute;
+      border-radius: 5px;
+      background: var(--orange-color);
 }
 
 .range-input {
-    position: relative;
-    margin: 0 9px 35px;
+      position: relative;
+      margin: 0 9px 35px;
 }
 
 .range-input input {
-    position: absolute;
-    width: 100%;
-    height: 5px;
-    top: -5px;
-    background: none;
-    pointer-events: none;
-    appearance: none;
-    -webkit-appearance: none;
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      top: -5px;
+      background: none;
+      pointer-events: none;
+      appearance: none;
+      -webkit-appearance: none;
 }
 
 .range-input input[type="range"] {
-    padding: 0;
-    border: none;
+      padding: 0;
+      border: none;
 }
 
 .range-input input[type="range"]::-webkit-slider-thumb {
-    height: 17px;
-    width: 17px;
-    border-radius: 50%;
-    background: var(--orange-color);
-    pointer-events: auto;
-    -webkit-appearance: none;
-    cursor: pointer;
+      height: 17px;
+      width: 17px;
+      border-radius: 50%;
+      background: var(--orange-color);
+      pointer-events: auto;
+      -webkit-appearance: none;
+      cursor: pointer;
 }
 
 .range-input input[type="range"]::-moz-range-thumb {
-    height: 17px;
-    width: 17px;
-    border: none;
-    border-radius: 50%;
-    background: var(--orange-color);
-    pointer-events: auto;
-    cursor: pointer;
+      height: 17px;
+      width: 17px;
+      border: none;
+      border-radius: 50%;
+      background: var(--orange-color);
+      pointer-events: auto;
+      cursor: pointer;
 }
 
 .price-button {
-    width: 100%;
-    height: 32px;
-    border: none;
-    border-radius: var(--round-corners);
-    background-color: var(--orange-color);
-    color: white;
-    font-family: var(--paragraph-font);
-    font-size: 13px;
-    cursor: pointer;
+      width: 100%;
+      height: 32px;
+      border: none;
+      border-radius: var(--round-corners);
+      background-color: var(--orange-color);
+      color: white;
+      font-family: var(--paragraph-font);
+      font-size: 13px;
+      cursor: pointer;
 }
 
 .filter-sidebar .price-button:hover {
-    background-color: var(--orange-color);
-    opacity: 0.9;
+      background-color: var(--orange-color);
+      opacity: 0.9;
 }
 
 /*browes filter*/
 
 .filter-sidebar .filter-form {
-    display: grid;
-    gap: 18px;
+      display: grid;
+      gap: 18px;
 }
 
 .filter-sidebar .searchbar {
-    display: flex;
-    flex-direction: row;
+      display: flex;
+      flex-direction: row;
 }
 
 .filter-sidebar .searchbar input,
 .filter-sidebar select {
-    width: 100%;
-    height: 34px;
-    padding: 0 10px;
-    border: 1px solid var(--light-black);
-    border-radius: var(--round-corners);
-    background-color: white;
-    font-family: var(--paragraph-font);
+      width: 100%;
+      height: 34px;
+      padding: 0 10px;
+      border: 1px solid var(--light-black);
+      border-radius: var(--round-corners);
+      background-color: white;
+      font-family: var(--paragraph-font);
 }
 
 .filter-sidebar button {
-    border-radius: var(--round-corners);
-    border: 1px solid var(--light-black);
-    background-color: white;
-    color: var(--black);
-    font-family: var(--paragraph-font);
-    font-size: 13px;
-    cursor: pointer;
+      border-radius: var(--round-corners);
+      border: 1px solid var(--light-black);
+      background-color: white;
+      color: var(--black);
+      font-family: var(--paragraph-font);
+      font-size: 13px;
+      cursor: pointer;
 }
 
 .filter-sidebar button:hover {
-    background-color: var(--hover-color);
+      background-color: var(--hover-color);
 }
 
 .filter-sidebar .price-button {
-    width: 100%;
-    height: 34px;
-    border: none;
-    background-color: var(--orange-color);
-    color: white;
+      width: 100%;
+      height: 34px;
+      border: none;
+      background-color: var(--orange-color);
+      color: white;
 }
 
 .right-side-filter fieldset button {
-    width: 90px;
-    height: 30px;
+      width: 90px;
+      height: 30px;
 }
 
 
@@ -579,1123 +579,1117 @@ input[type="number"]::-webkit-inner-spin-button {
       flex-direction: column;
 }
 
-.finalize-bid-button {
-      border: solid 2px;
-      border-color: var(--orange-color);
-      text-decoration: none;
-      color: var(--black);
-      text-align: center;
-}
 
 /* Signup + Login */
 .signup-container,
 .login-page {
-    width: 400px;
-    margin: 80px auto;
-    text-align: center;
+      width: 400px;
+      margin: 80px auto;
+      text-align: center;
 }
 
 .signup-form,
 .login-page form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 }
 
-.signup-form select{
-    cursor: pointer;
+.signup-form select {
+      cursor: pointer;
 }
 
 
 .signup-form input,
 .signup-form select,
 .login-page input {
-    font-family: var(--paragraph-font);
-    border-radius: var(--round-corners);
-    width: 100%;
-    height: 45px;
-    padding: 0 15px;
-    font-size: 18px;
-    border: 1px solid var(--black);
-    box-sizing: border-box;
+      font-family: var(--paragraph-font);
+      border-radius: var(--round-corners);
+      width: 100%;
+      height: 45px;
+      padding: 0 15px;
+      font-size: 18px;
+      border: 1px solid var(--black);
+      box-sizing: border-box;
 }
 
 .signup-container h1,
 .login-page h1 {
-    font-size: 35px;
-    margin-bottom: 25px;
+      font-size: 35px;
+      margin-bottom: 25px;
 }
 
 .confirm-btn,
 .login-page button {
-    font-family: var(--header-font);
-    font-weight: 600;
-    width: 200px;
-    height: 45px;
-    align-self: center;
-    margin-top: 20px;
-    background-color: var(--orange-color);
-    color: var(--primary-color);
-    border: none;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
+      font-family: var(--header-font);
+      font-weight: 600;
+      width: 200px;
+      height: 45px;
+      align-self: center;
+      margin-top: 20px;
+      background-color: var(--orange-color);
+      color: var(--primary-color);
+      border: none;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
 }
 
 .errorlist {
-    color: red;
-    text-align: left;
-    font-size: 14px;
-    margin: -10px 0 5px;
+      color: red;
+      text-align: left;
+      font-size: 14px;
+      margin: -10px 0 5px;
 }
 
 .help-text {
-    text-align: left;
-    font-size: 13px;
-    color: #666;
+      text-align: left;
+      font-size: 13px;
+      color: #666;
 }
 
 /*Buyer-setup*/
 .buyer-setup-page {
-    width: 720px;
-    margin: 80px auto;
+      width: 720px;
+      margin: 80px auto;
 }
 
 .buyer-setup-form {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 40px;
-    align-items: start;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      align-items: start;
 }
 
 .buyer-upload-section {
-    text-align: center;
+      text-align: center;
 }
 
 .buyer-upload-box {
-    width: 250px;
-    height: 250px;
-    border-radius: 12px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      width: 250px;
+      height: 250px;
+      border-radius: 12px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 }
 
 .preview-image {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 8px;
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
 }
 
 #buyer-profile-preview {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 8px;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
 }
 
 .upload-icon {
-    width: 80px;
-    height: 80px;
-    opacity: 0.7;
+      width: 80px;
+      height: 80px;
+      opacity: 0.7;
 }
 
 .hidden-file-input {
-    display: none;
+      display: none;
 }
 
 .buyer-upload-section p {
-    font-size: 22px;
+      font-size: 22px;
 }
 
 .buyer-upload-section span,
 .required {
-    color: red;
+      color: red;
 }
 
 .name-section {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
 }
 
 .name-section .required {
-    position: static;
-    display: inline-block;
-    color: red;
-    font-size: 20px;
+      position: static;
+      display: inline-block;
+      color: red;
+      font-size: 20px;
 }
 
 .name-section input {
-    width: 100%;
+      width: 100%;
 }
 
 .profile-input {
-    width: 100%;
-    height: 38px;
-    padding: 0 18px;
-    font-size: 22px;
-    border: 1px solid var(--light-black);
+      width: 100%;
+      height: 38px;
+      padding: 0 18px;
+      font-size: 22px;
+      border: 1px solid var(--light-black);
 }
 
 .confirm-btn {
-    grid-column: 1 / -1;
-    justify-self: center;
+      grid-column: 1 / -1;
+      justify-self: center;
 }
 
 /*Seller-setup*/
 .seller-setup-page {
-    min-height: calc(100vh - 70px);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 120px;
+      min-height: calc(100vh - 70px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 120px;
 }
 
 .seller-setup-form {
-    width: 760px;
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    column-gap: 55px;
-    align-items: start;
+      width: 760px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      column-gap: 55px;
+      align-items: start;
 }
 
 .left-side-setup,
 .right-side-setup {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
 }
 
 .left-side-setup {
-    align-items: center;
+      align-items: center;
 }
 
 #id_logo,
 #id_cover_photo {
-    display: none;
+      display: none;
 }
 
 .seller-logo-box {
-    width: 200px;
-    height: 200px;
-    border: 1px solid var(--light-black);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+      width: 200px;
+      height: 200px;
+      border: 1px solid var(--light-black);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 }
 
 .seller-cover-box {
-    width: 100%;
-    height: 110px;
-    border: 1px solid var(--light-black);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+      width: 100%;
+      height: 110px;
+      border: 1px solid var(--light-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
 }
 
 .cover-wrapper {
-    position: relative;
+      position: relative;
 }
 
 .cover-required {
-    color: red;
-    position: absolute;
-    right: -16px;
-    top: 5px;
+      color: red;
+      position: absolute;
+      right: -16px;
+      top: 5px;
 }
 
 .logo-upload-icon,
 .cover-upload-icon {
-    width: 70px;
+      width: 70px;
 }
 
 .upload-label {
-    margin-top: 14px;
-    text-align: center;
+      margin-top: 14px;
+      text-align: center;
 }
 
 .upload-label span,
 .required {
-    color: red;
+      color: red;
 }
 
 #id_bio {
-    width: 200px;
-    height: 150px;
-    margin-top: 18px;
-    resize: none;
-    padding: 8px;
-    box-sizing: border-box;
-    font-family: inherit;
-    font-size: 16px;
-    line-height: normal;
-    display: block;
-    text-align: left;
+      width: 200px;
+      height: 150px;
+      margin-top: 18px;
+      resize: none;
+      padding: 8px;
+      box-sizing: border-box;
+      font-family: inherit;
+      font-size: 16px;
+      line-height: normal;
+      display: block;
+      text-align: left;
 }
+
 .bio-wrapper {
-    position: relative;
+      position: relative;
 }
 
 .bio-required {
-    color: red;
-    position: absolute;
-    right: -16px;
-    top: 8px;
+      color: red;
+      position: absolute;
+      right: -16px;
+      top: 8px;
 }
 
 .input-group {
-    position: relative;
-    margin-top: 12px;
+      position: relative;
+      margin-top: 12px;
 }
 
 .input-group label {
-    display: none;
+      display: none;
 }
 
 .input-group input,
 .input-group select {
-    width: 100%;
-    height: 38px;
-    box-sizing: border-box;
-    padding: 0 8px;
-    font-size: 16px;
+      width: 100%;
+      height: 38px;
+      box-sizing: border-box;
+      padding: 0 8px;
+      font-size: 16px;
 }
 
 .required {
-    position: absolute;
-    right: -16px;
-    top: 9px;
+      position: absolute;
+      right: -16px;
+      top: 9px;
 }
 
 .right-side-setup h3 {
-    margin: 30px 0 8px;
-    font-size: 20px;
+      margin: 30px 0 8px;
+      font-size: 20px;
 }
 
 .address-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
 }
 
 .confirm-btn {
-    grid-column: 1 / 3;
-    justify-self: center;
-    margin-top: 60px;
-    width: 260px;
-    height: 50px;
+      grid-column: 1 / 3;
+      justify-self: center;
+      margin-top: 60px;
+      width: 260px;
+      height: 50px;
 }
 
 /*shipping*/
 .shipping-page {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
 }
 
 .shipping-card {
-    width: 700px;
+      width: 700px;
 }
 
 .shipping-card h1 {
-    font-size: 32px;
-    margin-bottom: 30px;
+      font-size: 32px;
+      margin-bottom: 30px;
 }
 
 .shipping-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
 }
 
 .shipping-form label,
 .shipping-form h3 {
-    font-size: 22px;
-    margin: 0;
+      font-size: 22px;
+      margin: 0;
 }
 
 .shipping-form input,
 .shipping-form select {
-    width: 100%;
-    height: 36px;
-    padding: 0 15px;
-    font-size: 18px;
-    border: 1px solid var(--light-black);
-    box-sizing: border-box;
+      width: 100%;
+      height: 36px;
+      padding: 0 15px;
+      font-size: 18px;
+      border: 1px solid var(--light-black);
+      box-sizing: border-box;
 }
 
 .shipping-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 35px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 35px;
 }
 
 .back-btn {
-    position: absolute;
-    left: 40px;
-    width: 100px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--orange-color);
-    color: var(--primary-color);
-    text-decoration: none;
-    border-radius: 4px;
+      position: absolute;
+      left: 40px;
+      width: 100px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--orange-color);
+      color: var(--primary-color);
+      text-decoration: none;
+      border-radius: 4px;
 }
 
 .shipping-confirm-btn {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 260px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--orange-color);
-    color: var(--primary-color);
-    border: none;
-    border-radius: 4px;
-    font-size: 18px;
-    cursor: pointer;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--orange-color);
+      color: var(--primary-color);
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      cursor: pointer;
 }
 
 /*payment_method*/
 .payment-page {
-    width: 700px;
-    margin: 90px auto 0;
-    text-align: center;
-    position: relative;
+      width: 700px;
+      margin: 90px auto 0;
+      text-align: center;
+      position: relative;
 }
 
 .payment-page h1 {
-    font-size: 32px;
-    margin-bottom: 45px;
+      font-size: 32px;
+      margin-bottom: 45px;
 }
 
 .payment-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
 }
 
 .payment-option-btn {
-    width: 420px;
-    height: 42px;
-    background-color: var(--orange-color);
-    color: var(--primary-color);
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
+      width: 420px;
+      height: 42px;
+      background-color: var(--orange-color);
+      color: var(--primary-color);
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
 }
 
 /* Card_payment */
 .card-page {
-    width: 700px;
-    margin: 90px auto 0;
+      width: 700px;
+      margin: 90px auto 0;
 }
 
 .card-form {
-    width: 420px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
+      width: 420px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
 }
 
 .payment-field {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
 }
 
 .payment-field label {
-    font-size: 24px;
+      font-size: 24px;
 }
 
 .card-form input {
-    width: 100%;
-    height: 42px;
-    padding: 0 15px;
-    font-size: 20px;
-    border: 1px solid var(--light-black);
-    box-sizing: border-box;
+      width: 100%;
+      height: 42px;
+      padding: 0 15px;
+      font-size: 20px;
+      border: 1px solid var(--light-black);
+      box-sizing: border-box;
 }
 
 .card-info-wrapper {
-    position: relative;
+      position: relative;
 }
 
 .cards-img {
-    position: absolute;
-    right: -20px;
-    top: 70%;
-    transform: translateY(-50%);
-    width: 130px;
-    height: auto;
-    max-height: 26px;
-    object-fit: contain;
+      position: absolute;
+      right: -20px;
+      top: 70%;
+      transform: translateY(-50%);
+      width: 130px;
+      height: auto;
+      max-height: 26px;
+      object-fit: contain;
 }
 
 #id_card_number {
-    padding-right: 130px;
+      padding-right: 130px;
 }
 
 .card-row {
-    display: flex;
-    gap: 30px;
-    align-items: center;
+      display: flex;
+      gap: 30px;
+      align-items: center;
 }
 
 .card-row input {
-    width: 197px;
+      width: 197px;
 }
 
 .cvv-wrapper {
-    position: relative;
+      position: relative;
 }
 
 .cvv-wrapper input {
-    width: 197px;
-    padding-right: 45px;
+      width: 197px;
+      padding-right: 45px;
 }
 
 .cvv-img {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 28px;
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
 }
 
 .card-page .back-btn {
-    position: relative;
-    top: -44px;
-    left: -400px;
+      position: relative;
+      top: -44px;
+      left: -400px;
 }
 
 /* Bank_payment */
 
 .bank-page {
-    width: 700px;
-    margin: 90px auto 0;
+      width: 700px;
+      margin: 90px auto 0;
 }
 
 .bank-form {
-    width: 520px;
-    margin: 0 auto;
+      width: 520px;
+      margin: 0 auto;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
 }
 
 .bank-form h1 {
-    font-size: 36px;
-    font-weight: 500;
+      font-size: 36px;
+      font-weight: 500;
 }
 
 .bank-row {
-    display: flex;
-    gap: 35px;
-    align-items: flex-start;
+      display: flex;
+      gap: 35px;
+      align-items: flex-start;
 }
 
 .bank-field {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
 }
 
 .bank-field label {
-    font-size: 22px;
+      font-size: 22px;
 }
 
 .bank-field input {
-    width: 150px;
-    height: 42px;
+      width: 150px;
+      height: 42px;
 
-    padding: 0 15px;
-    font-size: 20px;
+      padding: 0 15px;
+      font-size: 20px;
 
-    border: 1px solid var(--light-black);
-    box-sizing: border-box;
+      border: 1px solid var(--light-black);
+      box-sizing: border-box;
 }
 
 .small-field input {
-    width: 70px;
+      width: 70px;
 }
 
 .bank-page .confirm-btn {
-    width: 230px;
+      width: 230px;
 }
 
 .bank-page .back-btn {
-    position: relative;
-    top: -40px;
-    left: -400px;
+      position: relative;
+      top: -40px;
+      left: -400px;
 }
 
 /* Wire-payment */
 .wire-page {
-    width: 700px;
-    margin: 90px auto 0;
+      width: 700px;
+      margin: 90px auto 0;
 }
 
 .wire-form {
-    width: 420px;
-    margin: 0 auto;
+      width: 420px;
+      margin: 0 auto;
 
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
 }
 
 .wire-form h1 {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 500;
-    margin-bottom: 10px;
+      text-align: center;
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 10px;
 }
 
 .wire-field {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
 }
 
 .wire-field label {
-    font-size: 24px;
+      font-size: 24px;
 }
 
 .wire-field input {
-    width: 100%;
-    height: 42px;
+      width: 100%;
+      height: 42px;
 
-    padding: 0 15px;
-    font-size: 20px;
+      padding: 0 15px;
+      font-size: 20px;
 
-    border: 1px solid var(--light-black);
-    box-sizing: border-box;
+      border: 1px solid var(--light-black);
+      box-sizing: border-box;
 }
 
 .wire-page .confirm-btn {
-    width: 230px;
-    align-self: center;
-    margin-top: 10px;
+      width: 230px;
+      align-self: center;
+      margin-top: 10px;
 }
 
 .wire-page .back-btn {
-    position: relative;
-    top: -40px;
-    left: -400px;
+      position: relative;
+      top: -40px;
+      left: -400px;
 }
 
 /* Overview */
 .overview-page {
-    width: 700px;
-    margin: 70px auto 0;
+      width: 700px;
+      margin: 70px auto 0;
 }
 
 .overview-page h1 {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 40px;
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
 }
 
 .overview-form {
-    width: 420px;
-    margin: 0 auto;
+      width: 420px;
+      margin: 0 auto;
 
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
 }
 
 .overview-form label {
-    font-size: 24px;
+      font-size: 24px;
 }
 
 .overview-box {
-    width: 100%;
-    height: 42px;
+      width: 100%;
+      height: 42px;
 
-    display: flex;
-    align-items: center;
+      display: flex;
+      align-items: center;
 
-    padding: 0 15px;
-    box-sizing: border-box;
+      padding: 0 15px;
+      box-sizing: border-box;
 
-    border: 1px solid var(--light-black);
-    font-size: 20px;
+      border: 1px solid var(--light-black);
+      font-size: 20px;
 }
 
 .overview-card-row {
-    display: flex;
-    gap: 30px;
+      display: flex;
+      gap: 30px;
 }
 
 .overview-small-box {
-    width: 195px;
-    height: 42px;
+      width: 195px;
+      height: 42px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    border: 1px solid var(--light-black);
+      border: 1px solid var(--light-black);
 
-    font-size: 20px;
+      font-size: 20px;
 }
 
 .overview-form form {
-    display: flex;
-    justify-content: center;
-    margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
 }
 
 .overview-page .back-btn {
-    position: relative;
-    top: -40px;
-    left: -400px;
+      position: relative;
+      top: -40px;
+      left: -400px;
 }
 
 /* Popup background */
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
 
-    width: 100%;
-    height: 100%;
+      width: 100%;
+      height: 100%;
 
-    background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.45);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    z-index: 9999;
+      z-index: 9999;
 }
 
 /* Popup box */
 .modal-content {
-    width: 500px;
-    background: var(--border-color);
-    padding: 50px 40px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    position: relative;
-    text-align: center;
+      width: 500px;
+      background: var(--border-color);
+      padding: 50px 40px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      position: relative;
+      text-align: center;
 }
 
 .modal-content h2 {
-    font-size: 36px;
-    margin: 0;
+      font-size: 36px;
+      margin: 0;
 }
 
 .modal-content p {
-    font-size: 22px;
-    line-height: 1.5;
-    margin: 0;
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 0;
 }
 
 /* Button */
 .modal-btn {
-    width: 260px;
-    height: 48px;
-    background: var(--orange-color);
-    color: var(--primary-color);
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    border-radius: 4px;
+      width: 260px;
+      height: 48px;
+      background: var(--orange-color);
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      border-radius: 4px;
 }
 
 /* Close button */
 .close-btn {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    width: 36px;
-    height: 36px;
-    border: none;
-    background: transparent;
-    font-size: 22px;
-    cursor: pointer;
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
 }
 
 /*add listing css*/
 
 .add-listing-page {
-    max-width: 760px;
-    margin: 80px auto;
-    padding: 40px;
-    border: 1px solid var(--border-color);
-    background-color: var(--primary-color);
+      max-width: 760px;
+      margin: 80px auto;
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      background-color: var(--primary-color);
 }
 
 .add-listing-page h1 {
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-family: var(--header-font);
-    font-size: 34px;
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-family: var(--header-font);
+      font-size: 34px;
 }
 
 .add-listing-form {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
 }
 
 .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 12px;
 }
 
 .form-group label {
-    font-family: var(--header-font);
-    font-size: 15px;
-    font-weight: 600;
+      font-family: var(--header-font);
+      font-size: 15px;
+      font-weight: 600;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--round-corners);
-    font-family: var(--paragraph-font);
-    font-size: 15px;
-    box-sizing: border-box;
-    background-color: white;
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--round-corners);
+      font-family: var(--paragraph-font);
+      font-size: 15px;
+      box-sizing: border-box;
+      background-color: white;
 }
 
 .form-group textarea {
-    resize: none;
+      resize: none;
 }
 
 
 .primary-button {
-    width: 200px;
-    height: 44px;
-    margin-top: 10px;
-    background-color: var(--orange-color);
-    color: white;
-    border: none;
-    border-radius: var(--round-corners);
-    font-family: var(--header-font);
-    font-size: 16px;
-    cursor: pointer;
+      width: 200px;
+      height: 44px;
+      margin-top: 10px;
+      background-color: var(--orange-color);
+      color: white;
+      border: none;
+      border-radius: var(--round-corners);
+      font-family: var(--header-font);
+      font-size: 16px;
+      cursor: pointer;
 }
 
 .primary-button:hover {
-    opacity: 0.9;
+      opacity: 0.9;
 }
 
 
 /*my profile seller css*/
-.profile-cover{
-    width: 100%;
-    height: 180px;
-    background-size: cover;
-    background-position: center;
+.profile-cover {
+      width: 100%;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
 }
 
-.profile-name{
-    max-width: 1100px;
-     margin: 20px auto;
+.profile-name {
+      max-width: 1100px;
+      margin: 20px auto;
 }
 
 .profile-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 1100px;
-    margin: 20px auto;
-    gap: 35px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      max-width: 1100px;
+      margin: 20px auto;
+      gap: 35px;
 }
 
-.profile-img img{
-    border-radius: var(--round-corners);
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
+.profile-img img {
+      border-radius: var(--round-corners);
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
 }
 
 .profile-info {
-    display: flex;
-    flex-direction: column;
+      display: flex;
+      flex-direction: column;
 }
 
-.profile-info p{
-    color: var(--light-black);
-    font-family: var(--paragraph-font);
-    font-size: 16px;
-    margin-bottom: 8px;
+.profile-info p {
+      color: var(--light-black);
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      margin-bottom: 8px;
 }
 
 .profile-name h1 {
-    font-family: var(--header-font);
-    font-size: 26px;
-    font-weight: 500;
-    color: var(--black);
+      font-family: var(--header-font);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--black);
 }
 
 .profile-bio {
-    border-bottom: 1px solid var(--border-color);
-    margin: 0;
-    font-family: var(--paragraph-font);
-    font-size: 16px;
-    color: var(--light-black);
+      border-bottom: 1px solid var(--border-color);
+      margin: 0;
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      color: var(--light-black);
 }
 
 .profile-address {
-    display: flex;
-    display: row;
+      display: flex;
+      display: row;
 }
 
 .profile-address p {
-    padding-left: 4px ;
+      padding-left: 4px;
 }
 
 /*gallery section*/
 .gallery-section {
-    max-width: 1100px;
-    margin: 40px auto;
-    box-sizing: border-box;
+      max-width: 1100px;
+      margin: 40px auto;
+      box-sizing: border-box;
 }
 
 .gallery-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 60px 0 30px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 60px 0 30px 0;
 }
 
 .gallery-header h2 {
-    font-weight: 400;
-    margin: 0;
-    font-family: var(--header-font);
-    font-size: 28px;
-    color: var(--black);
+      font-weight: 400;
+      margin: 0;
+      font-family: var(--header-font);
+      font-size: 28px;
+      color: var(--black);
 }
 
 .gallery-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 24px;
 }
 
 .art-card {
-    font-family: var(--paragraph-font);
-    text-decoration: none;
-    color: var(--black);
-    background-color: white;
-    transition: 0.2s ease;
+      font-family: var(--paragraph-font);
+      text-decoration: none;
+      color: var(--black);
+      background-color: white;
+      transition: 0.2s ease;
 }
 
 .art-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
 .art-card .image {
-    width: 100%;
-    height: 180px;
-    background-size: cover;
-    background-position: center;
+      width: 100%;
+      height: 180px;
+      background-size: cover;
+      background-position: center;
 }
 
 .art-card-info {
-    padding: 14px;
+      padding: 14px;
 }
 
 .art-card-info h5 {
-    margin: 0 0 8px;
-    font-family: var(--header-font);
-    font-size: 17px;
-    font-weight: 550;
-    color: var(--black);
+      margin: 0 0 8px;
+      font-family: var(--header-font);
+      font-size: 17px;
+      font-weight: 550;
+      color: var(--black);
 }
 
 .art-card-info p {
-    margin: 4px 0;
-    font-family: var(--paragraph-font);
-    color: var(--light-black);
-    font-size: 15px;
+      margin: 4px 0;
+      font-family: var(--paragraph-font);
+      color: var(--light-black);
+      font-size: 15px;
 }
 
 .art-card-info .price {
-    font-family: var(--paragraph-font);
-    font-size: 16px;
-    margin-top: 5px;
-    font-weight: 300;
-    color: var(--black);
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      margin-top: 5px;
+      font-weight: 300;
+      color: var(--black);
 }
 
 .art-card-info .price b {
-    font-size: 17px;
-    margin-top: 5px;
-    font-weight: 900;
-    color: var(--orange-color);
+      font-size: 17px;
+      margin-top: 5px;
+      font-weight: 900;
+      color: var(--orange-color);
 }
 
 .art-card .highest-bid {
-    font-family: var(--paragraph-font);
-    font-size: 16px;
-    margin-top: 5px;
-    font-weight: 300;
-    color: var(--black);
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      margin-top: 5px;
+      font-weight: 300;
+      color: var(--black);
 }
 
-#line{
+#line {
       border-top: 1px solid var(--border-color);
-        padding: 4px 0;
+      padding: 4px 0;
 }
 
 .art-card .highest-bid b {
-    font-size: 17px;
-    margin-top: 5px;
-    font-weight: 900;
-    color: var(--orange-color);
+      font-size: 17px;
+      margin-top: 5px;
+      font-weight: 900;
+      color: var(--orange-color);
 }
 
 .add-listing-button {
-    border-radius: var(--round-corners);
-    padding: 11px 18px;
-    background-color: var(--orange-color);
-    font-size: 15px;
-    cursor: pointer;
+      border-radius: var(--round-corners);
+      padding: 11px 18px;
+      background-color: var(--orange-color);
+      font-size: 15px;
+      cursor: pointer;
 }
 
-.add-listing-button a{
-    color: white;
-    text-decoration: none;
-    font-family: var(--header-font);
-    font-weight: 700;
+.add-listing-button a {
+      color: white;
+      text-decoration: none;
+      font-family: var(--header-font);
+      font-weight: 700;
 }
 
 .empty {
-    grid-column: 1 / 5;
-    border-radius: var(--round-corners);
-    padding: 40px;
-    text-align: center;
-    border: 1px solid var(--border-color);
-    background-color: white;
+      grid-column: 1 / 5;
+      border-radius: var(--round-corners);
+      padding: 40px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+      background-color: white;
 }
 
 .empty h3 {
-    margin: 0;
-    font-family: var(--paragraph-font);
-    color: var(--light-black);
+      margin: 0;
+      font-family: var(--paragraph-font);
+      color: var(--light-black);
 }
 
 /*account-settings css*/
 
-.account-settings-container{
-    width: 600px;
-    margin: 80px auto;
-    text-align: left;
+.account-settings-container {
+      width: 600px;
+      margin: 80px auto;
+      text-align: left;
 }
 
-.account-card img{
-    height: 200px;
-    width: 200px;
-    background-size: cover;
-    background-position: center;
+.account-card img {
+      height: 200px;
+      width: 200px;
+      background-size: cover;
+      background-position: center;
 }
 
-.editfield{
-    border: none;
-    text-decoration: #dd700b;
-    border-bottom: 1px solid var(--light-black);
-    background-color: transparent;
-    color: var(--black);
-    font-family: var(--header-font);
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.editfield {
+      border: none;
+      text-decoration: #dd700b;
+      border-bottom: 1px solid var(--light-black);
+      background-color: transparent;
+      color: var(--black);
+      font-family: var(--header-font);
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
 }
 
 .editfield:hover {
-    transform: scale(1.1);
+      transform: scale(1.1);
 }
 
 
 .showeditinput {
-    display: none;
-    margin-top: 14px;
-    gap: 10px;
+      display: none;
+      margin-top: 14px;
+      gap: 10px;
 }
 
 .showeditinput.show {
-    display: block;
+      display: block;
 }
 
 .showeditinput input {
-    flex: 1;
-    height: 28px;
-    padding: 0 12px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--round-corners);
-    font-family: var(--paragraph-font);
+      flex: 1;
+      height: 28px;
+      padding: 0 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--round-corners);
+      font-family: var(--paragraph-font);
 }
 
 .showeditinput button {
-    padding: 0 16px;
-    border: none;
-    background-color: var(--orange-color);
-    color: white;
-    border-radius: var(--round-corners);
-    cursor: pointer;
+      padding: 0 16px;
+      border: none;
+      background-color: var(--orange-color);
+      color: white;
+      border-radius: var(--round-corners);
+      cursor: pointer;
 }
 
 .account-settings-container #id_logo,
 .account-settings-container #id_profile_image,
 .account-settings-container #id_cover_photo {
-    display: block;
+      display: block;
 }
 
 .account-settings-container #id_bio {
-    width: 100%;
-    height: 180px;
-    resize: vertical;
+      width: 100%;
+      height: 180px;
+      resize: vertical;
 }

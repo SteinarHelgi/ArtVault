@@ -144,6 +144,14 @@ def checkout_overview(request, shipping_id):
         payment = WireTransferModel.objects.get(shipping=shipping_obj)
 
     if request.method == "POST":
+        bid = shipping_obj.bid
+        artwork = bid.artwork
+
+        artwork.sold = True
+        artwork.save()
+
+        bid.status = "completed"
+        bid.save()
         messages.success(request, "payment_successful")
         return redirect("/")
 
@@ -241,11 +249,8 @@ def submit_bid(request, artwork_id):
 @login_required
 def accept_bid(request, bid_id):
     bid = get_object_or_404(Bid, id=bid_id)
-    artwork = bid.artwork
 
     bid.status = "accepted"
     bid.save()
-    artwork.sold = True
-    artwork.save()
 
     return redirect(request.META.get("HTTP_REFERER"))

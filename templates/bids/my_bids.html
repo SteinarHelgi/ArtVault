@@ -1,36 +1,62 @@
 {% extends "base.html" %}
 
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/my_bids.css' %}">
+{% load humanize %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/my_bids.css' %}">
 
-<h1>My Bids</h1>
-<div class="my-bids-container">
+<div class="gallery-section">
 
-      {% for bid in bids %}
-      <div class="bid-item">
-            {% with img=bid.artwork.images.first.image.url %}
-            {% if img %}
-            <img class="image" src="{{ img }}" alt="image of artwork from artist">
-            {% else %}
-            <p>no images</p>
-            {% endif %}
-            {% endwith %}
-            <h2>{{ bid.artwork.title }}</h2>
-            <p>Bid amount: {{ bid.amount }}</p>
-            <p>Status: {{ bid.status }}</p>
-            {% if bid.status == 'accepted' %}
-            {% if not bid.artwork.sold %}
-            
-            <a href="{% url 'shipping' bid.id %}" class="finalize-bid-button">
-                  Finalize bid
-            </a>
-            {% endif %}
-            {% endif %}
+      <h1>My Bids</h1>
+      <div class="gallery-container">
+
+            {% for bid in bids %}
+            <div class="art-card">
+
+                  <a href="{% url 'artwork-details' bid.artwork.id %}" class="art-card">
+                        {% with img=bid.artwork.images.first.image.url %}
+                        {% if img %}
+                        <img class="image" src="{{ img }}" alt="image of artwork from artist">
+                        {% else %}
+                        <p>no images</p>
+                        {% endif %}
+                        {% endwith %}
+                        <div class="art-card-info">
+
+                              <h2>{{ bid.artwork.title }}</h2>
+                              <p>Bid amount: <b>{{ bid.formatted_amount}}kr</b></p>
+                              {% if bid.status == "accepted" %}
+                              <p>Accepted!</p>
+
+                              {% elif bid.status == "pending" %}
+                              <p>Auction is not over</p>
+
+
+
+                              {%elif bid.status == "completed"%}
+                              <p>Completed!</p>
+
+                              {% endif %}
+
+                              {% if bid.status == 'accepted' %}
+
+                              {% if not bid.artwork.sold %}
+
+                              <a href="{% url 'shipping' bid.id %}" class="finalize-bid-button">
+                                    Finalize bid
+                              </a>
+
+                              {%else%}
+
+                              {% endif %}
+                              {% endif %}
+                        </div>
+                  </a>
+            </div>
+            {% empty %}
+            <p>You have not placed any bids yet.</p>
+            {% endfor %}
+
       </div>
-      {% empty %}
-      <p>You have not placed any bids yet.</p>
-      {% endfor %}
-
 </div>
 {% endblock %}
