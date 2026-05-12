@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/my-listing.css' %}">
 <link rel="stylesheet" href="{% static 'css/art-details.css' %}">
 
 <div class="art-details-container">
@@ -17,8 +18,6 @@
                   <img src="{{ img.image.url }}" class="side-image" alt="image of artwork">
             </div>
 
-
-
       </div>
 
       {% endif %}
@@ -28,23 +27,39 @@
       <div class=update-remove-container>
           <a href="{% url 'delete-listing' id=artwork.id %}" class="btn btn-secondary"> Remove listing</a>
       </div>
-      <div class="description-container">
+      <div class="listing-description-container">
 
             <div class="information">
 
                   <h2 class="artist-name">{{ artwork.artist_name }} <span class="year">( {{artwork.date.year}} )</span>
                   </h2>
                   <p class="history">{{ artwork.history }}</p>
-                  <p class="italic-text">{{ artwork.medium }}</p>
-                  <p class="italic-text">{{ artwork.dimensions }}</p>
-                  <p class="italic-text">{{ artwork.edition }}</p>
-                  <p class="italic-text">{{ artwork.art_movement }}</p>
-                  <p>Auction over?: {{auction_over}}</p>
-                  <p>sold ? {{artwork.sold}} </p>
-                  <p>Starting price: {{artwork.starting_price}}</p>
-                  <p>auction end date: {{artwork.auction_end_date}}</p>
-                  <p>history: {{ artwork.history }}</p>
+                <div class="listing-info-row">
+                  <p class="listing-text">Medium: {{ artwork.medium }}</p>
+                  <p class="italic-text">Style: {{ artwork.art_movement }}</p>
+                  <p class="italic-text">Edition: {{ artwork.edition }}</p>
+                  <p class="italic-text">Dimensions: {{ artwork.dimensions }}</p>
+                </div>
 
+                <div class="auction-info">
+    {#            auction not over#}
+                    {% if not auction_over %}
+                        <h2>Auction on going</h2>
+                        <p>ends in: {{ artwork.days_remaining }} days</p>
+                    {% else %}
+    {#                    auction over#}
+                        <h2>Auction over</h2>
+    {#                      artwork not sold#}
+                            {% if not artwork.sold %}
+                                <p>This artwork is not sold yet. Accept a bid to complete the sale.</p>
+    {#                artwork sold#}
+                            {% else %}
+                                <p>Artwork sold for: {{highest_bid.amount}} kr.</p>
+                            {% endif %}
+                    {% endif %}
+                        <p>starting price: {{ artwork.starting_price }} kr.</p>
+                        <p>Auction end date: {{artwork.auction_end_date}}</p>
+                </div>
             </div>
 
       </div>
@@ -55,7 +70,7 @@
             {% for bid in bids %}
             <a class="art-card">
                   <div class="art-card-info">
-                        <p>{{bid.status}}</p>
+                        <p class="bid-status">{{bid.status}}</p>
                         {% if auction_over %}
                         {% if not bid.artwork.sold %}
 
@@ -65,8 +80,8 @@
                         </form>
                         {% endif %}
                         {% endif %}
-                        <h5>{{bid.buyer.full_name}}</h5>
-                        <p class="price">{{bid.amount}}kr</p>
+                        <h5 class="">{{bid.buyer.full_name}}</h5>
+                        <p class="price">Bid: <b>{{bid.amount}} kr.</b></p>
                   </div>
             </a>
             {% endfor %}
