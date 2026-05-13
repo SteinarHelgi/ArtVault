@@ -289,6 +289,8 @@ def close_auction(artwork):
     today = timezone.now().date()
 
     if today >= artwork.auction_end_date and not artwork.is_closed:
+        print(today)
+        print(artwork.auction_end_date)
         highest_bid = artwork.bids.order_by("-amount").first()
 
         if highest_bid:

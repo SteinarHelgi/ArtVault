@@ -13,6 +13,9 @@ from django.utils import timezone
 
 # Create your views here
 def index(request):
+    all_artworks = Artwork.objects.all()
+    for artwork in all_artworks:
+        close_auction(artwork)
     artworks = Artwork.objects.filter(sold=False)
 
     artmovement = defaultdict(list)
