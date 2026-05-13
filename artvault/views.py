@@ -70,12 +70,13 @@ def browse_artwork(request):
 
     # radiobutton sold/on sale
     sale_status = request.GET.get("sale_status")
+    now = timezone.now()
 
     if sale_status == "sold":
         art = art.filter(sold=True)
 
     elif sale_status == "for_sale":
-        art = art.filter(sold=False)
+        art = art.filter(sold=False, auction_end_date__gt=now)
 
     # current price variable
     for artwork in art:
