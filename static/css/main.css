@@ -2083,7 +2083,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .movement-card h3 {
       margin-top: 12px;
       text-align: center;
-      transition: 0.2s ease;
+      transition: 0.1s ease;
 }
 
 .movement-card:hover {
@@ -2105,7 +2105,7 @@ input[type="number"]::-webkit-inner-spin-button {
       text-align: center;
       text-decoration: none;
       color: black;
-      transition: 0.2s ease;
+      transition: 0.1s ease;
 }
 
 .movement-artist-card:hover {
