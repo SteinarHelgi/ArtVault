@@ -192,7 +192,7 @@ def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_ove
         {
             "artwork": artwork,
             "highest_bid": highest_bid,
-            "current_price": current_price,
+            "current_price": format_currency(current_price),
             "bid_step": bid_step,
             "amount": amount,
             "auction_over": auction_over,

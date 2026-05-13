@@ -228,5 +228,19 @@ function closeFilter() {
     document.getElementById("filterOverlay").classList.remove("show");
 }
 
+//big images artwork_details
+function openImagePopup(src) {
+    const popup = document.getElementById("imagePopup");
+    const popupImage = document.getElementById("popupImage");
+
+    popup.style.display = "flex";
+    popupImage.src = src;
+}
+
+function closeImagePopup() {
+    const popup = document.getElementById("imagePopup");
+    popup.style.display = "none";
+}
+
 
 
