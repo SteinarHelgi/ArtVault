@@ -1,4 +1,5 @@
 from django.contrib.auth.views import login_required
+from django.db.models import Max
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from bids.forms.shippingForm import ShippingForm
@@ -15,6 +16,7 @@ from artvault.models import Bid, Artwork
 from django.contrib import messages
 
 from user.models import BuyerProfileModel, Profile, SellerProfileModel
+from utils.formatting import format_currency
 # Create your views here.
 
 
@@ -164,7 +166,10 @@ def checkout_overview(request, shipping_id):
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
     bids = Bid.objects.filter(buyer=profile).order_by("-timestamp")
-
+    for bid in bids:
+        bid.highest_bid = format_currency(
+            bid.artwork.bids.aggregate(Max("amount"))["amount__max"]
+        )
     return render(
         request,
         "bids/my_bids.html",
@@ -175,7 +180,9 @@ def my_bids(request):
     )
 
 
-def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_over=False):
+def render_artwork_bid(
+    request, artwork, bid_step=None, amount=None, auction_over=False
+):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
     artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
@@ -267,11 +274,11 @@ def accept_bid(request, bid_id):
 
     return redirect(request.META.get("HTTP_REFERER"))
 
+
 def close_auction(artwork):
     today = timezone.now().date()
 
     if today >= artwork.auction_end_date and not artwork.is_closed:
-
         highest_bid = artwork.bids.order_by("-amount").first()
 
         if highest_bid:
