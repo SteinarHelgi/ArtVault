@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 from user.models import BuyerProfileModel, SellerProfileModel
+from utils.formatting import format_currency
 
 # Create your models here.
 
@@ -29,6 +30,7 @@ class Artwork(models.Model):
     art_movement = models.CharField(max_length=255)
     auction_start_date = models.DateField()
     auction_end_date = models.DateField()
+    is_closed = models.BooleanField(default=False)
 
 
 class ArtworkImage(models.Model):
@@ -49,7 +51,7 @@ class Bid(models.Model):
 
     @property
     def formatted_amount(self):
-        return f"{self.amount:,}".replace(",", ".")
+        return format_currency(self.amount)
 
 
 class ArtmovementArtist(models.Model):

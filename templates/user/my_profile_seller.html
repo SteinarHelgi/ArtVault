@@ -50,7 +50,7 @@
                   <div class="art-card-info">
                         <h5>{{ artwork.title }}</h5>
                         <p>{{ artwork.medium }}</p>
-                        {% if artwork.sold %}
+                        {% if artwork.is_closed %}
 
                         <p>bidding ended on {{artwork.auction_end_date}}</p>
                         <p class="price">Sold for: <b>{{ artwork.highest_bid }} kr.</b></p>

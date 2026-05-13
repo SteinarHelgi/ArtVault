@@ -1,4 +1,5 @@
 from django.contrib.auth.views import login_required
+from django.db.models import Max
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from bids.forms.shippingForm import ShippingForm
@@ -15,6 +16,7 @@ from artvault.models import Bid, Artwork
 from django.contrib import messages
 
 from user.models import BuyerProfileModel, Profile, SellerProfileModel
+from utils.formatting import format_currency
 # Create your views here.
 
 
@@ -163,8 +165,11 @@ def checkout_overview(request, shipping_id):
 @login_required
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
-    bids = Bid.objects.filter(buyer=profile)
-
+    bids = Bid.objects.filter(buyer=profile).order_by("-timestamp")
+    for bid in bids:
+        bid.highest_bid = format_currency(
+            bid.artwork.bids.aggregate(Max("amount"))["amount__max"]
+        )
     return render(
         request,
         "bids/my_bids.html",
@@ -216,9 +221,20 @@ def make_bid(request, artwork_id):
             messages.error(request, "Please enter a bid amount")
             return redirect("make_bid", artwork_id)
 
-        amount = int(amount)
         minimum_bid = int(current_price) + 5000
+        if not amount:
+            messages.error(request, "Please enter a bid amount")
+            return redirect("make_bid", artwork_id)
 
+        if "." in amount:
+            messages.error(request, "Bid amount must be a whole number.")
+            return redirect("make_bid", artwork_id)
+
+        try:
+            amount = int(amount)
+        except ValueError:
+            messages.error(request, "Please enter a valid number.")
+            return redirect("make_bid", artwork_id)
         if amount < minimum_bid:
             messages.error(
                 request, f"Your bid must be at least {minimum_bid} Kr."
@@ -260,7 +276,34 @@ def submit_bid(request, artwork_id):
 def accept_bid(request, bid_id):
     bid = get_object_or_404(Bid, id=bid_id)
 
+    artwork = bid.artwork
+
+    if artwork.is_closed:
+        return redirect("artwork-details", artwork.id)
+
+    artwork.bids.exclude(id=bid.id).update(status="rejected")
+
     bid.status = "accepted"
     bid.save()
 
+    artwork.is_closed = True
+    artwork.save()
+
     return redirect(request.META.get("HTTP_REFERER"))
+
+
+def close_auction(artwork):
+    today = timezone.now().date()
+
+    if today >= artwork.auction_end_date and not artwork.is_closed:
+        print(today)
+        print(artwork.auction_end_date)
+        highest_bid = artwork.bids.order_by("-amount").first()
+
+        if highest_bid:
+            artwork.bids.exclude(id=highest_bid.id).update(status="rejected")
+            highest_bid.status = "accepted"
+            highest_bid.save()
+
+        artwork.is_closed = True
+        artwork.save()

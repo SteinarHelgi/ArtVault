@@ -4,7 +4,7 @@ from django.db.models import Max, Q, QuerySet
 from artvault.models import Artwork
 from user.models import SellerProfileModel
 from artvault.models import Artwork, Bid
-from bids.views import render_artwork_bid
+from bids.views import render_artwork_bid, close_auction
 from artvault.models import Artmovement, ArtmovementArtist
 from random import shuffle
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,20 @@ from django.utils import timezone
 
 # Create your views here
 def index(request):
-    return render(request, "artvault/index.html", {"art": Artwork.objects.all()})
+    all_artworks = Artwork.objects.all()
+    for artwork in all_artworks:
+        close_auction(artwork)
+    artworks = Artwork.objects.filter(sold=False)
+
+    artmovement = defaultdict(list)
+
+    for artwork in artworks:
+        artmovement[artwork.art_movement].append(artwork)
+
+    return render(request, "artvault/index.html", {
+        "art": Artwork.objects.all(),
+        "artmovement": dict(artmovement),
+    })
 
 
 def browse_artwork(request):
@@ -107,6 +120,8 @@ def browse_artwork(request):
 def artwork_details(request, id):
     artwork = get_object_or_404(Artwork, pk=id)
 
+    close_auction(artwork)
+
     user_has_bid = False
 
     if request.user.is_authenticated:
@@ -188,3 +203,4 @@ def my_profile_seller(request):
         "seller_profile": seller_profile,
         "seller_artworks": seller_artworks,
     })
+

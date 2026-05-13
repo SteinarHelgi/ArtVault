@@ -2089,7 +2089,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .movement-artist-card {
-      width: 200px;
+      width: 250px;
       flex: 0 0 200px;
       text-align: center;
       text-decoration: none;
@@ -2097,8 +2097,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .movement-artist-card img {
-      width: 200px !important;
-      height: 200px !important;
+      width: 150px !important;
+      height: 150px !important;
       object-fit: cover;
       object-position: top center;
       border-radius: 12px;
