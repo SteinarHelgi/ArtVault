@@ -1,8 +1,6 @@
 function showLoader() {
     const loader = document.getElementById("page-loader");
-      if (!form.checkValidity()) {
-      return;
-      }
+
     if (loader) {
         loader.style.display = "flex";
     }
@@ -17,7 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener("click", function () {
             const href = link.getAttribute("href");
 
-            if (href && href !== "#" && !href.startsWith("javascript")) {
+            if (
+                href &&
+                href !== "#" &&
+                !href.startsWith("#") &&
+                !href.startsWith("javascript")
+            ) {
                 showLoader();
             }
         });
@@ -25,14 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     forms.forEach(function (form) {
         form.addEventListener("submit", function () {
-            showLoader();
+            if (form.checkValidity()) {
+                showLoader();
+            }
         });
     });
 
     buttons.forEach(function (button) {
         button.addEventListener("click", function () {
+            const form = button.closest("form");
+
             if (button.type === "submit") {
-                showLoader();
+                if (!form || form.checkValidity()) {
+                    showLoader();
+                }
             }
         });
     });
