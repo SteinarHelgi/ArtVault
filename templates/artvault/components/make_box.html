@@ -1,27 +1,53 @@
 {% load static %}
 
-<div class="bid-card">
-    <h3 class="highest-bid">Highest bid</h3>
-    <h2 class="bid-price">{{ current_price }} Kr.</h2>
+{% if artwork.bids.exists %}
+    <div class="bid-card">
+        <h3 class="highest-bid">Highest bid</h3>
+        <h2 class="bid-price">{{ current_price }} Kr.</h2>
 
-    <form method="post" action="{% url 'make_bid' artwork.id %}">
-        {% csrf_token %}
-            {% if messages %}
-            {% for message in messages %}
-                  <div class="bid-text">
-                        {{ message }}
-                  </div>
-            {% endfor %}
-            {% endif %}
-        <div class="bid-text">
-            <p>Bid has to be 10% over highest bid</p>
-        </div>
+        <form method="post" action="{% url 'make_bid' artwork.id %}">
+            {% csrf_token %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="bid-text">
+                            {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            <div class="bid-text">
+                <p>Bid has to be 10% over highest bid</p>
+            </div>
 
-        <label for="bid-amount">
-            <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" required>
-        </label>
+            <label for="bid-amount">
+                <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" required>
+            </label>
 
-        <button type="submit" class="button-bid">Submit</button>
-    </form>
+            <button type="submit" class="button-bid">Submit</button>
+        </form>
+    </div>
+{% elif not artwork.bids.exists %}
+    <div class="bid-card">
+        <h3 class="highest-bid">Starting price</h3>
+        <h2 class="bid-price">{{ current_price }} Kr.</h2>
 
-</div>
+        <form method="post" action="{% url 'make_bid' artwork.id %}">
+            {% csrf_token %}
+                {% if messages %}
+                {% for message in messages %}
+                    <div class="bid-text">
+                            {{ message }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            <div class="bid-text">
+                <p>Be the first to bid.</p>
+            </div>
+
+            <label for="bid-amount">
+                <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" required>
+            </label>
+
+            <button type="submit" class="button-bid">Submit</button>
+        </form>
+    </div>
+{% endif %}
