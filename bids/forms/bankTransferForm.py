@@ -7,7 +7,7 @@ class BankTransferForm(ModelForm):
         model = BankTransferModel
         fields = ['bank', 'hb', 'account']
         widgets = {
-            'bank' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': '000'}),
+            'bank' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0000'}),
             'hb' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': '00'}),
             'account' : forms.TextInput(attrs={'class': 'form-control', 'placeholder': '000000'}),
         }

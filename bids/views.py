@@ -180,9 +180,7 @@ def my_bids(request):
     )
 
 
-def render_artwork_bid(
-    request, artwork, bid_step=None, amount=None, auction_over=False
-):
+def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_over=False, user_has_bid=False):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
     artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
@@ -197,6 +195,7 @@ def render_artwork_bid(
             "bid_step": bid_step,
             "amount": amount,
             "auction_over": auction_over,
+            "user_has_bid": user_has_bid,
         },
     )
 
@@ -204,6 +203,13 @@ def render_artwork_bid(
 @login_required
 def make_bid(request, artwork_id):
     artwork = get_object_or_404(Artwork, id=artwork_id)
+
+    buyer_profile = request.user.profile.buyer_profile
+
+    user_has_bid = Bid.objects.filter(
+        artwork=artwork,
+        buyer=buyer_profile
+    ).exists()
 
     highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
@@ -215,19 +221,30 @@ def make_bid(request, artwork_id):
             messages.error(request, "Please enter a bid amount")
             return redirect("make_bid", artwork_id)
 
-        amount = int(amount)
         minimum_bid = int(current_price) + 5000
+        if not amount:
+            messages.error(request, "Please enter a bid amount")
+            return redirect("make_bid", artwork_id)
 
+        if "." in amount:
+            messages.error(request, "Bid amount must be a whole number.")
+            return redirect("make_bid", artwork_id)
+
+        try:
+            amount = int(amount)
+        except ValueError:
+            messages.error(request, "Please enter a valid number.")
+            return redirect("make_bid", artwork_id)
         if amount < minimum_bid:
             messages.error(
-                request, f"Your bid must be at least {minimum_bid + 5000} Kr."
+                request, f"Your bid must be at least {minimum_bid} Kr."
             )
             return redirect("make_bid", artwork_id)
 
         request.session["pending_bid_amount"] = amount
-        return render_artwork_bid(request, artwork, "confirm", amount)
+        return render_artwork_bid(request, artwork, "confirm", amount, user_has_bid=user_has_bid)
 
-    return render_artwork_bid(request, artwork, "make")
+    return render_artwork_bid(request, artwork, "make", user_has_bid=user_has_bid)
 
 
 @login_required
@@ -279,6 +296,8 @@ def close_auction(artwork):
     today = timezone.now().date()
 
     if today >= artwork.auction_end_date and not artwork.is_closed:
+        print(today)
+        print(artwork.auction_end_date)
         highest_bid = artwork.bids.order_by("-amount").first()
 
         if highest_bid:
