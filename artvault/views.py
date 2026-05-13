@@ -107,13 +107,22 @@ def browse_artwork(request):
 def artwork_details(request, id):
     artwork = get_object_or_404(Artwork, pk=id)
 
+    user_has_bid = False
+
+    if request.user.is_authenticated:
+        if request.user.profile.role == "buyer":
+            user_has_bid = Bid.objects.filter(
+                artwork=artwork,
+                buyer=request.user.profile.buyer_profile
+            ).exists()
+
     today = timezone.now().date()
 
     artwork.days_remaining = max((artwork.auction_end_date - today).days, 0)
 
     auction_over = today >= artwork.auction_end_date
 
-    return render_artwork_bid(request, artwork,auction_over=auction_over)
+    return render_artwork_bid(request, artwork,auction_over=auction_over, user_has_bid=user_has_bid)
 
 def browse_artists(request):
     artworks = Artwork.objects.prefetch_related("images").all()
