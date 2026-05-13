@@ -166,7 +166,7 @@ def checkout_overview(request, shipping_id):
 @login_required
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
-    bids = Bid.objects.filter(buyer=profile).order_by("-timestamp")
+    bids = Bid.objects.filter(buyer=profile).order_by("artwork", "-amount")
     for bid in bids:
         bid.highest_bid = format_currency(
             bid.artwork.bids.aggregate(Max("amount"))["amount__max"]
