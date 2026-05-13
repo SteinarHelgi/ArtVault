@@ -217,6 +217,7 @@ def make_bid(request, artwork_id):
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
 
     has_bid = artwork.bids.exists()
+    max_bid = 2147483647
 
     if has_bid:
         minimum_bid = math.ceil(current_price * 1.10 / 1000) * 1000
@@ -245,6 +246,9 @@ def make_bid(request, artwork_id):
                 request, f"Your bid must be at least {minimum_bid} Kr."
             )
             return redirect("make_bid", artwork_id)
+        if amount > max_bid:
+            messages.error(request,"Bid is too large")
+            return redirect("make_bid",artwork_id)
 
         request.session["pending_bid_amount"] = amount
         return render_artwork_bid(request, artwork, "confirm", amount, user_bid=user_bid, minimum_bid=minimum_bid)

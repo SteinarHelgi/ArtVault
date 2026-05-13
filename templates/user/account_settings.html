@@ -130,7 +130,11 @@
                   <button class="close-btn" onclick="closeModal()">X</button>
 
                   <p>Changes confirmed.</p>
-                  <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                  {% if profile.role == "buyer" %}
+                      <a href="{% url 'home' %}" class="modal-btn">Continue</a>
+                  {% else %}
+                      <a href="{% url 'my_profile_seller' %}" class="modal-btn">Continue</a>
+                  {% endif %}
             </div>
       </div>
       {% endif %}

@@ -1,6 +1,8 @@
 function showLoader() {
     const loader = document.getElementById("page-loader");
-
+      if (!form.checkValidity()) {
+      return;
+      }
     if (loader) {
         loader.style.display = "flex";
     }
