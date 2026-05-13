@@ -17,7 +17,15 @@
           {% endif %}
             </div>
             <div class="profile-info">
-                  <p>{{ seller_profile.profile.role }}</p>
+                  {% if seller_profile.profile.role == "individual_seller" %}
+
+                        <p>Individual seller</p>
+                  
+                  {% elif seller_profile.profile.role == "gallery" %}
+
+                        <p>Gallery</p>
+                  {% endif %}
+
                   <p>@{{ seller_profile.profile.user }}</p>
                   <div class="profile-address">
                         <p>{{ seller_profile.street_name }}</p>
