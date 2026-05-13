@@ -1,3 +1,41 @@
+function showLoader() {
+    const loader = document.getElementById("page-loader");
+
+    if (loader) {
+        loader.style.display = "flex";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll("a");
+    const forms = document.querySelectorAll("form");
+    const buttons = document.querySelectorAll("button");
+
+    links.forEach(function (link) {
+        link.addEventListener("click", function () {
+            const href = link.getAttribute("href");
+
+            if (href && href !== "#" && !href.startsWith("javascript")) {
+                showLoader();
+            }
+        });
+    });
+
+    forms.forEach(function (form) {
+        form.addEventListener("submit", function () {
+            showLoader();
+        });
+    });
+
+    buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            if (button.type === "submit") {
+                showLoader();
+            }
+        });
+    });
+});
+
 function toggleLeftDropdown(event) {
     event.stopPropagation();
     document.getElementById("leftDropdown")?.classList.toggle("show");
@@ -187,3 +225,6 @@ function closeFilter() {
     document.getElementById("filterSidebar").classList.remove("show");
     document.getElementById("filterOverlay").classList.remove("show");
 }
+
+
+
