@@ -2,32 +2,47 @@
 {% load static %}
 
 {% block content %}
-    <div class="card-page">
-        <form method="post" class="card-form">
-            {% csrf_token %}
-            <div class="payment-field">
-                <label>Cardholder's name</label>
-                {{ form.cardholder_name }}
-            </div>
+<div class="checkout-page">
+    <div class="checkout-layout">
 
-            <div class="payment-field">
-                <div class="card-info-wrapper">
-                    <label>Card information</label>
-                    {{ form.card_number }}
-                    <img src="{% static 'img/cards.png' %}" alt="Cards" class="cards-img">
-                </div>
-            </div>
+        <div class="checkout-main">
 
-            <div class="card-row">
-                {{ form.card_expiration }}
-                <div class="cvv-wrapper">
-                    {{ form.card_cvv }}
-                    <img src="{% static 'img/card.svg' %}" alt="Cards" class="cvv-img">
+            <form method="post" class="card-form">
+                {% csrf_token %}
+
+                <div class="payment-field">
+                    <label>Cardholder's name</label>
+                    {{ form.cardholder_name }}
                 </div>
-            </div>
-            <button type="submit" class="confirm-btn">Confirm</button>
-        </form>
-        <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+
+                <div class="payment-field">
+                    <div class="card-info-wrapper">
+                        <label>Card information</label>
+                        {{ form.card_number }}
+                        <img src="{% static 'img/cards.png' %}" alt="Cards" class="cards-img">
+                    </div>
+                </div>
+
+                <div class="card-row">
+                    {{ form.card_expiration }}
+
+                    <div class="cvv-wrapper">
+                        {{ form.card_cvv }}
+                        <img src="{% static 'img/card.svg' %}" alt="Cards" class="cvv-img">
+                    </div>
+                </div>
+
+                 <div class="checkout-buttons">
+                    <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+                    <button type="submit" class="confirm-btn">Confirm</button>
+                </div>
+
+            </form>
+
+        </div>
+
+        {% include "bids/component/order_summary.html" %}
+
     </div>
-
+</div>
 {% endblock content %}

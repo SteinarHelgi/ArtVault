@@ -1,111 +1,143 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
-    <div class="overview-page">
+<div class="checkout-page">
+    <div class="checkout-layout">
+        <div class="checkout-main">
 
-        <h1>Overview</h1>
+            <h1>Overview</h1>
 
-        <div class="overview-form">
+            <div class="overview-form">
 
-            <label>Contact</label>
-            <div class="overview-box">
-                {{ shipping.email }}
-            </div>
+                <label>Contact</label>
 
-            <div class="overview-box">
-                {{ shipping.national_id }}
-            </div>
-
-            <label>Delivery</label>
-            <div class="overview-box">
-                {{ shipping.country }}
-            </div>
-
-            <label>Address</label>
-            <div class="overview-box">
-                {{ shipping.street_name }}
-            </div>
-
-            <div class="overview-box">
-                {{ shipping.city }}
-            </div>
-
-            <div class="overview-box">
-                {{ shipping.zip_code }}
-            </div>
-
-            {% if shipping.payment_method == "card" %}
-
-                <label>Cardholder's name</label>
                 <div class="overview-box">
-                    {{ payment.cardholder_name }}
+                    {{ shipping.email }}
                 </div>
 
-                <label>Card information</label>
                 <div class="overview-box">
-                    **** **** **** {{ payment.credit_card_number|slice:"-4:" }}
+                    {{ shipping.national_id }}
                 </div>
 
-                <div class="overview-card-row">
-                    <div class="overview-small-box">
-                        {{ payment.card_expiration }}
+                <label>Delivery</label>
+
+                <div class="overview-box">
+                    {{ shipping.country }}
+                </div>
+
+                <label>Address</label>
+
+                <div class="overview-box">
+                    {{ shipping.street_name }}
+                </div>
+
+                <div class="overview-box">
+                    {{ shipping.city }}
+                </div>
+
+                <div class="overview-box">
+                    {{ shipping.zip_code }}
+                </div>
+
+                {% if shipping.payment_method == "card" %}
+
+                    <label>Cardholder's name</label>
+
+                    <div class="overview-box">
+                        {{ payment.cardholder_name }}
                     </div>
 
-                    <div class="overview-small-box">
-                        ***
+                    <label>Card information</label>
+
+                    <div class="overview-box">
+                        **** **** **** {{ payment.card_number|slice:"-4:" }}
                     </div>
-                </div>
 
-            {% elif shipping.payment_method == "bank" %}
+                    <div class="overview-card-row">
 
-                <label>Bank</label>
-                <div class="overview-box">
-                    {{ payment.bank }}
-                </div>
+                        <div class="overview-small-box">
+                            {{ payment.card_expiration }}
+                        </div>
 
-                <label>Hb</label>
-                <div class="overview-box">
-                    {{ payment.hb }}
-                </div>
+                        <div class="overview-small-box">
+                            ***
+                        </div>
 
-                <label>Account</label>
-                <div class="overview-box">
-                    {{ payment.account }}
-                </div>
+                    </div>
 
-            {% elif shipping.payment_method == "wire" %}
+                {% elif shipping.payment_method == "bank" %}
 
-                <label>Name of sending bank</label>
-                <div class="overview-box">
-                    {{ payment.sending_bank }}
-                </div>
+                    <label>Bank</label>
 
-                <label>Routing number</label>
-                <div class="overview-box">
-                    {{ payment.routing_number }}
-                </div>
+                    <div class="overview-box">
+                        {{ payment.bank }}
+                    </div>
 
-                <label>Account number</label>
-                <div class="overview-box">
-                    {{ payment.account_number }}
-                </div>
-            {% endif %}
+                    <label>Hb</label>
 
-            <form method="post">
-                {% csrf_token %}
-                <button type="submit" class="confirm-btn">Confirm</button>
-        </form>
+                    <div class="overview-box">
+                        {{ payment.hb }}
+                    </div>
+
+                    <label>Account</label>
+
+                    <div class="overview-box">
+                        {{ payment.account }}
+                    </div>
+
+                {% elif shipping.payment_method == "wire" %}
+
+                    <label>Name of sending bank</label>
+
+                    <div class="overview-box">
+                        {{ payment.sending_bank }}
+                    </div>
+
+                    <label>Routing number</label>
+
+                    <div class="overview-box">
+                        {{ payment.routing_number }}
+                    </div>
+
+                    <label>Account number</label>
+
+                    <div class="overview-box">
+                        {{ payment.account_number }}
+                    </div>
+
+                {% endif %}
+
+                <form method="post">
+
+                    {% csrf_token %}
+
+                    <div class="checkout-buttons">
+
+                        {% if shipping.payment_method == "card" %}
+                            <a href="{% url 'credit_card_payment' shipping.id %}" class="back-btn">
+                                Back
+                            </a>
+
+                        {% elif shipping.payment_method == "bank" %}
+                            <a href="{% url 'bank_transfer_payment' shipping.id %}" class="back-btn">
+                                Back
+                            </a>
+
+                        {% elif shipping.payment_method == "wire" %}
+                            <a href="{% url 'wire_transfer_payment' shipping.id %}" class="back-btn">Back</a>
+                        {% endif %}
+
+                        <button type="submit" class="confirm-btn">Confirm</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% include "bids/component/order_summary.html" %}
+
     </div>
-
-    {% if shipping.payment_method == "card" %}
-        <a href="{% url 'credit_card_payment' shipping.id %}" class="back-btn">Back</a>
-
-    {% elif shipping.payment_method == "bank" %}
-        <a href="{% url 'bank_transfer_payment' shipping.id %}" class="back-btn">Back</a>
-
-    {% elif shipping.payment_method == "wire" %}
-        <a href="{% url 'wire_transfer_payment' shipping.id %}" class="back-btn">Back</a>
-    {% endif %}
 
 </div>
 

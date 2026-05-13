@@ -18,6 +18,7 @@ from user.models import BuyerProfileModel, Profile, SellerProfileModel
 from utils.formatting import format_currency
 import math
 
+
 # Create your views here.
 
 
@@ -34,11 +35,20 @@ def shipping(request, bid_id):
 
     else:
         form = ShippingForm()
-    return render(request, template_name="bids/shipping.html", context={"form": form})
+    return render(request, template_name="bids/shipping.html", context={
+        "form": form,
+        "bid": bid,
+        "artwork": bid.artwork,
+        "total_price": format_currency(bid.amount),
+    })
 
 
 def shipping_edit(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
+
+    bid = shipping_obj.bid
+    artwork = bid.artwork
+    total_price = bid.amount
 
     if request.method == "POST":
         form = ShippingForm(request.POST, instance=shipping_obj)
@@ -49,12 +59,22 @@ def shipping_edit(request, shipping_id):
         form = ShippingForm(instance=shipping_obj)
 
     return render(
-        request, "bids/shipping.html", {"form": form, "shipping": shipping_obj}
+        request, "bids/shipping.html", {
+            "form": form,
+            "shipping": shipping_obj,
+            "bid": bid,
+            "artwork": artwork,
+            "total_price": format_currency(total_price),
+        }
     )
 
 
 def payment_method(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
+
+    bid = shipping_obj.bid
+    artwork = bid.artwork
+    total_price = bid.amount
 
     if request.method == "POST":
         method = request.POST.get("payment_method")
@@ -68,11 +88,20 @@ def payment_method(request, shipping_id):
         elif method == "wire":
             return redirect("wire_transfer_payment", shipping_id=shipping_obj.id)
 
-    return render(request, "bids/payment_method.html", {"shipping": shipping_obj})
+    return render(request, "bids/payment_method.html", {
+        "shipping": shipping_obj,
+        "bid": bid,
+        "artwork": artwork,
+        "total_price": format_currency(total_price),
+    })
 
 
 def credit_card_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
+
+    bid = shipping_obj.bid
+    artwork = bid.artwork
+    total_price = bid.amount
 
     payment_obj, created = CreditCardModel.objects.get_or_create(shipping=shipping_obj)
 
@@ -87,12 +116,22 @@ def credit_card_payment(request, shipping_id):
         form = CreditCardForm(instance=payment_obj)
 
     return render(
-        request, "bids/card_payment.html", {"form": form, "shipping": shipping_obj}
+        request, "bids/card_payment.html", {
+            "form": form,
+            "shipping": shipping_obj,
+            "bid": bid,
+            "artwork": artwork,
+            "total_price": format_currency(total_price),
+        }
     )
 
 
 def bank_transfer_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
+
+    bid = shipping_obj.bid
+    artwork = bid.artwork
+    total_price = bid.amount
 
     payment_obj, created = BankTransferModel.objects.get_or_create(
         shipping=shipping_obj
@@ -109,12 +148,22 @@ def bank_transfer_payment(request, shipping_id):
         form = BankTransferForm(instance=payment_obj)
 
     return render(
-        request, "bids/bank_payment.html", {"form": form, "shipping": shipping_obj}
+        request, "bids/bank_payment.html", {
+            "form": form,
+            "shipping": shipping_obj,
+            "bid": bid,
+            "artwork": artwork,
+            "total_price": format_currency(total_price),
+        }
     )
 
 
 def wire_transfer_payment(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
+
+    bid = shipping_obj.bid
+    artwork = bid.artwork
+    total_price = bid.amount
 
     payment_obj, created = WireTransferModel.objects.get_or_create(
         shipping=shipping_obj
@@ -131,12 +180,22 @@ def wire_transfer_payment(request, shipping_id):
         form = WireTransferForm(instance=payment_obj)
 
     return render(
-        request, "bids/wire_payment.html", {"form": form, "shipping": shipping_obj}
+        request, "bids/wire_payment.html", {
+            "form": form,
+            "shipping": shipping_obj,
+            "bid": bid,
+            "artwork": artwork,
+            "total_price": format_currency(total_price),
+        }
     )
 
 
 def checkout_overview(request, shipping_id):
     shipping_obj = ShippingModel.objects.get(id=shipping_id)
+
+    bid = shipping_obj.bid
+    artwork = bid.artwork
+    total_price = bid.amount
 
     payment = None
     if shipping_obj.payment_method == "card":
@@ -159,7 +218,13 @@ def checkout_overview(request, shipping_id):
         return redirect("/")
 
     return render(
-        request, "bids/overview.html", {"shipping": shipping_obj, "payment": payment}
+        request, "bids/overview.html", {
+            "shipping": shipping_obj,
+            "payment": payment,
+            "bid": bid,
+            "artwork": artwork,
+            "total_price": format_currency(total_price),
+        }
     )
 
 
@@ -192,7 +257,7 @@ def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_ove
         {
             "artwork": artwork,
             "highest_bid": highest_bid,
-            "current_price": current_price,
+            "current_price": format_currency(current_price),
             "bid_step": bid_step,
             "amount": amount,
             "auction_over": auction_over,
