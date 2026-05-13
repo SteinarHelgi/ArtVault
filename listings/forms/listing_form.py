@@ -45,9 +45,9 @@ class ArtworkListingForm(forms.ModelForm):
     )
 
     art_movement = forms.ChoiceField(
-        choices=ART_MOVEMENT_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
+        choices=ART_MOVEMENT_CHOICES,
+        widget=forms.Select(attrs={"class": "form-control"}),
     )
-
 
     class Meta:
         model = Artwork
@@ -71,5 +71,12 @@ class ArtworkListingForm(forms.ModelForm):
             "history": forms.Textarea(attrs={"rows": 5}),
             "date": forms.DateInput(attrs={"type": "date"}),
             "auction_start_date": forms.DateInput(attrs={"type": "date"}),
+            "starting_price": forms.NumberInput(
+                attrs={
+                    "min": 0,
+                    "max": 2147483647,
+                    "step": 1,
+                }
+            ),
             "auction_end_date": forms.DateInput(attrs={"type": "date"}),
         }
