@@ -215,9 +215,20 @@ def make_bid(request, artwork_id):
             messages.error(request, "Please enter a bid amount")
             return redirect("make_bid", artwork_id)
 
-        amount = int(amount)
         minimum_bid = int(current_price) + 5000
+        if not amount:
+            messages.error(request, "Please enter a bid amount")
+            return redirect("make_bid", artwork_id)
 
+        if "." in amount:
+            messages.error(request, "Bid amount must be a whole number.")
+            return redirect("make_bid", artwork_id)
+
+        try:
+            amount = int(amount)
+        except ValueError:
+            messages.error(request, "Please enter a valid number.")
+            return redirect("make_bid", artwork_id)
         if amount < minimum_bid:
             messages.error(
                 request, f"Your bid must be at least {minimum_bid + 5000} Kr."
