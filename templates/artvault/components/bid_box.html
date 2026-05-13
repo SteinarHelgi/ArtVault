@@ -3,49 +3,72 @@
 <div class="bid-card">
 
     {% if user.is_authenticated %}
+        {% if artwork.bids.exists %}
 
-        <p class="highest-bid">Highest bid</p>
+            <p class="highest-bid">Highest bid</p>
 
-        <h2 class="bid-price">
-            {{ current_price }} Kr.
-        </h2>
-        {% if user_bid %}
-            <p>Bid amount: {{ user_bid.formatted_amount}}kr</p>
-            {% if user_bid.status == "accepted" %}
-            <p>Accepted!</p>
-
-            {% elif user_bid.status == "pending" %}
-            <p>Bid status: Auction is not over</p>
-
-
-            {% elif user_bid.status == "rejected" %}
-            <p>Bid status: Rejected</p>
-
-            {%elif user_bid.status == "completed"%}
-            <p>Bid status: Completed!</p>
-
-            {% endif %}
-        {% endif %}
-
-        <a href="{% url 'make_bid' artwork.id %}" class="bid-button">
-            <span class="bid-icon">⚖</span>
+            <h2 class="bid-price">
+                {{ current_price }} Kr.
+            </h2>
             {% if user_bid %}
-                RESUBMIT
-            {% else %}
-                SUBMIT
+                <p>Bid amount: {{ user_bid.formatted_amount}}kr</p>
+                {% if user_bid.status == "accepted" %}
+                <p>Accepted!</p>
+
+                {% elif user_bid.status == "pending" %}
+                <p>Bid status: Auction is not over</p>
+
+
+                {% elif user_bid.status == "rejected" %}
+                <p>Bid status: Rejected</p>
+
+                {%elif user_bid.status == "completed"%}
+                <p>Bid status: Completed!</p>
+                {% endif %}
             {% endif %}
 
-        </a>
+            <a href="{% url 'make_bid' artwork.id %}" class="bid-button">
+                <span class="bid-icon">⚖</span>
+                {% if user_bid %}
+                    RESUBMIT
+                {% else %}
+                    SUBMIT
+                {% endif %}
 
-        <div class="bid-close">
-            <div>
+            </a>
 
+            <div class="bid-close">
+                <div>
+                    <p>Bid close: <strong>In {{artwork.days_remaining}} Days</strong> <span>⌛</span></p>
 
-                <p>Bid close: <strong>In {{artwork.days_remaining}} Days</strong> <span>⌛</span></p>
-
-                <p>{{artwork.auction_end_date}}</p>
+                    <p>{{artwork.auction_end_date}}</p>
+                </div>
             </div>
-        </div>
+        {% elif not artwork.bids.exists %}
+            <p class="highest-bid">Starting price</p>
+
+            <h2 class="bid-price">
+                {{ current_price }} Kr.
+            </h2>
+
+            <a href="{% url 'make_bid' artwork.id %}" class="bid-button">
+                <span class="bid-icon">⚖</span>
+                {% if user_bid %}
+                    RESUBMIT
+                {% else %}
+                    SUBMIT
+                {% endif %}
+
+            </a>
+
+            <div class="bid-close">
+                <div>
+                    <p>Bid close: <strong>In {{artwork.days_remaining}} Days</strong> <span>⌛</span></p>
+
+                    <p>{{artwork.auction_end_date}}</p>
+                </div>
+            </div>
+        {% endif %}
 
     {% else %}
 
