@@ -68,6 +68,15 @@ def browse_artwork(request):
     elif order == "artist":
         art = art.order_by("artist_name")
 
+    # radiobutton sold/on sale
+    sale_status = request.GET.get("sale_status")
+
+    if sale_status == "sold":
+        art = art.filter(sold=True)
+
+    elif sale_status == "for_sale":
+        art = art.filter(sold=False)
+
     # current price variable
     for artwork in art:
         highest_bid = artwork.bids.aggregate(Max("amount"))["amount__max"]

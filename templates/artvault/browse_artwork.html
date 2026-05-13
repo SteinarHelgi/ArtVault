@@ -109,6 +109,28 @@
                           <label for="range-max"></label>
                         <input type="range" id="range-max" name="max_price" class="range-max" min="0" max="{{ slider_max_price }}" value="{{ selected_max_price }}"  step="1000">
                       </div>
+
+                    <div class="sale-filter">
+                        <label for="sold-radio">Sold</label>
+                        <input
+                            type="radio"
+                            id="sold-radio"
+                            name="sale_status"
+                            class="sale-radiobutton"
+                            value="sold"
+                            {% if request.GET.sale_status == "sold" %}checked{% endif %}
+                        >
+
+                        <label for="for-sale-radio">For sale</label>
+                        <input
+                            type="radio"
+                            id="for-sale-radio"
+                            name="sale_status"
+                            class="sale-radiobutton"
+                            value="for_sale"
+                            {% if request.GET.sale_status == "for_sale" %}checked{% endif %}
+                        >
+                    </div>
                 </div>
 
             <button class="price-button" type="submit">
