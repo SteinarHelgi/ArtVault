@@ -14,9 +14,10 @@
       <div class="images-container">
                 {% with main_image=artwork.images.first %}
                     {% if main_image %}
-                        <img class="main-image"
+                        <img class="main-image popup-image"
                              src="{{ main_image.image.url }}"
-                             alt="image of artwork">
+                             alt="image of artwork"
+                             onclick="openImagePopup(this.src)">
                     {% endif %}
                 {% endwith %}
 
@@ -24,8 +25,9 @@
                     {% for img in artwork.images.all %}
                         {% if not forloop.first %}
                             <img src="{{ img.image.url }}"
-                                 class="side-image"
-                                 alt="image of artwork">
+                                 class="side-image popup-image"
+                                 alt="image of artwork"
+                                 onclick="openImagePopup(this.src)">
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -90,5 +92,8 @@
 
 </div>
 
-
+<div id="imagePopup" class="image-popup" onclick="closeImagePopup()">
+    <span class="image-popup-close">&times;</span>
+    <img id="popupImage" class="image-popup-content" src="" alt="large artwork image">
+</div>
 {% endblock %}
