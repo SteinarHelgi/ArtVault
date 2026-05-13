@@ -4,8 +4,6 @@
 
 <div class="artist-movement-page">
 
-    <h1 class="artist-title">{{ artist.name }}</h1>
-
     <div class="artist-top-section">
 
         <div class="artist-portrait">
@@ -14,7 +12,10 @@
             {% endif %}
         </div>
 
+
+
         <div class="movement-artist-description">
+             <h1 class="artist-title">{{ artist.name }}</h1>
             {{ artist.description }}
         </div>
 
@@ -26,7 +27,7 @@
                 {% if artwork.images %}
                     <img src="{{ artwork.images.url }}" alt="{{ artwork.title }}">
                 {% endif %}
-                <h3>{{ artwork.title }}</h3>
+                    <h3>{{ artwork.title }}</h3>
             </div>
         {% endfor %}
     </div>

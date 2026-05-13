@@ -14,9 +14,10 @@ from bids.models import (
 )
 from artvault.models import Bid, Artwork
 from django.contrib import messages
-
 from user.models import BuyerProfileModel, Profile, SellerProfileModel
 from utils.formatting import format_currency
+import math
+
 # Create your views here.
 
 
@@ -165,7 +166,7 @@ def checkout_overview(request, shipping_id):
 @login_required
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
-    bids = Bid.objects.filter(buyer=profile).order_by("-timestamp")
+    bids = Bid.objects.filter(buyer=profile).order_by("artwork", "-amount")
     for bid in bids:
         bid.highest_bid = format_currency(
             bid.artwork.bids.aggregate(Max("amount"))["amount__max"]
@@ -180,7 +181,7 @@ def my_bids(request):
     )
 
 
-def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_over=False, user_bid=None):
+def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_over=False, user_bid=None, minimum_bid=None):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
     artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
@@ -196,6 +197,7 @@ def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_ove
             "amount": amount,
             "auction_over": auction_over,
             "user_bid": user_bid,
+            "minimum_bid": minimum_bid,
         },
     )
 
@@ -214,14 +216,17 @@ def make_bid(request, artwork_id):
     highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
 
+    has_bid = artwork.bids.exists()
+
+    if has_bid:
+        minimum_bid = math.ceil(current_price * 1.10 / 1000) * 1000
+    else:
+        minimum_bid = int(artwork.starting_price)
+
     if request.method == "POST":
+
         amount = request.POST.get("amount")
 
-        if not amount:
-            messages.error(request, "Please enter a bid amount")
-            return redirect("make_bid", artwork_id)
-
-        minimum_bid = int(current_price) + 5000
         if not amount:
             messages.error(request, "Please enter a bid amount")
             return redirect("make_bid", artwork_id)
@@ -242,9 +247,9 @@ def make_bid(request, artwork_id):
             return redirect("make_bid", artwork_id)
 
         request.session["pending_bid_amount"] = amount
-        return render_artwork_bid(request, artwork, "confirm", amount, user_bid=user_bid)
+        return render_artwork_bid(request, artwork, "confirm", amount, user_bid=user_bid, minimum_bid=minimum_bid)
 
-    return render_artwork_bid(request, artwork, "make", user_bid=user_bid)
+    return render_artwork_bid(request, artwork, "make", user_bid=user_bid, minimum_bid=minimum_bid)
 
 
 @login_required

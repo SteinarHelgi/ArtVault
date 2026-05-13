@@ -1,16 +1,33 @@
 {% load static %}
 
-<div class="bid-card">
-    <div class="star-img">
-        <img src="{% static 'img/gavel.svg' %}" alt="warning">
+{% if artwork.is_closed and highest_bid %}
+    <div class="bid-card">
+        <div class="star-img">
+            <img src="{% static 'img/gavel.svg' %}" alt="warning">
+        </div>
+
+        <h2 class="bid-label">This artwork has been sold!</h2>
+
+        <div class="bid-text">
+            <p>sold for {{ current_price }} Kr.</p>
+        </div>
+
+        <a href="{% url 'browse-artwork' %}" class="success-button">Continue Browsing</a>
+
     </div>
 
-    <h2 class="bid-label">This artwork has been sold!</h2>
+{% elif artwork.is_closed and not artwork.bids.exists %}
+    <div class="bid-card">
+        <div class="star-img">
+            <img src="{% static 'img/angry.svg' %}" alt="warning">
+        </div>
 
-    <div class="bid-text">
-        <p>sold for {{ current_price }} Kr.</p>
+        <h2 class="bid-label">Auction ended with no bids</h2>
+
+         <div class="bid-text">
+            <p>This artwork was not sold!</p>
+        </div>
+
+        <a href="{% url 'browse-artwork' %}" class="success-button">Continue Browsing</a>
     </div>
-
-    <a href="{% url 'browse-artwork' %}" class="success-button">Continue Shopping</a>
-
-</div>
+{% endif %}
