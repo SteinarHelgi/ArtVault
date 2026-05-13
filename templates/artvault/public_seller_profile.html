@@ -12,7 +12,14 @@
                 <img src="{{ seller.logo.url }}" alt="Profile picture">
           </div>
             <div class="profile-info">
-                    <p>{{ seller.profile.role }}</p>
+                  {% if seller.profile.role == "individual_seller" %}
+
+                        <p>Individual seller</p>
+                  
+                  {% elif seller.profile.role == "gallery" %}
+
+                        <p>Gallery</p>
+                  {% endif %}
                     <p>@{{ seller.profile.user }}</p>
                 <div class="profile-address">
                     <p>{{ seller.street_name }},</p>
@@ -32,7 +39,6 @@
             <h2>Listed Artworks</h2>
     </div>
     <div class="gallery-container">
-    {% with artworks=seller.artworks.all %}
         {% for artwork in artworks %}
             <a href="{% url 'artwork-details' artwork.id %}" class="art-card">
                 {% with img=artwork.images.first %}
@@ -51,7 +57,6 @@
             <h3>This seller has no artworks listed yet.</h3>
         </div>
         {% endfor %}
-    {% endwith %}
     </div>
 </div>
 {% endblock %}
