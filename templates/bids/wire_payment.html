@@ -1,30 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="wire-page">
-        <form method="post" class="wire-form">
-            {% csrf_token %}
 
-            <h1>Wire transfer</h1>
+<div class="checkout-page">
+    <div class="checkout-layout">
+        <div class="checkout-main">
 
-            <div class="wire-field">
-                <label>Name of sending bank</label>
-                {{ form.sending_bank }}
-            </div>
+            <form method="post" class="wire-form">
+                {% csrf_token %}
 
-            <div class="wire-field">
-                <label>Routing number</label>
-                {{ form.routing_number }}
-            </div>
+                <h1>Wire transfer</h1>
 
-            <div class="wire-field">
-                <label>Account number</label>
-                {{ form.account_number }}
-            </div>
+                <div class="wire-field">
+                    <label>Name of sending bank</label>
+                    {{ form.sending_bank }}
+                </div>
 
-            <button type="submit" class="confirm-btn">Confirm</button>
-        </form>
-        <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+                <div class="wire-field">
+                    <label>Routing number</label>
+                    {{ form.routing_number }}
+                </div>
+
+                <div class="wire-field">
+                    <label>Account number</label>
+                    {{ form.account_number }}
+                </div>
+
+                 <div class="checkout-buttons">
+                    <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
+                    <button type="submit" class="confirm-btn">Confirm</button>
+                </div>
+
+            </form>
+
+        </div>
+        {% include "bids/component/order_summary.html" %}
     </div>
+
+</div>
 
 {% endblock content %}

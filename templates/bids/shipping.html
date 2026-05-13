@@ -1,34 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="shipping-page">
-    <div class="shipping-card">
+<div class="checkout-page">
+    <div class="checkout-layout">
+        <div class="checkout-main">
 
-        <h1>Details for payment and Shipping</h1>
+            <h1>Details for payment and Shipping</h1>
 
-        <form method="post" class="shipping-form">
-            {% csrf_token %}
+            <form method="post" class="shipping-form">
+                {% csrf_token %}
 
-            <label>Contact</label>
-            {{ form.email }}
-            {{ form.national_id }}
+                <label>Contact</label>
+                {{ form.email }}
+                {{ form.national_id }}
 
-            <label>Delivery</label>
-            {{ form.country }}
+                <label>Delivery</label>
+                {{ form.country }}
 
-            <h3>Address</h3>
+                <h3>Address</h3>
 
-            {{ form.street_name }}
-            {{ form.city }}
-            {{ form.zip_code }}
+                {{ form.street_name }}
+                {{ form.city }}
+                {{ form.zip_code }}
 
-            <div class="shipping-buttons">
-                <a href="{% url 'my_bids' %}" class="back-btn">Back</a>
+                <div class="shipping-buttons">
+                    <a href="{% url 'my_bids' %}" class="back-btn">Back</a>
 
-                <button type="submit" class="shipping-confirm-btn">Continue to payment</button>
-            </div>
-        </form>
+                    <button type="submit" class="shipping-confirm-btn">Continue to payment</button>
+
+                </div>
+
+            </form>
+
+        </div>
+        {% include "bids/component/order_summary.html" %}
 
     </div>
+
 </div>
+    
 {% endblock %}

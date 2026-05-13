@@ -1,0 +1,21 @@
+<div class="order-summary">
+
+    <h2>Order Summary</h2>
+
+    {% with image=artwork.images.first %}
+        {% if image %}
+            <img src="{{ image.image.url }}" alt="{{ artwork.title }}">
+        {% endif %}
+    {% endwith %}
+
+    <h3>{{ artwork.title }}</h3>
+
+    <p>Price: {{ total_price }} Kr.</p>
+
+    <p>Shipping: Free</p>
+
+    <hr>
+
+    <h2>Total: {{ total_price }} Kr.</h2>
+
+</div>
