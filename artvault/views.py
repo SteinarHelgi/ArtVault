@@ -10,6 +10,8 @@ from random import shuffle
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
+from utils.formatting import format_currency
+
 
 # Create your views here
 def index(request):
@@ -171,7 +173,11 @@ def browse_artists(request):
 
 def public_seller_profile_view(request, id):
     seller = SellerProfileModel.objects.get(pk=id)
-    return render(request, "artvault/public_seller_profile.html", {"seller": seller})
+    artworks = Artwork.objects.filter(seller=seller)
+    print(artworks)
+    for artwork in artworks:
+        artwork.starting_price = format_currency(int(artwork.starting_price))
+    return render(request, "artvault/public_seller_profile.html", {"seller": seller,"artworks":artworks})
 
 
 def view_sellers(request):
