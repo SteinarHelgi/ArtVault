@@ -14,11 +14,11 @@
             {% endfor %}
             {% endif %}
         <div class="bid-text">
-            <p>Bid has to be 5000 Kr. over highest bid</p>
+            <p>Bid has to be 10% over highest bid</p>
         </div>
 
         <label for="bid-amount">
-            <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ current_price|add:5000 }}" required>
+            <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" required>
         </label>
 
         <button type="submit" class="button-bid">Submit</button>
