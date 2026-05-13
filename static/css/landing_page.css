@@ -1,0 +1,84 @@
+/*home page*/
+.hero-container {
+      font-family: var(--header-font);
+      height: 400px;
+
+      display: flex;
+      align-items: center;
+
+      background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/static/img/landingpic.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+}
+
+.hero-text {
+      max-width: 900px;
+      margin-left: 200px;
+      color: var(--primary-color);
+}
+
+.hero-text h1 {
+      font-size: 3em;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+}
+
+.hero-text p {
+      font-size: 18px;
+      font-family: var(--paragraph-font);
+      max-width: 520px;
+      margin-bottom: 25px;
+}
+
+.hero-button {
+      display: flex;
+      gap: 16px;
+}
+
+.hero-button a {
+      padding: 15px 30px;
+      text-decoration: none;
+      font-family: var(--header-font);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--round-corners);
+      transition: all 0.3s ease;
+}
+
+.first_button {
+      background-color: var(--orange-color);
+      color: var(--primary-color);
+}
+
+.first_button:hover {
+      background-color: var(--hover-color);
+      color: var(--orange-color);
+}
+
+.second_button {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 2px dashed var(--primary-color);
+}
+
+.second_button:hover {
+      background-color: var(--primary-color);
+      color: var(--orange-color);
+}
+
+.text_container {
+      border: 1px solid var(--border-color);
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 40px;
+}
+
+.text_container h3 {
+      font-weight: 400;
+}
+
+.text_container p {
+      font-family: var(--paragraph-font);
+}

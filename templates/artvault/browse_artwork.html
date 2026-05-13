@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/browse_artwork.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
 <div class="browse-art-section">
 
     <div class="filter-overlay" id="filterOverlay" onclick="closeFilter()"></div>
