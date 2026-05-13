@@ -9,13 +9,30 @@
         <h2 class="bid-price">
             {{ current_price }} Kr.
         </h2>
+        {% if user_bid %}
+            <p>Bid amount: {{ user_bid.formatted_amount}}kr</p>
+            {% if user_bid.status == "accepted" %}
+            <p>Accepted!</p>
+
+            {% elif user_bid.status == "pending" %}
+            <p>Bid status: Auction is not over</p>
+
+
+            {% elif user_bid.status == "rejected" %}
+            <p>Bid status: Rejected</p>
+
+            {%elif user_bid.status == "completed"%}
+            <p>Bid status: Completed!</p>
+
+            {% endif %}
+        {% endif %}
 
         <a href="{% url 'make_bid' artwork.id %}" class="bid-button">
             <span class="bid-icon">⚖</span>
-            {% if user_has_bid %}
-                RESUBMIT A BID
+            {% if user_bid %}
+                RESUBMIT
             {% else %}
-                SUBMIT A BID
+                SUBMIT
             {% endif %}
 
         </a>
@@ -35,7 +52,7 @@
         <div class="login-required">
 
             <div class="bid-text-login">
-                <p><b>Please login or signup to place a bid.</b></p>
+                <p><b>Please log in or signup to place a bid.</b></p>
             </div>
 
             <div class="login-photo">
