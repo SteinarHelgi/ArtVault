@@ -77,10 +77,10 @@
                 {% endif %}
                   {% if request.user.profile.role == "buyer" %}
                   <h4>Click below to start browsing artwork.</h4>
-                  <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                  <a href="{% url 'browse-artwork' %}" class="button button-orange">Browse artwork</a>
                   {% else %}
                   <h4>Click below to create your first listing and share your art with others.</h4>
-                  <a href="{% url 'my-profile-seller' %}" class="modal-btn">Create listing</a>
+                  <a href="{% url 'my-profile-seller' %}" class="button button-orange">Create listing</a>
                   {% endif %}
             </div>
           </div>
@@ -97,7 +97,7 @@
 
                   <h2>Thank you for your purchase!</h2>
                   <p>Your payment has been processed and your order is on its way.</p>
-                  <a href="{% url 'browse-artwork' %}" class="modal-btn">Browse artwork</a>
+                  <a href="{% url 'browse-artwork' %}" class="button-b button-orange">Browse artwork</a>
             </div>
       </div>
       {% endif %}
