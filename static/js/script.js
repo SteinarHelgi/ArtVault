@@ -10,6 +10,8 @@ function hideLoadingScreen() {
 
 window.addEventListener("load", hideLoadingScreen);
 
+window.addEventListener("pageshow", hideLoadingScreen);
+
 document.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", function () {
         showLoadingScreen();
@@ -22,6 +24,7 @@ document.querySelectorAll("form").forEach(form => {
     });
 });
 
+// dropdown
 function toggleLeftDropdown(event) {
     event.stopPropagation();
     document.getElementById("leftDropdown")?.classList.toggle("show");
