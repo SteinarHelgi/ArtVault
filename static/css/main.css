@@ -17,7 +17,7 @@
       --icon-height: 45px;
 
       --round-corners: 3px;
-      --round-corners-more: 3px;
+      --round-corners-more: 8px;
 
       --page-width: 1100 px;
       --detail-width: 900px;
@@ -36,8 +36,7 @@ body {
 
 .page{
       max-width: var(--page-width);
-      margin: 0 auto;
-      width: 100%;
+      margin: 40px auto;
 }
 
 .page-detail {
@@ -45,6 +44,111 @@ body {
       margin: 0 auto;
       width: 100%;
 }
+
+
+.button{
+      min-height: 38px;
+      padding: 8px 36px;
+      border-radius: var(--round-corners);
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--header-font);
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-sizing: border-box;
+
+}
+
+.button-s{
+      min-height: 38px;
+      padding: 8px 36px;
+      border-radius: var(--round-corners);
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--header-font);
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-sizing: border-box;
+
+}
+
+.button-b{
+      margin: var(--space-s) 0 0 0;
+      min-height: 50px;
+      padding: 8px 36px;
+      width: 100%;
+      border-radius: var(--round-corners-more);
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--header-font);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-sizing: border-box;
+
+}
+
+.button-orange {
+      background-color: var(--orange-color);
+      color: var(--white);
+}
+
+.button-orange:hover {
+      background-color: var(--white);
+      color: var(--orange-color);
+      border-color: var(--orange-color);
+}
+
+.button-black{
+      color: var(--white);
+      background-color: var(--black);
+}
+
+.button-black:hover{
+      background-color: var(--orange-color);
+      border-color: var(--orange-color);
+}
+
+.button-border {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: 1px dashed var(--primary-color);
+}
+
+.button-border:hover {
+      background-color: var(--primary-color);
+      color: var(--orange-color);
+}
+
+.button-white{
+      border-color: var(--black);
+      color: var(--black);
+      background-color: var(--white);
+}
+
+.button-white:hover{
+      background-color: var(--hover-color);
+}
+
+
+
 
 .section-title {
       margin-bottom: var(--space-m);
@@ -896,6 +1000,10 @@ body {
       width: 100%;
       height: 180px;
       resize: vertical;
+}
+
+.password-section{
+      margin-bottom: 20px;
 }
 
 

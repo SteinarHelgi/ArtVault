@@ -14,7 +14,7 @@
     <form method="post" action="{% url 'submit_bid' artwork.id %}">
         {% csrf_token %}
 
-        <button type="submit" class="button-bid">I'm sure</button>
-        <a href="{% url 'make_bid' artwork.id %}" class="bid-button">Cancel</a>
+        <button type="submit" class="button-b button-orange">I'm sure</button>
+        <a href="{% url 'make_bid' artwork.id %}" class="button-b button-orange">Cancel</a>
     </form>
 </div>

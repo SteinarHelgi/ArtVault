@@ -27,7 +27,7 @@
                 {% endif %}
             {% endif %}
 
-            <a href="{% url 'make_bid' artwork.id %}" class="bid-button">
+            <a href="{% url 'make_bid' artwork.id %}" class="button-b button-orange">
                 <span class="bid-icon">⚖</span>
                 BID
             </a>
@@ -73,11 +73,11 @@
             </div>
 
             <div class="auth-buttons">
-                <a href="{% url 'login' %}" class="login-btn">
+                <a href="{% url 'login' %}" class="button button-black">
                     Login
                 </a>
 
-                <a href="{% url 'signup' %}" class="signup-btn">
+                <a href="{% url 'signup' %}" class="button button-white">
                     Signup
                 </a>
             </div>
