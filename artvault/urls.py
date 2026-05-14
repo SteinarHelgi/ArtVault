@@ -15,4 +15,5 @@ urlpatterns = [
     path("movements/",views.movements,name="movements"),
     path("artists/<slug:slug>/",views.movement_artists,name="movement-artist"),
     path("my_profile_seller/", views.my_profile_seller, name="my-profile-seller"),
+    path("contact_us/", views.contact_us, name="contact-us")
 ]

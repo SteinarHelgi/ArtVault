@@ -1359,3 +1359,56 @@ body {
     align-self: start;
 }
 
+/* contact us */
+.contact-page {
+    width: 1100px;
+    min-height: 80vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    box-sizing: border-box;
+      margin: 0 auto;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-field input,
+.contact-field textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: var(--paragraph-font);
+      box-sizing: border-box;
+      margin-bottom: 25px;
+}
+
+.contact-field textarea {
+    min-height: 140px;
+    resize: none;
+}
+
+.contact-field label {
+    display: none;
+}
+
+.contact-text h1 {
+      font-family: var(--header-font);
+      text-align: center;
+}
+
+.contact-text p {
+      font-family: var(--paragraph-font);
+      text-align: center;
+}
+
+.contact-button {
+      text-align: center;
+}
+
