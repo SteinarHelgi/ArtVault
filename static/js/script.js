@@ -105,6 +105,7 @@ window.previewBuyerProfileImage = function(event) {
       if (file) {
           const imageURL = URL.createObjectURL(file);
 
+          //fyrir setup
           const uploadBox = document.querySelector(".seller-logo-box");
           const uploadIcon = document.querySelector(".logo-upload-icon");
 
@@ -114,6 +115,7 @@ window.previewBuyerProfileImage = function(event) {
               uploadBox.style.backgroundPosition = "center";
           }
 
+          //fyrir edit
           if (uploadIcon) {
               uploadIcon.style.display = "none";
           }
@@ -132,7 +134,8 @@ window.previewBuyerProfileImage = function(event) {
       if (file) {
           const imageURL = URL.createObjectURL(file);
 
-          const uploadBox = document.querySelector(".seller-logo-box");
+          //fyrir setup
+          const uploadBox = document.querySelector(".seller-cover-box");
           const uploadIcon = document.querySelector(".cover-upload-icon");
 
           if (uploadBox) {
@@ -141,6 +144,7 @@ window.previewBuyerProfileImage = function(event) {
               uploadBox.style.backgroundPosition = "center";
           }
 
+          //fyrir edit
           if (uploadIcon) {
               uploadIcon.style.display = "none";
           }
