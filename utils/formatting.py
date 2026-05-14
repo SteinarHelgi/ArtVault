@@ -1,2 +1,3 @@
 def format_currency(amount):
-    return f"{amount:,}".replace(",", ".")
+    amount = float(amount)
+    return f"{amount:,.0f}".replace(",", ".")
