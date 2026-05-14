@@ -485,6 +485,7 @@ body {
       background-repeat: no-repeat;
 }
 
+
 .cover-wrapper {
       position: relative;
 }
@@ -496,10 +497,10 @@ body {
       top: 5px;
 }
 
-.logo-upload-icon,
-.cover-upload-icon {
+.logo-upload-icon {
       width: 70px;
 }
+
 
 .upload-label {
       margin-top: 14px;
@@ -904,9 +905,6 @@ body {
 .seller-cover-box img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
 }
 
 /* Shared checkout layout */

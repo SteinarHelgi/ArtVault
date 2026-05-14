@@ -36,9 +36,9 @@ class CreditCardModel(models.Model):
     shipping = models.OneToOneField(ShippingModel, on_delete=models.CASCADE)
 
     cardholder_name = models.CharField(max_length=100)
-    card_number = models.CharField(max_length=20)
-    card_cvv = models.CharField(max_length=20)
-    card_expiration = models.CharField(max_length=20)
+    card_number = models.CharField(max_length=16)
+    card_cvv = models.CharField(max_length=3)
+    card_expiration = models.CharField(max_length=4)
 
 
 class BankTransferModel(models.Model):
