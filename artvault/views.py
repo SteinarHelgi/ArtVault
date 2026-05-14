@@ -7,7 +7,7 @@ from bids.views import render_artwork_bid, close_auction
 from random import shuffle
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-
+from django.core.paginator import Paginator
 from utils.formatting import format_currency
 
 
@@ -30,12 +30,20 @@ def index(request):
 
 
 def browse_artwork(request):
-    art = Artwork.objects.select_related("seller").prefetch_related("images").annotate(
+    art = Artwork.objects.only(
+        "id",
+        "title",
+        "artist_name",
+        "starting_price",
+        "medium",
+        "art_movement",
+        "sold",
+        "auction_end_date",
+    ).prefetch_related("images").annotate(
         highest_bid=Max("bids__amount")
     )
 
     art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
-
     mediums = Artwork.objects.values_list("medium", flat=True).distinct()
 
     # search bar
@@ -61,6 +69,16 @@ def browse_artwork(request):
     if medium:
         art = art.filter(medium__iexact=medium.strip())
 
+    # radiobutton sold/on sale
+    sale_status = request.GET.get("sale_status")
+    now = timezone.now().date()
+
+    if sale_status == "sold":
+        art = art.filter(sold=True)
+
+    elif sale_status == "for_sale":
+        art = art.filter(sold=False, auction_end_date__gt=now)
+
     # order by filter
     order = request.GET.get("order")
 
@@ -70,18 +88,7 @@ def browse_artwork(request):
     elif order == "artist":
         art = art.order_by("artist_name")
 
-    # radiobutton sold/on sale
-    sale_status = request.GET.get("sale_status")
-    now = timezone.now()
-
-    if sale_status == "sold":
-        art = art.filter(sold=True)
-
-    elif sale_status == "for_sale":
-        art = art.filter(sold=False, auction_end_date__gt=now)
-
     # current price variable
-
     for artwork in art:
         starting_price = int(artwork.starting_price)
 
@@ -115,11 +122,27 @@ def browse_artwork(request):
     if max_price:
         art = [artwork for artwork in art if artwork.filter_price <= int(max_price)]
 
+    if not order:
+        art = sorted(art, key=lambda artwork: artwork.id, reverse=True)
+
+    paginator = Paginator(art, 12)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    query_params = request.GET.copy()
+
+    if "page" in query_params:
+        query_params.pop("page")
+
+    query_string = query_params.urlencode()
+
     return render(
         request,
         "artvault/browse_artwork.html",
         {
-            "art": art,
+            "art": page_obj,
+            "page_obj": page_obj,
+            "query_string": query_string,
             "art_movements": art_movements,
             "mediums": mediums,
             "slider_max_price": slider_max_price,
@@ -127,7 +150,6 @@ def browse_artwork(request):
             "selected_max_price": max_price or slider_max_price,
         },
     )
-
 
 def artwork_details(request, id):
     artwork = get_object_or_404(Artwork, pk=id)

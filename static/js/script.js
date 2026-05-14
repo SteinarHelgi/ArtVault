@@ -51,7 +51,7 @@ window.addEventListener("click", function (event) {
   }
 
 
-  // searchbar filtering fyrir browse artwork
+  // searchbar filtering for browse artwork
 function filterFunction() {
     let input = document.getElementById("searchbar");
     let filter = input.value.toUpperCase();
@@ -105,7 +105,7 @@ window.previewBuyerProfileImage = function(event) {
       if (file) {
           const imageURL = URL.createObjectURL(file);
 
-          //fyrir setup
+          //for setup
           const uploadBox = document.querySelector(".seller-logo-box");
           const uploadIcon = document.querySelector(".logo-upload-icon");
 
@@ -115,7 +115,7 @@ window.previewBuyerProfileImage = function(event) {
               uploadBox.style.backgroundPosition = "center";
           }
 
-          //fyrir edit
+          //for edit
           if (uploadIcon) {
               uploadIcon.style.display = "none";
           }
@@ -134,7 +134,7 @@ window.previewBuyerProfileImage = function(event) {
       if (file) {
           const imageURL = URL.createObjectURL(file);
 
-          //fyrir setup
+          //for setup
           const uploadBox = document.querySelector(".seller-cover-box");
           const uploadIcon = document.querySelector(".cover-upload-icon");
 
@@ -144,7 +144,7 @@ window.previewBuyerProfileImage = function(event) {
               uploadBox.style.backgroundPosition = "center";
           }
 
-          //fyrir edit
+          //for edit
           if (uploadIcon) {
               uploadIcon.style.display = "none";
           }
@@ -208,7 +208,7 @@ let maxVal = parseInt(rangeInput[1].value);
 range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
 range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
 
-//silde menu browes artwork
+//slide menu browse artwork
 function openFilter() {
     document.getElementById("filterSidebar").classList.add("show");
     document.getElementById("filterOverlay").classList.add("show");
