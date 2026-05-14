@@ -45,6 +45,7 @@ body {
       width: 100%;
 }
 
+/* BUTTONS*/
 
 .button{
       min-height: 38px;
@@ -229,6 +230,8 @@ body {
   line-height: 1.6;
 }
 
+/* LOADSCREEN*/
+
 .loadingScreen {
     position: fixed;
     inset: 0;
@@ -273,6 +276,41 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/*TITLES*/
+
+.page-title {
+      font-family: var(--header-font);
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--black);
+      margin: 0;
+}
+
+.smaller-title {
+      font-family: var(--header-font);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--black);
+      margin: 0 0 var(--space-s);
+}
+
+.tiny-title {
+      font-family: var(--header-font);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--black);
+      margin: 0 0 10px;
+}
+
+.card-title {
+      font-family: var(--header-font);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--black);
+      margin: 0;
+}
+
 
 
 .landing-page {
@@ -353,8 +391,6 @@ body {
       padding: 18px;
       flex: 0 0 250px;
 }
-
-.browse-art-item h3 {}
 
 
 .browse-art-item .image {
