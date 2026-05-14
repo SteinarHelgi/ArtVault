@@ -148,7 +148,7 @@ body {
 }
 
 
-/* Shared form controls */
+/* input fields */
 .signup-form input,
 .signup-form select,
 .login-page input,
@@ -423,43 +423,14 @@ body {
 
 
 /* Signup + Login */
-.signup-container {
-      width: 400px;
-      margin: 80px auto;
-      text-align: center;
-}
 
+.signup-container,
 .login-page {
       width: 400px;
-      margin: 100px auto;
+      margin: 80px auto;
       padding-bottom: 100px;
       text-align: center;
 }
-
-/*.signup-form,*/
-/*.login-page form {*/
-/*      display: flex;*/
-/*      flex-direction: column;*/
-/*      gap: 20px;*/
-/*}*/
-
-/*.signup-form select {*/
-/*      cursor: pointer;*/
-/*}*/
-
-
-/*.signup-form input,*/
-/*.signup-form select,*/
-/*.login-page input {*/
-/*      font-family: var(--paragraph-font);*/
-/*      border-radius: var(--round-corners);*/
-/*      width: 100%;*/
-/*      height: 45px;*/
-/*      padding: 0 15px;*/
-/*      font-size: 18px;*/
-/*      border: 1px solid var(--black);*/
-/*      box-sizing: border-box;*/
-/*}*/
 
 .signup-container h1,
 .login-page h1 {
@@ -482,15 +453,19 @@ body {
 
 /*Buyer-setup*/
 .buyer-setup-page {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      display: flex;
       width: 720px;
       margin: 80px auto;
+      box-sizing: border-box;
 }
 
 .buyer-setup-form {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 40px;
-      align-items: end;
+      gap: var(--space-m);
 }
 
 .buyer-upload-section {
@@ -498,6 +473,7 @@ body {
 }
 
 .buyer-upload-box {
+      background-color: #d9d9d9;
       width: 250px;
       height: 250px;
       border-radius: var(--round-corners-more);
@@ -554,6 +530,12 @@ body {
       color: red;
 }
 
+.required-mark{
+      color: red;
+      position: absolute;
+
+}
+
 /*.name-section {*/
 /*      display: flex;*/
 /*      align-items: center;*/
@@ -603,6 +585,21 @@ body {
       margin: 0 auto;
 }
 
+.seller-upload-box {
+      background-color: #d9d9d9;
+      width: 250px;
+      height: 250px;
+      border-radius: var(--round-corners-more);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-m);
+}
+
 .seller-confirm-btn {
       grid-column: 1 / 3;
       justify-self: center;
@@ -649,6 +646,7 @@ body {
 }
 
 .seller-cover-box {
+      background-color: #d9d9d9;
       margin-bottom: var(--space-m);
       width: 100%;
       height: 160px;
@@ -688,29 +686,29 @@ body {
 }
 
 
-.upload-label {
-      margin-top: 14px;
-      text-align: center;
-}
+/*.upload-label {*/
+/*      margin-top: 14px;*/
+/*      text-align: center;*/
+/*}*/
 
 .upload-label span,
 .required {
       color: red;
 }
 
-#id_bio {
-      border-radius: var(--round-corners-more);
-      width: 100%;
-      height: 100%;
-      resize: none;
-      padding: 8px;
-      box-sizing: border-box;
-      font-family: var(--paragraph-font);
-      font-size: 14px;
-      line-height: normal;
-      display: block;
-      text-align: left;
-}
+/*#id_bio {*/
+/*      border-radius: var(--round-corners-more);*/
+/*      width: 100%;*/
+/*      height: 100%;*/
+/*      resize: none;*/
+/*      padding: 8px;*/
+/*      box-sizing: border-box;*/
+/*      font-family: var(--paragraph-font);*/
+/*      font-size: 14px;*/
+/*      line-height: normal;*/
+/*      display: block;*/
+/*      text-align: left;*/
+/*}*/
 
 .bio-wrapper {
       position: relative;
@@ -741,10 +739,35 @@ body {
 /*      font-size: 16px;*/
 /*}*/
 
-.required {
+.bio-field {
+      position: relative;
+}
+
+.bio-field .required {
       position: absolute;
+      top: 30px;
       right: -16px;
-      top: 9px;
+      color: red;
+      font-size: 18px;
+      line-height: 1;
+}
+
+.required-field {
+      position: relative;
+}
+
+.required-field .required {
+      position: absolute;
+      top: 0px;
+      right: -16px;
+      color: red;
+      font-size: 18px;
+      line-height: 1;
+}
+
+.upload-field .required {
+      top: 32px;
+
 }
 
 .right-side-setup h3 {

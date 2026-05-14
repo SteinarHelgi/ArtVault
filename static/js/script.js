@@ -106,7 +106,7 @@ window.previewBuyerProfileImage = function(event) {
           const imageURL = URL.createObjectURL(file);
 
           //for setup
-          const uploadBox = document.querySelector(".seller-logo-box");
+          const uploadBox = document.querySelector(".seller-upload-box");
           const uploadIcon = document.querySelector(".logo-upload-icon");
 
           if (uploadBox) {

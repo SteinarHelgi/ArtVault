@@ -11,50 +11,60 @@
             {{ form.non_field_errors }}
 
             <div class="left-side-setup">
-                <label for="id_logo" class="seller-logo-box">
-                    <img src="{% static 'img/upload.svg' %}" class="logo-upload-icon" alt="Upload picture">
-                </label>
-                {{ form.logo }}
-                {{ form.logo.errors }}
+                <div class="form-group required-field upload-field" >
 
-                <label for="id_logo" class="upload-label">
-                    Upload picture <span>*</span>
-                </label>
-
-                <div class="bio-wrapper">
-                    {{ form.bio }}
-                    {{ form.bio.errors }}
+                    <label for="id_logo" class="upload-label">
+                        Upload picture
+                    </label>
                     <span class="required">*</span>
+                    <label for="id_logo" class="seller-upload-box">
+                        <img src="{% static 'img/uppload-photo.svg' %}" class="logo-upload-icon" alt="Upload picture">
+                    </label>
+                    {{ form.logo }}
+                    {{ form.logo.errors }}
+
+
+                    <div class="form-group bio-field">
+                        {{ form.bio }}
+                        {{ form.bio.errors }}
+                        <span class="required">*</span>
+                    </div>
                 </div>
 
             </div>
 
             <div class="right-side-setup">
-                <div class="cover-wrapper">
-                    <label for="id_cover_photo" class="seller-cover-box">
-                        <img src="{% static 'img/upload.svg' %}" class="cover-upload-icon" alt="Upload picture">
-                    </label>
-                    {{ form.cover_photo }}
-                    {{ form.cover_photo.errors }}
-                    <span class="required">*</span>
-                </div>
 
-                <div class="input-group">
+                 <div class="form-group required-field upload-field" >
+                        <label for="id_logo" class="upload-label">
+                            Upload picture
+                        </label>
+                        <div class="cover-wrapper">
+                            <label for="id_cover_photo" class="seller-cover-box">
+                                <img src="{% static 'img/uppload-photo.svg' %}" class="cover-upload-icon" alt="Upload picture">
+                            </label>
+                            {{ form.cover_photo }}
+                            {{ form.cover_photo.errors }}
+                            <span class="required">*</span>
+                        </div>
+                 </div>
+
+                <div class="input-group form-group required-field ">
                     <label for="id_full_name">Full name</label>
                     {{ form.seller_name }}
                     {{ form.seller_name.errors }}
                     <span class="required">*</span>
                 </div>
 
-                <div class="input-group">
-                    <label for="id_seller_type">Type of seller</label>
-                    {{ form.seller_type }}
-                    <span class="required">*</span>
-                </div>
+{#                <div class="form-group">#}
+{#                    <label for="id_seller_type">Type of seller</label>#}
+{#                    {{ form.seller_type }}#}
+{#                    <span class="required">*</span>#}
+{#                </div>#}
 
                 <h3>Address</h3>
 
-                <div class="address-fields">
+                <div class="input-group form-group required-field ">
                     <div class="input-group">
                         <label for="id_street_name">Street name</label>
                         {{ form.street_name }}
@@ -62,14 +72,14 @@
                         <span class="required">*</span>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-group form-group required-field ">
                         <label for="id_city">City</label>
                         {{ form.city }}
                         {{ form.city.errors }}
                         <span class="required">*</span>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-group form-group required-field ">
                         <label for="id_zip_code">Postal code</label>
                         {{ form.zip_code }}
                         {{ form.zip_code.errors }}
