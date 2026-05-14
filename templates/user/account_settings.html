@@ -129,9 +129,9 @@
 
                   <p>Changes confirmed.</p>
                   {% if profile.role == "buyer" %}
-                      <a href="{% url 'home' %}" class="modal-btn">Continue</a>
+                      <a href="{% url 'home' %}" class="button button-orange">Continue</a>
                   {% else %}
-                      <a href="{% url 'my_profile_seller' %}" class="modal-btn">Continue</a>
+                      <a href="{% url 'my_profile_seller' %}" class="button button-orange">Continue</a>
                   {% endif %}
             </div>
       </div>
@@ -142,7 +142,7 @@
                   <button class="close-btn" onclick="closeModal()">X</button>
 
                   <p>We couldn’t save your changes. Please try again.</p>
-                  <a href="{% url 'account-settings' %}" class="modal-btn">Try again</a>
+                  <a href="{% url 'account-settings' %}" class="button button-orange">Try again</a>
             </div>
       </div>
       {% endif %}
