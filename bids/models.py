@@ -37,8 +37,8 @@ class CreditCardModel(models.Model):
 
     cardholder_name = models.CharField(max_length=100)
     card_number = models.CharField(max_length=16)
-    card_cvv = models.CharField(max_length=3)
-    card_expiration = models.CharField(max_length=4)
+    card_cvv = models.CharField(max_length=4)
+    card_expiration = models.CharField(max_length=5)
 
 
 class BankTransferModel(models.Model):
