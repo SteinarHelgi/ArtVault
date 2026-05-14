@@ -11,15 +11,15 @@
             <form method="post" class="payment-form">
                 {% csrf_token %}
 
-                <button type="submit" name="payment_method" value="card" class="payment-option-btn">Credit Card</button>
+                <button type="submit" name="payment_method" value="card" class="button-b button-orange">Credit Card</button>
 
-                <button type="submit" name="payment_method" value="bank" class="payment-option-btn">Bank Transfer</button>
+                <button type="submit" name="payment_method" value="bank" class="button-b button-orange">Bank Transfer</button>
 
-                <button type="submit" name="payment_method" value="wire" class="payment-option-btn">Wire Transfer</button>
+                <button type="submit" name="payment_method" value="wire" class="button-b button-orange">Wire Transfer</button>
 
             </form>
 
-            <a href="{% url 'shipping_edit' shipping.id %}" class="back-btn">Back</a>
+            <a href="{% url 'shipping_edit' shipping.id %}" class="button button-orange">Back</a>
 
         </div>
         {% include "bids/component/order_summary.html" %}

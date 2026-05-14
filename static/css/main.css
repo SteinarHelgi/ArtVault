@@ -1149,7 +1149,7 @@ body {
     align-items: stretch;
     gap: 20px;
 
-    margin-top: 50px;
+    margin: var(--space-m) auto;
 }
 
 .back-btn,

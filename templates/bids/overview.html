@@ -115,20 +115,20 @@
                     <div class="checkout-buttons">
 
                         {% if shipping.payment_method == "card" %}
-                            <a href="{% url 'credit_card_payment' shipping.id %}" class="back-btn">
+                            <a href="{% url 'credit_card_payment' shipping.id %}" class="button button-orange">
                                 Back
                             </a>
 
                         {% elif shipping.payment_method == "bank" %}
-                            <a href="{% url 'bank_transfer_payment' shipping.id %}" class="back-btn">
+                            <a href="{% url 'bank_transfer_payment' shipping.id %}" class="button button-orange">
                                 Back
                             </a>
 
                         {% elif shipping.payment_method == "wire" %}
-                            <a href="{% url 'wire_transfer_payment' shipping.id %}" class="back-btn">Back</a>
+                            <a href="{% url 'wire_transfer_payment' shipping.id %}" class="button button-orange">Back</a>
                         {% endif %}
 
-                        <button type="submit" class="confirm-btn">Confirm</button>
+                        <button type="submit" class="button button-orange">Confirm</button>
 
                     </div>
                 </form>
