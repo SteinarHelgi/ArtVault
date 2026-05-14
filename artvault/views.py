@@ -250,6 +250,8 @@ def my_profile_seller(request):
         "seller_artworks": seller_artworks,
     })
 
+
+#Footer links
 def contact_us(request):
     if request.method == "POST":
         messages.success(request, "message_sent")
@@ -257,4 +259,7 @@ def contact_us(request):
 
 def common_questions(request):
     return render(request, "artvault/common_questions.html")
+
+def about_us(request):
+    return render(request, "artvault/about_us.html")
 

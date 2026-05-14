@@ -1511,3 +1511,63 @@ body {
       font-size: 16px;
       box-sizing: border-box;
 }
+
+/* about us */
+.about-page {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 30px;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.about-hero h1 {
+      font-size: 35px;
+      margin-bottom: 24px;
+      font-family: var(--header-font);
+}
+
+.about-hero p,
+.about-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--light-black);
+      font-family: var(--paragraph-font);
+}
+
+.about-section {
+    margin-bottom: 60px;
+}
+
+.about-section h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+      font-family: var(--header-font);
+}
+
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.about-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 28px;
+}
+
+.about-card h3 {
+      font-size: 20px;
+      margin-bottom: 14px;
+      font-family: var(--header-font);
+}
+
+.about-card p {
+      font-size: 16px;
+      font-family: var(--paragraph-font);
+
+}

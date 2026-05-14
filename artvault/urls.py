@@ -17,4 +17,5 @@ urlpatterns = [
     path("my_profile_seller/", views.my_profile_seller, name="my-profile-seller"),
     path("contact_us/", views.contact_us, name="contact-us"),
     path("common_questions/", views.common_questions, name="common-questions"),
+    path("about_us/", views.about_us, name="about-us"),
 ]
