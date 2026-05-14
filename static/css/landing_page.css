@@ -44,27 +44,6 @@
       transition: all 0.3s ease;
 }
 
-.first_button {
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-}
-
-.first_button:hover {
-      background-color: var(--hover-color);
-      color: var(--orange-color);
-}
-
-.second_button {
-      background-color: transparent;
-      color: var(--primary-color);
-      border: 2px dashed var(--primary-color);
-}
-
-.second_button:hover {
-      background-color: var(--primary-color);
-      color: var(--orange-color);
-}
-
 .text_container {
       border: 1px solid var(--border-color);
       align-items: center;

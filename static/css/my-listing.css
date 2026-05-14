@@ -2,18 +2,6 @@
     margin: 40px 0;
 }
 
-.btn-secondary{
-    padding: 20px;
-    text-decoration: none;
-    color: white;
-    background-color: var(--orange-color);
-    border-radius: var(--round-corners);
-}
-
-.update-remove-container .btn-secondary:hover{
-  opacity: 0.5;
-    border: 1px solid var(--orange-color);
-}
 
 .listing-description-container{
     display: grid;
