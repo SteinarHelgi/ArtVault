@@ -58,6 +58,12 @@
       padding: 14px;
 }
 
+.art-card .button{
+      display: flex;
+      width: fit-content;
+      margin: var(--space-s) auto 0 auto;
+}
+
 .art-card-info h5 {
       margin: 0 0 8px;
       font-family: var(--header-font);

@@ -50,6 +50,7 @@
     cursor: pointer;
 }
 
+
 .filter-sidebar .price-button:hover {
       background-color: var(--orange-color);
       opacity: 0.9;
@@ -71,19 +72,19 @@
       font-family: var(--paragraph-font);
 }
 
-.filter-sidebar button {
-      border-radius: var(--round-corners);
-      border: 1px solid var(--light-black);
-      background-color: white;
-      color: var(--black);
-      font-family: var(--paragraph-font);
-      font-size: 13px;
-      cursor: pointer;
-}
+/*.filter-sidebar button {*/
+/*      border-radius: var(--round-corners);*/
+/*      border: 1px solid var(--light-black);*/
+/*      background-color: white;*/
+/*      color: var(--black);*/
+/*      font-family: var(--paragraph-font);*/
+/*      font-size: 13px;*/
+/*      cursor: pointer;*/
+/*}*/
 
-.filter-sidebar button:hover {
-      background-color: var(--hover-color);
-}
+/*.filter-sidebar button:hover {*/
+/*      background-color: var(--hover-color);*/
+/*}*/
 
 .close-filter-butten {
       position: absolute;

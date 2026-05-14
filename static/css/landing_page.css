@@ -2,26 +2,23 @@
 .hero-container {
       font-family: var(--header-font);
       height: 400px;
-
       display: flex;
       align-items: center;
-
       background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/static/img/landingpic.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-
 }
 
 .hero-text {
       max-width: 900px;
       margin-left: 200px;
-      color: var(--primary-color);
+      color: var(--white);
 }
 
 .hero-text h1 {
       font-size: 3em;
-      color: var(--primary-color);
+      color: var(--white);
       margin-bottom: 20px;
 }
 
