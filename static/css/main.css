@@ -400,22 +400,6 @@ body {
       margin-bottom: 25px;
 }
 
-.confirm-btn,
-.login-page button {
-      font-family: var(--header-font);
-      font-weight: 600;
-      width: 200px;
-      height: 45px;
-      align-self: center;
-      margin-top: 20px;
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-      border: none;
-      font-size: 18px;
-      border-radius: 5px;
-      cursor: pointer;
-}
-
 .errorlist {
       color: red;
       text-align: left;
@@ -528,13 +512,6 @@ body {
       border: 1px solid var(--light-black);
 }
 
-.confirm-btn {
-      grid-column: 1 / -1;
-      justify-self: center;
-}
-
-
-
 /*Seller-setup*/
 .seller-setup-page {
       width: 100%;
@@ -565,6 +542,7 @@ body {
       margin-top: 40px;
       width: 260px;
 }
+
 .left-side-setup,
 .right-side-setup {
       display: flex;
@@ -697,14 +675,6 @@ body {
       gap: 8px;
 }
 
-.confirm-btn {
-      grid-column: 1 / 3;
-      justify-self: center;
-      margin-top: 60px;
-      width: 260px;
-      height: 50px;
-}
-
 /* Popup background */
 .modal {
       position: fixed;
@@ -749,18 +719,18 @@ body {
 }
 
 /* Button */
-.modal-btn {
-      width: 260px;
-      height: 48px;
-      background: var(--orange-color);
-      color: var(--primary-color);
-      text-decoration: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      border-radius: 4px;
-}
+/*.modal-btn {*/
+/*      width: 260px;*/
+/*      height: 48px;*/
+/*      background: var(--orange-color);*/
+/*      color: var(--primary-color);*/
+/*      text-decoration: none;*/
+/*      display: flex;*/
+/*      justify-content: center;*/
+/*      align-items: center;*/
+/*      font-size: 22px;*/
+/*      border-radius: 4px;*/
+/*}*/
 
 /* Close button */
 .close-btn {
@@ -841,25 +811,6 @@ body {
 .form-group textarea {
       resize: none;
 }
-
-
-.primary-button {
-      width: 200px;
-      height: 44px;
-      margin-top: 10px;
-      background-color: var(--orange-color);
-      color: white;
-      border: none;
-      border-radius: var(--round-corners);
-      font-family: var(--header-font);
-      font-size: 16px;
-      cursor: pointer;
-}
-
-.primary-button:hover {
-      opacity: 0.9;
-}
-
 
 /*my profile seller css*/
 .profile-cover {
@@ -1151,49 +1102,6 @@ body {
 
     margin: var(--space-m) auto;
 }
-
-.back-btn,
-.confirm-btn,
-.shipping-confirm-btn {
-      width: 220px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-      font-size: 18px;
-      font-family: inherit;
-      font-weight: 500;
-      line-height: 1;
-      text-decoration: none;
-      box-sizing: border-box;
-      cursor: pointer;
-
-
-}
-.confirm-btn {
-    position: relative;
-    top: 0;
-}
-
-.payment-option-btn {
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-      height: 48px;
-      width: 558px;
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      font-family: inherit;
-      font-weight: 500;
-      line-height: 1;
-}
-
 
 /* Payment method page */
 
