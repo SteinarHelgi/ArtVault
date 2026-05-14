@@ -255,3 +255,6 @@ def contact_us(request):
         messages.success(request, "message_sent")
     return render(request, "artvault/contact_us.html")
 
+def common_questions(request):
+    return render(request, "artvault/common_questions.html")
+
