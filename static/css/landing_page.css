@@ -82,3 +82,10 @@
 .text_container p {
       font-family: var(--paragraph-font);
 }
+
+.art-card .image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
