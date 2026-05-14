@@ -57,7 +57,7 @@ body {
       gap: 8px;
       font-family: var(--header-font);
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 600;
       text-decoration: none;
       cursor: pointer;
       transition: 0.2s ease;
@@ -145,6 +145,73 @@ body {
 
 .button-white:hover{
       background-color: var(--hover-color);
+}
+
+
+/* Shared form controls */
+.signup-form input,
+.signup-form select,
+.login-page input,
+.name-section input,
+.profile-input,
+.input-group input,
+.input-group select,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.account-settings-container input,
+.account-settings-container select,
+.account-settings-container textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: var(--round-corners);
+      background-color: var(--white);
+      color: var(--black);
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      margin-bottom: var(--space-s);
+}
+
+.signup-form input,
+.signup-form select,
+.login-page input,
+.name-section input,
+.profile-input,
+.input-group input,
+.input-group select,
+.form-group input,
+.form-group select,
+.account-settings-container input,
+.account-settings-container select {
+      height: 42px;
+      padding: 0 14px;
+}
+
+.form-group textarea,
+.account-settings-container textarea,
+#id_bio {
+      min-height: 140px;
+      padding: 12px 14px;
+      resize: none;
+}
+
+.signup-form input:focus,
+.signup-form select:focus,
+.login-page input:focus,
+.name-section input:focus,
+.profile-input:focus,
+.input-group input:focus,
+.input-group select:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.account-settings-container input:focus,
+.account-settings-container select:focus,
+.account-settings-container textarea:focus,
+#id_bio:focus {
+      outline: none;
+      border-color: var(--orange-color);
 }
 
 
@@ -369,30 +436,30 @@ body {
       text-align: center;
 }
 
-.signup-form,
-.login-page form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-}
+/*.signup-form,*/
+/*.login-page form {*/
+/*      display: flex;*/
+/*      flex-direction: column;*/
+/*      gap: 20px;*/
+/*}*/
 
-.signup-form select {
-      cursor: pointer;
-}
+/*.signup-form select {*/
+/*      cursor: pointer;*/
+/*}*/
 
 
-.signup-form input,
-.signup-form select,
-.login-page input {
-      font-family: var(--paragraph-font);
-      border-radius: var(--round-corners);
-      width: 100%;
-      height: 45px;
-      padding: 0 15px;
-      font-size: 18px;
-      border: 1px solid var(--black);
-      box-sizing: border-box;
-}
+/*.signup-form input,*/
+/*.signup-form select,*/
+/*.login-page input {*/
+/*      font-family: var(--paragraph-font);*/
+/*      border-radius: var(--round-corners);*/
+/*      width: 100%;*/
+/*      height: 45px;*/
+/*      padding: 0 15px;*/
+/*      font-size: 18px;*/
+/*      border: 1px solid var(--black);*/
+/*      box-sizing: border-box;*/
+/*}*/
 
 .signup-container h1,
 .login-page h1 {
@@ -433,7 +500,7 @@ body {
 .buyer-upload-box {
       width: 250px;
       height: 250px;
-      border-radius: 12px;
+      border-radius: var(--round-corners-more);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -448,12 +515,12 @@ body {
       height: 300px;
       object-fit: cover;
       object-position: center;
-      border-radius: 8px;
+      border-radius: var(--round-corners-more);
 }
 
 #buyer-profile-preview {
-      width: 200px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       border-radius: 8px;
@@ -487,30 +554,30 @@ body {
       color: red;
 }
 
-.name-section {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-}
+/*.name-section {*/
+/*      display: flex;*/
+/*      align-items: center;*/
+/*      gap: 8px;*/
+/*}*/
 
-.name-section .required {
-      position: static;
-      display: inline-block;
-      color: red;
-      font-size: 20px;
-}
+/*.name-section .required {*/
+/*      position: static;*/
+/*      display: inline-block;*/
+/*      color: red;*/
+/*      font-size: 20px;*/
+/*}*/
 
-.name-section input {
-      width: 100%;
-}
+/*.name-section input {*/
+/*      width: 100%;*/
+/*}*/
 
-.profile-input {
-      width: 100%;
-      height: 38px;
-      padding: 0 18px;
-      font-size: 22px;
-      border: 1px solid var(--light-black);
-}
+/*.profile-input {*/
+/*      width: 100%;*/
+/*      height: 38px;*/
+/*      padding: 0 18px;*/
+/*      font-size: 22px;*/
+/*      border: 1px solid var(--light-black);*/
+/*}*/
 
 /*Seller-setup*/
 .seller-setup-page {
@@ -560,10 +627,32 @@ body {
 }
 
 .seller-logo-box {
-      width: 200px;
-      height: 200px;
-      border: 1px solid var(--light-black);
-      border-radius: 8px;
+      width: 250px;
+      height: 250px;
+      border-radius: var(--space-s);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+}
+
+#seller-logo-preview{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--round-corners-more);
+}
+
+.seller-cover-box {
+      margin-bottom: var(--space-m);
+      width: 100%;
+      height: 160px;
+      border-radius: var(--round-corners-more);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -574,18 +663,12 @@ body {
       background-repeat: no-repeat;
 }
 
-.seller-cover-box {
+#seller-cover-preview{
       width: 100%;
-      height: 110px;
-      border: 1px solid var(--light-black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--round-corners-more);
 }
 
 
@@ -616,14 +699,14 @@ body {
 }
 
 #id_bio {
-      width: 200px;
-      height: 150px;
-      margin-top: 18px;
+      border-radius: var(--round-corners-more);
+      width: 100%;
+      height: 100%;
       resize: none;
       padding: 8px;
       box-sizing: border-box;
-      font-family: inherit;
-      font-size: 16px;
+      font-family: var(--paragraph-font);
+      font-size: 14px;
       line-height: normal;
       display: block;
       text-align: left;
@@ -640,23 +723,23 @@ body {
       top: 8px;
 }
 
-.input-group {
-      position: relative;
-      margin-top: 12px;
-}
+/*.input-group {*/
+/*      position: relative;*/
+/*      margin-top: 12px;*/
+/*}*/
 
 .input-group label {
       display: none;
 }
 
-.input-group input,
-.input-group select {
-      width: 100%;
-      height: 38px;
-      box-sizing: border-box;
-      padding: 0 8px;
-      font-size: 16px;
-}
+/*.input-group input,*/
+/*.input-group select {*/
+/*      width: 100%;*/
+/*      height: 38px;*/
+/*      box-sizing: border-box;*/
+/*      padding: 0 8px;*/
+/*      font-size: 16px;*/
+/*}*/
 
 .required {
       position: absolute;
@@ -717,20 +800,6 @@ body {
       line-height: 1.5;
       margin: 0;
 }
-
-/* Button */
-/*.modal-btn {*/
-/*      width: 260px;*/
-/*      height: 48px;*/
-/*      background: var(--orange-color);*/
-/*      color: var(--primary-color);*/
-/*      text-decoration: none;*/
-/*      display: flex;*/
-/*      justify-content: center;*/
-/*      align-items: center;*/
-/*      font-size: 22px;*/
-/*      border-radius: 4px;*/
-/*}*/
 
 /* Close button */
 .close-btn {
@@ -795,22 +864,27 @@ body {
       font-weight: 600;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--round-corners);
-      font-family: var(--paragraph-font);
-      font-size: 15px;
-      box-sizing: border-box;
-      background-color: white;
+.form-row-seller {
+      display: grid;
+      grid-template-columns:300px 1fr;
+      gap: var(--space-m);
 }
+/*.form-group input,*/
+/*.form-group select,*/
+/*.form-group textarea {*/
+/*      width: 100%;*/
+/*      padding: 12px 14px;*/
+/*      border: 1px solid var(--border-color);*/
+/*      border-radius: var(--round-corners);*/
+/*      font-family: var(--paragraph-font);*/
+/*      font-size: 15px;*/
+/*      box-sizing: border-box;*/
+/*      background-color: white;*/
+/*}*/
 
-.form-group textarea {
-      resize: none;
-}
+/*.form-group textarea {*/
+/*      resize: none;*/
+/*}*/
 
 /*my profile seller css*/
 .profile-cover {
@@ -897,92 +971,55 @@ body {
 
 /*account-settings css*/
 
-.account-settings-container .seller-cover-box {
-      width: 700px;
-      height: 180px;
-      display: block;
-      overflow: hidden;
-      border: 1px solid #999;
-}
+/*.account-settings-container .seller-cover-box {*/
+/*      width: 700px;*/
+/*      height: 180px;*/
+/*      display: block;*/
+/*      overflow: hidden;*/
+/*      border: 1px solid #999;*/
+/*}*/
 
-.account-settings-container .seller-cover-box img {
-      width: 100%;
-      height: 100%;
-}
+/*.account-settings-container .seller-cover-box img {*/
+/*      width: 100%;*/
+/*      height: 100%;*/
+/*}*/
 
-.account-settings-container {
-      width: 600px;
-      margin: 80px auto;
-      text-align: left;
-}
+/*.account-settings-container {*/
+/*      width: 600px;*/
+/*      margin: 80px auto;*/
+/*      text-align: left;*/
+/*}*/
 
-.account-card img {
-      height: 200px;
-      width: 200px;
-      background-size: cover;
-      background-position: center;
-}
-
-.editfield {
-      border: none;
-      text-decoration: #dd700b;
-      border-bottom: 1px solid var(--light-black);
-      background-color: transparent;
-      color: var(--black);
-      font-family: var(--header-font);
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-}
-
-.editfield:hover {
-      transform: scale(1.1);
-}
+/*.account-card img {*/
+/*      height: 200px;*/
+/*      width: 200px;*/
+/*      background-size: cover;*/
+/*      background-position: center;*/
+/*}*/
 
 
-.showeditinput {
-      display: none;
-      margin-top: 14px;
-      gap: 10px;
-}
+/*.add-listing-form img {*/
+/*      height: 200px;*/
+/*      width: 200px;*/
+/*      background-size: cover;*/
+/*      background-position: center;*/
+/*}*/
 
-.showeditinput.show {
-      display: block;
-}
 
-.showeditinput input {
-      flex: 1;
-      height: 28px;
-      padding: 0 12px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--round-corners);
-      font-family: var(--paragraph-font);
-}
+/*.account-settings-container #id_logo,*/
+/*.account-settings-container #id_profile_image,*/
+/*.account-settings-container #id_cover_photo {*/
+/*      display: block;*/
+/*}*/
 
-.showeditinput button {
-      padding: 0 16px;
-      border: none;
-      background-color: var(--orange-color);
-      color: white;
-      border-radius: var(--round-corners);
-      cursor: pointer;
-}
-
-.account-settings-container #id_logo,
-.account-settings-container #id_profile_image,
-.account-settings-container #id_cover_photo {
-      display: block;
-}
-
-.account-settings-container #id_bio {
-      width: 100%;
-      height: 180px;
-      resize: vertical;
-}
+/*.account-settings-container #id_bio {*/
+/*      width: 100%;*/
+/*      height: 180px;*/
+/*      resize: vertical;*/
+/*}*/
 
 .password-section{
-      margin-bottom: 20px;
+      margin-bottom: var(--space-m);
 }
 
 
