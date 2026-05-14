@@ -20,14 +20,17 @@ body {
 
 }
 
-#page-loader {
-    display: none;
+.loadingScreen {
     position: fixed;
     z-index: 9999;
     inset: 0;
     background-color: rgba(250, 250, 250, 0.8);
     justify-content: center;
     align-items: center;
+}
+
+.loadingScreen.hidden{
+   display: none;
 }
 
 .loader-box {

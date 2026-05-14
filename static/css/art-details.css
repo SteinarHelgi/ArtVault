@@ -78,13 +78,7 @@
 }
 
 /* bid boxes */
-.bid-card {
-      width: 260px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 22px;
-      margin: 12px;
-}
+
 
 .bid-label {
       margin: 0;

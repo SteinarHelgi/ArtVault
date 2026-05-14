@@ -1,50 +1,7 @@
-function showLoader() {
-    const loader = document.getElementById("page-loader");
+const loadingScreen = document.querySelector(".loadingScreen");
 
-    if (loader) {
-        loader.style.display = "flex";
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const links = document.querySelectorAll("a");
-    const forms = document.querySelectorAll("form");
-    const buttons = document.querySelectorAll("button");
-
-    links.forEach(function (link) {
-        link.addEventListener("click", function () {
-            const href = link.getAttribute("href");
-
-            if (
-                href &&
-                href !== "#" &&
-                !href.startsWith("#") &&
-                !href.startsWith("javascript")
-            ) {
-                showLoader();
-            }
-        });
-    });
-
-    forms.forEach(function (form) {
-        form.addEventListener("submit", function () {
-            if (form.checkValidity()) {
-                showLoader();
-            }
-        });
-    });
-
-    buttons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            const form = button.closest("form");
-
-            if (button.type === "submit") {
-                if (!form || form.checkValidity()) {
-                    showLoader();
-                }
-            }
-        });
-    });
+window.addEventListener("load", function () {
+    loadingScreen.classList.add("hidden");
 });
 
 function toggleLeftDropdown(event) {

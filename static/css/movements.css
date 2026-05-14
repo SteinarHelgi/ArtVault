@@ -87,8 +87,8 @@
 }
 
 .movement-artist-card img {
-      width: 150px !important;
-      height: 150px !important;
+      width: 150px;
+      height: 150px;
       object-fit: cover;
       object-position: top center;
       border-radius: 6px;
@@ -96,8 +96,11 @@
 }
 
 .movement-artist-card h3 {
-      font-size: 20px;
-      margin-top: 12px;
+      color: var(--light-black);
+      font-family: var(--header-font);
+      font-weight: 500;
+      margin-top: 20px;
+      font-size: 16px;
 }
 
 .movement-card .artwork-movement-title h3 {
@@ -148,23 +151,4 @@
       display: flex;
       justify-content: space-between;
       gap: 60px;
-}
-
-.movement-artist-card {
-      width: 220px;
-      text-align: center;
-}
-
-.movement-artist-card img {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-}
-
-.movement-artist-card h3 {
-      color: var(--light-black);
-      font-family: var(--header-font);
-      font-weight: 500;
-      margin-top: 20px;
-      font-size: 16px;
 }
