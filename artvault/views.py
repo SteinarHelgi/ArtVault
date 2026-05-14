@@ -13,10 +13,17 @@ from utils.formatting import format_currency
 
 # Create your views here
 def index(request):
-    all_artworks = Artwork.objects.all()
-    for artwork in all_artworks:
+    today = timezone.now().date()
+
+    expired_artworks = Artwork.objects.filter(
+        auction_end_date__lte=today,
+        is_closed=False,
+    )
+
+    for artwork in expired_artworks:
         close_auction(artwork)
-    artworks = Artwork.objects.filter(sold=False)
+
+    artworks = Artwork.objects.filter(sold=False).prefetch_related("images")
 
     artmovement = defaultdict(list)
 
@@ -24,7 +31,7 @@ def index(request):
         artmovement[artwork.art_movement].append(artwork)
 
     return render(request, "artvault/index.html", {
-        "art": Artwork.objects.all(),
+        "art": artworks,
         "artmovement": dict(artmovement),
     })
 
