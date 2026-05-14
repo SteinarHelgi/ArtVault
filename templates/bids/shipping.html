@@ -3,26 +3,30 @@
 {% block content %}
 <div class="checkout-page">
     <div class="checkout-layout">
+
+
         <div class="checkout-main">
-
             <h1>Details for payment and Shipping</h1>
-
             <form method="post" class="shipping-form">
                 {% csrf_token %}
-
+            <div class="form-group">
                 <label>Contact</label>
                 {{ form.email }}
                 {{ form.national_id }}
+            </div>
 
+            <div class="form-group">
                 <label>Delivery</label>
                 {{ form.country }}
+            </div>
 
-                <h3>Address</h3>
+            <div class="form-group">
+                <label>Address</label>
 
                 {{ form.street_name }}
                 {{ form.city }}
                 {{ form.zip_code }}
-
+            </div>
                 <div class="shipping-buttons">
                     <a href="{% url 'my_bids' %}" class="button button-orange">Back</a>
 

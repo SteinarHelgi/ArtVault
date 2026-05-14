@@ -5,20 +5,20 @@
 <div class="checkout-page">
     <div class="checkout-layout">
         <div class="checkout-main">
-
             <h1>Choose payment method</h1>
+
 
             <form method="post" class="payment-form">
                 {% csrf_token %}
-
+             <div class="form-group">
                 <button type="submit" name="payment_method" value="card" class="button-b button-orange">Credit Card</button>
 
                 <button type="submit" name="payment_method" value="bank" class="button-b button-orange">Bank Transfer</button>
 
                 <button type="submit" name="payment_method" value="wire" class="button-b button-orange">Wire Transfer</button>
-
+             </div>
             </form>
-
+            
             <a href="{% url 'shipping_edit' shipping.id %}" class="button button-orange">Back</a>
 
         </div>
