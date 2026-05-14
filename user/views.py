@@ -3,9 +3,8 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.db import transaction
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render
-from artvault.models import Artwork, Bid
 from user.forms.buyerProfileForm import BuyerProfileForm
 from user.forms.sellerProfileForm import SellerProfileForm
 from user.forms.signupForm import SignupForm
@@ -56,7 +55,7 @@ def signup(request):
 
 
 def buyer_setup(request):
-    pending_user_id = request.session["pending_user_id"]
+    pending_user_id = request.session.get("pending_user_id")
 
     if not pending_user_id:
         return redirect("signup")
@@ -93,7 +92,7 @@ def buyer_setup(request):
 
 
 def seller_setup(request):
-    pending_user_id = request.session["pending_user_id"]
+    pending_user_id = request.session.get("pending_user_id")
 
     if not pending_user_id:
         return redirect("signup")
@@ -136,7 +135,7 @@ def seller_setup(request):
 def my_profile_seller(request):
     seller_profile = request.user.profile.seller_profile
 
-    artworks = seller_profile.artworks.annotate(
+    artworks = seller_profile.artworks.prefetch_related("images").annotate(
         highest_bid=Max("bids__amount")
     )
     return render(

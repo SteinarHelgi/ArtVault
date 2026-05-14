@@ -1,11 +1,9 @@
 from collections import defaultdict
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Max, Q, QuerySet
-from artvault.models import Artwork
+from django.db.models import Max, Q
 from user.models import SellerProfileModel
-from artvault.models import Artwork, Bid
+from artvault.models import Artwork, Bid, Artmovement, ArtmovementArtist
 from bids.views import render_artwork_bid, close_auction
-from artvault.models import Artmovement, ArtmovementArtist
 from random import shuffle
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -32,7 +30,9 @@ def index(request):
 
 
 def browse_artwork(request):
-    art = Artwork.objects.prefetch_related("images")
+    art = Artwork.objects.select_related("seller").prefetch_related("images").annotate(
+        highest_bid=Max("bids__amount")
+    )
 
     art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
 
@@ -81,13 +81,13 @@ def browse_artwork(request):
         art = art.filter(sold=False, auction_end_date__gt=now)
 
     # current price variable
+
     for artwork in art:
-        highest_bid = artwork.bids.aggregate(Max("amount"))["amount__max"]
         starting_price = int(artwork.starting_price)
 
-        if highest_bid and highest_bid >= starting_price:
-            artwork.current_price = highest_bid
-            artwork.filter_price = highest_bid
+        if artwork.highest_bid and artwork.highest_bid >= starting_price:
+            artwork.current_price = artwork.highest_bid
+            artwork.filter_price = artwork.highest_bid
         else:
             artwork.current_price = 0
             artwork.filter_price = starting_price

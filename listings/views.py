@@ -1,4 +1,3 @@
-from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
@@ -7,7 +6,6 @@ from django.utils import timezone
 from django.contrib import messages
 from artvault.models import Artwork, ArtworkImage
 from listings.forms.listing_form import ArtworkListingForm
-
 
 
 # Create your views here.
@@ -34,34 +32,36 @@ def add_listing_view(request):
                     "form": form
                 })
 
-            print("form is valid")
             artwork = form.save(commit=False)
             artwork.seller = seller_profile
             artwork.sold = False
             artwork.save()
 
-            images = request.FILES.getlist("images")
             messages.success(request, "listing_created")
 
             for image in images:
                 ArtworkImage.objects.create(artwork=artwork, image=image)
 
             return redirect("my_profile_seller")
-        else:
-            print(form.errors)
 
     else:
-        print("form is not valid")
         form = ArtworkListingForm()
 
     return render(request, "listings/add_listing.html", {"form": form})
 
+
 @login_required
 def my_listing_view(request, id):
-    artwork = get_object_or_404(Artwork, pk=id)
+    artwork = get_object_or_404(
+        Artwork.objects.select_related("seller").prefetch_related("images"),
+        pk=id
+    )
 
-    bids = artwork.bids.all().order_by("-amount")
-    highest_bid = bids.first()
+    bids = list(
+        artwork.bids.select_related("buyer").order_by("-amount")
+    )
+
+    highest_bid = bids[0] if bids else None
 
     today = timezone.now().date()
 
@@ -80,16 +80,25 @@ def my_listing_view(request, id):
         },
     )
 
+
 @login_required
 def delete_listing_view(request, id):
-    artwork = get_object_or_404(Artwork, pk=id)
+    artwork = get_object_or_404(
+        Artwork,
+        pk=id,
+        seller=request.user.profile.seller_profile
+    )
+
     artwork.delete()
     return redirect("my_profile_seller")
 
 
 @login_required
 def update_listing_view(request, id):
-    artwork = get_object_or_404(Artwork, pk=id)
+    artwork = get_object_or_404(
+        Artwork.objects.select_related("seller").prefetch_related("images"),
+        pk=id
+    )
 
     if artwork.seller != request.user.profile.seller_profile:
         return HttpResponseForbidden("You can only update your own listings.")
@@ -110,18 +119,17 @@ def update_listing_view(request, id):
 
             artwork = form.save()
 
-            new_images = request.FILES.getlist("images")
-
-            if new_images:
+            if images:
                 artwork.images.all().delete()
 
-                for image in new_images:
+                for image in images:
                     ArtworkImage.objects.create(
                         artwork=artwork,
                         image=image
                     )
 
             return redirect("my-listing", id=id)
+
     else:
         form = ArtworkListingForm(instance=artwork)
 

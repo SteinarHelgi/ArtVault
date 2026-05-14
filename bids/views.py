@@ -14,7 +14,7 @@ from bids.models import (
 )
 from artvault.models import Bid, Artwork
 from django.contrib import messages
-from user.models import BuyerProfileModel, Profile, SellerProfileModel
+from user.models import BuyerProfileModel
 from utils.formatting import format_currency
 import math
 
@@ -44,7 +44,10 @@ def shipping(request, bid_id):
 
 
 def shipping_edit(request, shipping_id):
-    shipping_obj = ShippingModel.objects.get(id=shipping_id)
+    shipping_obj = get_object_or_404(
+        ShippingModel.objects.select_related("bid", "bid__artwork"),
+        id=shipping_id
+    )
 
     bid = shipping_obj.bid
     artwork = bid.artwork
@@ -70,7 +73,10 @@ def shipping_edit(request, shipping_id):
 
 
 def payment_method(request, shipping_id):
-    shipping_obj = ShippingModel.objects.get(id=shipping_id)
+    shipping_obj = get_object_or_404(
+        ShippingModel.objects.select_related("bid", "bid__artwork"),
+        id=shipping_id
+    )
 
     bid = shipping_obj.bid
     artwork = bid.artwork
@@ -97,7 +103,10 @@ def payment_method(request, shipping_id):
 
 
 def credit_card_payment(request, shipping_id):
-    shipping_obj = ShippingModel.objects.get(id=shipping_id)
+    shipping_obj = get_object_or_404(
+        ShippingModel.objects.select_related("bid", "bid__artwork"),
+        id=shipping_id
+    )
 
     bid = shipping_obj.bid
     artwork = bid.artwork
@@ -127,7 +136,10 @@ def credit_card_payment(request, shipping_id):
 
 
 def bank_transfer_payment(request, shipping_id):
-    shipping_obj = ShippingModel.objects.get(id=shipping_id)
+    shipping_obj = get_object_or_404(
+        ShippingModel.objects.select_related("bid", "bid__artwork"),
+        id=shipping_id
+    )
 
     bid = shipping_obj.bid
     artwork = bid.artwork
@@ -159,7 +171,10 @@ def bank_transfer_payment(request, shipping_id):
 
 
 def wire_transfer_payment(request, shipping_id):
-    shipping_obj = ShippingModel.objects.get(id=shipping_id)
+    shipping_obj = get_object_or_404(
+        ShippingModel.objects.select_related("bid", "bid__artwork"),
+        id=shipping_id
+    )
 
     bid = shipping_obj.bid
     artwork = bid.artwork
@@ -191,7 +206,10 @@ def wire_transfer_payment(request, shipping_id):
 
 
 def checkout_overview(request, shipping_id):
-    shipping_obj = ShippingModel.objects.get(id=shipping_id)
+    shipping_obj = get_object_or_404(
+        ShippingModel.objects.select_related("bid", "bid__artwork"),
+        id=shipping_id
+    )
 
     bid = shipping_obj.bid
     artwork = bid.artwork
@@ -231,11 +249,16 @@ def checkout_overview(request, shipping_id):
 @login_required
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
-    bids = Bid.objects.filter(buyer=profile).order_by("artwork", "-amount")
+
+    bids = Bid.objects.filter(
+        buyer=profile
+    ).select_related("artwork").annotate(
+        artwork_highest_bid=Max("artwork__bids__amount")
+    ).order_by("artwork", "-amount")
+
     for bid in bids:
-        bid.highest_bid = format_currency(
-            bid.artwork.bids.aggregate(Max("amount"))["amount__max"]
-        )
+        bid.highest_bid = format_currency(bid.artwork_highest_bid)
+
     return render(
         request,
         "bids/my_bids.html",
@@ -370,8 +393,6 @@ def close_auction(artwork):
     today = timezone.now().date()
 
     if today >= artwork.auction_end_date and not artwork.is_closed:
-        print(today)
-        print(artwork.auction_end_date)
         highest_bid = artwork.bids.order_by("-amount").first()
 
         if highest_bid:
