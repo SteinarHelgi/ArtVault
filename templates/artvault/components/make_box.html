@@ -22,7 +22,13 @@
                 <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" required>
             </label>
 
-            <button type="submit" class="button-bid">Submit</button>
+            <button type="submit" class="button-bid">
+                {% if user_bid %}
+                    RESUBMIT
+                {% else %}
+                    SUBMIT
+                {% endif %}
+            </button>
         </form>
     </div>
 {% elif not artwork.bids.exists %}
