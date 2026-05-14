@@ -1,7 +1,25 @@
 const loadingScreen = document.querySelector(".loadingScreen");
 
-window.addEventListener("load", function () {
-    loadingScreen.classList.add("hidden");
+function showLoadingScreen() {
+    loadingScreen?.classList.add("show");
+}
+
+function hideLoadingScreen() {
+    loadingScreen?.classList.remove("show");
+}
+
+window.addEventListener("load", hideLoadingScreen);
+
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function () {
+        showLoadingScreen();
+    });
+});
+
+document.querySelectorAll("form").forEach(form => {
+    form.addEventListener("submit", function () {
+        showLoadingScreen();
+    });
 });
 
 function toggleLeftDropdown(event) {
