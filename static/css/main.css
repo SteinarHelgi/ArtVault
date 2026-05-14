@@ -3,21 +3,61 @@
       --orange-color: #DD700B;
       --border-color: #E5DED5;
       --hover-color: #F2F2F2;
+      --white: #FFFFFF;
       --black: #111111;
       --light-black: #555555;
+
+      --space-xs: 8px;
+      --space-s: 16px;
+      --space-m: 24px;
+      --space-l: 40px;
+      --space-xl: 60px;
+
       --nav-height: 60px;
       --icon-height: 45px;
+
       --round-corners: 3px;
+      --round-corners-more: 3px;
+
+      --page-width: 1100 px;
+      --detail-width: 900px;
+
       --header-font: "Montserrat", sans-serif;
       --paragraph-font: "Nunito Sans", sans-serif;
 }
+
 
 body {
       margin: 0;
       padding-top: var(--nav-height);
       background-color: var(--primary-color);
       font-family: var(--header-font);
+}
 
+.page{
+      max-width: var(--page-width);
+      margin: 0 auto;
+      width: 100%;
+}
+
+.page-detail {
+      max-width: var(--detail-width);
+      margin: 0 auto;
+      width: 100%;
+}
+
+.section-title {
+      margin-bottom: var(--space-m);
+      font-family: var(--header-font);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--black);
+}
+
+.body-text {
+  font-family: var(--paragraph-font);
+  color: var(--light-black);
+  line-height: 1.6;
 }
 
 .loadingScreen {
@@ -703,10 +743,6 @@ body {
       background-position: center;
 }
 
-.profile-name {
-      max-width: 1100px;
-      margin: 20px auto;
-}
 
 .profile-card {
       display: flex;
@@ -736,7 +772,12 @@ body {
       margin-bottom: 8px;
 }
 
-.profile-name h1 {
+.profile-name {
+      max-width: 1100px;
+      margin: 20px auto;
+}
+
+.profile-name h2 {
       font-family: var(--header-font);
       font-size: 26px;
       font-weight: 500;
