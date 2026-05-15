@@ -4,36 +4,36 @@ from artvault.models import Artwork
 
 
 MEDIUM_CHOICES = [
-    ("oil", "Oil"),
-    ("watercolor", "Watercolor"),
-    ("acrylic", "Acrylic"),
-    ("drawing", "Drawing"),
-    ("ink_drawing", "Ink drawing"),
-    ("digital", "Digital"),
-    ("photograph", "Photograph"),
-    ("mixed_media", "Mixed media"),
-    ("print", "Print"),
-    ("other", "Other"),
+    ("Oil", "Oil"),
+    ("Watercolor", "Watercolor"),
+    ("Acrylic", "Acrylic"),
+    ("Drawing", "Drawing"),
+    ("Ink drawing", "Ink drawing"),
+    ("Digital", "Digital"),
+    ("Photograph", "Photograph"),
+    ("Mixed media", "Mixed media"),
+    ("Print", "Print"),
+    ("Other", "Other"),
 ]
 
 EDITION_CHOICES = [
-    ("original", "Original"),
-    ("limited_edition", "Limited Edition"),
-    ("open_edition", "Open Edition"),
+    ("Original", "Original"),
+    ("Limited edition", "Limited Edition"),
+    ("Open edition", "Open Edition"),
 ]
 
 ART_MOVEMENT_CHOICES = [
-    ("surrealism", "Surrealism"),
-    ("modernism", "Modernism"),
-    ("realism", "Realism"),
-    ("impressionism", "Impressionism"),
-    ("expressionism", "Expressionism"),
-    ("contemporary", "Contemporary"),
-    ("abstract", "Abstract"),
-    ("minimalism", "Minimalism"),
-    ("pop_art", "Pop Art"),
-    ("cubism", "Cubism"),
-    ("other", "Other"),
+    ("Surrealism", "Surrealism"),
+    ("Modernism", "Modernism"),
+    ("Realism", "Realism"),
+    ("Impressionism", "Impressionism"),
+    ("Expressionism", "Expressionism"),
+    ("Contemporary", "Contemporary"),
+    ("Abstract", "Abstract"),
+    ("Minimalism", "Minimalism"),
+    ("Pop art", "Pop Art"),
+    ("Cubism", "Cubism"),
+    ("Other", "Other"),
 ]
 
 
