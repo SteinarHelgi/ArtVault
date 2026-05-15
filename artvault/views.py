@@ -202,9 +202,6 @@ def browse_artists(request):
     for artwork in artworks:
         artists[artwork.artist_name].append(artwork)
 
-    for artist in artists:
-        print(artist)
-
     return render(
         request,
         "artvault/browse_artists.html",
@@ -217,7 +214,6 @@ def browse_artists(request):
 def public_seller_profile_view(request, id):
     seller = SellerProfileModel.objects.get(pk=id)
     artworks = Artwork.objects.filter(seller=seller)
-    print(artworks)
     for artwork in artworks:
         artwork.starting_price = format_currency(int(artwork.starting_price))
     return render(request, "artvault/public_seller_profile.html", {"seller": seller,"artworks":artworks})
