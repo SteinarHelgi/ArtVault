@@ -162,13 +162,8 @@
 
                         {% with img=a.images.first %}
                             {% if img %}
-                                <img
-                                    class="image"
-                                    src="{{ img.image.url }}"
-                                    alt="image of artwork"
-                                    loading="lazy"
-                                    decoding="async"
-                                >
+                                      
+                              <div class="image" style="background-image: url('{{ img.image.url }}')"></div>
                             {% else %}
                                 <div class="image no-image">
                                     <p>No image available</p>
