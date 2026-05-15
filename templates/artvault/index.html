@@ -35,13 +35,7 @@
                         <a href="{% url 'artwork-details' a.id %}" class="art-card">
                             {% with img=a.images.first %}
                                 {% if img %}
-                                    <img
-                                        class="image"
-                                        src="{{ img.image.url }}"
-                                        alt="image of artwork"
-                                        loading="lazy"
-                                        decoding="async"
-                                    >
+                              <div class="image" style="background-image: url('{{ img.image.url }}')"></div>
                                 {% endif %}
                             {% endwith %}
 
