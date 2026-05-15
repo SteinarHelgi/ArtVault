@@ -1,14 +1,33 @@
 from django import forms
-from django.forms import ModelForm
-from bids.models import WireTransferModel
+from django.core.validators import RegexValidator
 
-class WireTransferForm(ModelForm):
-    class Meta:
-        model = WireTransferModel
-        fields = ['sending_bank', 'routing_number', 'account_number']
-        widgets = {
-            'sending_bank': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Name'}),
-            'routing_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '00000000'}),
-            'account_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '000000000000'}),
-        }
-    
+
+numbers_only = RegexValidator(
+    regex=r"^\d+$",
+    message="Only numbers are allowed.",
+)
+
+
+class WireTransferForm(forms.Form):
+    sending_bank = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Name",
+        })
+    )
+
+    routing_number = forms.CharField(
+        validators=[numbers_only],
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "00000000",
+        })
+    )
+
+    account_number = forms.CharField(
+        validators=[numbers_only],
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "000000000000",
+        })
+    )

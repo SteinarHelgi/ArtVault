@@ -3,45 +3,73 @@
 {% block content %}
 
 <div class="checkout-page">
-    <div class="checkout-layout">
-        <div class="checkout-main">
+      <div class="checkout-layout">
+            <div class="checkout-main">
 
-                <h1>Bank transfer</h1>
+                  <h1>Bank transfer</h1>
 
-            <form method="post" class="bank-form">
-                {% csrf_token %}
+                  <form method="post" class="bank-form">
+                        {% csrf_token %}
 
+                        <div class="bank-row">
 
-                <div class="bank-row">
-                    <div class="bank-field">
-                        <label>Bank</label>
-                        {{ form.bank }}
-                    </div>
+                              <div class="bank-field">
+                                    <label>Bank</label>
 
-                    <div class="bank-field small-field">
-                        <label>Hb</label>
-                        {{ form.hb }}
-                    </div>
+                                    <input type="text" name="bank" class="form-control" placeholder="0000"
+                                          inputmode="numeric" pattern="[0-9]*" required
+                                          value="{{ form.bank.value|default:'' }}"
+                                          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
-                    <div class="bank-field">
-                        <label>Account</label>
-                        {{ form.account }}
-                    </div>
-                </div>
+                                    {% for error in form.bank.errors %}
+                                    <p class="form-error">{{ error }}</p>
+                                    {% endfor %}
+                              </div>
 
+                              <div class="bank-field small-field">
+                                    <label>Hb</label>
 
-                <div class="checkout-buttons">
-                    <a href="{% url 'payment_method' shipping.id %}" class="button button-orange">Back</a>
-                    <button type="submit" class="button button-orange">Confirm</button>
-                </div>
-            </form>
+                                    <input type="text" name="hb" class="form-control" placeholder="00"
+                                          inputmode="numeric" pattern="[0-9]*" required
+                                          value="{{ form.hb.value|default:'' }}"
+                                          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
-        </div>
+                                    {% for error in form.hb.errors %}
+                                    <p class="form-error">{{ error }}</p>
+                                    {% endfor %}
+                              </div>
 
-        {% include "bids/component/order_summary.html" %}
+                              <div class="bank-field">
+                                    <label>Account</label>
 
-    </div>
+                                    <input type="text" name="account" class="form-control" placeholder="000000"
+                                          inputmode="numeric" pattern="[0-9]*" required
+                                          value="{{ form.account.value|default:'' }}"
+                                          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
+                                    {% for error in form.account.errors %}
+                                    <p class="form-error">{{ error }}</p>
+                                    {% endfor %}
+                              </div>
+
+                        </div>
+
+                        <div class="checkout-buttons">
+                              <a href="{% url 'payment_method' bid.pk %}" class="button button-orange">
+                                    Back
+                              </a>
+
+                              <button type="submit" class="button button-orange">
+                                    Confirm
+                              </button>
+                        </div>
+                  </form>
+
+            </div>
+
+            {% include "bids/component/order_summary.html" %}
+
+      </div>
 </div>
 
 {% endblock content %}
