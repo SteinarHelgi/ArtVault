@@ -24,7 +24,7 @@ def shipping(request, bid_id):
 
         if form.is_valid():
             request.session["shipping_data"] = form.cleaned_data
-            return redirect("payment_method", bid_id=bid.pk)
+            return redirect("payment-method", bid_id=bid.pk)
 
     else:
         form = ShippingForm(initial=request.session.get("shipping_data"))
