@@ -882,7 +882,7 @@ body {
     margin-bottom: 18px;
 }
 
-.order-summary hr {
+hr {
     border: none;
     border-top: 1px solid #ddd;
     margin: 20px 0;
@@ -1277,4 +1277,19 @@ body {
     color: #d93025;
     font-size: 0.9rem;
     margin-top: 5px;
+}
+
+.upload-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-field .errorlist {
+    margin-top: 10px;
+    position: static;
+}
+
+.upload-field .required {
+    position: static;
+    margin-bottom: 10px;
 }

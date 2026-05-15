@@ -14,32 +14,41 @@
             {% for bid in bids %}
             <div class="art-card">
 
-                  <a href="{% url 'artwork-details' bid.artwork.id %}" class="art-card">
+                  <a href="{% url 'artwork-details' bid.artwork.id %}" class="art-card-link">
                         {% with img=bid.artwork.images.first.image.url %}
-                        {% if img %}
-                        <img class="image" src="{{ img }}" alt="image of artwork from artist">
-                        {% else %}
-                        <p>no images</p>
-                        {% endif %}
-                        {% endwith %}
+                        <div class="image-wrapper">
+                            {% if img %}
+                            <img class="image" src="{{ img }}" alt="image of artwork from artist">
+                            {% else %}
+                            <p>no images</p>
+                            {% endif %}
+
+                                <div class="status-badge status-{{ bid.status }}">
+                                    {% if bid.status == "accepted" %}
+                                      <p>Accepted!</p>
+
+                                      {% elif bid.status == "pending" %}
+                                      <p>Auction on going</p>
+
+                                      {% elif bid.status == "rejected" %}
+                                      <p>Rejected</p>
+
+                                      {%elif bid.status == "completed"%}
+                                      <p>Completed!</p>
+
+                                      {% endif %}
+                                </div>
+                            </div>
+                            {% endwith %}
                         <div class="art-card-info">
 
-                              <h2>{{ bid.artwork.title }}</h2>
-                              <p>Your bid: <b>{{ bid.formatted_amount}} kr.</b></p>
+                              <h5>{{ bid.artwork.title }}</h5>
+                                <hr>
+                              <p class="price" >Your bid: <b>{{ bid.formatted_amount}} kr.</b></p>
                               <p>Highest bid: {{bid.highest_bid}} kr.</p>
-                              {% if bid.status == "accepted" %}
-                              <p>Accepted!</p>
 
-                              {% elif bid.status == "pending" %}
-                              <p>Auction is not over</p>
+                              {% if bid.status == "pending" %}
                               <p>Auction ends on: {{bid.artwork.auction_end_date}}</p>
-
-
-                              {% elif bid.status == "rejected" %}
-                              <p>Rejected</p>
-
-                              {%elif bid.status == "completed"%}
-                              <p>Completed!</p>
 
                               {% endif %}
 
@@ -56,7 +65,9 @@
                   </a>
             </div>
             {% empty %}
-            <p>You have not placed any bids yet.</p>
+                <div class="empty">
+                  <h3>You have not placed any bids yet.</h3>
+                </div>
             {% endfor %}
 
       </div>
