@@ -5,7 +5,6 @@ from artvault.models import Artwork
 
 MEDIUM_CHOICES = [
     ("", "Select Medium"),
-    ("Original", "Original"),
     ("Oil", "Oil"),
     ("Watercolor", "Watercolor"),
     ("Acrylic", "Acrylic"),
