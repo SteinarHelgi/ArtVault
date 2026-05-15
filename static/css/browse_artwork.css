@@ -246,7 +246,12 @@ input[type="number"]::-webkit-inner-spin-button {
       color: var(--black);
 }
 
-
+.art-card .image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+}
 
 .pagination {
     display: flex;
