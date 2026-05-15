@@ -40,7 +40,7 @@
                     {{ shipping.zip_code }}
                 </div>
 
-                {% if shipping.payment_method == "card" %}
+                {% if payment_method == "card" %}
 
                     <label>Cardholder's name</label>
 
@@ -51,7 +51,7 @@
                     <label>Card information</label>
 
                     <div class="overview-box">
-                        **** **** **** {{ payment.card_number|slice:"-4:" }}
+                        **** **** **** {{ payment.card_last4}}
                     </div>
 
                     <div class="overview-card-row">
@@ -66,7 +66,7 @@
 
                     </div>
 
-                {% elif shipping.payment_method == "bank" %}
+                {% elif payment_method == "bank" %}
 
                     <label>Bank</label>
 
@@ -86,7 +86,7 @@
                         {{ payment.account }}
                     </div>
 
-                {% elif shipping.payment_method == "wire" %}
+                {% elif payment_method == "wire" %}
 
                     <label>Name of sending bank</label>
 
@@ -114,18 +114,18 @@
 
                     <div class="checkout-buttons">
 
-                        {% if shipping.payment_method == "card" %}
-                            <a href="{% url 'credit_card_payment' shipping.id %}" class="button button-orange">
+                        {% if payment_method == "card" %}
+                            <a href="{% url 'credit_card_payment' bid.pk %}" class="button button-orange">
                                 Back
                             </a>
 
-                        {% elif shipping.payment_method == "bank" %}
-                            <a href="{% url 'bank_transfer_payment' shipping.id %}" class="button button-orange">
+                        {% elif payment_method == "bank" %}
+                            <a href="{% url 'bank_transfer_payment' bid.pk %}" class="button button-orange">
                                 Back
                             </a>
 
-                        {% elif shipping.payment_method == "wire" %}
-                            <a href="{% url 'wire_transfer_payment' shipping.id %}" class="button button-orange">Back</a>
+                        {% elif payment_method == "wire" %}
+                            <a href="{% url 'wire_transfer_payment' bid.pk %}" class="button button-orange">Back</a>
                         {% endif %}
 
                         <button type="submit" class="button button-orange">Confirm</button>

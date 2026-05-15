@@ -2,45 +2,85 @@
 
 {% block content %}
 <div class="checkout-page">
-    <div class="checkout-layout">
+      <div class="checkout-layout">
 
+            <div class="checkout-main">
+                  <h1>Details for payment and Shipping</h1>
 
-        <div class="checkout-main">
-            <h1>Details for payment and Shipping</h1>
-            <form method="post" class="shipping-form">
-                {% csrf_token %}
-            <div class="form-group">
-                <label>Contact</label>
-                {{ form.email }}
-                {{ form.national_id }}
+                  <form method="post" class="shipping-form">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                              <label>Contact</label>
+
+                              {{ form.email }}
+
+                              {% for error in form.email.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+
+                              <input type="text" name="national_id" class="form-control" placeholder="National ID"
+                                    inputmode="numeric" pattern="[0-9]*" required
+                                    value="{{ form.national_id.value|default:'' }}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                              {% for error in form.national_id.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                              <label>Delivery</label>
+
+                              {{ form.country }}
+
+                              {% for error in form.country.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
+
+                        <div class="form-group">
+                              <label>Address</label>
+
+                              {{ form.street_name }}
+
+                              {% for error in form.street_name.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+
+                              {{ form.city }}
+
+                              {% for error in form.city.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+
+                              <input type="text" name="zip_code" class="form-control" placeholder="Postal Code"
+                                    inputmode="numeric" pattern="[0-9]*" required
+                                    value="{{ form.zip_code.value|default:'' }}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                              {% for error in form.zip_code.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
+
+                        <div class="shipping-buttons">
+                              <a href="{% url 'my_bids' %}" class="button button-orange">
+                                    Back
+                              </a>
+
+                              <button type="submit" class="button button-orange">
+                                    Continue to payment
+                              </button>
+                        </div>
+
+                  </form>
+
             </div>
 
-            <div class="form-group">
-                <label>Delivery</label>
-                {{ form.country }}
-            </div>
+            {% include "bids/component/order_summary.html" %}
 
-            <div class="form-group">
-                <label>Address</label>
-
-                {{ form.street_name }}
-                {{ form.city }}
-                {{ form.zip_code }}
-            </div>
-                <div class="shipping-buttons">
-                    <a href="{% url 'my_bids' %}" class="button button-orange">Back</a>
-
-                    <button type="submit" class="button button-orange">Continue to payment</button>
-
-                </div>
-
-            </form>
-
-        </div>
-        {% include "bids/component/order_summary.html" %}
-
-    </div>
-
+      </div>
 </div>
-    
+
 {% endblock %}
