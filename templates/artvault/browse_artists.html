@@ -8,7 +8,7 @@
       <div class="gallery-header">
             <h2>View Artists</h2>
       </div>
-      <div>
+
 
             {% for artist_name, artworks in artists.items %}
             <h1 class="art-movement-h1">{{artist_name}}</h1>
@@ -17,22 +17,26 @@
 
                   <div class="gallery-scroll-container">
                         {% for a in artworks %}
-                        <a href="{% url 'artwork-details' a.id %}" class="art-card">
-                              {% with img=a.images.first %}
-                              {% if img %}
-                              <img class="image" src="{{ img.image.url }}" alt="image of artwork from artist">
-                              {% endif %}
-                              {% endwith %}
+                            <a href="{% url 'artwork-details' a.id %}" class="art-card">
+                                  {% with img=a.images.first %}
+                                      {% if img %}
+                                            <img class="image" src="{{ img.image.url }}" alt="image of artwork from artist">
+                                      {% endif %}
+                                  {% endwith %}
 
-                              <div class="art-card-info">
-                                    <h5>{{ a.title }}</h5>
-                              </div>
-                        </a>
+                                  <div class="art-card-info">
+                                        <h5>{{ a.title }}</h5>
+                                  </div>
+                            </a>
                         {% endfor %}
                   </div>
-                  {% endfor %}
             </div>
-      </div>
+
+        {% empty %}
+            <div class="empty">
+                  <h3>No artists are currently available.</h3>
+            </div>
+        {% endfor %}
 </div>
 
 {% endblock %}
