@@ -355,12 +355,6 @@ body {
       flex: 0 0 250px;
 }
 
-.art-card .image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    object-position: center;
-}
 
 .scroll-btn {
       border: none;
