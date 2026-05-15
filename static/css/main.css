@@ -461,16 +461,6 @@ body {
       font-size: 22px;
 }
 
-.buyer-upload-section span,
-.required {
-      color: red;
-}
-
-.required-mark{
-      color: red;
-      position: absolute;
-}
-
 /*Seller-setup*/
 .seller-setup-page {
       width: 100%;
@@ -861,11 +851,12 @@ body {
 /* Order summary */
 
 .order-summary {
-    width: 100%;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 24px;
-    box-sizing: border-box;
+      align-self: start;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 24px;
+      box-sizing: border-box;
 }
 
 .order-summary h2 {
@@ -949,15 +940,6 @@ body {
 }
 
 /* Payment method page */
-
-.payment-page {
-    width: 100%;
-}
-
-.payment-page h1 {
-    font-size: 42px;
-    margin-bottom: 45px;
-}
 
 .payment-form {
     display: flex;
@@ -1072,10 +1054,6 @@ body {
 
 /* Overview */
 
-.overview-form {
-    max-width: 520px;
-}
-
 .overview-box {
     width: 100%;
     min-height: 46px;
@@ -1112,9 +1090,6 @@ body {
     margin: 0;
 }
 
-.order-summary {
-    align-self: start;
-}
 
 /* contact us */
 .contact-page {
