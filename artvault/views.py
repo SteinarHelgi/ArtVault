@@ -171,7 +171,7 @@ def artwork_details(request, id):
             user_bid = Bid.objects.filter(
                 artwork=artwork,
                 buyer=request.user.profile.buyer_profile
-            ).first()
+            ).order_by("-id").first()
 
     today = timezone.now().date()
 
