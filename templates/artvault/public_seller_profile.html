@@ -17,17 +17,18 @@
                   {% if seller.profile.role == "individual_seller" %}
 
                         <p>Individual seller</p>
-                  
+                        <p>@{{ seller.profile.user }}</p>
                   {% elif seller.profile.role == "gallery" %}
 
                         <p>Gallery</p>
+                        <p>@{{ seller.profile.user }}</p>
+                        <div class="profile-address">
+                            <p>{{ seller.street_name }},</p>
+                            <p>{{ seller.city }},</p>
+                            <p>{{ seller.zip_code }}</p>
+                        </div>
                   {% endif %}
-                    <p>@{{ seller.profile.user }}</p>
-                <div class="profile-address">
-                    <p>{{ seller.street_name }},</p>
-                    <p>{{ seller.city }},</p>
-                    <p>{{ seller.zip_code }}</p>
-                </div>
+
             </div>
       </div>
     <div class="profile-name">
