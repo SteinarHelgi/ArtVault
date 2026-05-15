@@ -61,21 +61,22 @@
                 <div class="auction-info">
     {#            auction not over#}
                     {% if not auction_over %}
-                        <h2>Auction on going</h2>
-                        <p>ends in: {{ artwork.days_remaining }} days</p>
+                        <h2>Auction ongoing</h2>
+                        <p>Ends in: {{ artwork.days_remaining }} days</p>
                     {% else %}
     {#                    auction over#}
                         <h2>Auction over</h2>
-    {#                      artwork not sold#}
-                            {% if not artwork.sold %}
-                                <p>This artwork is not sold yet. Accept a bid to complete the sale.</p>
-    {#                artwork sold#}
+                            {% if artwork.sold %}
+                                <p>Artwork sold for: {{ highest_bid.amount }} kr.</p>
+                            {% elif highest_bid %}
+                                <p>Highest bid accepted: {{ highest_bid.amount }} kr.</p>
+                                <p>Waiting for buyer to finalize payment.</p>
                             {% else %}
-                                <p>Artwork sold for: {{highest_bid.amount}} kr.</p>
+                                <p>No bids were placed for this artwork.</p>
                             {% endif %}
                     {% endif %}
-                        <p>starting price: {{ artwork.starting_price }} kr.</p>
-                        <p>Auction end date: {{artwork.auction_end_date}}</p>
+                        <p>Starting price: {{ artwork.starting_price }} kr.</p>
+                        <p>Auction end date: {{ artwork.auction_end_date }}</p>
                 </div>
             </div>
 

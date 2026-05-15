@@ -6,10 +6,10 @@
             <img src="{% static 'img/gavel.svg' %}" alt="warning">
         </div>
 
-        <h2 class="bid-label">This artwork has been sold!</h2>
+        <h2 class="bid-label">This auction has ended.</h2>
 
         <div class="bid-text">
-            <p>sold for {{ current_price }} kr.</p>
+            <p>Winning bid: {{ current_price }} kr.</p>
         </div>
 
         <a href="{% url 'browse-artwork' %}" class="button-b button-orange">Continue Browsing</a>
