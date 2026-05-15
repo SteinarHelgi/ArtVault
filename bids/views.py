@@ -299,7 +299,7 @@ def make_bid(request, artwork_id):
     user_bid = Bid.objects.filter(
         artwork=artwork,
         buyer=buyer_profile
-    ).order_by("-timestamp").first()
+    ).order_by("-id").first()
 
     highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
@@ -357,7 +357,7 @@ def submit_bid(request, artwork_id):
         messages.error(request, "No bid amount found")
         return redirect("artwork-details", artwork_id)
 
-    Bid.objects.create(
+    new_bid = Bid.objects.create(
         artwork=artwork,
         amount=amount,
         buyer=request.user.profile.buyer_profile,
@@ -366,7 +366,7 @@ def submit_bid(request, artwork_id):
 
     request.session.pop("pending_bid_amount", None)
 
-    return render_artwork_bid(request, artwork, "success", amount)
+    return render_artwork_bid(request, artwork, "success", amount, user_bid=new_bid)
 
 
 @login_required
