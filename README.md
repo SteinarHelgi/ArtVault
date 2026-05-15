@@ -1,8 +1,6 @@
 # ArtVault
 Verklegt 2
 
-
-
 # Extra Requirements
 - Search by artist in the artwork catalogue
 - Order artwork by artist
@@ -23,15 +21,17 @@ Verklegt 2
 - Footer with links
 - Order summary on every finalize-bid step
 - Pagination on the browse artwork page
-- Homepage artwork sections grouped by art movement
+- Homepage artwork sections grouped by art movement 
+- Homepage artworks are unsold
 - Side scrolling artwork showcases
-- Popup full-screen artwork image viewer on artwork detail pages
+- Full-screen preview of artwork image viewer on artwork detail pages
 - Live preview for image uploads
 - Password change inside account settings
 - Listing validation for auction dates
 - Listing validation limiting uploaded artwork images
 - About us in footer. Short description about the website 
 - Common questions in footer. Answer to possible problems users might run into
+- Terms and conditions in footer
 
 
 Account login:
