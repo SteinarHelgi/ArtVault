@@ -19,8 +19,7 @@
              </div>
             </form>
             
-            <a href="{% url 'shipping_edit' shipping.id %}" class="button button-orange">Back</a>
-
+            <a href="{% url 'shipping' bid.pk %}" class="button button-orange">Back</a>
         </div>
         {% include "bids/component/order_summary.html" %}
     </div>

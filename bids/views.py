@@ -23,18 +23,16 @@ import math
 
 
 def shipping(request, bid_id):
-    bid = Bid.objects.get(id=bid_id)
+    bid = get_object_or_404(Bid,pk=bid_id)
     if request.method == "POST":
         form = ShippingForm(request.POST)
 
         if form.is_valid():
-            shipping_obj = form.save()
-            shipping_obj.bid = bid
-            shipping_obj.save()
-            return redirect("payment_method", shipping_id=shipping_obj.id)
+            request.session["shipping_data"] = form.cleaned_data
+            return redirect("payment_method", bid_id=bid.pk)
 
     else:
-        form = ShippingForm()
+        form = ShippingForm(initial=request.session.get("shipping_data"))
     return render(request, template_name="bids/shipping.html", context={
         "form": form,
         "bid": bid,
@@ -43,59 +41,24 @@ def shipping(request, bid_id):
     })
 
 
-def shipping_edit(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
 
-    bid = shipping_obj.bid
-    artwork = bid.artwork
-    total_price = bid.amount
-
-    if request.method == "POST":
-        form = ShippingForm(request.POST, instance=shipping_obj)
-        if form.is_valid():
-            form.save()
-            return redirect("payment_method", shipping_id=shipping_obj.id)
-    else:
-        form = ShippingForm(instance=shipping_obj)
-
-    return render(
-        request, "bids/shipping.html", {
-            "form": form,
-            "shipping": shipping_obj,
-            "bid": bid,
-            "artwork": artwork,
-            "total_price": format_currency(total_price),
-        }
-    )
-
-
-def payment_method(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
-
-    bid = shipping_obj.bid
+def payment_method(request, bid_id):
+    bid = get_object_or_404(Bid,pk=bid_id)
     artwork = bid.artwork
     total_price = bid.amount
 
     if request.method == "POST":
         method = request.POST.get("payment_method")
-        shipping_obj.payment_method = method
-        shipping_obj.save()
+        request.session["payment_method"] = method
 
         if method == "card":
-            return redirect("credit_card_payment", shipping_id=shipping_obj.id)
+            return redirect("credit_card_payment", bid_id=bid.pk)
         elif method == "bank":
-            return redirect("bank_transfer_payment", shipping_id=shipping_obj.id)
+            return redirect("bank_transfer_payment", bid_id=bid.pk)
         elif method == "wire":
-            return redirect("wire_transfer_payment", shipping_id=shipping_obj.id)
+            return redirect("wire_transfer_payment", bid_id=bid.pk)
 
     return render(request, "bids/payment_method.html", {
-        "shipping": shipping_obj,
         "bid": bid,
         "artwork": artwork,
         "total_price": format_currency(total_price),

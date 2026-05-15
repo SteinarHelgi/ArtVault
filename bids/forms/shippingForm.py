@@ -1,9 +1,9 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import Form
 from bids.models import ShippingModel
 from django_countries.fields import CountryField
 
-class ShippingForm(ModelForm):
+class ShippingForm(Form):
 
     country = CountryField(blank_label='Country/Region').formfield()
 
