@@ -1273,3 +1273,18 @@ body {
       font-family: var(--paragraph-font);
 
 }
+
+.upload-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-field .errorlist {
+    margin-top: 10px;
+    position: static;
+}
+
+.upload-field .required {
+    position: static;
+    margin-bottom: 10px;
+}

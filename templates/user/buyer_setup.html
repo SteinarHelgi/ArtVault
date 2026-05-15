@@ -4,13 +4,13 @@
 {% block content %}
     <div class="buyer-setup-page">
 
-        <form method="post" action="{% url 'buyer_setup' %}" enctype="multipart/form-data" class="buyer-setup-form">
+        <form method="post" action="{% url 'buyer_setup' %}" enctype="multipart/form-data" class="buyer-setup-form" novalidate>
             {% csrf_token %}
             {{ form.non_field_errors }}
 
         <div class="form-group required-field upload-field">
 
-            <label>Upload picture</label>
+            <label for="id_profile_image">Upload picture</label>
             <span class="required" >*</span>
             <div class="buyer-upload-section">
                 <label for="id_profile_image" class="buyer-upload-box">
@@ -18,8 +18,15 @@
                     <img id="buyer-profile-preview" src="{% static 'img/uppload-photo.svg' %}" class="upload-icon" alt="Upload">
                 </label>
                 {{ form.profile_image }}
-                {{ form.profile_image.errors }}
+
             </div>
+
+            {% if form.profile_image.errors %}
+                <div class="errorlist">
+                    {{ form.profile_image.errors }}
+                </div>
+            {% endif %}
+
         </div>
 
                 <div class="form-group required-field">

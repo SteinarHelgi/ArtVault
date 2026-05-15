@@ -6,7 +6,7 @@
 
     <div class="seller-setup-page">
 
-        <form method="POST" enctype="multipart/form-data" class="seller-setup-form">
+        <form method="POST" enctype="multipart/form-data" class="seller-setup-form" novalidate>
             {% csrf_token %}
             {{ form.non_field_errors }}
 
@@ -21,7 +21,11 @@
                         <img src="{% static 'img/uppload-photo.svg' %}" class="logo-upload-icon" alt="Upload picture">
                     </label>
                     {{ form.logo }}
-                    {{ form.logo.errors }}
+                    {% if form.logo.errors %}
+                        <div class="errorlist">
+                            {{ form.logo.errors }}
+                        </div>
+                    {% endif %}
 
 
                     <div class="form-group bio-field">
@@ -44,7 +48,11 @@
                                 <img src="{% static 'img/uppload-photo.svg' %}" class="cover-upload-icon" alt="Upload picture">
                             </label>
                             {{ form.cover_photo }}
-                            {{ form.cover_photo.errors }}
+                            {% if form.cover_photo.errors %}
+                                <div class="errorlist">
+                                    {{ form.cover_photo.errors }}
+                                </div>
+                            {% endif %}
                             <span class="required">*</span>
                         </div>
                  </div>
@@ -56,11 +64,6 @@
                     <span class="required">*</span>
                 </div>
 
-{#                <div class="form-group">#}
-{#                    <label for="id_seller_type">Type of seller</label>#}
-{#                    {{ form.seller_type }}#}
-{#                    <span class="required">*</span>#}
-{#                </div>#}
 
                 <h3>Address</h3>
 
