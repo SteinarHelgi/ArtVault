@@ -6,7 +6,7 @@
 
     <div class="seller-setup-page">
 
-        <form method="POST" enctype="multipart/form-data" class="seller-setup-form" novalidate>
+        <form method="POST" enctype="multipart/form-data" class="seller-setup-form">
             {% csrf_token %}
             {{ form.non_field_errors }}
 
