@@ -24,7 +24,7 @@ def index(request):
     for artwork in expired_artworks:
         close_auction(artwork)
 
-    artworks = Artwork.objects.filter(sold=False).prefetch_related("images")
+    artworks = Artwork.objects.filter(is_closed=False).prefetch_related("images")
 
     artmovement = defaultdict(list)
 
