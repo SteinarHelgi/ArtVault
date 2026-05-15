@@ -26,6 +26,12 @@ def add_listing_view(request):
         if form.is_valid():
             images = request.FILES.getlist("images")
 
+            if not images:
+                form.add_error(None, "Please upload at least one artwork image.")
+                return render(request, "listings/add_listing.html", {
+                    "form": form
+                })
+
             if len(images) > 3:
                 form.add_error(None, "You can upload a maximum of 3 images.")
                 return render(request, "listings/add_listing.html", {

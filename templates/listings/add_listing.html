@@ -71,15 +71,17 @@
             <div class="form-group">
                   <label for="images">Artwork images</label>
                   <input type="file" name="images" id="images" multiple>
-            </div>
+
                 {% if form.non_field_errors %}
                 <div class="form-errors">
                     {% for error in form.non_field_errors %}
-                        <p>{{ error }}</p>
+                        {{ error }}
                     {% endfor %}
                 </div>
-
                 {% endif %}
+
+            </div>
+
 
             <button type="submit" class="button button-orange">
                   Create Listing
