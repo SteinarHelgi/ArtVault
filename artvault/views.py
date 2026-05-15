@@ -234,21 +234,6 @@ def movement_artists(request, slug):
         "artist": artist,
     })
 
-@login_required
-def my_profile_seller(request):
-    seller_profile = get_object_or_404(
-        SellerProfileModel,
-        profile__user=request.user
-    )
-
-    seller_artworks = Artwork.objects.filter(
-        seller=seller_profile
-    ).prefetch_related("images")
-
-    return render(request, "user/my_profile_seller.html", {
-        "seller_profile": seller_profile,
-        "seller_artworks": seller_artworks,
-    })
 
 
 #Footer links
