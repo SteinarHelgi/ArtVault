@@ -44,14 +44,22 @@ Verklegt 2
 5. start the server using python3 manage.py runserver
 
 # Test Accounts login:
-BuyerTest
-Password123!"#
 
-IndividualSellerTest
-Password123!"#
 
-GalleryTest
-Password123!"#
+## Buyer account
+Username: BuyerTest
+
+Password: Password123!"#
+
+## Individual seller account
+Username: IndividualSellerTest
+
+Password: Password123!"#
+
+## Gallery account
+Username: GalleryTest
+
+Password: Password123!"#
 
 
 
