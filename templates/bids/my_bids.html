@@ -47,6 +47,7 @@
                               <p class="price" >Your bid: <b>{{ bid.formatted_amount}} kr.</b></p>
                               <p>Highest bid: {{bid.highest_bid}} kr.</p>
                                 <p>Seller: {{ bid.artwork.seller.seller_name }}</p>
+                                <p>Date of bid: {{ bid.created_at|date:"d/m/Y" }}</p>
 
                               {% if bid.status == "pending" %}
                               <p>Auction ends on: {{bid.artwork.auction_end_date}}</p>

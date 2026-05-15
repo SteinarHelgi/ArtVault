@@ -48,6 +48,7 @@ class Bid(models.Model):
     status = models.CharField(max_length=255)
     buyer = models.ForeignKey(BuyerProfileModel, on_delete=models.CASCADE)
     artwork = models.ForeignKey(Artwork, on_delete=models.CASCADE, related_name="bids")
+    created_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def formatted_amount(self):
