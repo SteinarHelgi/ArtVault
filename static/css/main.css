@@ -1293,3 +1293,10 @@ hr {
     position: static;
     margin-bottom: 10px;
 }
+
+.seller-info img {
+      border-radius: var(--round-corners);
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+}

@@ -38,6 +38,16 @@ def index(request):
 
 
 def browse_artwork(request):
+    today = timezone.now().date()
+
+    expired_artworks = Artwork.objects.filter(
+        auction_end_date__lte=today,
+        is_closed=False,
+    )
+
+    for artwork in expired_artworks:
+        close_auction(artwork)
+
     art = Artwork.objects.only(
         "id",
         "title",
@@ -45,8 +55,9 @@ def browse_artwork(request):
         "starting_price",
         "medium",
         "art_movement",
-        "sold",
+        "dimensions",
         "auction_end_date",
+        "is_closed",
     ).prefetch_related("images").annotate(
         highest_bid=Max("bids__amount")
     )
@@ -77,15 +88,14 @@ def browse_artwork(request):
     if medium:
         art = art.filter(medium__iexact=medium.strip())
 
-    # radiobutton sold/on sale
+    # radiobutton auction status
     sale_status = request.GET.get("sale_status")
-    now = timezone.now().date()
 
-    if sale_status == "sold":
-        art = art.filter(sold=True)
+    if sale_status == "closed":
+        art = art.filter(is_closed=True)
 
-    elif sale_status == "for_sale":
-        art = art.filter(sold=False, auction_end_date__gt=now)
+    elif sale_status == "open":
+        art = art.filter(is_closed=False, auction_end_date__gt=today)
 
     # order by filter
     order = request.GET.get("order")
@@ -262,4 +272,3 @@ def common_questions(request):
 
 def about_us(request):
     return render(request, "artvault/about_us.html")
-
