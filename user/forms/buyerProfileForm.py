@@ -9,7 +9,7 @@ class BuyerProfileForm(forms.ModelForm):
         error_messages={
             "required": "Please upload a profile image."
         },
-        widget=forms.ClearableFileInput(attrs={
+        widget=forms.FileInput(attrs={
             'class': 'hidden-file-input',
             'onchange': 'previewBuyerProfileImage(event)'
         })

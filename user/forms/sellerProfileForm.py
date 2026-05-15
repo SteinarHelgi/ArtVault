@@ -8,7 +8,7 @@ class SellerProfileForm(ModelForm):
         error_messages={
             "required": "Please upload a logo."
         },
-        widget=forms.ClearableFileInput(attrs={
+        widget=forms.FileInput(attrs={
             'class': 'hidden-file-input',
             'onchange': 'previewLogo(event)'
         })
@@ -19,7 +19,7 @@ class SellerProfileForm(ModelForm):
         error_messages={
             "required": "Please upload a cover photo."
         },
-        widget=forms.ClearableFileInput(attrs={
+        widget=forms.FileInput(attrs={
             'class': 'hidden-file-input',
             'onchange': 'previewCover(event)'
         })

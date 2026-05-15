@@ -28,20 +28,15 @@ def signup(request):
         if form.is_valid():
             # Assign role
             role = form.cleaned_data.get("role")
+
             if role not in ALLOWED_ROLE_CHOICES:
                 return HttpResponseForbidden()
 
-            # save after everything has been created
-            with transaction.atomic():
-                user = form.save()
-
-                group, created = Group.objects.get_or_create(name=role)
-                user.groups.add(group)
-
-                Profile.objects.create(user=user, role=role)
-
-            request.session["pending_user_id"] = user.id
-            request.session["pending_role"] = role
+            request.session["signup_data"] = {
+                "username": form.cleaned_data["username"],
+                "password": form.cleaned_data["password1"],
+                "role": role,
+            }
 
             if role == "buyer":
                 return redirect("buyer_setup")
@@ -55,80 +50,88 @@ def signup(request):
 
 
 def buyer_setup(request):
-    pending_user_id = request.session.get("pending_user_id")
+    signup_data = request.session.get("signup_data")
 
-    if not pending_user_id:
+    if not signup_data:
         return redirect("signup")
 
-    user = User.objects.get(id=pending_user_id)
-    profile = user.profile
-
-    buyer_profile_obj, created = BuyerProfileModel.objects.get_or_create(
-        profile=profile
-    )
 
     if request.method == "POST":
-        form = BuyerProfileForm(request.POST, request.FILES, instance=buyer_profile_obj)
+        form = BuyerProfileForm(request.POST, request.FILES)
+
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.profile = profile
-            instance.save()
+            with transaction.atomic():
+                user = User.objects.create_user(
+                    username=signup_data["username"],
+                    password=signup_data["password"],
+                )
+
+                role = signup_data["role"]
+
+                group, created = Group.objects.get_or_create(name=role)
+                user.groups.add(group)
+
+                profile = Profile.objects.create(user=user, role=role)
+
+                buyer_profile = form.save(commit=False)
+                buyer_profile.profile = profile
+                buyer_profile.save()
 
             login(request, user)
 
-            request.session.pop("pending_user_id", None)
-            request.session.pop("pending_role", None)
+            request.session.pop("signup_data", None)
 
             messages.success(request, "profile_setup_complete")
             return redirect("/")
     else:
-        form = BuyerProfileForm(instance=buyer_profile_obj)
+        form = BuyerProfileForm()
 
-    return render(
-        request,
-        template_name="user/buyer_setup.html",
-        context={
-            "form": form })
-
+    return render(request, "user/buyer_setup.html", {"form": form})
 
 def seller_setup(request):
-    pending_user_id = request.session.get("pending_user_id")
+    signup_data = request.session.get("signup_data")
 
-    if not pending_user_id:
+    if not signup_data:
         return redirect("signup")
 
-    user = User.objects.get(id=pending_user_id)
-    profile = user.profile
-
-    seller_profile_obj, created = SellerProfileModel.objects.get_or_create(
-        profile=profile
-    )
-
     if request.method == "POST":
-        form = SellerProfileForm(
-            request.POST, request.FILES, instance=seller_profile_obj
-        )
+        form = SellerProfileForm(request.POST, request.FILES)
+
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.profile = profile
-            instance.save()
+            with transaction.atomic():
+                user = User.objects.create_user(
+                    username=signup_data["username"],
+                    password=signup_data["password"],
+                )
+
+                role = signup_data["role"]
+
+                group, created = Group.objects.get_or_create(name=role)
+                user.groups.add(group)
+
+                profile = Profile.objects.create(
+                    user=user,
+                    role=role
+                )
+
+                seller_profile = form.save(commit=False)
+                seller_profile.profile = profile
+                seller_profile.save()
 
             login(request, user)
 
-            request.session.pop("pending_user_id", None)
-            request.session.pop("pending_role", None)
+            request.session.pop("signup_data", None)
 
             messages.success(request, "profile_setup_complete")
             return redirect("/")
     else:
-        form = SellerProfileForm(instance=seller_profile_obj)
+        form = SellerProfileForm()
 
-    return render(
-        request,
-        template_name="user/seller_setup.html",
-        context={
-            "form": form,
-        })
+    return render(request, "user/seller_setup.html", {
+        "form": form,
+    })
+
+
 
 # view for viewing your own profile
 @login_required
