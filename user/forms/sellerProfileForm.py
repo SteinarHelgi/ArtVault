@@ -4,8 +4,8 @@ from user.models import SellerProfileModel
 from user.models import Profile
 
 class SellerProfileForm(ModelForm):
-    logo = forms.ImageField(required=True, widget=forms.ClearableFileInput(attrs={'class': 'hidden-file-input', 'onchange': 'previewLogo(event)' }))
-    cover_photo = forms.ImageField(required=True, widget=forms.ClearableFileInput(attrs={'class': 'hidden-file-input','onchange': 'previewCover(event)'}))
+    logo = forms.ImageField(required=True, widget=forms.FileInput(attrs={'class': 'hidden-file-input', 'onchange': 'previewLogo(event)' }))
+    cover_photo = forms.ImageField(required=True, widget=forms.FileInput(attrs={'class': 'hidden-file-input','onchange': 'previewCover(event)'}))
     class Meta:
         model = SellerProfileModel
         exclude = ('user', 'id', 'profile')
