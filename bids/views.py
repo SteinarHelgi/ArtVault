@@ -236,7 +236,11 @@ def my_bids(request):
     )
 
     for bid in bids:
-        bid.highest_bid = format_currency(bid.artwork_highest_bid)
+        close_auction(bid.artwork)
+        bid.refresh_from_db()
+        bid.artwork.refresh_from_db()
+        highest_bid = bid.artwork.bids.order_by("-amount").first()
+        bid.highest_bid = format_currency(highest_bid.amount)
 
     return render(
         request,
@@ -246,7 +250,6 @@ def my_bids(request):
             "bids": bids,
         },
     )
-
 
 def render_artwork_bid(
     request,
