@@ -256,3 +256,5 @@ def common_questions(request):
 def about_us(request):
     return render(request, "artvault/about_us.html")
 
+def terms_and_conditions(request):
+    return render(request, "artvault/terms_and_conditions.html")

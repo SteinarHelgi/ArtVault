@@ -30,6 +30,8 @@ Verklegt 2
 - Password change inside account settings
 - Listing validation for auction dates
 - Listing validation limiting uploaded artwork images
+- About us in footer. Short description about the website 
+- Common questions in footer. Answer to possible problems users might run into
 
 
 Account login:
