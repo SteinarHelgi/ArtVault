@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
 <link rel="stylesheet" href="{% static 'css/my-listing.css' %}">
 <link rel="stylesheet" href="{% static 'css/art-details.css' %}">
+<div class="add-listing-page">
 
 <div class="art-details-container">
 
@@ -38,9 +39,9 @@
       {% endwith %}
 
       <div class=update-remove-container>
-          <a href="{% url 'delete-listing' id=artwork.id %}" class="btn btn-secondary" onclick="return confirm('Are you sure you want to remove this?')"> Remove listing</a>
+          <a href="{% url 'delete-listing' id=artwork.id %}" class="button button-orange" onclick="return confirm('Are you sure you want to remove this?')"> Remove listing</a>
           {% if highest_bid is None %}
-            <a href="{% url 'update-listing' id=artwork.id %}" class="btn btn-secondary"> Update listing</a>
+            <a href="{% url 'update-listing' id=artwork.id %}" class="button button-orange"> Update listing</a>
           {% endif %}
       </div>
       <div class="listing-description-container">

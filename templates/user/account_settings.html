@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="account-settings-container">
+<div class="add-listing-page">
 
     <h1>Account Settings</h1>
 
@@ -18,84 +18,104 @@
 
         {% if profile.role == "buyer" %}
 
-            <div class="account-card">
+            <div class="add-listing-form">
 
-                <h3>Profile image</h3>
+                <div class="form-group">
+                <label for="id_profile_image">Profile image</label>
 
-                <div class="buyer-upload-section">
-                    <label for="id_profile_image" class="buyer-upload-box">
-                        {% if profile.buyer_profile.profile_image %}
-                            <img id="buyer-profile-preview"
-                                src="{{ profile.buyer_profile.profile_image.url }}"
-                                alt="profile image"
-                            >
-                        {% endif %}
-                    </label>
+                    <div class="buyer-upload-section">
+                        <label for="id_profile_image" class="buyer-upload-box">
+                            {% if profile.buyer_profile.profile_image %}
+                                <img id="buyer-profile-preview"
+                                    src="{{ profile.buyer_profile.profile_image.url }}"
+                                    alt="profile image">
+                            {% endif %}
+                        </label>
 
-                    {{ form.profile_image }}
+                        {{ form.profile_image }}
+                    </div>
                 </div>
 
-                <h3>Full name</h3>
-                {{ form.full_name }}
+                <div class="form-group">
+                    <label for="{{ form.full_name.id_for_label }}">Full name</label>
+                    {{ form.full_name }}
+                </div>
 
             </div>
 
         {% else %}
 
-            <div class="account-card">
 
-                <h3>Logo</h3>
+               <div class="form-group">
+                <label for="id_cover_photo">Cover photo</label>
 
-                <div class="seller-logo-selection">
-                    <label for="id_logo" class="seller-logo-box">
+                    <div class="seller-cover-setup">
+                        <label for="id_cover_photo" class="seller-cover-box">
 
-                        {% if profile.seller_profile.logo %}
-                            <img id="seller-logo-preview"
-                                src="{{ profile.seller_profile.logo.url }}"
-                                alt="logo"
-                            >
-                        {% endif %}
-                    </label>
-                    {{ form.logo }}
+                            {% if profile.seller_profile.cover_photo %}
+                                <img
+                                        id="seller-cover-preview"
+                                    src="{{ profile.seller_profile.cover_photo.url }}"
+                                    alt="cover photo"
+                                >
+                            {% endif %}
+                        </label>
+
+                        {{ form.cover_photo }}
+                    </div>
                 </div>
 
-                <h3>Cover photo</h3>
+            <div class="form-row-seller">
+                <div class="form-group">
+                    <label for="id_logo">Logo</label>
 
-                <div class="seller-cover-setup">
-                    <label for="id_cover_photo" class="seller-cover-box">
+                        <div class="seller-logo-selection">
+                            <label for="id_logo" class="seller-logo-box">
 
-                        {% if profile.seller_profile.cover_photo %}
-                            <img
-                                    id="seller-cover-preview"
-                                src="{{ profile.seller_profile.cover_photo.url }}"
-                                alt="cover photo"
-                            >
-                        {% endif %}
-                    </label>
-
-                    {{ form.cover_photo }}
+                                {% if profile.seller_profile.logo %}
+                                    <img id="seller-logo-preview"
+                                        src="{{ profile.seller_profile.logo.url }}"
+                                        alt="logo">
+                                {% endif %}
+                            </label>
+                            {{ form.logo }}
+                        </div>
                 </div>
 
-                <h3>Name</h3>
-                {{ form.seller_name }}
+                 <div class="form-group bio-field">
+                    <label>Bio</label>
+                    {{ form.bio }}
+                </div>
 
-                <h3>Bio</h3>
-                {{ form.bio }}
+            </div>
+
+
+                <div class="form-group">
+                    <label for="{{ form.full_name.id_for_label }}">Name</label>
+                    {{ form.seller_name }}
+                </div>
+
+
 
                 {% if profile.role == "gallery" %}
 
-                    <h3>Street name</h3>
-                    {{ form.street_name }}
+                   <div class="form-group">
+                        <label for="{{ form.street_name.id_for_label }}">Street name</label>
+                        {{ form.street_name }}
+                   </div>
 
-                    <h3>City</h3>
-                    {{ form.city }}
+                    <div class="form-group">
+                        <label for="{{ form.city.id_for_label }}">City</label>
+                        {{ form.city }}
+                    </div>
 
-                    <h3>Zip code</h3>
-                    {{ form.zip_code }}
+                    <div class="form-group">
+                        <label for="{{ form.zip_code.id_for_label }}">Zip code</label>
+                        {{ form.zip_code }}
+                    </div>
 
                 {% endif %}
 
-            </div>
 
         {% endif %}
 
@@ -105,11 +125,15 @@
 
             {{ form.non_field_errors }}
 
-            <p>New password</p>
-            {{ form.new_password }}
+            <div class="form-group">
+                <label for="{{ form.new_password.id_for_label }}">New password</label>
+                {{ form.new_password }}
+            </div>
 
-            <p>Confirm new password</p>
-            {{ form.confirm_password }}
+            <div class="form-group">
+                <label for="{{ form.confirm_password.id_for_label }}">Confirm new password</label>
+                {{ form.confirm_password }}
+            </div>
 
 
 
@@ -129,9 +153,9 @@
 
                   <p>Changes confirmed.</p>
                   {% if profile.role == "buyer" %}
-                      <a href="{% url 'home' %}" class="modal-btn">Continue</a>
+                      <a href="{% url 'home' %}" class="button button-orange">Continue</a>
                   {% else %}
-                      <a href="{% url 'my_profile_seller' %}" class="modal-btn">Continue</a>
+                      <a href="{% url 'my_profile_seller' %}" class="button button-orange">Continue</a>
                   {% endif %}
             </div>
       </div>
@@ -142,7 +166,7 @@
                   <button class="close-btn" onclick="closeModal()">X</button>
 
                   <p>We couldn’t save your changes. Please try again.</p>
-                  <a href="{% url 'account-settings' %}" class="modal-btn">Try again</a>
+                  <a href="{% url 'account-settings' %}" class="button button-orange">Try again</a>
             </div>
       </div>
       {% endif %}

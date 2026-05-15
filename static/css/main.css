@@ -19,7 +19,7 @@
       --round-corners: 3px;
       --round-corners-more: 8px;
 
-      --page-width: 1100 px;
+      --page-width: 1100px;
       --detail-width: 900px;
 
       --header-font: "Montserrat", sans-serif;
@@ -45,6 +45,7 @@ body {
       width: 100%;
 }
 
+/* BUTTONS*/
 
 .button{
       min-height: 38px;
@@ -57,7 +58,7 @@ body {
       gap: 8px;
       font-family: var(--header-font);
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 600;
       text-decoration: none;
       cursor: pointer;
       transition: 0.2s ease;
@@ -148,6 +149,71 @@ body {
 }
 
 
+/* input fields */
+.signup-form input,
+.signup-form select,
+.login-page input,
+.name-section input,
+.profile-input,
+.input-group input,
+.input-group select,
+.form-group input,
+.form-group select,
+.form-group textarea,
+.account-settings-container input,
+.account-settings-container select,
+.account-settings-container textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: var(--round-corners);
+      background-color: var(--white);
+      color: var(--black);
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      margin-bottom: var(--space-s);
+}
+
+.signup-form input,
+.signup-form select,
+.login-page input,
+.name-section input,
+.profile-input,
+.input-group input,
+.input-group select,
+.form-group input,
+.form-group select,
+.account-settings-container input,
+.account-settings-container select {
+      height: 42px;
+      padding: 0 14px;
+}
+
+.form-group textarea,
+.account-settings-container textarea,
+#id_bio {
+      min-height: 140px;
+      padding: 12px 14px;
+      resize: none;
+}
+
+.signup-form input:focus,
+.signup-form select:focus,
+.login-page input:focus,
+.name-section input:focus,
+.profile-input:focus,
+.input-group input:focus,
+.input-group select:focus,
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.account-settings-container input:focus,
+.account-settings-container select:focus,
+.account-settings-container textarea:focus,
+#id_bio:focus {
+      outline: none;
+      border-color: var(--orange-color);
+}
 
 
 .section-title {
@@ -163,6 +229,8 @@ body {
   color: var(--light-black);
   line-height: 1.6;
 }
+
+/* LOADSCREEN*/
 
 .loadingScreen {
     position: fixed;
@@ -208,6 +276,41 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/*TITLES*/
+
+.page-title {
+      font-family: var(--header-font);
+      font-size: 34px;
+      font-weight: 400;
+      color: var(--black);
+      margin: 0;
+}
+
+.smaller-title {
+      font-family: var(--header-font);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--black);
+      margin: 0 0 var(--space-s);
+}
+
+.tiny-title {
+      font-family: var(--header-font);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--black);
+      margin: 0 0 10px;
+}
+
+.card-title {
+      font-family: var(--header-font);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--black);
+      margin: 0;
+}
+
 
 
 .landing-page {
@@ -283,8 +386,6 @@ body {
       flex: 0 0 250px;
 }
 
-.browse-art-item h3 {}
-
 
 .browse-art-item .image {
       width: 100%;
@@ -350,64 +451,19 @@ body {
 
 
 /* Signup + Login */
-.signup-container {
-      width: 400px;
-      margin: 80px auto;
-      text-align: center;
-}
 
+.signup-container,
 .login-page {
       width: 400px;
-      margin: 100px auto;
+      margin: 80px auto;
       padding-bottom: 100px;
       text-align: center;
-}
-
-.signup-form,
-.login-page form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-}
-
-.signup-form select {
-      cursor: pointer;
-}
-
-
-.signup-form input,
-.signup-form select,
-.login-page input {
-      font-family: var(--paragraph-font);
-      border-radius: var(--round-corners);
-      width: 100%;
-      height: 45px;
-      padding: 0 15px;
-      font-size: 18px;
-      border: 1px solid var(--black);
-      box-sizing: border-box;
 }
 
 .signup-container h1,
 .login-page h1 {
       font-size: 35px;
       margin-bottom: 25px;
-}
-
-.confirm-btn,
-.login-page button {
-      font-family: var(--header-font);
-      font-weight: 600;
-      width: 200px;
-      height: 45px;
-      align-self: center;
-      margin-top: 20px;
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-      border: none;
-      font-size: 18px;
-      border-radius: 5px;
-      cursor: pointer;
 }
 
 .errorlist {
@@ -425,15 +481,19 @@ body {
 
 /*Buyer-setup*/
 .buyer-setup-page {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      display: flex;
       width: 720px;
       margin: 80px auto;
+      box-sizing: border-box;
 }
 
 .buyer-setup-form {
       display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 40px;
-      align-items: start;
+      gap: var(--space-m);
 }
 
 .buyer-upload-section {
@@ -441,9 +501,10 @@ body {
 }
 
 .buyer-upload-box {
+      background-color: #d9d9d9;
       width: 250px;
       height: 250px;
-      border-radius: 12px;
+      border-radius: var(--round-corners-more);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -458,12 +519,12 @@ body {
       height: 300px;
       object-fit: cover;
       object-position: center;
-      border-radius: 8px;
+      border-radius: var(--round-corners-more);
 }
 
 #buyer-profile-preview {
-      width: 200px;
-      height: 200px;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
       border-radius: 8px;
@@ -497,51 +558,81 @@ body {
       color: red;
 }
 
-.name-section {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-}
-
-.name-section .required {
-      position: static;
-      display: inline-block;
+.required-mark{
       color: red;
-      font-size: 20px;
+      position: absolute;
+
 }
 
-.name-section input {
-      width: 100%;
-}
+/*.name-section {*/
+/*      display: flex;*/
+/*      align-items: center;*/
+/*      gap: 8px;*/
+/*}*/
 
-.profile-input {
-      width: 100%;
-      height: 38px;
-      padding: 0 18px;
-      font-size: 22px;
-      border: 1px solid var(--light-black);
-}
+/*.name-section .required {*/
+/*      position: static;*/
+/*      display: inline-block;*/
+/*      color: red;*/
+/*      font-size: 20px;*/
+/*}*/
 
-.confirm-btn {
-      grid-column: 1 / -1;
-      justify-self: center;
-}
+/*.name-section input {*/
+/*      width: 100%;*/
+/*}*/
+
+/*.profile-input {*/
+/*      width: 100%;*/
+/*      height: 38px;*/
+/*      padding: 0 18px;*/
+/*      font-size: 22px;*/
+/*      border: 1px solid var(--light-black);*/
+/*}*/
 
 /*Seller-setup*/
 .seller-setup-page {
-      min-height: calc(100vh - 70px);
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 120px;
+      padding: 80px 20px 40px;
+      box-sizing: border-box;
 }
 
 .seller-setup-form {
-      width: 760px;
+      width: 100%;
+      max-width: 760px;
       display: grid;
       grid-template-columns: 260px 1fr;
       column-gap: 55px;
       align-items: start;
+      box-sizing: border-box;
+}
+
+.page .seller-setup-page {
+      margin: 0 auto;
+}
+
+.seller-upload-box {
+      background-color: #d9d9d9;
+      width: 250px;
+      height: 250px;
+      border-radius: var(--round-corners-more);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-m);
+}
+
+.seller-confirm-btn {
+      grid-column: 1 / 3;
+      justify-self: center;
+      margin-top: 40px;
+      width: 260px;
 }
 
 .left-side-setup,
@@ -561,10 +652,33 @@ body {
 }
 
 .seller-logo-box {
-      width: 200px;
-      height: 200px;
-      border: 1px solid var(--light-black);
-      border-radius: 8px;
+      width: 250px;
+      height: 250px;
+      border-radius: var(--space-s);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+}
+
+#seller-logo-preview{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--round-corners-more);
+}
+
+.seller-cover-box {
+      background-color: #d9d9d9;
+      margin-bottom: var(--space-m);
+      width: 100%;
+      height: 160px;
+      border-radius: var(--round-corners-more);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -575,18 +689,12 @@ body {
       background-repeat: no-repeat;
 }
 
-.seller-cover-box {
+#seller-cover-preview{
       width: 100%;
-      height: 110px;
-      border: 1px solid var(--light-black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--round-corners-more);
 }
 
 
@@ -606,29 +714,29 @@ body {
 }
 
 
-.upload-label {
-      margin-top: 14px;
-      text-align: center;
-}
+/*.upload-label {*/
+/*      margin-top: 14px;*/
+/*      text-align: center;*/
+/*}*/
 
 .upload-label span,
 .required {
       color: red;
 }
 
-#id_bio {
-      width: 200px;
-      height: 150px;
-      margin-top: 18px;
-      resize: none;
-      padding: 8px;
-      box-sizing: border-box;
-      font-family: inherit;
-      font-size: 16px;
-      line-height: normal;
-      display: block;
-      text-align: left;
-}
+/*#id_bio {*/
+/*      border-radius: var(--round-corners-more);*/
+/*      width: 100%;*/
+/*      height: 100%;*/
+/*      resize: none;*/
+/*      padding: 8px;*/
+/*      box-sizing: border-box;*/
+/*      font-family: var(--paragraph-font);*/
+/*      font-size: 14px;*/
+/*      line-height: normal;*/
+/*      display: block;*/
+/*      text-align: left;*/
+/*}*/
 
 .bio-wrapper {
       position: relative;
@@ -641,28 +749,53 @@ body {
       top: 8px;
 }
 
-.input-group {
-      position: relative;
-      margin-top: 12px;
-}
+/*.input-group {*/
+/*      position: relative;*/
+/*      margin-top: 12px;*/
+/*}*/
 
 .input-group label {
       display: none;
 }
 
-.input-group input,
-.input-group select {
-      width: 100%;
-      height: 38px;
-      box-sizing: border-box;
-      padding: 0 8px;
-      font-size: 16px;
+/*.input-group input,*/
+/*.input-group select {*/
+/*      width: 100%;*/
+/*      height: 38px;*/
+/*      box-sizing: border-box;*/
+/*      padding: 0 8px;*/
+/*      font-size: 16px;*/
+/*}*/
+
+.bio-field {
+      position: relative;
 }
 
-.required {
+.bio-field .required {
       position: absolute;
+      top: 30px;
       right: -16px;
-      top: 9px;
+      color: red;
+      font-size: 18px;
+      line-height: 1;
+}
+
+.required-field {
+      position: relative;
+}
+
+.required-field .required {
+      position: absolute;
+      top: 0px;
+      right: -16px;
+      color: red;
+      font-size: 18px;
+      line-height: 1;
+}
+
+.upload-field .required {
+      top: 32px;
+
 }
 
 .right-side-setup h3 {
@@ -674,14 +807,6 @@ body {
       display: flex;
       flex-direction: column;
       gap: 8px;
-}
-
-.confirm-btn {
-      grid-column: 1 / 3;
-      justify-self: center;
-      margin-top: 60px;
-      width: 260px;
-      height: 50px;
 }
 
 /* Popup background */
@@ -725,20 +850,6 @@ body {
       font-size: 22px;
       line-height: 1.5;
       margin: 0;
-}
-
-/* Button */
-.modal-btn {
-      width: 260px;
-      height: 48px;
-      background: var(--orange-color);
-      color: var(--primary-color);
-      text-decoration: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      border-radius: 4px;
 }
 
 /* Close button */
@@ -804,41 +915,27 @@ body {
       font-weight: 600;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--round-corners);
-      font-family: var(--paragraph-font);
-      font-size: 15px;
-      box-sizing: border-box;
-      background-color: white;
+.form-row-seller {
+      display: grid;
+      grid-template-columns:300px 1fr;
+      gap: var(--space-m);
 }
+/*.form-group input,*/
+/*.form-group select,*/
+/*.form-group textarea {*/
+/*      width: 100%;*/
+/*      padding: 12px 14px;*/
+/*      border: 1px solid var(--border-color);*/
+/*      border-radius: var(--round-corners);*/
+/*      font-family: var(--paragraph-font);*/
+/*      font-size: 15px;*/
+/*      box-sizing: border-box;*/
+/*      background-color: white;*/
+/*}*/
 
-.form-group textarea {
-      resize: none;
-}
-
-
-.primary-button {
-      width: 200px;
-      height: 44px;
-      margin-top: 10px;
-      background-color: var(--orange-color);
-      color: white;
-      border: none;
-      border-radius: var(--round-corners);
-      font-family: var(--header-font);
-      font-size: 16px;
-      cursor: pointer;
-}
-
-.primary-button:hover {
-      opacity: 0.9;
-}
-
+/*.form-group textarea {*/
+/*      resize: none;*/
+/*}*/
 
 /*my profile seller css*/
 .profile-cover {
@@ -925,102 +1022,64 @@ body {
 
 /*account-settings css*/
 
-.account-settings-container {
-      width: 600px;
-      margin: 80px auto;
-      text-align: left;
-}
+/*.account-settings-container .seller-cover-box {*/
+/*      width: 700px;*/
+/*      height: 180px;*/
+/*      display: block;*/
+/*      overflow: hidden;*/
+/*      border: 1px solid #999;*/
+/*}*/
 
-.account-card img {
-      height: 200px;
-      width: 200px;
-      background-size: cover;
-      background-position: center;
-}
+/*.account-settings-container .seller-cover-box img {*/
+/*      width: 100%;*/
+/*      height: 100%;*/
+/*}*/
 
-.editfield {
-      border: none;
-      text-decoration: #dd700b;
-      border-bottom: 1px solid var(--light-black);
-      background-color: transparent;
-      color: var(--black);
-      font-family: var(--header-font);
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-}
+/*.account-settings-container {*/
+/*      width: 600px;*/
+/*      margin: 80px auto;*/
+/*      text-align: left;*/
+/*}*/
 
-.editfield:hover {
-      transform: scale(1.1);
-}
+/*.account-card img {*/
+/*      height: 200px;*/
+/*      width: 200px;*/
+/*      background-size: cover;*/
+/*      background-position: center;*/
+/*}*/
 
 
-.showeditinput {
-      display: none;
-      margin-top: 14px;
-      gap: 10px;
-}
+/*.add-listing-form img {*/
+/*      height: 200px;*/
+/*      width: 200px;*/
+/*      background-size: cover;*/
+/*      background-position: center;*/
+/*}*/
 
-.showeditinput.show {
-      display: block;
-}
 
-.showeditinput input {
-      flex: 1;
-      height: 28px;
-      padding: 0 12px;
-      border: 1px solid var(--border-color);
-      border-radius: var(--round-corners);
-      font-family: var(--paragraph-font);
-}
+/*.account-settings-container #id_logo,*/
+/*.account-settings-container #id_profile_image,*/
+/*.account-settings-container #id_cover_photo {*/
+/*      display: block;*/
+/*}*/
 
-.showeditinput button {
-      padding: 0 16px;
-      border: none;
-      background-color: var(--orange-color);
-      color: white;
-      border-radius: var(--round-corners);
-      cursor: pointer;
-}
-
-.account-settings-container #id_logo,
-.account-settings-container #id_profile_image,
-.account-settings-container #id_cover_photo {
-      display: block;
-}
-
-.account-settings-container #id_bio {
-      width: 100%;
-      height: 180px;
-      resize: vertical;
-}
+/*.account-settings-container #id_bio {*/
+/*      width: 100%;*/
+/*      height: 180px;*/
+/*      resize: vertical;*/
+/*}*/
 
 .password-section{
-      margin-bottom: 20px;
+      margin-bottom: var(--space-m);
 }
 
-
-/* account settings */
-.seller-cover-box {
-      width: 700px;
-      height: 180px;
-      display: block;
-      overflow: hidden;
-      border: 1px solid #999;
-}
-
-.seller-cover-box img {
-      width: 100%;
-      height: 100%;
-}
 
 /* Shared checkout layout */
 
 .checkout-page {
     width: 100%;
-    max-width: 1200px;
-    margin: 70px auto;
+    max-width: 1100px;
+    margin: 80px auto;
     padding: 0 20px;
     box-sizing: border-box;
 }
@@ -1028,7 +1087,7 @@ body {
 .checkout-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 360px;
-    gap: 80px;
+    gap: var(--space-l);
     align-items: start;
 }
 
@@ -1036,8 +1095,11 @@ body {
     width: 100%;
 }
 
+
+
 .checkout-main h1 {
-    font-size: 42px;
+    font-size: 32px;
+      font-weight: 600;
     margin-bottom: 35px;
 }
 
@@ -1129,51 +1191,8 @@ body {
     align-items: stretch;
     gap: 20px;
 
-    margin-top: 50px;
+    margin: var(--space-m) auto;
 }
-
-.back-btn,
-.confirm-btn,
-.shipping-confirm-btn {
-      width: 220px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-      font-size: 18px;
-      font-family: inherit;
-      font-weight: 500;
-      line-height: 1;
-      text-decoration: none;
-      box-sizing: border-box;
-      cursor: pointer;
-
-
-}
-.confirm-btn {
-    position: relative;
-    top: 0;
-}
-
-.payment-option-btn {
-      background-color: var(--orange-color);
-      color: var(--primary-color);
-      height: 48px;
-      width: 558px;
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      font-family: inherit;
-      font-weight: 500;
-      line-height: 1;
-}
-
 
 /* Payment method page */
 
@@ -1353,3 +1372,196 @@ body {
     align-self: start;
 }
 
+/* contact us */
+.contact-page {
+    width: 1100px;
+    min-height: 80vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    box-sizing: border-box;
+      margin: 0 auto;
+}
+
+.contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-field input,
+.contact-field textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: var(--paragraph-font);
+      box-sizing: border-box;
+      margin-bottom: 25px;
+}
+
+.contact-field textarea {
+    min-height: 140px;
+    resize: none;
+}
+
+.contact-field label {
+    display: none;
+}
+
+.contact-text h1 {
+      font-family: var(--header-font);
+      text-align: center;
+}
+
+.contact-text p {
+      font-family: var(--paragraph-font);
+      text-align: center;
+}
+
+.contact-button {
+      text-align: center;
+}
+
+/* common questions */
+
+
+.faq-page {
+      max-width: 950px;
+      margin: 80px auto;
+      padding: 0 30px;
+}
+
+.faq-page h1 {
+      font-size: 40px;
+      text-align: center;
+      margin-bottom: 60px;
+      font-family: var(--header-font);
+}
+
+.faq-box {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 40px;
+      margin-bottom: 40px;
+      background-color: var(--primary-color);
+}
+
+.faq-box h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--header-font);
+}
+
+.faq-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-color);
+}
+
+.faq-item:last-child {
+      border-bottom: none;
+}
+
+.faq-item h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      font-family: var(--header-font);
+}
+
+.faq-item p {
+      max-width: 720px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--light-black);
+      font-family: var(--paragraph-font);
+
+}
+
+.bid-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+}
+
+.bid-field label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--header-font);
+      font-size: 15px;
+      font-weight: 600;
+}
+
+.bid-amount-input {
+      width: 100%;
+      height: 42px;
+      padding: 0 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--round-corners);
+      font-family: var(--paragraph-font);
+      font-size: 16px;
+      box-sizing: border-box;
+}
+
+/* about us */
+.about-page {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 30px;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.about-hero h1 {
+      font-size: 35px;
+      margin-bottom: 24px;
+      font-family: var(--header-font);
+}
+
+.about-hero p,
+.about-section p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--light-black);
+      font-family: var(--paragraph-font);
+}
+
+.about-section {
+    margin-bottom: 60px;
+}
+
+.about-section h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+      font-family: var(--header-font);
+}
+
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.about-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 28px;
+}
+
+.about-card h3 {
+      font-size: 20px;
+      margin-bottom: 14px;
+      font-family: var(--header-font);
+}
+
+.about-card p {
+      font-size: 16px;
+      font-family: var(--paragraph-font);
+
+}

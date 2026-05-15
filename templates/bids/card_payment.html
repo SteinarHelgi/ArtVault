@@ -6,7 +6,7 @@
     <div class="checkout-layout">
 
         <div class="checkout-main">
-
+             <h1>Card Payment</h1>
             <form method="post" class="card-form">
                 {% csrf_token %}
 
@@ -34,8 +34,8 @@
                 </div>
 
                  <div class="checkout-buttons">
-                    <a href="{% url 'payment_method' shipping.id %}" class="back-btn">Back</a>
-                    <button type="submit" class="confirm-btn">Confirm</button>
+                    <a href="{% url 'payment_method' shipping.id %}" class="button button-orange">Back</a>
+                    <button type="submit" class="button button-orange">Confirm</button>
                 </div>
 
             </form>

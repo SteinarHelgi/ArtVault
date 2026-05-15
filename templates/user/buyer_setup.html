@@ -8,6 +8,10 @@
             {% csrf_token %}
             {{ form.non_field_errors }}
 
+        <div class="form-group required-field upload-field">
+
+            <label>Upload picture</label>
+            <span class="required" >*</span>
             <div class="buyer-upload-section">
                 <label for="id_profile_image" class="buyer-upload-box">
 
@@ -15,16 +19,16 @@
                 </label>
                 {{ form.profile_image }}
                 {{ form.profile_image.errors }}
-                <p>Upload picture <span>*</span></p>
             </div>
+        </div>
 
-            <div class="name-section">
-                {{ form.full_name }}
-                {{ form.full_name.errors }}
-                <span class="required">*</span>
-
-            <button type="submit" class="button button-orange">Confirm</button>
-            </div>
+                <div class="form-group required-field">
+                    <span class="required" >*</span>
+                    {{ form.full_name }}
+                    {{ form.full_name.errors }}
+{#                    <span class="required">*</span>#}
+                </div>
+                <button type="submit" class="button button-orange">Confirm</button>
 
         </form>
     </div>

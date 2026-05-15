@@ -56,7 +56,7 @@ function filterFunction() {
     let input = document.getElementById("searchbar");
     let filter = input.value.toUpperCase();
 
-    let cards = document.getElementsByClassName("browse-art-link");
+    let cards = document.getElementsByClassName("art-card");
 
     for (let i = 0; i < cards.length; i++) {
         let cardText = cards[i].innerText.toUpperCase();
@@ -106,7 +106,7 @@ window.previewBuyerProfileImage = function(event) {
           const imageURL = URL.createObjectURL(file);
 
           //for setup
-          const uploadBox = document.querySelector(".seller-logo-box");
+          const uploadBox = document.querySelector(".seller-upload-box");
           const uploadIcon = document.querySelector(".logo-upload-icon");
 
           if (uploadBox) {
@@ -177,50 +177,54 @@ document.addEventListener("input", function (event) {
 const rangeInput = document.querySelectorAll(".range-input input"),
   priceInput = document.querySelectorAll(".price-input input"),
   range = document.querySelector(".slider .progress");
-let priceGap = 1000;
 
-priceInput.forEach((input) => {
-  input.addEventListener("input", (e) => {
-    let minPrice = parseInt(priceInput[0].value),
-      maxPrice = parseInt(priceInput[1].value);
+if (rangeInput.length >= 2 && priceInput.length >= 2 && range) {
+    let priceGap = 1000;
 
-    if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
-      if (e.target.className === "input-min") {
-        rangeInput[0].value = minPrice;
-        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
-      } else {
-        rangeInput[1].value = maxPrice;
-        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-      }
-    }
-  });
-});
 
-rangeInput.forEach((input) => {
-  input.addEventListener("input", (e) => {
-    let minVal = parseInt(rangeInput[0].value),
-      maxVal = parseInt(rangeInput[1].value);
+    priceInput.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        let minPrice = parseInt(priceInput[0].value),
+          maxPrice = parseInt(priceInput[1].value);
 
-    if (maxVal - minVal < priceGap) {
-      if (e.target.className === "range-min") {
-        rangeInput[0].value = maxVal - priceGap;
-      } else {
-        rangeInput[1].value = minVal + priceGap;
-      }
-    } else {
-      priceInput[0].value = minVal;
-      priceInput[1].value = maxVal;
-      range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
-      range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-    }
-  });
-});
+        if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+          if (e.target.className === "input-min") {
+            rangeInput[0].value = minPrice;
+            range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+          } else {
+            rangeInput[1].value = maxPrice;
+            range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+          }
+        }
+      });
+    });
 
-let minVal = parseInt(rangeInput[0].value);
-let maxVal = parseInt(rangeInput[1].value);
+    rangeInput.forEach((input) => {
+      input.addEventListener("input", (e) => {
+        let minVal = parseInt(rangeInput[0].value),
+          maxVal = parseInt(rangeInput[1].value);
 
-range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
-range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+        if (maxVal - minVal < priceGap) {
+          if (e.target.className === "range-min") {
+            rangeInput[0].value = maxVal - priceGap;
+          } else {
+            rangeInput[1].value = minVal + priceGap;
+          }
+        } else {
+          priceInput[0].value = minVal;
+          priceInput[1].value = maxVal;
+          range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+          range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+        }
+      });
+    });
+
+    let minVal = parseInt(rangeInput[0].value);
+    let maxVal = parseInt(rangeInput[1].value);
+
+    range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+}
 
 //slide menu browse artwork
 function openFilter() {

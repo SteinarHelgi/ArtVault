@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="login-page">
-    <h1>Login</h1>
+    <h1>Log in</h1>
 
     <form method="post">
         {% csrf_token %}
@@ -12,7 +12,7 @@
         <input type="text" name="username" placeholder="Username...">
         <input type="password" name="password" placeholder="Password...">
 
-        <button type="submit">Confirm</button>
+        <button class="button button-orange" type="submit">Confirm</button>
     </form>
 </div>
 {% endblock %}

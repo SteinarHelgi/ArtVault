@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.core.paginator import Paginator
 from utils.formatting import format_currency
+from django.contrib import messages
 
 
 # Create your views here
@@ -248,4 +249,17 @@ def my_profile_seller(request):
         "seller_profile": seller_profile,
         "seller_artworks": seller_artworks,
     })
+
+
+#Footer links
+def contact_us(request):
+    if request.method == "POST":
+        messages.success(request, "message_sent")
+    return render(request, "artvault/contact_us.html")
+
+def common_questions(request):
+    return render(request, "artvault/common_questions.html")
+
+def about_us(request):
+    return render(request, "artvault/about_us.html")
 

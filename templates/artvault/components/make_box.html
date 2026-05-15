@@ -5,7 +5,7 @@
         <h3 class="highest-bid">Highest bid</h3>
         <h2 class="bid-price">{{ current_price }} Kr.</h2>
 
-        <form method="post" action="{% url 'make_bid' artwork.id %}">
+        <form method="post" action="{% url 'make_bid' artwork.id %}" class="bid-form">
             {% csrf_token %}
                 {% if messages %}
                 {% for message in messages %}
@@ -18,9 +18,12 @@
                 <p>Bid has to be 10% over highest bid</p>
             </div>
 
+        <div class="form-group bid-field">
+
             <label for="bid-amount">
-                <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" value="{{ minimum_bid }}" required>
+                <input type="number" step="1000" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" value="{{ minimum_bid }}" required>
             </label>
+        </div>
 
             <button type="submit" class="button-b button-orange">
                 {% if user_bid %}
@@ -36,7 +39,7 @@
         <h3 class="highest-bid">Starting price</h3>
         <h2 class="bid-price">{{ current_price }} Kr.</h2>
 
-        <form method="post" action="{% url 'make_bid' artwork.id %}">
+        <form method="post" action="{% url 'make_bid' artwork.id %}" class="bid-form">
             {% csrf_token %}
                 {% if messages %}
                 {% for message in messages %}
@@ -49,9 +52,12 @@
                 <p>Be the first to bid.</p>
             </div>
 
+
+        <div class="form-group bid-field">
             <label for="bid-amount">
-                <input type="number" step="1" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" value="{{ minimum_bid }}" required>
+                <input type="number" step="1000" name="amount" class="bid-amount-input" placeholder="Amount..." min="{{ minimum_bid }}" value="{{ minimum_bid }}" required>
             </label>
+        </div>
 
             <button type="submit" class="button-b button-orange">Submit</button>
         </form>

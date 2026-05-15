@@ -71,36 +71,6 @@
     display: block;
 }
 
-/* auth buttons */
-.signup,
-.login {
-    border-radius: var(--round-corners);
-    padding: 8px 36px;
-    border: 1px solid var(--black);
-    font-weight: 700;
-    transition: 0.2s ease;
-}
-
-.signup {
-    color: var(--black);
-    background-color: transparent;
-}
-
-.signup:hover {
-    background-color: var(--hover-color);
-}
-
-.login {
-    color: var(--primary-color);
-    background-color: var(--black);
-}
-
-.login:hover {
-    background-color: var(--orange-color);
-    border-color: var(--orange-color);
-}
-
-
 /* dropdown */
 
 .dropdown,
