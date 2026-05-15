@@ -299,7 +299,7 @@ def make_bid(request, artwork_id):
     user_bid = Bid.objects.filter(
         artwork=artwork,
         buyer=buyer_profile
-    )
+    ).order_by("-timestamp").first()
 
     highest_bid = Bid.objects.filter(artwork=artwork).order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
