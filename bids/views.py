@@ -8,6 +8,7 @@ from bids.forms.wireTransferForm import WireTransferForm
 from bids.forms.creditCardForm import CreditCardForm
 from artvault.models import Bid, Artwork
 from django.contrib import messages
+from bids.models import Order
 from user.models import BuyerProfileModel
 from utils.formatting import format_currency
 import math
@@ -192,6 +193,13 @@ def checkout_overview(request, bid_id):
 
         bid.status = "completed"
         bid.save()
+
+        Order.objects.create(
+            artwork=artwork,
+            buyer=bid.buyer,
+            seller=artwork.seller,
+            bid=bid,
+        )
 
         request.session.pop("shipping_data", None)
         request.session.pop("payment_method", None)
