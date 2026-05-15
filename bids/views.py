@@ -364,26 +364,6 @@ def submit_bid(request, artwork_id):
     return render_artwork_bid(request, artwork, "success", amount, user_bid=new_bid)
 
 
-@login_required
-def accept_bid(request, bid_id):
-    bid = get_object_or_404(Bid, id=bid_id)
-
-    artwork = bid.artwork
-
-    if artwork.is_closed:
-        return redirect("artwork-details", artwork.id)
-
-    artwork.bids.exclude(id=bid.id).update(status="rejected")
-
-    bid.status = "accepted"
-    bid.save()
-
-    artwork.is_closed = True
-    artwork.save()
-
-    return redirect(request.META.get("HTTP_REFERER"))
-
-
 def close_auction(artwork):
     today = timezone.now().date()
 
