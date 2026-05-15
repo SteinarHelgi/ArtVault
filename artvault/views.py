@@ -1,4 +1,5 @@
 from collections import defaultdict
+from datetime import time
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Max, Q
 from user.models import SellerProfileModel
@@ -38,6 +39,14 @@ def index(request):
 
 
 def browse_artwork(request):
+    today = timezone.now().date()
+    expired_artworks = Artwork.objects.filter(
+        auction_end_date__lte=today,
+        is_closed=False
+    )
+    for artwork in expired_artworks:
+        close_auction(artwork)
+
     art = Artwork.objects.only(
         "id",
         "title",
@@ -50,7 +59,6 @@ def browse_artwork(request):
     ).prefetch_related("images").annotate(
         highest_bid=Max("bids__amount")
     )
-
     art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
     mediums = Artwork.objects.values_list("medium", flat=True).distinct()
 

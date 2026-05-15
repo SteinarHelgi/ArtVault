@@ -114,24 +114,24 @@
                       </div>
 
                     <div class="sale-filter">
-                        <label for="sold-radio">Sold</label>
+                        <label for="sold-radio">Auction ended</label>
                         <input
                             type="radio"
                             id="sold-radio"
                             name="sale_status"
                             class="sale-radiobutton"
-                            value="sold"
-                            {% if request.GET.sale_status == "sold" %}checked{% endif %}
+                            value="closed"
+                            {% if request.GET.sale_status == "closed" %}checked{% endif %}
                         >
 
-                        <label for="for-sale-radio">For sale</label>
+                        <label for="for-sale-radio">Open for bids</label>
                         <input
                             type="radio"
                             id="for-sale-radio"
                             name="sale_status"
                             class="sale-radiobutton"
-                            value="for_sale"
-                            {% if request.GET.sale_status == "for_sale" %}checked{% endif %}
+                            value="open"
+                            {% if request.GET.sale_status == "open" %}checked{% endif %}
                         >
                     </div>
                 </div>
