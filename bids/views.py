@@ -260,9 +260,12 @@ def render_artwork_bid(
     user_bid=None,
     minimum_bid=None,
 ):
+    close_auction(artwork)
+
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
     artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
+    auction_over = auction_over or artwork.is_closed or timezone.now().date() >= artwork.auction_end_date
 
     return render(
         request,
@@ -283,6 +286,11 @@ def render_artwork_bid(
 @login_required
 def make_bid(request, artwork_id):
     artwork = get_object_or_404(Artwork, id=artwork_id)
+    close_auction(artwork)
+
+    if artwork.is_closed:
+        messages.error(request, "This auction has ended. You can no longer place a bid.")
+        return redirect("artwork-details", artwork_id)
 
     buyer_profile = request.user.profile.buyer_profile
 
@@ -345,6 +353,12 @@ def make_bid(request, artwork_id):
 @login_required
 def submit_bid(request, artwork_id):
     artwork = get_object_or_404(Artwork, id=artwork_id)
+    close_auction(artwork)
+
+    if artwork.is_closed:
+        request.session.pop("pending_bid_amount", None)
+        messages.error(request, "This auction has ended. Your bid was not submitted.")
+        return redirect("artwork-details", artwork_id)
 
     if request.method != "POST":
         return redirect("artwork-details", artwork_id)

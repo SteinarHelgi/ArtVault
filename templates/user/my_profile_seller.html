@@ -59,11 +59,17 @@
                         <h5>{{ artwork.title }}</h5>
                         <p>{{ artwork.medium }}</p>
                         {% if artwork.is_closed %}
-
-                        <p>bidding ended on {{artwork.auction_end_date}}</p>
-                        <p class="price">Sold for: <b>{{ artwork.highest_bid }} kr.</b></p>
+                        <p>Bidding ended on {{ artwork.auction_end_date }}</p>
+                            {% if artwork.sold %}
+                            <p class="price">Sold for: <b>{{ artwork.highest_bid }} kr.</b></p>
+                            {% elif artwork.highest_bid %}
+                            <p class="price">Winning bid: <b>{{ artwork.highest_bid }} kr.</b></p>
+                            <p class="extra-text"><i>Waiting for buyer to finalize payment.</i></p>
+                            {% else %}
+                            <p class="extra-text"><i>No bids were placed.</i></p>
+                            {% endif %}
                         {% else %}
-                        <p>bidding ends on {{artwork.auction_end_date}}</p>
+                        <p>Bidding ends on {{ artwork.auction_end_date }}</p>
                         <p class="price">Starting bid: <b>{{ artwork.starting_price }} kr.</b></p>
                         {% endif %}
                   </div>

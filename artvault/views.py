@@ -1,5 +1,4 @@
 from collections import defaultdict
-from datetime import time
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Max, Q
 from user.models import SellerProfileModel
@@ -40,10 +39,12 @@ def index(request):
 
 def browse_artwork(request):
     today = timezone.now().date()
+
     expired_artworks = Artwork.objects.filter(
         auction_end_date__lte=today,
-        is_closed=False
+        is_closed=False,
     )
+
     for artwork in expired_artworks:
         close_auction(artwork)
 
@@ -54,11 +55,13 @@ def browse_artwork(request):
         "starting_price",
         "medium",
         "art_movement",
-        "sold",
+        "dimensions",
         "auction_end_date",
+        "is_closed",
     ).prefetch_related("images").annotate(
         highest_bid=Max("bids__amount")
     )
+
     art_movements = Artwork.objects.values_list("art_movement", flat=True).distinct()
     mediums = Artwork.objects.values_list("medium", flat=True).distinct()
 
@@ -85,15 +88,14 @@ def browse_artwork(request):
     if medium:
         art = art.filter(medium__iexact=medium.strip())
 
-    # radiobutton sold/on sale
+    # radiobutton auction status
     sale_status = request.GET.get("sale_status")
-    now = timezone.now().date()
 
-    if sale_status == "sold":
-        art = art.filter(sold=True)
+    if sale_status == "closed":
+        art = art.filter(is_closed=True)
 
-    elif sale_status == "for_sale":
-        art = art.filter(sold=False, auction_end_date__gt=now)
+    elif sale_status == "open":
+        art = art.filter(is_closed=False, auction_end_date__gt=today)
 
     # order by filter
     order = request.GET.get("order")
@@ -242,6 +244,21 @@ def movement_artists(request, slug):
         "artist": artist,
     })
 
+@login_required
+def my_profile_seller(request):
+    seller_profile = get_object_or_404(
+        SellerProfileModel,
+        profile__user=request.user
+    )
+
+    seller_artworks = Artwork.objects.filter(
+        seller=seller_profile
+    ).prefetch_related("images")
+
+    return render(request, "user/my_profile_seller.html", {
+        "seller_profile": seller_profile,
+        "seller_artworks": seller_artworks,
+    })
 
 
 #Footer links

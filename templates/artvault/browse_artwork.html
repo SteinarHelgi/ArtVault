@@ -114,25 +114,31 @@
                       </div>
 
                     <div class="sale-filter">
-                        <label for="sold-radio">Auction ended</label>
+                          <div>
+                                
+                        <label for="closed-radio">Auction ended</label>
                         <input
                             type="radio"
-                            id="sold-radio"
+                            id="closed-radio"
                             name="sale_status"
                             class="sale-radiobutton"
                             value="closed"
                             {% if request.GET.sale_status == "closed" %}checked{% endif %}
                         >
+                          </div>
 
-                        <label for="for-sale-radio">Open for bids</label>
+                        <div>
+                              
+                        <label for="open-radio">Auction ongoing</label>
                         <input
                             type="radio"
-                            id="for-sale-radio"
+                            id="open-radio"
                             name="sale_status"
                             class="sale-radiobutton"
                             value="open"
                             {% if request.GET.sale_status == "open" %}checked{% endif %}
                         >
+                        </div>
                     </div>
                 </div>
 
@@ -178,20 +184,27 @@
 
                             <div id="line">
 
-                                {% if a.current_price == 0 %}
-                                <p class="price">Starting price: <b>{{ a.starting_price }} kr.</b></p>
-                                   <p class="extra-text"> <i>There are currently no bids for this artwork.</i></p>
+                                {% if a.is_closed %}
+                                    <p class="extra-text"><i>Auction ended.</i></p>
+                                    {% if a.current_price == 0 %}
+                                        <p class="price">No bids were placed.</p>
+                                    {% else %}
+                                        <p class="highest-bid">Winning bid: <b>{{ a.current_price }} kr.</b></p>
+                                    {% endif %}
                                 {% else %}
-                                <p class="highest-bid">Highest bid: <b> {{ a.current_price }} kr.</b></p>
-
+                                    {% if a.current_price == 0 %}
+                                        <p class="price">Starting price: <b>{{ a.starting_price }} kr.</b></p>
+                                        <p class="extra-text"><i>There are currently no bids for this artwork.</i></p>
+                                    {% else %}
+                                        <p class="highest-bid">Highest bid: <b>{{ a.current_price }} kr.</b></p>
+                                    {% endif %}
                                 {% endif %}
                                 <p>Medium: {{a.medium}}</p>
-                                <p>Dimensions: {{a.dimensions}} cm</p>
-                                {% if a.sold %}
-                                <p>Sold!</p>
-                                
+                                <p>Dimensions: {{a.dimensions}}</p>
+                                {% if a.is_closed %}
+                                <p>Auction ended</p>
                                 {% else %}
-                                <p>For Sale!</p>
+                                <p>Open for bids</p>
                                 {% endif %}
 
                             </div>
