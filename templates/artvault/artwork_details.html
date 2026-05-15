@@ -54,15 +54,16 @@
             </div>
 
             <div class="bid-info">
-                {% if not user.is_authenticated %}
+                {% if auction_over %}
+                    {% include "artvault/components/sold_box.html" %}
+
+                {% elif not user.is_authenticated %}
                     {% include "artvault/components/bid_box.html" %}
 
 
                 {% elif user.profile.role != "individual_seller" and user.profile.role != "gallery" %}
 
-                        {% if auction_over %}
-                          {% include "artvault/components/sold_box.html" %}
-                        {% elif bid_step == "make" %}
+                        {% if bid_step == "make" %}
                             {% include "artvault/components/make_box.html" %}
                         {% elif bid_step == "confirm" %}
                             {% include "artvault/components/confirm_box.html" %}
