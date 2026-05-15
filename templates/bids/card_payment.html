@@ -3,47 +3,83 @@
 
 {% block content %}
 <div class="checkout-page">
-    <div class="checkout-layout">
+      <div class="checkout-layout">
 
-        <div class="checkout-main">
-             <h1>Card Payment</h1>
-            <form method="post" class="card-form">
-                {% csrf_token %}
+            <div class="checkout-main">
+                  <h1>Card Payment</h1>
 
-                <div class="payment-field">
-                    <label>Cardholder's name</label>
-                    {{ form.cardholder_name }}
-                </div>
+                  <form method="post" class="card-form">
+                        {% csrf_token %}
 
-                <div class="payment-field">
-                    <div class="card-info-wrapper">
-                        <label>Card information</label>
-                        {{ form.card_number }}
-                        <img src="{% static 'img/cards.png' %}" alt="Cards" class="cards-img">
-                    </div>
-                </div>
+                        <div class="payment-field">
+                              <label>Cardholder's name</label>
+                              {{ form.cardholder_name }}
 
-                <div class="card-row">
+                              {% for error in form.cardholder_name.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
 
-                    {{ form.card_expiration }}
+                        <div class="payment-field">
+                              <div class="card-info-wrapper">
+                                    <label>Card information</label>
 
-                    <div class="cvv-wrapper">
-                        {{ form.card_cvv }}
-                        <img src="{% static 'img/card.svg' %}" alt="Cards" class="cvv-img">
-                    </div>
-                </div>
+                                    <input type="text" name="card_number" class="form-control"
+                                          placeholder="0000000000000000" maxlength="16" inputmode="numeric"
+                                          pattern="[0-9]{16}" required value="{{ form.card_number.value|default:'' }}"
+                                          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
-                 <div class="checkout-buttons">
-                    <a href="{% url 'payment_method' shipping.id %}" class="button button-orange">Back</a>
-                    <button type="submit" class="button button-orange">Confirm</button>
-                </div>
+                                    <img src="{% static 'img/cards.png' %}" alt="Cards" class="cards-img">
+                              </div>
 
-            </form>
+                              {% for error in form.card_number.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
 
-        </div>
+                        <div class="card-row">
 
-        {% include "bids/component/order_summary.html" %}
+                              <div>
+                                    <input type="text" name="card_expiration" class="card-expiration-input"
+                                          placeholder="MM/YY" maxlength="5" required
+                                          value="{{ form.card_expiration.value|default:'' }}">
 
-    </div>
+                                    {% for error in form.card_expiration.errors %}
+                                    <p class="form-error">{{ error }}</p>
+                                    {% endfor %}
+                              </div>
+
+                              <div class="cvv-wrapper">
+
+                                    <input type="text" name="card_cvv" class="form-control" placeholder="000"
+                                          maxlength="3" inputmode="numeric" pattern="[0-9]{3}" required
+                                          value="{{ form.card_cvv.value|default:'' }}"
+                                          oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                                    <img src="{% static 'img/card.svg' %}" alt="Cards" class="cvv-img">
+
+                                    {% for error in form.card_cvv.errors %}
+                                    <p class="form-error">{{ error }}</p>
+                                    {% endfor %}
+                              </div>
+
+                        </div>
+
+                        <div class="checkout-buttons">
+                              <a href="{% url 'payment_method' bid.pk %}" class="button button-orange">
+                                    Back
+                              </a>
+
+                              <button type="submit" class="button button-orange">
+                                    Confirm
+                              </button>
+                        </div>
+
+                  </form>
+            </div>
+
+            {% include "bids/component/order_summary.html" %}
+
+      </div>
 </div>
 {% endblock content %}

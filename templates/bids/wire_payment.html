@@ -3,39 +3,65 @@
 {% block content %}
 
 <div class="checkout-page">
-    <div class="checkout-layout">
-        <div class="checkout-main">
+      <div class="checkout-layout">
+            <div class="checkout-main">
 
-            <form method="post" class="wire-form">
-                {% csrf_token %}
+                  <form method="post" class="wire-form">
+                        {% csrf_token %}
 
-                <h1>Wire transfer</h1>
+                        <h1>Wire transfer</h1>
 
-                <div class="wire-field">
-                    <label>Name of sending bank</label>
-                    {{ form.sending_bank }}
-                </div>
+                        <div class="wire-field">
+                              <label>Name of sending bank</label>
+                              {{ form.sending_bank }}
 
-                <div class="wire-field">
-                    <label>Routing number</label>
-                    {{ form.routing_number }}
-                </div>
+                              {% for error in form.sending_bank.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
 
-                <div class="wire-field">
-                    <label>Account number</label>
-                    {{ form.account_number }}
-                </div>
+                        <div class="wire-field">
+                              <label>Routing number</label>
 
-                 <div class="checkout-buttons">
-                    <a href="{% url 'payment_method' shipping.id %}" class="button button-orange">Back</a>
-                    <button type="submit" class="button button-orange">Confirm</button>
-                </div>
+                              <input type="text" name="routing_number" class="form-control" placeholder="00000000"
+                                    inputmode="numeric" pattern="[0-9]*" required
+                                    value="{{ form.routing_number.value|default:'' }}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
 
-            </form>
+                              {% for error in form.routing_number.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
 
-        </div>
-        {% include "bids/component/order_summary.html" %}
-    </div>
+                        <div class="wire-field">
+                              <label>Account number</label>
+
+                              <input type="text" name="account_number" class="form-control" placeholder="000000000000"
+                                    inputmode="numeric" pattern="[0-9]*" required
+                                    value="{{ form.account_number.value|default:'' }}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                              {% for error in form.account_number.errors %}
+                              <p class="form-error">{{ error }}</p>
+                              {% endfor %}
+                        </div>
+
+                        <div class="checkout-buttons">
+                              <a href="{% url 'payment_method' bid.pk %}" class="button button-orange">
+                                    Back
+                              </a>
+
+                              <button type="submit" class="button button-orange">
+                                    Confirm
+                              </button>
+                        </div>
+
+                  </form>
+
+            </div>
+
+            {% include "bids/component/order_summary.html" %}
+      </div>
 
 </div>
 
