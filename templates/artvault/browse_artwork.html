@@ -114,6 +114,8 @@
                       </div>
 
                     <div class="sale-filter">
+                          <div>
+                                
                         <label for="closed-radio">Auction ended</label>
                         <input
                             type="radio"
@@ -123,8 +125,11 @@
                             value="closed"
                             {% if request.GET.sale_status == "closed" %}checked{% endif %}
                         >
+                          </div>
 
-                        <label for="open-radio">Open for bids</label>
+                        <div>
+                              
+                        <label for="open-radio">Auction ongoing</label>
                         <input
                             type="radio"
                             id="open-radio"
@@ -133,6 +138,7 @@
                             value="open"
                             {% if request.GET.sale_status == "open" %}checked{% endif %}
                         >
+                        </div>
                     </div>
                 </div>
 

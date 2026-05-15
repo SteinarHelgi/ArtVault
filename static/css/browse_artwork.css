@@ -76,6 +76,9 @@
 .filter-sidebar .wrapper {
       width: 100%;
 }
+.sale-filter{
+      display: flex;
+}
 
 .wrapper {
       background: white;
