@@ -331,7 +331,7 @@ def make_bid(request, artwork_id):
             return redirect("make_bid", artwork_id)
         if amount < minimum_bid:
             messages.error(
-                request, f"Your bid must be at least {minimum_bid} Kr."
+                request, f"Your bid must be at least {minimum_bid} kr."
             )
             return redirect("make_bid", artwork_id)
         if amount > max_bid:
