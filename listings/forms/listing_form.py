@@ -4,6 +4,8 @@ from artvault.models import Artwork
 
 
 MEDIUM_CHOICES = [
+    ("", "Select Medium"),
+    ("Original", "Original"),
     ("Oil", "Oil"),
     ("Watercolor", "Watercolor"),
     ("Acrylic", "Acrylic"),
@@ -17,12 +19,14 @@ MEDIUM_CHOICES = [
 ]
 
 EDITION_CHOICES = [
+    ("", "Select Edition"),
     ("Original", "Original"),
     ("Limited edition", "Limited Edition"),
     ("Open edition", "Open Edition"),
 ]
 
 ART_MOVEMENT_CHOICES = [
+    ("", "Select Movement"),
     ("Surrealism", "Surrealism"),
     ("Modernism", "Modernism"),
     ("Realism", "Realism"),
@@ -41,16 +45,21 @@ class ArtworkListingForm(forms.ModelForm):
     image = forms.ImageField(required=False)
 
     medium = forms.ChoiceField(
-        choices=MEDIUM_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
+        choices=MEDIUM_CHOICES,
+        widget=forms.Select(attrs={"class": "form-control"}),
+        required=True
     )
 
     edition = forms.ChoiceField(
-        choices=EDITION_CHOICES, widget=forms.Select(attrs={"class": "form-control"})
+        choices=EDITION_CHOICES,
+        widget=forms.Select(attrs={"class": "form-control"}),
+        required=True
     )
 
     art_movement = forms.ChoiceField(
         choices=ART_MOVEMENT_CHOICES,
         widget=forms.Select(attrs={"class": "form-control"}),
+        required=True
     )
     def clean(self):
             cleaned_data = super().clean()
