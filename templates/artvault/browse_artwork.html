@@ -184,21 +184,23 @@
 
                             <div id="line">
 
-                                {% if a.is_closed %}
+                               {% if a.is_closed %}
                                     <p class="extra-text"><i>Auction ended.</i></p>
+
                                     {% if a.current_price == 0 %}
                                         <p class="price">No bids were placed.</p>
                                     {% else %}
                                         <p class="highest-bid">Winning bid: <b>{{ a.current_price }} kr.</b></p>
                                     {% endif %}
-                                {% else %}
+
+                               {% else %}
                                     {% if a.current_price == 0 %}
-                                        <p class="price">Starting price: <b>{{ a.starting_price }} kr.</b></p>
+                                        <p class="price">Starting price: <b>{{ a.formatted_starting_price }} kr.</b></p>
                                         <p class="extra-text"><i>There are currently no bids for this artwork.</i></p>
                                     {% else %}
                                         <p class="highest-bid">Highest bid: <b>{{ a.current_price }} kr.</b></p>
                                     {% endif %}
-                                {% endif %}
+                               {% endif %}
                                 <p>Medium: {{a.medium}}</p>
                                 <p>Dimensions: {{a.dimensions}}</p>
                                 {% if a.is_closed %}

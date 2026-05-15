@@ -110,12 +110,15 @@ def browse_artwork(request):
     for artwork in art:
         starting_price = int(artwork.starting_price)
 
+        artwork.formatted_starting_price = format_currency(starting_price)
+        artwork.filter_price = starting_price
+
         if artwork.highest_bid and artwork.highest_bid >= starting_price:
-            artwork.current_price = artwork.highest_bid
+            artwork.current_price = format_currency(artwork.highest_bid)
             artwork.filter_price = artwork.highest_bid
         else:
             artwork.current_price = 0
-            artwork.filter_price = starting_price
+        
 
     # order by price
     if order == "price_low_to_high":
