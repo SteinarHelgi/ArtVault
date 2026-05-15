@@ -33,8 +33,17 @@ Verklegt 2
 - Common questions in footer. Answer to possible problems users might run into
 - Terms and conditions in footer
 
+# Instructions
+1. unzip the directory
+2. Create a virtual enviornment (venv)
+3. Then install the requirements using
+   ```bash
+   pip install -r "requirements.txt"
+   ```
+4. Make sure that the .env file has a SERVER_PASSWORD variable.
+5. start the server using python3 manage.py runserver
 
-Account login:
+# Test Accounts login:
 BuyerTest
 Password123!"#
 
