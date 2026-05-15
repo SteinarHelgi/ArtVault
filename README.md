@@ -2,21 +2,34 @@
 Verklegt 2
 
 
+
 # Extra Requirements
-* Search by artist
-* View art movements and info
-* View information about famous artists
-* Seller and buyer functionality are separate, can sign up as buyer or seller/gallery
-* Seller profiles, can create, edit and delete listings.
-* Sellers can follow bids on their auctions, name of bidder and bid amount.
-* Highest bid is accepted automatically when auction is over
-* View sellers page
-* View artist page
-* Restrictions on bid amount for each artwork, needs to be 10% higher than the last bid
-* public profile view for seller accounts
-* Loading icon
-* Links to about us, contact us and common questions in footer.
-* Order summary with every step in finalize bid.
+- Search by artist in the artwork catalogue
+- Order artwork by artist
+- View art movements with descriptions and featured artworks
+- View information pages for movement artists / famous artists
+- Separate account types for buyers, individual sellers, and galleries
+- Separate signup and setup flows depending on account type
+- Public seller profile pages
+- Private seller dashboard for managing profile and listings
+- Sellers can create, update, and delete listings
+- Sellers can view bids placed on their own listings, including bidder name and bid amount
+- Automatic auction closing when an artwork reaches its auction end date
+- Automatic acceptance of the highest bid when the auction closes
+- Minimum bid restriction requiring bids to be at least 10% above the current highest bid
+- View all sellers page
+- View all artists page
+- Loading screen
+- Footer with links
+- Order summary on every finalize-bid step
+- Pagination on the browse artwork page
+- Homepage artwork sections grouped by art movement
+- Side scrolling artwork showcases
+- Popup full-screen artwork image viewer on artwork detail pages
+- Live preview for image uploads
+- Password change inside account settings
+- Listing validation for auction dates
+- Listing validation limiting uploaded artwork images
 
 
 Account login:
