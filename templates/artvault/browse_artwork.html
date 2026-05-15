@@ -172,6 +172,7 @@
                             {% else %}
                                 <div class="image no-image">
                                     <p>No image available</p>
+
                                 </div>
                             {% endif %}
                         {% endwith %}
@@ -183,7 +184,7 @@
 
                                 {% if a.current_price == 0 %}
                                 <p class="price">Starting price: <b>{{ a.starting_price }} kr.</b></p>
-                                   <p> <i>There are currently no bids for this artwork.</i></p>
+                                   <p class="extra-text"> <i>There are currently no bids for this artwork.</i></p>
                                 {% else %}
                                 <p class="highest-bid">Highest bid: <b> {{ a.current_price }} kr.</b></p>
                                 {% endif %}

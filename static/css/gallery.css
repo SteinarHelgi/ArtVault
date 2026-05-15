@@ -5,6 +5,12 @@
       box-sizing: border-box;
 }
 
+.gallery-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 24px;
+}
+
 .gallery-header {
       display: flex;
       justify-content: space-between;
@@ -20,13 +26,8 @@
       color: var(--black);
 }
 
-.gallery-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      gap: 24px;
-}
-
 .art-card {
+      border-radius: var(--round-corners);
       font-family: var(--paragraph-font);
       text-decoration: none;
       color: var(--black);
@@ -40,6 +41,7 @@
 }
 
 .art-card .image {
+      border-radius: var(--round-corners) var(--round-corners) 0 0 ;
       width: 100%;
       height: 180px;
       background-size: cover;
@@ -67,7 +69,7 @@
 .art-card-info h5 {
       margin: 0 0 8px;
       font-family: var(--header-font);
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 550;
       color: var(--black);
 }
@@ -78,34 +80,37 @@
       color: var(--light-black);
       font-size: 15px;
 }
+.art-card-info .extra-text{
+      font-size: 11.5px;
+}
 
 .art-card-info .price {
       font-family: var(--paragraph-font);
-      font-size: 16px;
+      font-size: 15px;
       margin-top: 5px;
-      font-weight: 300;
+      font-weight: 500;
       color: var(--black);
 }
 
 .art-card-info .price b {
-      font-size: 17px;
+      font-size: 16px;
       margin-top: 5px;
-      font-weight: 900;
+      font-weight: 700;
       color: var(--orange-color);
 }
 
 .art-card .highest-bid {
       font-family: var(--paragraph-font);
-      font-size: 16px;
+      font-size: 15px;
       margin-top: 5px;
-      font-weight: 300;
+      font-weight: 500;
       color: var(--black);
 }
 
 .art-card .highest-bid b {
-      font-size: 17px;
+      font-size: 16px;
       margin-top: 5px;
-      font-weight: 900;
+      font-weight: 700;
       color: var(--orange-color);
 }
 
