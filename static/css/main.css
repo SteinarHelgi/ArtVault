@@ -153,8 +153,6 @@ body {
 .signup-form input,
 .signup-form select,
 .login-page input,
-.name-section input,
-.profile-input,
 .input-group input,
 .input-group select,
 .form-group input,
@@ -177,8 +175,6 @@ body {
 .signup-form input,
 .signup-form select,
 .login-page input,
-.name-section input,
-.profile-input,
 .input-group input,
 .input-group select,
 .form-group input,
@@ -200,8 +196,6 @@ body {
 .signup-form input:focus,
 .signup-form select:focus,
 .login-page input:focus,
-.name-section input:focus,
-.profile-input:focus,
 .input-group input:focus,
 .input-group select:focus,
 .form-group input:focus,
@@ -380,76 +374,6 @@ body {
       right: -30px;
 }
 
-
-.browse-art-item {
-      padding: 18px;
-      flex: 0 0 250px;
-}
-
-
-.browse-art-item .image {
-      width: 100%;
-      height: 150px;
-
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border: 1px solid #ccc;
-      padding: 10px;
-      transition: 0.2s;
-}
-
-.browse-art-link {
-      text-decoration: none;
-      color: inherit;
-}
-
-.browse-art-item:hover {
-      transform: scale(1.02);
-      cursor: pointer;
-}
-
-.search-form {
-      margin-top: 20px;
-      margin-left: 20px;
-      margin-bottom: 20px;
-}
-
-.search-input {
-      padding: 6px;
-      width: 150px;
-}
-
-.search-form button {
-      padding: 6px 8px;
-      transform: scale(1.02);
-      cursor: pointer;
-}
-
-.my-bids-container {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-
-}
-
-.my-bids-container .image {
-      width: 100%;
-      height: 150px;
-
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border: 1px solid var(--light-black);
-      transition: 0.2s;
-}
-
-.my-bids-container .bid-item {
-      display: flex;
-      flex-direction: column;
-}
-
-
 /* Signup + Login */
 
 .signup-container,
@@ -514,14 +438,6 @@ body {
       justify-content: center;
 }
 
-.preview-image {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: var(--round-corners-more);
-}
-
 #buyer-profile-preview {
       width: 100%;
       height: 100%;
@@ -535,14 +451,6 @@ body {
       height: 80px;
       opacity: 0.7;
 
-}
-
-.buyer-profile-preview {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 8px;
 }
 
 .hidden-file-input {
@@ -561,33 +469,7 @@ body {
 .required-mark{
       color: red;
       position: absolute;
-
 }
-
-/*.name-section {*/
-/*      display: flex;*/
-/*      align-items: center;*/
-/*      gap: 8px;*/
-/*}*/
-
-/*.name-section .required {*/
-/*      position: static;*/
-/*      display: inline-block;*/
-/*      color: red;*/
-/*      font-size: 20px;*/
-/*}*/
-
-/*.name-section input {*/
-/*      width: 100%;*/
-/*}*/
-
-/*.profile-input {*/
-/*      width: 100%;*/
-/*      height: 38px;*/
-/*      padding: 0 18px;*/
-/*      font-size: 22px;*/
-/*      border: 1px solid var(--light-black);*/
-/*}*/
 
 /*Seller-setup*/
 .seller-setup-page {
@@ -702,70 +584,22 @@ body {
       position: relative;
 }
 
-.cover-required {
-      color: red;
-      position: absolute;
-      right: -16px;
-      top: 5px;
-}
-
 .logo-upload-icon {
       width: 70px;
 }
-
-
-/*.upload-label {*/
-/*      margin-top: 14px;*/
-/*      text-align: center;*/
-/*}*/
 
 .upload-label span,
 .required {
       color: red;
 }
 
-/*#id_bio {*/
-/*      border-radius: var(--round-corners-more);*/
-/*      width: 100%;*/
-/*      height: 100%;*/
-/*      resize: none;*/
-/*      padding: 8px;*/
-/*      box-sizing: border-box;*/
-/*      font-family: var(--paragraph-font);*/
-/*      font-size: 14px;*/
-/*      line-height: normal;*/
-/*      display: block;*/
-/*      text-align: left;*/
-/*}*/
-
 .bio-wrapper {
       position: relative;
 }
 
-.bio-required {
-      color: red;
-      position: absolute;
-      right: -16px;
-      top: 8px;
-}
-
-/*.input-group {*/
-/*      position: relative;*/
-/*      margin-top: 12px;*/
-/*}*/
-
 .input-group label {
       display: none;
 }
-
-/*.input-group input,*/
-/*.input-group select {*/
-/*      width: 100%;*/
-/*      height: 38px;*/
-/*      box-sizing: border-box;*/
-/*      padding: 0 8px;*/
-/*      font-size: 16px;*/
-/*}*/
 
 .bio-field {
       position: relative;
@@ -920,22 +754,6 @@ body {
       grid-template-columns:300px 1fr;
       gap: var(--space-m);
 }
-/*.form-group input,*/
-/*.form-group select,*/
-/*.form-group textarea {*/
-/*      width: 100%;*/
-/*      padding: 12px 14px;*/
-/*      border: 1px solid var(--border-color);*/
-/*      border-radius: var(--round-corners);*/
-/*      font-family: var(--paragraph-font);*/
-/*      font-size: 15px;*/
-/*      box-sizing: border-box;*/
-/*      background-color: white;*/
-/*}*/
-
-/*.form-group textarea {*/
-/*      resize: none;*/
-/*}*/
 
 /*my profile seller css*/
 .profile-cover {
@@ -1003,71 +821,7 @@ body {
       padding-left: 4px;
 }
 
-
-
-.add-listing-button {
-      border-radius: var(--round-corners);
-      padding: 11px 18px;
-      background-color: var(--orange-color);
-      font-size: 15px;
-      cursor: pointer;
-}
-
-.add-listing-button a {
-      color: white;
-      text-decoration: none;
-      font-family: var(--header-font);
-      font-weight: 700;
-}
-
 /*account-settings css*/
-
-/*.account-settings-container .seller-cover-box {*/
-/*      width: 700px;*/
-/*      height: 180px;*/
-/*      display: block;*/
-/*      overflow: hidden;*/
-/*      border: 1px solid #999;*/
-/*}*/
-
-/*.account-settings-container .seller-cover-box img {*/
-/*      width: 100%;*/
-/*      height: 100%;*/
-/*}*/
-
-/*.account-settings-container {*/
-/*      width: 600px;*/
-/*      margin: 80px auto;*/
-/*      text-align: left;*/
-/*}*/
-
-/*.account-card img {*/
-/*      height: 200px;*/
-/*      width: 200px;*/
-/*      background-size: cover;*/
-/*      background-position: center;*/
-/*}*/
-
-
-/*.add-listing-form img {*/
-/*      height: 200px;*/
-/*      width: 200px;*/
-/*      background-size: cover;*/
-/*      background-position: center;*/
-/*}*/
-
-
-/*.account-settings-container #id_logo,*/
-/*.account-settings-container #id_profile_image,*/
-/*.account-settings-container #id_cover_photo {*/
-/*      display: block;*/
-/*}*/
-
-/*.account-settings-container #id_bio {*/
-/*      width: 100%;*/
-/*      height: 180px;*/
-/*      resize: vertical;*/
-/*}*/
 
 .password-section{
       margin-bottom: var(--space-m);
@@ -1353,16 +1107,6 @@ body {
     font-size: 18px;
 }
 
-.card-page,
-.bank-page,
-.wire-page,
-.overview-page,
-.shipping-page {
-    width: auto;
-    max-width: none;
-    margin: 0;
-    padding: 0;
-}
 
 .card-form {
     margin: 0;
