@@ -11,6 +11,9 @@ MEDIUM_CHOICES = [
     ("ink_drawing", "Ink drawing"),
     ("digital", "Digital"),
     ("photograph", "Photograph"),
+    ("mixed_media", "Mixed media"),
+    ("print", "Print"),
+    ("other", "Other"),
 ]
 
 EDITION_CHOICES = [
