@@ -48,7 +48,7 @@ def add_listing_view(request):
             for image in images:
                 ArtworkImage.objects.create(artwork=artwork, image=image)
 
-            return redirect("my_profile_seller")
+            return redirect("my-profile-seller")
 
     else:
         form = ArtworkListingForm()
@@ -96,7 +96,7 @@ def delete_listing_view(request, id):
     )
 
     artwork.delete()
-    return redirect("my_profile_seller")
+    return redirect("my-profile-seller")
 
 
 @login_required

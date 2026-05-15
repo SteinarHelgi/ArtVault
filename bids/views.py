@@ -53,11 +53,11 @@ def payment_method(request, bid_id):
         request.session["payment_method"] = method
 
         if method == "card":
-            return redirect("credit_card_payment", bid_id=bid.pk)
+            return redirect("credit-card-payment", bid_id=bid.pk)
         elif method == "bank":
-            return redirect("bank_transfer_payment", bid_id=bid.pk)
+            return redirect("bank-transfer-payment", bid_id=bid.pk)
         elif method == "wire":
-            return redirect("wire_transfer_payment", bid_id=bid.pk)
+            return redirect("wire-transfer-payment", bid_id=bid.pk)
 
     return render(
         request,
@@ -87,7 +87,7 @@ def credit_card_payment(request, bid_id):
                 "card_cvv": form.cleaned_data["card_cvv"],
                 "card_last4": form.cleaned_data["card_number"][-4:],
             }
-            return redirect("checkout_overview", bid_id=bid.pk)
+            return redirect("checkout-overview", bid_id=bid.pk)
     else:
         form = CreditCardForm(initial=request.session.get("card_data"))
 
@@ -114,7 +114,7 @@ def bank_transfer_payment(request, bid_id):
 
         if form.is_valid():
             request.session["bank_data"] = form.cleaned_data
-            return redirect("checkout_overview", bid_id=bid.pk)
+            return redirect("checkout-overview", bid_id=bid.pk)
     else:
         form = BankTransferForm(initial=request.session.get("bank_data"))
 
@@ -141,7 +141,7 @@ def wire_transfer_payment(request, bid_id):
 
         if form.is_valid():
             request.session["wire_data"] = form.cleaned_data
-            return redirect("checkout_overview", bid_id=bid.pk)
+            return redirect("checkout-overview", bid_id=bid.pk)
     else:
         form = WireTransferForm(initial=request.session.get("wire_data"))
 
@@ -173,7 +173,7 @@ def checkout_overview(request, bid_id):
         return redirect("shipping", bid_id=bid.pk)
 
     if not payment_method:
-        return redirect("payment_method", bid_id=bid.pk)
+        return redirect("payment-method", bid_id=bid.pk)
 
     payment = None
 
@@ -185,7 +185,7 @@ def checkout_overview(request, bid_id):
         payment = request.session.get("wire_data")
 
     if not payment:
-        return redirect("payment_method", bid_id=bid.pk)
+        return redirect("payment-method", bid_id=bid.pk)
 
     if request.method == "POST":
         artwork.sold = True
@@ -315,25 +315,25 @@ def make_bid(request, artwork_id):
 
         if not amount:
             messages.error(request, "Please enter a bid amount")
-            return redirect("make_bid", artwork_id)
+            return redirect("make-bid", artwork_id)
 
         if "." in amount:
             messages.error(request, "Bid amount must be a whole number.")
-            return redirect("make_bid", artwork_id)
+            return redirect("make-bid", artwork_id)
 
         try:
             amount = int(amount)
         except ValueError:
             messages.error(request, "Please enter a valid number.")
-            return redirect("make_bid", artwork_id)
+            return redirect("make-bid", artwork_id)
         if amount < minimum_bid:
             messages.error(
                 request, f"Your bid must be at least {minimum_bid} kr."
             )
-            return redirect("make_bid", artwork_id)
+            return redirect("make-bid", artwork_id)
         if amount > max_bid:
             messages.error(request, "Bid is too large")
-            return redirect("make_bid", artwork_id)
+            return redirect("make-bid", artwork_id)
 
         request.session["pending_bid_amount"] = amount
         return render_artwork_bid(

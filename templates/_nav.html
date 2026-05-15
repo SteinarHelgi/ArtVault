@@ -53,9 +53,9 @@
 
 
                         {% if user.profile.role == "buyer" %}
-                        <a href="{% url 'my_bids' %}">My Bids</a>
+                        <a href="{% url 'my-bids' %}">My Bids</a>
                         {% else %}
-                        <a href="{% url 'my_profile_seller' %}">View my profile</a>
+                        <a href="{% url 'my-profile-seller' %}">View my profile</a>
                         {% endif %}
 
                         <form method="post" action="{% url 'logout' %}" class="logoutForm">

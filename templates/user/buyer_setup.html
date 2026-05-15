@@ -4,7 +4,7 @@
 {% block content %}
     <div class="buyer-setup-page">
 
-        <form method="post" action="{% url 'buyer_setup' %}" enctype="multipart/form-data" class="buyer-setup-form">
+        <form method="post" action="{% url 'buyer-setup' %}" enctype="multipart/form-data" class="buyer-setup-form">
             {% csrf_token %}
             {{ form.non_field_errors }}
 

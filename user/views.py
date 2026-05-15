@@ -39,9 +39,9 @@ def signup(request):
             }
 
             if role == "buyer":
-                return redirect("buyer_setup")
+                return redirect("buyer-setup")
             else:
-                return redirect("seller_setup")
+                return redirect("seller-setup")
 
     else:
         form = SignupForm()

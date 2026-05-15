@@ -11,10 +11,10 @@
             be changed or withdrawn.
         </p>
     </div>
-    <form method="post" action="{% url 'submit_bid' artwork.id %}">
+    <form method="post" action="{% url 'submit-bid' artwork.id %}">
         {% csrf_token %}
 
         <button type="submit" class="button-b button-orange">I'm sure</button>
-        <a href="{% url 'make_bid' artwork.id %}" class="button-b button-orange">Cancel</a>
+        <a href="{% url 'make-bid' artwork.id %}" class="button-b button-orange">Cancel</a>
     </form>
 </div>
