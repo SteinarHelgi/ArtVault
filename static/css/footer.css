@@ -11,14 +11,22 @@
 }
 
 
-.footer-container img{
+.footer-container img {
     height: auto;
     width: 60px;
 }
 
-.footer-links{
+.footer-links a {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    text-decoration: none;
+    color: var(--black);
+    margin-bottom: 14px;
+
+}
+
+.footer-links a:hover {
+    color: var(--light-black);
+
 }
