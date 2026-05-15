@@ -19,4 +19,15 @@ Verklegt 2
 * Order summary with every step in finalize bid.
 
 
+Account login:
+BuyerTest
+Password123!"#
+
+IndividualSellerTest
+Password123!"#
+
+GalleryTest
+Password123!"#
+
+
 
