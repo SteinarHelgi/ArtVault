@@ -8,10 +8,10 @@
             <p class="highest-bid">Highest bid</p>
 
             <h2 class="bid-price">
-                {{ current_price }} Kr.
+                {{ current_price }} kr.
             </h2>
             {% if user_bid %}
-                <p>My last bid: {{ user_bid.formatted_amount }} Kr.</p>
+                <p>My last bid: {{ user_bid.formatted_amount }} kr.</p>
                 {% if user_bid.status == "accepted" %}
                 <p>Accepted!</p>
 
@@ -43,7 +43,7 @@
             <p class="highest-bid">Starting price</p>
 
             <h2 class="bid-price">
-                {{ current_price }} Kr.
+                {{ current_price }} kr.
             </h2>
 
             <a href="{% url 'make_bid' artwork.id %}" class="button-b button-orange">
