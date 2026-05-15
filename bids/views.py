@@ -6,14 +6,9 @@ from bids.forms.shippingForm import ShippingForm
 from bids.forms.bankTransferForm import BankTransferForm
 from bids.forms.wireTransferForm import WireTransferForm
 from bids.forms.creditCardForm import CreditCardForm
-from bids.models import (
-    ShippingModel,
-    BankTransferModel,
-    WireTransferModel,
-    CreditCardModel,
-)
 from artvault.models import Bid, Artwork
 from django.contrib import messages
+from bids.models import Order
 from user.models import BuyerProfileModel
 from utils.formatting import format_currency
 import math
@@ -23,226 +18,209 @@ import math
 
 
 def shipping(request, bid_id):
-    bid = Bid.objects.get(id=bid_id)
+    bid = get_object_or_404(Bid, pk=bid_id)
     if request.method == "POST":
         form = ShippingForm(request.POST)
 
         if form.is_valid():
-            shipping_obj = form.save()
-            shipping_obj.bid = bid
-            shipping_obj.save()
-            return redirect("payment_method", shipping_id=shipping_obj.id)
+            request.session["shipping_data"] = form.cleaned_data
+            return redirect("payment_method", bid_id=bid.pk)
 
     else:
-        form = ShippingForm()
-    return render(request, template_name="bids/shipping.html", context={
-        "form": form,
-        "bid": bid,
-        "artwork": bid.artwork,
-        "total_price": format_currency(bid.amount),
-    })
-
-
-def shipping_edit(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
-
-    bid = shipping_obj.bid
-    artwork = bid.artwork
-    total_price = bid.amount
-
-    if request.method == "POST":
-        form = ShippingForm(request.POST, instance=shipping_obj)
-        if form.is_valid():
-            form.save()
-            return redirect("payment_method", shipping_id=shipping_obj.id)
-    else:
-        form = ShippingForm(instance=shipping_obj)
-
+        form = ShippingForm(initial=request.session.get("shipping_data"))
     return render(
-        request, "bids/shipping.html", {
+        request,
+        template_name="bids/shipping.html",
+        context={
             "form": form,
-            "shipping": shipping_obj,
             "bid": bid,
-            "artwork": artwork,
-            "total_price": format_currency(total_price),
-        }
+            "artwork": bid.artwork,
+            "total_price": format_currency(bid.amount),
+        },
     )
 
 
-def payment_method(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
-
-    bid = shipping_obj.bid
+def payment_method(request, bid_id):
+    bid = get_object_or_404(Bid, pk=bid_id)
     artwork = bid.artwork
     total_price = bid.amount
+
+    if "shipping_data" not in request.session:
+        return redirect("shipping", bid_id=bid.pk)
 
     if request.method == "POST":
         method = request.POST.get("payment_method")
-        shipping_obj.payment_method = method
-        shipping_obj.save()
+        request.session["payment_method"] = method
 
         if method == "card":
-            return redirect("credit_card_payment", shipping_id=shipping_obj.id)
+            return redirect("credit_card_payment", bid_id=bid.pk)
         elif method == "bank":
-            return redirect("bank_transfer_payment", shipping_id=shipping_obj.id)
+            return redirect("bank_transfer_payment", bid_id=bid.pk)
         elif method == "wire":
-            return redirect("wire_transfer_payment", shipping_id=shipping_obj.id)
-
-    return render(request, "bids/payment_method.html", {
-        "shipping": shipping_obj,
-        "bid": bid,
-        "artwork": artwork,
-        "total_price": format_currency(total_price),
-    })
-
-
-def credit_card_payment(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
-
-    bid = shipping_obj.bid
-    artwork = bid.artwork
-    total_price = bid.amount
-
-    payment_obj, created = CreditCardModel.objects.get_or_create(shipping=shipping_obj)
-
-    if request.method == "POST":
-        form = CreditCardForm(request.POST, instance=payment_obj)
-        if form.is_valid():
-            instance = form.save(commit=False)
-            instance.shipping = shipping_obj
-            instance.save()
-            return redirect("checkout_overview", shipping_id=shipping_obj.id)
-    else:
-        form = CreditCardForm(instance=payment_obj)
+            return redirect("wire_transfer_payment", bid_id=bid.pk)
 
     return render(
-        request, "bids/card_payment.html", {
-            "form": form,
-            "shipping": shipping_obj,
+        request,
+        "bids/payment_method.html",
+        {
             "bid": bid,
             "artwork": artwork,
             "total_price": format_currency(total_price),
-        }
+        },
     )
 
 
-def bank_transfer_payment(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
+def credit_card_payment(request, bid_id):
+    bid = get_object_or_404(Bid, pk=bid_id)
 
-    bid = shipping_obj.bid
-    artwork = bid.artwork
-    total_price = bid.amount
-
-    payment_obj, created = BankTransferModel.objects.get_or_create(
-        shipping=shipping_obj
-    )
+    if "shipping_data" not in request.session:
+        return redirect("shipping", bid_id=bid.pk)
 
     if request.method == "POST":
-        form = BankTransferForm(request.POST, instance=payment_obj)
+        form = CreditCardForm(request.POST)
+
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.shipping = shipping_obj
-            instance.save()
-            return redirect("checkout_overview", shipping_id=shipping_obj.id)
+            request.session["card_data"] = {
+                "cardholder_name": form.cleaned_data["cardholder_name"],
+                "card_number": form.cleaned_data["card_number"],
+                "card_expiration": form.cleaned_data["card_expiration"],
+                "card_cvv": form.cleaned_data["card_cvv"],
+                "card_last4": form.cleaned_data["card_number"][-4:],
+            }
+            return redirect("checkout_overview", bid_id=bid.pk)
     else:
-        form = BankTransferForm(instance=payment_obj)
+        form = CreditCardForm(initial=request.session.get("card_data"))
 
     return render(
-        request, "bids/bank_payment.html", {
+        request,
+        "bids/card_payment.html",
+        {
             "form": form,
-            "shipping": shipping_obj,
             "bid": bid,
-            "artwork": artwork,
-            "total_price": format_currency(total_price),
-        }
+            "artwork": bid.artwork,
+            "total_price": format_currency(bid.amount),
+        },
     )
 
 
-def wire_transfer_payment(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
-    )
+def bank_transfer_payment(request, bid_id):
+    bid = get_object_or_404(Bid, pk=bid_id)
 
-    bid = shipping_obj.bid
-    artwork = bid.artwork
-    total_price = bid.amount
-
-    payment_obj, created = WireTransferModel.objects.get_or_create(
-        shipping=shipping_obj
-    )
+    if "shipping_data" not in request.session:
+        return redirect("shipping", bid_id=bid.pk)
 
     if request.method == "POST":
-        form = WireTransferForm(request.POST, instance=payment_obj)
+        form = BankTransferForm(request.POST)
+
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.shipping = shipping_obj
-            instance.save()
-            return redirect("checkout_overview", shipping_id=shipping_obj.id)
+            request.session["bank_data"] = form.cleaned_data
+            return redirect("checkout_overview", bid_id=bid.pk)
     else:
-        form = WireTransferForm(instance=payment_obj)
+        form = BankTransferForm(initial=request.session.get("bank_data"))
 
     return render(
-        request, "bids/wire_payment.html", {
+        request,
+        "bids/bank_payment.html",
+        {
             "form": form,
-            "shipping": shipping_obj,
             "bid": bid,
-            "artwork": artwork,
-            "total_price": format_currency(total_price),
-        }
+            "artwork": bid.artwork,
+            "total_price": format_currency(bid.amount),
+        },
     )
 
 
-def checkout_overview(request, shipping_id):
-    shipping_obj = get_object_or_404(
-        ShippingModel.objects.select_related("bid", "bid__artwork"),
-        id=shipping_id
+def wire_transfer_payment(request, bid_id):
+    bid = get_object_or_404(Bid, pk=bid_id)
+
+    if "shipping_data" not in request.session:
+        return redirect("shipping", bid_id=bid.pk)
+
+    if request.method == "POST":
+        form = WireTransferForm(request.POST)
+
+        if form.is_valid():
+            request.session["wire_data"] = form.cleaned_data
+            return redirect("checkout_overview", bid_id=bid.pk)
+    else:
+        form = WireTransferForm(initial=request.session.get("wire_data"))
+
+    return render(
+        request,
+        "bids/wire_payment.html",
+        {
+            "form": form,
+            "bid": bid,
+            "artwork": bid.artwork,
+            "total_price": format_currency(bid.amount),
+        },
     )
 
-    bid = shipping_obj.bid
+
+def checkout_overview(request, bid_id):
+    bid = get_object_or_404(
+        Bid.objects.select_related("artwork"),
+        pk=bid_id,
+    )
+
     artwork = bid.artwork
     total_price = bid.amount
+
+    shipping = request.session.get("shipping_data")
+    payment_method = request.session.get("payment_method")
+
+    if not shipping:
+        return redirect("shipping", bid_id=bid.pk)
+
+    if not payment_method:
+        return redirect("payment_method", bid_id=bid.pk)
 
     payment = None
-    if shipping_obj.payment_method == "card":
-        payment = CreditCardModel.objects.get(shipping=shipping_obj)
-    elif shipping_obj.payment_method == "bank":
-        payment = BankTransferModel.objects.get(shipping=shipping_obj)
-    elif shipping_obj.payment_method == "wire":
-        payment = WireTransferModel.objects.get(shipping=shipping_obj)
+
+    if payment_method == "card":
+        payment = request.session.get("card_data")
+    elif payment_method == "bank":
+        payment = request.session.get("bank_data")
+    elif payment_method == "wire":
+        payment = request.session.get("wire_data")
+
+    if not payment:
+        return redirect("payment_method", bid_id=bid.pk)
 
     if request.method == "POST":
-        bid = shipping_obj.bid
-        artwork = bid.artwork
-
         artwork.sold = True
         artwork.save()
 
         bid.status = "completed"
         bid.save()
+
+        Order.objects.create(
+            artwork=artwork,
+            buyer=bid.buyer,
+            seller=artwork.seller,
+            bid=bid,
+        )
+
+        request.session.pop("shipping_data", None)
+        request.session.pop("payment_method", None)
+        request.session.pop("card_data", None)
+        request.session.pop("bank_data", None)
+        request.session.pop("wire_data", None)
+
         messages.success(request, "payment_successful")
         return redirect("/")
 
     return render(
-        request, "bids/overview.html", {
-            "shipping": shipping_obj,
+        request,
+        "bids/overview.html",
+        {
+            "shipping": shipping,
+            "payment_method": payment_method,
             "payment": payment,
             "bid": bid,
             "artwork": artwork,
             "total_price": format_currency(total_price),
-        }
+        },
     )
 
 
@@ -250,11 +228,12 @@ def checkout_overview(request, shipping_id):
 def my_bids(request):
     profile: BuyerProfileModel = request.user.profile.buyer_profile
 
-    bids = Bid.objects.filter(
-        buyer=profile
-    ).select_related("artwork").annotate(
-        artwork_highest_bid=Max("artwork__bids__amount")
-    ).order_by("artwork", "-amount")
+    bids = (
+        Bid.objects.filter(buyer=profile)
+        .select_related("artwork")
+        .annotate(artwork_highest_bid=Max("artwork__bids__amount"))
+        .order_by("artwork", "-amount")
+    )
 
     for bid in bids:
         bid.highest_bid = format_currency(bid.artwork_highest_bid)
@@ -269,7 +248,15 @@ def my_bids(request):
     )
 
 
-def render_artwork_bid(request, artwork, bid_step=None, amount=None, auction_over=False, user_bid=None, minimum_bid=None):
+def render_artwork_bid(
+    request,
+    artwork,
+    bid_step=None,
+    amount=None,
+    auction_over=False,
+    user_bid=None,
+    minimum_bid=None,
+):
     highest_bid = artwork.bids.order_by("-amount").first()
     current_price = highest_bid.amount if highest_bid else artwork.starting_price
     artwork.days_remaining = (artwork.auction_end_date - timezone.now().date()).days
@@ -313,7 +300,6 @@ def make_bid(request, artwork_id):
         minimum_bid = int(artwork.starting_price)
 
     if request.method == "POST":
-
         amount = request.POST.get("amount")
 
         if not amount:
@@ -335,13 +321,22 @@ def make_bid(request, artwork_id):
             )
             return redirect("make_bid", artwork_id)
         if amount > max_bid:
-            messages.error(request,"Bid is too large")
-            return redirect("make_bid",artwork_id)
+            messages.error(request, "Bid is too large")
+            return redirect("make_bid", artwork_id)
 
         request.session["pending_bid_amount"] = amount
-        return render_artwork_bid(request, artwork, "confirm", amount, user_bid=user_bid, minimum_bid=minimum_bid)
+        return render_artwork_bid(
+            request,
+            artwork,
+            "confirm",
+            amount,
+            user_bid=user_bid,
+            minimum_bid=minimum_bid,
+        )
 
-    return render_artwork_bid(request, artwork, "make", user_bid=user_bid, minimum_bid=minimum_bid)
+    return render_artwork_bid(
+        request, artwork, "make", user_bid=user_bid, minimum_bid=minimum_bid
+    )
 
 
 @login_required
@@ -367,26 +362,6 @@ def submit_bid(request, artwork_id):
     request.session.pop("pending_bid_amount", None)
 
     return render_artwork_bid(request, artwork, "success", amount, user_bid=new_bid)
-
-
-@login_required
-def accept_bid(request, bid_id):
-    bid = get_object_or_404(Bid, id=bid_id)
-
-    artwork = bid.artwork
-
-    if artwork.is_closed:
-        return redirect("artwork-details", artwork.id)
-
-    artwork.bids.exclude(id=bid.id).update(status="rejected")
-
-    bid.status = "accepted"
-    bid.save()
-
-    artwork.is_closed = True
-    artwork.save()
-
-    return redirect(request.META.get("HTTP_REFERER"))
 
 
 def close_auction(artwork):

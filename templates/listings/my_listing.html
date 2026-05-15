@@ -90,27 +90,16 @@
         {% else %}
       <div class="gallery-container">
             {% for bid in bids %}
-            <a class="art-card">
+            <div class="art-card">
                   <div class="art-card-info">
                         <p class="bid-status">{{bid.status}}</p>
-                        {% if auction_over %}
-                        {% if not bid.artwork.sold %}
-
-                        <form action="{% url 'accept-bid' bid.id %}" method="post">
-                              {% csrf_token %}
-                              <button type="submit">Accept Bid</button>
-                        </form>
-                        {% endif %}
-                        {% endif %}
                         <h5 class="">{{bid.buyer.full_name}}</h5>
                         <p class="price">Bid: <b>{{bid.amount}} kr.</b></p>
                   </div>
-            </a>
+            </div>
             {% endfor %}
-            <div>
             </div>
         {% endif %}
       </div>
 </div>
-
 {% endblock %}

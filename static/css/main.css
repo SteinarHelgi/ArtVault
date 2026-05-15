@@ -1273,3 +1273,8 @@ hr {
       font-family: var(--paragraph-font);
 
 }
+.form-error {
+    color: #d93025;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
